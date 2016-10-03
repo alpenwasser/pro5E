@@ -1,0 +1,124 @@
+\documentclass[a4paper,10pt]{article}
+
+
+% ---------------------------------------------------------------------------- %
+% Packages
+% ---------------------------------------------------------------------------- %
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\usepackage[a4paper,height=250mm,width=150mm]{geometry}
+\usepackage[affil-it]{authblk}
+\usepackage{sectsty}
+\usepackage{lmodern}
+\fontfamily{lmr}\selectfont
+\subsectionfont{\fontsize{11}{12}\selectfont}
+%\usepackage{xcolor-solarized}
+%\pagecolor{solarized-base02}
+%\color{solarized-base2}
+%\pagecolor{solarized-base2}
+%\color{solarized-base02}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage{siunitx}
+
+
+% ---------------------------------------------------------------------------- %
+% Macros
+% ---------------------------------------------------------------------------- %
+\def\code#1{\texttt{#1}}
+
+
+% ---------------------------------------------------------------------------- %
+% Title Setup
+% ---------------------------------------------------------------------------- %
+\title{Project 5 -- Sensor-Microchip}
+\author{Raphael Frey, Alexander Murray}
+\affil{Institute for Mikroelektronics\\FHNW -- Hochschule f\"ur Technik\\ Studiengang EIT}
+
+
+
+% **************************************************************************** %
+% Content
+% **************************************************************************** %
+\begin{document}
+
+% ---------------------------------------------------------------------------- %
+\maketitle
+% ---------------------------------------------------------------------------- %
+
+% ---------------------------------------------------------------------------- %
+% \section{Ziele}
+% \label{sec:ziele}
+% ---------------------------------------------------------------------------- %
+
+%\vspace{1em}
+
+In his Master Thesis \emph{Sensor Chip} from 2015, Tobias Burgherr developed a
+sensor  integrated circuit  as a  base for  further projects  to use. This  IC
+consists of  a programmable pre-amplifier and  a sigma-delta analog-to-digital
+converter. Based on his work, two teams modified the existing chip in 2016.
+
+In 2016, Roger  Gloor and Patrick Walther modified the  preamp in their thesis
+\emph{Re-Design eines  integrierten Verst\"arkers f\"ur  einen AD-Wandler-IC},
+while Marcel  Baier and Kevin  Niffenegger worked on  the ADC in  their thesis
+\emph{Sensor-Chip mit Sub-SAR-ADC}.
+
+These two projects yielded one redesigned chip each, which are now coming back
+from fabrication. Our main objectives in this project will broadly be as follows:
+
+\begin{itemize}
+    \item
+        Measure and assess the performance of both chips.
+    \item
+        Examine and understand more closely the chip by Baier and Niffenegger,
+        and propose potential improvements for it.
+\end{itemize}
+
+Improving the  chip by Baier  and Niffenegger will by  the main focus  of next
+semester's  project, which  is why  this  project's focus  is somewhat  biased
+towards that chip.
+
+In a  first stage,  our main task  will be to  familiarise ourselves  with the
+fundamental concepts such as sigma-delta ADCs and Sub-SAR ADCs, as well as the
+specific  implementations  used  by  the previous  teams. They  have  provided
+extensive documentation  for this. This is particularly  important for Baier's
+and  Niffenegger's design,  since  understanding the  system  more closely  is
+required  for determining  what to  do  with that  chip  in stage  two of  our
+project.
+
+In a  second stage, we will  measure various properties of  the two chips. For
+the chip by  Gloor and Walther, this will mean  examining their implementation
+of the preamp stage (gain, speed, bandwidth, power consumption\ldots). For the
+chip  by  Baier  and  Niffenegger,  the  relevant  characteristics  cannot  be
+determined with certainty at this point (see above). This will be done once we
+have familiarised ourselves with  the system to judge what is  and what is not
+relevant  to assess  its  performance, and  what  sorts of  tests  need to  be
+performed to gain these insights.
+
+In  a  third  stage, the  chip  by  Baier  and  Niffenegger will  be  examined
+more  closely for  ways in  which to  further improve  upon its  design. These
+conclusions will be  the starting point for next semester's  project, where we
+will  simulate and  design  a new  chip  based on  our  conclusions from  this
+semester.
+
+The  primary resources  will be  the  documentation provided  by the  previous
+teams, the book  \emph{Analog Circuit Design} used in  the course \emph{Analog
+Circuits} as well as any supplementary information as needed.
+
+This project is commissioned and supervised by Alex Huber and Hanspeter Schmid
+of the Institute of Microelectronics. They are its main addressees, along with
+ourselves, who will continue this project's work next semester.
+
+\texttt{TODO: potential results}
+
+The primary  danger to this  project's success  is time mismanagement,  in our
+estimate. The chip  by Gloor  and Walther  will likely  be easier  to measure.
+However, the  chip by Baier  and Niffenegger will  be the foundation  for next
+semester's project, so  spending too much time  on the first chip  will have a
+direct negative  impact on the  continuation of this project. It  is therefore
+crucial to properly plan.
+
+
+quellen, potential results
+\end{document}

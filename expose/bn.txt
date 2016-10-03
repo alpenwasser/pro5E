@@ -1,0 +1,50 @@
+In einer vorangegangenen Masterarbeit wurde die integrierte Schaltung ”
+Sensor Chip“ entwickelt. Der
+Sensor Chip besteht aus einem Sigma-Delta-ADC mit programmierbaren Vorverstarkung und einstell- ¨
+barer Bandbreite. Sigma-Delta-Wandler verwenden ublicherweise einen internen 1-bit-Wandler (One-bit ¨
+Quantizer), die dann durch die Sigma-Delta-Modulation auf die entsprechende Auflosung (12...16 bit) ¨
+gepushed werden. Der Sensor Chip weist allerdings einige Schwachen auf, die durch eine Weiterent- ¨
+wicklung des bestehenden Produkts ausgemerzt werden sollen. Das Hauptproblem, welches allerdings
+nicht Teil unserer Arbeit ist, besteht aus einer starken Ungenauigkeit im DC-Bereich durch einen ”
+gain
+error“ des Vorverstarkers. Mit der Behebung dieses Problems besch ¨ aftigt sich ein anderes Team. ¨
+Das Ziel unserer Arbeit ist, diesen internen 1-bit-Wandler durch einen 3-bit Successive Approximation
+Register ADC (SAR ADC) zu ersetzten. Wir sollen durch Simulationen zeigen, ob es moglich ist, durch ¨
+einen solchen ”
+Multi-bit Quantizer“ eine Verbesserung zu erzielen. Die Nutzlichkeit des Ausgangs dieser ¨
+Arbeit auf die Welt der Analogtechnik ist ungewiss, da es keine Informationen dazu gibt, ob dieses
+Vorhaben wirklich sinnvoll ist. Dies ist zugleich der Grund, weshalb wir uns fur diese Arbeit entschieden ¨
+haben, diese Ungewissheit hat einen starken Reiz fur uns. ¨
+Der Anfang des Projekts besteht darin, sich intensiv mit SAR ADC auseinanderzusetzen, um ein grundlegendes
+Verstandnis zu erlangen. Zwei m ¨ ogliche L ¨ osungsans ¨ atze sind uns von den Betreuern vorgegeben ¨
+worden. Dabei handelt es sich einerseits um einen SAR ADC mit einem DAC und anderseits mit zwei
+sich alternierenden DACs im Ruckkopplungspfad. Die Ideen f ¨ ur die Umsetzung dieser L ¨ osungsans ¨ atze ¨
+bzw. das Herausfinden, welcher derjenige Losungsansatz mit dem gr ¨ ossten Potenzial ist, kommen frei ¨
+von unserer Seite. Deshalb ist es bei unserer Arbeit sehr wichtig, den Kontakt zu Betreuern zu suchen,
+um richtige Ansatze weiterverfolgen zu k ¨ onnen und falsche Ans ¨ atze rechtzeitig fallen zu lassen. Im Rah- ¨
+men des Projekts beschranken wir uns deshalb ausschliesslich auf diese beiden Ideen. Es gibt weitere ¨
+Wege, diese Problemstellung losen zu k ¨ onnen (bspw. Abweichung direkt messen und r ¨ uckkoppeln, error ¨
+correction), doch diese grenzen wir klar von unserer Arbeit aus. Fur den Vergleich der L ¨ osungsans ¨ atze ¨
+mussen die evaluierten Schaltungen unter bestimmten Testbedingungen simuliert werden. Welches diese ¨
+Bedingungen sind, konnen wir noch nicht genau wissen. Fest steht aber, dass wir uns in diesem Projekt ¨
+noch nicht mit dem Layout, sondern ausschliesslich mit dem theoretischen Design und dessen Simulation
+auseinandersetzen. In einem Dokument sind dann die Erkenntnisse festzuhalten, welche als Grundlage
+fur das weiterf ¨ uhrende Projekt dienen werden. Eventuell werden die bereits bestehenden Dokumente des ¨
+”
+Sensor Chip“ mit der entsprechenden Theorie erweitert.
+Die Erarbeitung des Wissens besteht aus den bereits vorhandenen Dokumenten der Masterarbeit, den
+Gesprachen mit den Betreuern und dem Buch ¨
+”
+Analog Integrated Circuit Design“. Wenn genannte Quellen
+nicht ausreichen, halten wir es uns offen, weitere hinzuzuziehen. Falls notig wird der theoretische ¨
+Teil der Masterarbeit (Part II) erganzt. ¨
+Wenn das Ersetzen des internen Wandlers eine (merkbare) Verbesserung des Sensor Chips ergibt, konnte ¨
+das zu interessanten Diskussionen in der Welt der analogen Schaltungstechnik fuhren, da dieses Vorhaben ¨
+bzw. diese Idee, wie bereits erwahnt, bis jetzt nur sehr wenig bis gar keine Beachtung geschenkt wurde. ¨
+Die Adressaten dieser Arbeit sind die Betreuer des Projekts, Alex Huber und Hanspeter Schmid vom
+IME, sowie wir selber, da wir uns im P6 mit der Umsetzung des Geplanten (Entwurf, Simulation und
+Layout) auseinandersetzen werden.
+Vorfalle, die zum Scheitern des Projekts f ¨ uhren, sind ausgesprochen unwahrscheinlich. Die Zusammen- ¨
+arbeit unter uns lauft seit je her reibungslos. Durch eine gute Zusammenarbeit mit den Betreuern k ¨ onnen ¨
+wir zielwidrige Wege grundsatzlich ausschliessen. Der kaum anzunehmende Fall eines Ausfalls unser- ¨
+eins berucksichtigen wir nich
