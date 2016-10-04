@@ -54,10 +54,17 @@
 
 %\vspace{1em}
 
-In his Master Thesis \emph{Sensor Chip} from 2015, Tobias Burgherr developed a
-sensor  integrated circuit  as a  base for  further projects  to use. This  IC
-consists of  a programmable pre-amplifier and  a sigma-delta analog-to-digital
-converter. Based on his work, two teams modified the existing chip in 2016.
+In his Master Thesis \emph{Sensor Chip}  from  2015, Tobias Burgherr developed a
+sensor  integrated  circuit  as  a  base  for  further projects to use. This  IC
+consists of a programmable  pre-amplifier  and  a  sigma-delta analog-to-digital
+converter with adjustable bandwidth. Typically, sigma-delta ADCs use an internal
+1-bit quantizer which gets  boosted  to  the  desired  resolution  of  bits  via
+delta-sigma modulation. The goal of his work was to  replace the 1-bit quantizer
+with a successive  approximation register (SAR) ADC capable of converting 3 bits
+at a time instead of 1. A complementary  3-bit DAC was also developed to be used
+internally in the feedback loop of the sigma-delta modulator. Based on his work,
+two teams modified the existing chip
+in 2016.
 
 In 2016, Roger  Gloor and Patrick Walther modified the  preamp in their thesis
 \emph{Re-Design eines  integrierten Verst\"arkers f\"ur  einen AD-Wandler-IC},
@@ -75,12 +82,12 @@ from fabrication. Our main objectives in this project will broadly be as follows
         and propose potential improvements for it.
 \end{itemize}
 
-Improving the  chip by Baier  and Niffenegger will by  the main focus  of next
+Improving the  chip by Baier  and Niffenegger will be  the main focus  of next
 semester's  project, which  is why  this  project's focus  is somewhat  biased
 towards that chip.
 
 In a  first stage,  our main task  will be to  familiarise ourselves  with the
-fundamental concepts such as sigma-delta ADCs and Sub-SAR ADCs, as well as the
+fundamental concepts such as sigma-delta ADCs and SAR ADCs, as well as the
 specific  implementations  used  by  the previous  teams. They  have  provided
 extensive documentation  for this. This is particularly  important for Baier's
 and  Niffenegger's design,  since  understanding the  system  more closely  is
@@ -112,8 +119,7 @@ ourselves, who will continue this project's work next semester.
 
 \texttt{TODO: potential results}
 
-The primary  danger to this  project's success  is time mismanagement,  in our
-estimate. The chip  by Gloor  and Walther  will likely  be easier  to measure.
+The primary  danger to this  project's success  is time mismanagement. The chip  by Gloor  and Walther  will likely  be easier  to measure.
 However, the  chip by Baier  and Niffenegger will  be the foundation  for next
 semester's project, so  spending too much time  on the first chip  will have a
 direct negative  impact on the  continuation of this project. It  is therefore
