@@ -1,0 +1,37 @@
+% -------------------------------------------------------- %
+% Provides  a   new  environment  a3pages   for  inserting %
+% landscape a3pages at arbitrary points in your document.  %
+%                                                          %
+% NOTE: This environment needs to be enclosed in braces to %
+% work  correctly.  Unfortunately,  I  haven't managed  to %
+% integrate  those into  the commands  directly yet  (they %
+% obviously mess up the bracing of the command itself).    %
+%                                                          %
+% EXAMPLE:                                                 %
+%                                                          %
+% {\begin{a3pages}                                         %
+%     your content                                         %
+%     goes here                                            %
+%     and will be put on                                   %
+%     landscape A3 pages                                   %
+% \end{a3pages}}                                           %
+%                                                          %
+% Note the  opening brace  before \begin{a3pages}  and the %
+% additional closing brace after \end{a3pages}             %
+% -------------------------------------------------------- %
+% See also:
+% http://tex.stackexchange.com/questions/16942/difference-between-textwidth-linewidth-and-hsize
+
+\newenvironment{a3pages}
+    {%
+        \clearpage
+        \setlength{\pdfpagewidth}{2\pdfpagewidth}
+        \setlength{\hsize}{\pdfpagewidth-\spinemargin-\foremargin} % for text paragraphs
+        \setlength{\textwidth}{\hsize}                             % headers, footers
+        \setlength{\stockwidth}{2\stockwidth}
+        \setlength{\paperwidth}{2\paperwidth}
+        \checkandfixthelayout%
+    }
+    {%
+        \clearpage
+    }

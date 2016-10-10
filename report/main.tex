@@ -1,0 +1,189 @@
+% ******************************************************** %
+% DOCUMENT INFORMATION                                     %
+% ******************************************************** %
+%                                                          %
+%                                                          %
+% Purpose of Document                                      %
+% -------------------                                      %
+% Technical Report                                         %
+%                                                          %
+% Institution                                              %
+% -----------                                              %
+% University of Applied Sciences and Arts Northwestern     %
+% Switzerland, School of Engineering                       %
+%                                                          %
+% Degree Program                                           %
+% --------------                                           %
+% Electrical Engineering and Information Technology, BSc.  %
+%                                                          %
+% Course                                                   %
+% ------                                                   %
+% Project 5, Fall Semester 2016                            %
+%                                                          %
+% Authors                                                  %
+% -------                                                  %
+% Raphael Frey                                             %
+% Alex Murray                                              %
+%                                                          %
+% Document Design and Maintenance                          %
+% -------------------------------                          %
+% Raphael Frey                                             %
+% Based on my own work. The  template on which this report %
+% was based is available at:                               %
+% https://github.com/alpenwasser/longtex                   %
+% -------------------------------------------------------- %
+
+\documentclass[11pt, a4paper, oneside]{memoir}
+
+% -------------------------------------------------------- %
+% Different font and pages  sizes, layouts. Not a complete %
+% list, just what I've used on occasion.                   %
+% -------------------------------------------------------- %
+%\documentclass[9pt,b5paper]{memoir}
+%\documentclass[twocolumn,9pt,a4paper]{memoir}
+%\documentclass[10pt,a5paper]{memoir} % ~60 chars per line
+%\documentclass[12pt,a4paper]{memoir} % ~60 to 70 chars per line
+
+
+% -------------------------------------------------------- %
+% Preamble  stuff  is  kept in  the  preamble/  directory, %
+% separated  out into  different files  as needed  to keep %
+% things modular.                                          %
+% -------------------------------------------------------- %
+\input{preamble/packages.tex}
+\input{preamble/memoir.tex}
+\input{preamble/macros.tex}
+\input{preamble/conditions.tex}
+\input{preamble/a3pages.tex}
+
+
+% -------------------------------------------------------- %
+% If only some files are to  be included in the file for a %
+% compilation run, specify those files here.               %
+% -------------------------------------------------------- %
+%\includeonly{%
+%    frontmatter/info,
+%    frontmatter/abstract,
+%    mainmatter/einleitung,
+%    mainmatter/uberblick,
+%    mainmatter/models,
+%    mainmatter/simu,
+%    mainmatter/hardware,
+%    mainmatter/hardware-sensor,
+%    mainmatter/hardware-master,
+%    mainmatter/software,
+%    mainmatter/firmware-sensor,
+%    mainmatter/software-master,
+%    mainmatter/validierung,
+%    mainmatter/userguide,
+%    mainmatter/fazit,
+%    appendices/commercial-modules,
+%    appendices/ltspice,
+%    appendices/schema,
+%    appendices/validierung,
+%    appendices/costs,
+%    appendices/datentrager,
+%}
+
+% ******************************************************** %
+\begin{document}
+% ******************************************************** %
+%\fontfamily{pbk}\selectfont
+
+% -------------------------------------------------------- %
+% NOTE: The titlepage will also leave one empty page after %
+% itself, so that it doesn't  get its backside printed for %
+% double-sided  printing. If  document  has  been  set  to %
+% single-sided  printing,  no  empty verso  page  will  be %
+% added.                                                   %
+% -------------------------------------------------------- %
+\include{titlepage/titlepage}
+
+% -------------------------------------------------------- %
+% See  the  memoir  documentation  for  what  specifically %
+% frontmatter does. Among  other things, page  numbers are %
+% set to roman numerals and chapter numbers are removed.   %
+% -------------------------------------------------------- %
+\frontmatter
+
+% -------------------------------------------------------- %
+% Comment out what's not needed, obviously.                %
+% -------------------------------------------------------- %
+\include{frontmatter/info}
+%\include{frontmatter/abstract}
+%\include{frontmatter/dedication}
+%\include{frontmatter/declaration}
+%\include{frontmatter/acknowledgements}
+
+
+% -------------------------------------------------------- %
+% The starred versions do not make an entry for themselves %
+% in the ToC, the unstarred versions do.                   %
+% -------------------------------------------------------- %
+{%
+\enlargethispage{4em}
+\tableofcontents*
+}
+%\newpage\listoffigures
+%\newpage\listoftables
+
+
+% -------------------------------------------------------- %
+% Set page numbers to  arabic numerals, reset page counter %
+% to 1, display  chapter numbers. See memoir documentation %
+% for more information.                                    %
+% -------------------------------------------------------- %
+\mainmatter
+
+
+% -------------------------------------------------------- %
+% It is  advisable to use actually  meaningful chapter and %
+% section names instead of generically numbered ones as in %
+% this  example structure. That  way, their  place in  the %
+% document is not directly tied to their file name, and it %
+% is  possible to  restructure the  document (e.g.  move a %
+% section  from one  chapter  to another,  or reorder  the %
+% chapters)  without  needing  to adjust  file  names  and %
+% similar shenanigans.                                     %
+% -------------------------------------------------------- %
+%\include{mainmatter/einleitung}
+
+
+% -------------------------------------------------------- %
+% Appendices are  usually numbered  and therefore  part of %
+% the mainmatter, not the backmatter.                      %
+% The advice about meaningful chapter names applies to the %
+% appendices as well, see above.                           %
+% -------------------------------------------------------- %
+\appendixpage
+\appendix
+%\include{appendices/ltspice}
+%\include{appendices/costs}
+%\include{appendices/datentrager}
+
+
+% -------------------------------------------------------- %
+% Page  numbering continues,  but chapter  numbers are  no %
+% longer  displayed. See  memoir  documentation  for  more %
+% information.                                             %
+% -------------------------------------------------------- %
+\backmatter
+
+% -------------------------------------------------------- %
+% Bibliography: We  are using  the  IEEEtran package  from %
+% Michael Shell                                            %
+%                                                          %
+% There  are  a  few  different  styles  in  the  IEEEtran %
+% package.   We are  going to  use  one of  two of  those, %
+% either in the sorted or unsorted variety.                %
+%                                                          %
+% The sorted  version sorts  bibliographic entries  in the %
+% bibliography alphabetically, while  the unsorted version %
+% lists bibliographic  entries in the order  in which they %
+% were cited (first occurrence).                           %
+% -------------------------------------------------------- %
+%\bibliographystyle{bibliography/IEEEtranS} % sorted
+\raggedright
+\bibliographystyle{bibliography/IEEEtran} % unsorted
+\bibliography{bibliography/references}
+\end{document}

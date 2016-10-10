@@ -1,0 +1,2 @@
+http://mirror.switch.ch/ftp/mirror/tex/macros/latex/contrib/IEEEtran/bibtex/IEEEtran_bst_HOWTO.pdf
+Wed Jun  1 17:25:18 CEST 2016
