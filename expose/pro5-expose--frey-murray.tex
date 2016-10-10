@@ -12,6 +12,8 @@
 \usepackage[affil-it]{authblk}
 \usepackage{sectsty}
 \usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{lipsum}
 \fontfamily{lmr}\selectfont
 \subsectionfont{\fontsize{11}{12}\selectfont}
 %\usepackage{xcolor-solarized}
@@ -34,7 +36,7 @@
 % ---------------------------------------------------------------------------- %
 \title{Project 5 -- Sensor-Microchip}
 \author{Raphael Frey, Alexander Murray}
-\affil{Institute for Mikroelektronics\\FHNW -- Hochschule f\"ur Technik\\ Studiengang EIT}
+\affil{Institute of Microelektronics\\FHNW School for Engineering}
 
 
 
@@ -54,102 +56,131 @@
 
 %\vspace{1em}
 
-In his Master Thesis \emph{Sensor Chip}  from  2015, Tobias Burgherr developed a
-sensor  integrated  circuit  as  a  base  for  further projects to use. This  IC
-consists of a programmable  pre-amplifier  and  a  sigma-delta analog-to-digital
-converter with adjustable bandwidth. Typically, sigma-delta ADCs use an internal
-1-bit quantizer which gets  boosted  to  the  desired  resolution  of  bits  via
-delta-sigma modulation. The goal of his work was to  replace the 1-bit quantizer
-with a successive  approximation register (SAR) ADC capable of converting 3 bits
-at  a  time  instead  of 1.  This  method  was  referred  to  as  a  ``Multi-bit
-quantizer''. A complementary 3-bit DAC was also developed to be used  internally
-in the feedback loop of the sigma-delta modulator. Based on his work, two  teams
-modified the existing chip in 2016.
+\begin{description}[align=left]
+    \item[Current State of Research:]
+        In his  Master Thesis  \emph{Sensor Chip}  from 2015,  Tobias Burgherr
+        developed  a  sensor   integrated  circuit  as  a   base  for  further
+        projects  to use. This  IC  consists of  a programmable  pre-amplifier
+        and   a  sigma-delta   analog-to-digital  converter   with  adjustable
+        bandwidth. Typically, sigma-delta ADCs use an internal 1-bit quantizer
+        which gets boosted  to the desired resolution of  bits via delta-sigma
+        modulation. The goal  of his work  was to replace the  1-bit quantizer
+        with  a  successive  approximation   register  (SAR)  ADC  capable  of
+        converting 3  bits at a time  instead of 1.  This  method was referred
+        to  as  a  ``Multi-bit  quantizer''. A  complementary  3-bit  DAC  was
+        also  developed to  be used  internally in  the feedback  loop of  the
+        sigma-delta  modulator. Based  on his  work,  two  teams modified  the
+        existing chip in 2016.
 
-In 2016, Roger  Gloor and Patrick Walther modified the  preamp in their thesis
-\emph{Re-Design eines  integrierten Verst\"arkers f\"ur  einen AD-Wandler-IC},
-while Marcel  Baier and Kevin  Niffenegger worked on  the ADC in  their thesis
-\emph{Sensor-Chip mit Sub-SAR-ADC}.
+        In 2016, Roger Gloor and Patrick  Walther modified the preamp in their
+        thesis  \emph{Re-Design eines  integrierten Verst\"arkers  f\"ur einen
+        AD-Wandler-IC}, while Marcel Baier and Kevin Niffenegger worked on the
+        ADC in their thesis \emph{Sensor-Chip mit Sub-SAR-ADC}.
 
-These two projects yielded one redesigned chip each, which are now coming back
-from fabrication. Our main objectives in this project will broadly be as follows:
+        These two projects  yielded one redesigned chip  each.  Originally, it
+        was intended for these two chips to be more closely examined and their
+        performance assessed. However,  due to  an unexpectedly  late delivery
+        (end of December 2016), the chip by Burgherr will instead be the focus
+        in this  project, while  the two  new chips will  be assessed  in next
+        semester's project.
+    \item[Problem:]
+        Neither  Baier  and Nyffenegger  nor  Gloor  and Walther  performed  a
+        comprehensive assessment  of Burgherr's chip, instead  focusing on its
+        aspects which were most relevant to their respective projects. We plan
+        to rectify this  by performing a comprehensive analysis  of the chip's
+        characteristics.
+    \item[Personal Interest:]
+        Microchip  design  is a  rather  exotic  field, and  opportunities  to
+        actually understand and  work on a microchip  are therefore rare. Both
+        of us  have been interested  in electronics  and computers for  a long
+        time, and  feel compelled to  use this  opportunity to look  under the
+        hood, so to speak.
+    \item[Own theoretical position:]
+        We will work on this project based on the knowledge we have gained and
+        will still acquire in the \emph{Analog Circuits} course.
+    \item[Question $\ne$ Task:] \texttt{TODO}
+    \item[Objective:] \texttt{TODO}
+    \item[Methodical Approach:]
+        In a first stage, our main  task will be to familiarise ourselves with
+        the fundamental  concepts such  as sigma-delta ADCs  and SAR  ADCs, as
+        well as the specific implementations  used by the previous teams. They
+        have  provided  extensive documentation  for  this. Based  on this,  a
+        catalogue  of the  intended measurements  of Burgherr's  chip will  be
+        compiled.
 
-\begin{itemize}
-    \item
-        Measure and assess the performance of both chips.
-    \item
-        Examine and understand more closely the chip by Baier and Niffenegger,
-        and propose potential improvements for it.
-\end{itemize}
+        In a second stage, we will perform those measurements and evaluate the
+        results.
 
-Microchip  design is  a rather  exotic  field, and  opportunities to  actually
-understand and  work on a microchip  are therefore rare. Both of  us have been
-interested in electronics and computers for a long time, and feel compelled to
-use this opportunity to look under the hood, so to speak.
+        In a third stage, based on our conclusions from the previous project's
+        reports  as well  as  our  measurements on  Burgherr's  chip, we  will
+        prepare for measuring  the two new chips (which  will almost certainly
+        need to happen in the next semester).
+    \item[Preceding Work:]
+        As mentioned, our project is based on the work by other groups.
+    \item[Sources:]
+        The  primary  resources will  be  the  documentation provided  by  the
+        previous  teams, the  book \emph{Analog  Circuit Design}  used in  the
+        course \emph{Analog Circuits} as well as any supplementary information
+        as needed.
+    \item[Scope of Literary Research:]
+        Focusing too much on literary research would reduce the amount of time
+        available  for  measurements  and  their  evaluation  beyond  what  is
+        required. It is therefore  critical to accurately assess  our needs in
+        this area, both in content and invested time.
 
-We seek to answer the following questions with this project:
+        Certainly, a firm  grasp of $\Sigma\Delta$-ADCs is  needed, along with
+        the  other  components  used  in  the  design,  both  in  concept  and
+        implementation.
 
-\begin{itemize}
-    \item
-        Have  the design  changes by  Gloor  and Walther  brought the  desired
-        improvements?
-    \item
-        Is  the  design choice  by  Baier  and  Nyffenegger, which  is  highly
-        experimental by their own admission, a worthwile path to pursue?
-\end{itemize}
+        However, it is difficult to assess  at this stage in the project where
+        precisely to  draw the line when  it comes to content. A  limit on the
+        time to be  invested will be roughly clear once  we have a preliminary
+        timetable (see below).
+    \item[Scope of Experiments:] \texttt{TODO}
+    \item[Genre and Addressees:]
+        The end results  of our work will  be a website, a  presentation and a
+        technical report. The report will be  the primary ressource for anyone
+        continuing work on this project.
 
-Improving the  chip by Baier  and Niffenegger will be  the main focus  of next
-semester's  project, which  is why  this  project's focus  is somewhat  biased
-towards that chip.
+        This  project  is  commissioned  and  supervised  by  Alex  Huber  and
+        Hanspeter Schmid  of the  Institute of Microelectronics. They  are its
+        main  addressees,  along  with  ourselves and  anyone  else  who  will
+        continue this project's work.  All  relevant documents will be written
+        in English.
+    \item[Preliminary Structuring:] \texttt{TODO}
+    \item[Timetable:]
+        At this  point, no detailled timetable  has been fixed yet. It  is our
+        intention to have a preliminary version by Tuesday, October 11, 2016.
+    \item[Risk Assessment:]
+        One negative  scenario has  already occurred: The chips  we originally
+        intended to  measure and  assess during this  project will  arrive too
+        late in the semester for this to be feasible. Therefore, an adjustment
+        of this project's scope and objectives has been needed.
 
-In a  first stage,  our main task  will be to  familiarise ourselves  with the
-fundamental concepts such as sigma-delta ADCs and SAR ADCs, as well as the
-specific  implementations  used  by  the previous  teams. They  have  provided
-extensive documentation  for this. This is particularly  important for Baier's
-and  Niffenegger's design,  since  understanding the  system  more closely  is
-required  for determining  what to  do  with that  chip  in stage  two of  our
-project.
+        Aside  from this  (and  other  delays beyond  our  influence, such  as
+        non-present or faulty equipment), we  believe time mismanagement to be
+        the primary danger to our project's success.
+\end{description}
 
-In a  second stage, we will  measure various properties of  the two chips. For
-the chip by  Gloor and Walther, this will mean  examining their implementation
-of the preamp  stage (gain, speed, bandwidth,  power consumption, \ldots). For
-the  chip by  Baier and  Niffenegger, the  relevant characteristics  cannot be
-determined with certainty at this point (see above). This will be done once we
-have familiarised ourselves with  the system to judge what is  and what is not
-relevant  to assess  its  performance, and  what  sorts of  tests  need to  be
-performed to gain these insights.
+%Our main objectives in this project will broadly be as follows:
+%
+%\begin{itemize}
+%    \item
+%        Measure and assess the performance of both chips.
+%    \item
+%        Examine and understand more closely the chip by Baier and Niffenegger,
+%        and propose potential improvements for it.
+%\end{itemize}
+%
+%We seek to answer the following questions with this project:
+%
+%\begin{itemize}
+%    \item
+%        Have  the design  changes by  Gloor  and Walther  brought the  desired
+%        improvements?
+%    \item
+%        Is  the  design choice  by  Baier  and  Nyffenegger, which  is  highly
+%        experimental by their own admission, a worthwile path to pursue?
+%\end{itemize}
 
-In  a  third  stage, the  chip  by  Baier  and  Niffenegger will  be  examined
-more  closely for  ways in  which to  further improve  upon its  design. These
-conclusions will be  the starting point for next semester's  project, where we
-will  simulate and  design  a new  chip  based on  our  conclusions from  this
-semester.
-
-The  primary resources  will be  the  documentation provided  by the  previous
-teams, the book  \emph{Analog Circuit Design} used in  the course \emph{Analog
-Circuits} as well as any supplementary information as needed.
-
-This project is commissioned and supervised by Alex Huber and Hanspeter Schmid
-of the Institute of Microelectronics. They are its main addressees, along with
-ourselves and anyone else who will continue this project's work.  All relevant
-documents will be written in English.
-
-Time mismanagement is the primary danger  to this project's success.  The chip
-by Gloor  and Walther will likely  be easier to measure. However,  the chip by
-Baier and Niffenegger  will be the foundation for next  semester's project, so
-spending too much time on the first chip will have a direct negative impact on
-the continuation of this project.  It is therefore crucial to properly plan.
-
-Additionally,  there is  a possibility  of equipment  being faulty  or damaged
-(either by somebody else or by us), causing significant delays.
-
-Lastly, it could be that either one or both chips do not function correctly or
-even at all (faulty manufacturing, damage by handling, \ldots). Should that be
-the case, depending of the severity of  the damage, this might cause delays or
-prevent us from carrying out the desired measurements on the chip entirely. To
-determine the  course of action,  we would consult  with our advisers  in this
-case.
-
-At this point, no detailled timetable  has been fixed yet. It is our intention
-to do so by Monday, October 10, 2016.
 \end{document}
