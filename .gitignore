@@ -1,4 +1,7 @@
-*aux
-*log
-*toc
-*pdf
+*.aux
+*.log
+*.toc
+*.pdf
+*.fdb_latexmk
+*.fls
+*.swp
