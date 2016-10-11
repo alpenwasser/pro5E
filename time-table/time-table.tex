@@ -43,7 +43,7 @@
 % ---------------------------------------------------------------------------- %
 % Title Setup
 % ---------------------------------------------------------------------------- %
-\title{Project 5 -- Sensor-Microchip}
+\title{Project 5 -- Time Plan}
 \author{Raphael Frey, Alexander Murray}
 \affil{Institute for Mikroelektronics\\FHNW -- Hochschule f\"ur Technik\\ Studiengang EIT}
 
@@ -52,9 +52,16 @@
 % **************************************************************************** %
 \begin{document}
 
-\maketitle
+%\maketitle
 
-% Our project begins in week 41
+\begin{center}
+    \Huge{\textbf{Time Plan}}\\
+    \vspace{5mm}
+    \large{Project 5 -- Raphael Frey, Alexander Murray}
+\end{center}
+\vspace{20mm}
+
+% Our project begins in week 38
 \setcounter{calendarWeekNum}{38}
 \ganttset{%
     calendar week text={\calendarWeek{}}%
@@ -73,60 +80,61 @@
             \ganttset{bar height=.6}
             \gantttitlecalendar{year, month=name, week} \\
             \ganttbar[bar/.append style={fill=blue}]{Acquire fundamental knowledge}{2016-09-23}{2016-10-21} \\
-            \ganttbar[bar/.append style={fill=blue}]{Skeleton of Report}{2016-10-10}{2016-10-12} \\
-            \ganttbar[bar/.append style={fill=red}]{Write Draft Report}{2016-10-13}{2016-12-02} \\
-            \ganttbar[bar/.append style={fill=red}]{Write Report}{2016-12-03}{2017-01-13} \\
-            \ganttbar[bar/.append style={fill=blue}]{Prepare Preamp measurement of the Burgherr Chip}{2016-10-17}{2016-10-23} \\
-            \ganttbar[bar/.append style={fill=blue}]{Prepare ADC measurement of the Burgherr Chip}{2016-10-17}{2016-10-23} \\
-            \ganttbar[bar/.append style={fill=blue}]{Measure Preamp in Burgherr Chip}{2016-10-24}{2016-12-23} \\
-            \ganttbar[bar/.append style={fill=blue}]{Measure ADC in Burgherr Chip}{2016-10-24}{2016-12-23} \\
+            \ganttbar[bar/.append style={fill=green}]{Prepare Preamp measurement of the Burgherr Chip}{2016-10-17}{2016-10-23} \\
+            \ganttbar[bar/.append style={fill=green}]{Prepare ADC measurement of the Burgherr Chip}{2016-10-17}{2016-10-23} \\
+            \ganttlinkedmilestone{First measurements}{2016-10-23} \\
+            \ganttlinkedbar[bar/.append style={fill=green}]{Measure Preamp in Burgherr Chip}{2016-10-24}{2016-12-23} \\
+            \ganttbar[bar/.append style={fill=green}]{Measure ADC in Burgherr Chip}{2016-10-24}{2016-12-23} \\
             \ganttbar[bar/.append style={fill=blue}]{Learn how to use simulations}{2016-10-31}{2016-11-27} \\
             \ganttbar[bar/.append style={fill=blue}]{Evaluate results of the measurements}{2016-11-14}{2017-01-08} \\
             \ganttbar[bar/.append style={fill=blue}]{Prepare measurements for P6}{2017-01-09}{2017-01-22} \\
             \ganttbar[bar/.append style={fill=blue}]{Create website}{2016-11-28}{2016-12-11} \\
-            \ganttbar[bar/.append style={fill=blue}]{Fill website with content}{2016-12-31}{2017-01-13} \\
+            \ganttlinkedbar[bar/.append style={fill=blue}]{Fill website with content}{2016-12-31}{2017-01-13} \\
+            \ganttbar[bar/.append style={fill=red}]{Skeleton of Report}{2016-10-10}{2016-10-12} \\
+            \ganttlinkedbar[bar/.append style={fill=red}]{Write Draft Report}{2016-10-13}{2016-12-03} \\
+            \ganttlinkedmilestone{Delivery of Draft}{2016-12-03} \\
+            \ganttlinkedbar[bar/.append style={fill=red}]{Write Report}{2016-12-04}{2017-01-13} \\
+            \ganttlinkedmilestone{Delivery of Documentation}{2017-01-13} \\
             \ganttbar[bar/.append style={fill=blue}]{Prepare presentation}{2017-01-23}{2017-01-30} \\
-            \ganttmilestone{First measurements}{2016-10-21} \\
-            \ganttmilestone{Delivery of Draft}{2016-12-03} \\
-            \ganttmilestone{Delivery of Documentation}{2017-01-13} \\
-            \ganttmilestone{Presentation}{2017-01-30} \\
+            \ganttlinkedmilestone{Presentation}{2017-01-30} \\
+
         \end{ganttchart}
     \end{center}
     \label{fig:time-plan}
     \caption{Time Plan}
 \end{figure}
 
-\begin{itemize}
-    \item
-        Basic truss of report.
-        1 day
-    \item
-        Acquire fundamental knowledge.
-        The entire project
-    \item   
-        Write a "theory" block in the report. Purpose is to help acquire the fundamental knowledge.
-    \item
-        Preparation of measurement of the Burgherr chip. This includes: Figure out what exactly we want to measure, and how we measure.
-        -> Look at existing ADCs, see what typical measurements are performed, see what is typically used to characterise an ADC.
-    \item
-        Same as above, s/ADC/Preamp/
-    \item   
-        Learn how to use the simulations, so we can compare the models to the actual measured results.
-    \item
-        Performing the measurements of the Burgherr chip.
-    \item
-        Evaluate results of the measurements and draw conclusions of the Burgherr chip.
-    \item
-        Figure out basic structure of the report (Fachbericht).
-    \item
-        Prepare measurements for P6, for the second chip.
-    \item
-        Create website.
-    \item
-        Final report.
-    \item
-        Create/prepare presentation.
-\end{itemize}
+%\begin{itemize}
+%    \item
+%        Basic truss of report.
+%        1 day
+%    \item
+%        Acquire fundamental knowledge.
+%        The entire project
+%    \item   
+%        Write a "theory" block in the report. Purpose is to help acquire the fundamental knowledge.
+%    \item
+%        Preparation of measurement of the Burgherr chip. This includes: Figure out what exactly we want to measure, and how we measure.
+%        -> Look at existing ADCs, see what typical measurements are performed, see what is typically used to characterise an ADC.
+%    \item
+%        Same as above, s/ADC/Preamp/
+%    \item   
+%        Learn how to use the simulations, so we can compare the models to the actual measured results.
+%    \item
+%        Performing the measurements of the Burgherr chip.
+%    \item
+%        Evaluate results of the measurements and draw conclusions of the Burgherr chip.
+%    \item
+%        Figure out basic structure of the report (Fachbericht).
+%    \item
+%        Prepare measurements for P6, for the second chip.
+%    \item
+%        Create website.
+%    \item
+%        Final report.
+%    \item
+%        Create/prepare presentation.
+%\end{itemize}
 
 \end{document}
 
