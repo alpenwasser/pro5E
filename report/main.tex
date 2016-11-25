@@ -62,7 +62,7 @@
 % compilation run, specify those files here.               %
 % -------------------------------------------------------- %
 %\includeonly{%
-%    frontmatter/info,
+%    nrontmatter/info,
 %    frontmatter/abstract,
 %    mainmatter/einleitung,
 %    mainmatter/uberblick,
@@ -110,7 +110,8 @@
 % Comment out what's not needed, obviously.                %
 % -------------------------------------------------------- %
 \include{frontmatter/info}
-%\include{frontmatter/abstract}
+\include{frontmatter/abstract}
+\include{frontmatter/task}
 %\include{frontmatter/dedication}
 %\include{frontmatter/declaration}
 %\include{frontmatter/acknowledgements}
@@ -146,7 +147,11 @@
 % chapters)  without  needing  to adjust  file  names  and %
 % similar shenanigans.                                     %
 % -------------------------------------------------------- %
-%\include{mainmatter/einleitung}
+\include{mainmatter/introduction}
+\include{mainmatter/sysOverview}
+\include{mainmatter/experimentalSetup}
+\include{mainmatter/results}
+\include{mainmatter/conclusions}
 
 
 % -------------------------------------------------------- %
@@ -155,8 +160,8 @@
 % The advice about meaningful chapter names applies to the %
 % appendices as well, see above.                           %
 % -------------------------------------------------------- %
-\appendixpage
-\appendix
+%\appendixpage
+%\appendix
 %\include{appendices/ltspice}
 %\include{appendices/costs}
 %\include{appendices/datentrager}
@@ -183,7 +188,7 @@
 % were cited (first occurrence).                           %
 % -------------------------------------------------------- %
 %\bibliographystyle{bibliography/IEEEtranS} % sorted
-\raggedright
-\bibliographystyle{bibliography/IEEEtran} % unsorted
-\bibliography{bibliography/references}
+%\raggedright
+%\bibliographystyle{bibliography/IEEEtran} % unsorted
+%\bibliography{bibliography/references}
 \end{document}
