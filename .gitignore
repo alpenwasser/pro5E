@@ -5,3 +5,5 @@
 *.fdb_latexmk
 *.fls
 *.swp
+*.bbl
+*.blg
