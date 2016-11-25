@@ -1,0 +1,18 @@
+% Can be put inside a figure environment, or not.
+\begin{tikzpicture}
+    \begin{axis}[%
+           height=40mm,
+           width=\textwidth,
+           at={(0,70mm)},
+           grid=both,
+           xlabel=Zeit (\si{\micro\second}),
+           ylabel=Strom (\si{\ampere}),
+           x unit=u,
+           change x base=true,
+           line width = 1pt,
+           thick,
+           x SI prefix=micro,
+       ]
+		\addplot[-,color=blue] table {data/mydata.dat};
+    \end{axis}
+\end{tikzpicture}
