@@ -8,3 +8,5 @@ bib:
 		&& bibtex main \
 		&& pdflatex -halt-on-error -interaction batchmode main\
 		&& pdflatex -halt-on-error -interaction batchmode main
+
+#TODO: clean
