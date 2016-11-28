@@ -17,7 +17,7 @@ T_SaH = Ts*512                          # Input signal sampling period (S/H-bloc
 Nbit  = 12                              # Bit accuracy (for LSB/2 plot)
 NORM_FACT = Vmax                        # Signals are always plotet normalized to one times this factor
 cic = {
-    "length": 16,                      # Decimation (CIC) filter length
+    "length": 16,                       # Decimation (CIC) filter length
     "lengths": [16, 32, 64, 128, 256],  # all possible filter lengths
     "order": 3                          # Decimation filter order
 }
