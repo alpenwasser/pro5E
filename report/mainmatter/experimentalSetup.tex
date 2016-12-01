@@ -17,8 +17,23 @@
         How were the results obtained and evaluated?
 \end{itemize}
 
-\todo[inline]{Fundamental experimental setup w/ Raspbi, test board, PC}
-\missingfigure{Block Diagram: Raspbi, Test Board, PC}
+%\todo[inline]{Fundamental experimental setup w/ Raspbi, test board, PC}
+%\missingfigure{Block Diagram: Raspbi, Test Board, PC}
+
+\fref{fig:experimentDiagram} shows  a schematic  overview of  the experimental
+setup as  used in the tests  documented in this report. Note  that the \raspi~
+requires  both the  \signal{clk} and  \signal{vss} from  the test  board as  a
+reference  in addition  to the  bit stream  itself. A PC  is connected  to the
+\raspi~ for convenience via SSH, though this is not strictly necessary.
+
+\begin{figure}
+    \input{images/diagrams/measSetup.tex}
+    \caption{%
+        Experimental    setup   with    signal    and   supply    connections.
+        \emph{Note}: Signal colors roughly correspond to wire colors used.%
+    }
+    \label{fig:experimentDiagram}
+\end{figure}
 
 
 % ---------------------------------------------------------------------------- %
@@ -31,27 +46,91 @@ operation. Some  of  this  information  will be  redundant  with  the  reports
 \cite{ref:burgherr},  \cite{ref:gloor} and  \cite{ref:baier},  but  we aim  to
 provide a  convenient guide to  this process in  a single place,  thus sparing
 future teams the effort of needing  to assemble this information from multiple
-sources.
+sources, which is both a time-consuming and error-prone process.
 \todo[noline]{Make direct references to pages/tables in other reports?}
 \todo[noline]{handling with care and all that stuff}
 
+Fundamentally, putting the chip into operation consists of the following steps:
+\begin{itemize}\tightlist
+    \item
+        Determine bias resistor setting.
+    \item
+        Set DIP switches to the appropriate values.
+    \item
+        Connect supply voltages and bias current supply.
+    \item
+        Set up \raspi.
+    \item
+        Connect \raspi~and test board.
+\end{itemize}
+
+These  steps  will   be  outlined  in  the  following   sections,  along  with
+supplementary information where appropriate. Before delving into the operation
+of the test board, a brief outline of its elements and functions will be given
+in the next section.
 
 % ---------------------------------------------------------------------------- %
 \subsection{Basic Layout of PCB}
 \label{subsec:PCBLayout}
 % ---------------------------------------------------------------------------- %
 
-A test board, depicted in figure  \todo{test board fig ref} has been developed
-in  \todo{Insert  Reference  to  p.1-32  in  Burgherr}  to  enable  convenient
-examination of the sensor IC.
+A test board, depicted in figure \fref{fig:pcbOverview}, has been developed in
+\todo{Insert Reference to p.1-32 in Burgherr} to enable convenient examination
+of the sensor IC.  Seven industrial plugs are located on the board's left-hand
+side \todo{correct name?}. They  can be used for the  various supply voltages,
+signal input as well as bias current input and ground.
+
 \todo[noline]{How to operate chip socket}
 
+\begin{figure}
+    \centering
+    %\includegraphics[width=\textwidth]{images/pcb/pcbOverview.jpeg}
+    \input{images/pcb/pcbOverview.tex}
+    \caption{Test board overview}
+    \label{fig:pcbOverview}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Sensor chip toplevel pins}
+    \label{tab:inputPlugs}
+    \scriptsize
+    \sisetup{list-pair-separator = { or }}
+    \rowcolors{2}{solarized-base3}{white}
+    \begin{tabular}{>{\fontfamily{jkptt}\selectfont}l>{\fontfamily{jkptt}\selectfont}lp{30mm}lp{30mm}} \\
+    %\begin{tabular}{>{\fontfamily{lmtt}\selectfont}l>{\fontfamily{lmtt}\selectfont}lp{30mm}lp{30mm}} \\
+        \toprule
+        \textnormal{\textsc{Pin \#}} & \textnormal{\textsc{Name}}                  & \textsc{Description} & \textsc{Value} & \textsc{Note} \\
+        \midrule
+        39 & vin                     & analog input signal                         & \SIrange{0.5}{2.5}{\volt} & \\
+        25 & bit\_stream             & digital output signal                       & \SIlist{0;3}{\volt}       & \\
+        34 & clk                     & clock                                       & \SIlist{0;3}{\volt}       & \\
+        36 & sdm\_rst                & pulse to reset the $\Sigma\Delta M$         & \SIlist{0;3}{\volt}       & short pulse is enough (min $T_C$) \\
+        41 & vgnda                   & analog ground                               & \SI{1.5}{\volt}           & \\
+        48 & vrefh                   & high reference voltage                      & \SI{3}{\volt}             & \\
+        47 & vrefl                   & low reference voltage                       & \SI{0}{\volt}             & \\
+        46 & ibias                   & bias current                                & \SI{120}{\micro\ampere}   & $24 \cdot 5 \cdot 1$, internally reduced by 120 \\
+        43 & sc\_amp\_vout\_test\_en & enables test output after preamp            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        44 & sc\_amp\_vout\_test     & test output after preamp                    & \SIrange{0.5}{2.5}{\volt} \\
+        33 & sc\_amp\_rst\_ext\_en   & enables external reset input for the preamp & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        32 & sc\_amp\_rst\_ext       & external reset input for the preamp         & \SIlist{0;3}{\volt}       & Internally synced to \signal{clk}. Needs \signal{en} signal. \\
+        35 & sc\_amp\_pos\_neg\_amp  & positive or negative gain                   & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: positive, \SI{3}{\volt}: negative \\
+        28 - 31 & sc\_amp\_csel<3:0> & set gain                                    & \SIlist{0;3}{\volt}       & See table TODO \\
+        27 & sc\_amp\_en             & enable preamp                               & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        26 & sah\_sdm\_en            & enable $\Sigma\Delta M$ S/H bock            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        42 & vdda                    & analog positive power supply                & \SI{3}{\volt}             & \\
+        37 & vddd                    & digital positive power supply               & \SI{3}{\volt}             & \\
+        40 & vss                     & analog and digital negative power supply    & \SI{0}{\volt}             & \\
+        \bottomrule
+    \end{tabular}
+    \sisetup{list-pair-separator = { and }}
+\end{table}
+\todo[inline]{insert table with gain list and reference in table 2.1}
 \missingfigure{Overview of PCB, sections referenced}
 \missingfigure{PCB Schematic}
 \missingfigure{Chip Socket}
 
 
-On the left-hand side, there are seven industrial plugs\todo{correct name?}
 
 
 % ---------------------------------------------------------------------------- %
