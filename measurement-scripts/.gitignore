@@ -1,0 +1,5 @@
+# PyCharm project files
+.idea/
+
+# This changes every time a measurement is made, ignore it
+bit_stream.txt

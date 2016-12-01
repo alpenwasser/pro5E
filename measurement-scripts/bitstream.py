@@ -15,16 +15,16 @@ fs = 256.0e3                            # Sampling frequency (SD-modulator)
 Ts = 1/fs                               # Sampling period
 T_SaH = Ts*512                          # Input signal sampling period (S/H-block)
 Nbit  = 12                              # Bit accuracy (for LSB/2 plot)
-NORM_FACT = Vmax                        # Signals are always plotet normalized to one times this factor
+NORM_FACT = Vmax                        # Signals are always plottet normalized to one times this factor
 cic = {
-    "length": 16,                       # Decimation (CIC) filter length
+    "length": 128,                      # Decimation (CIC) filter length
     "lengths": [16, 32, 64, 128, 256],  # all possible filter lengths
     "order": 3                          # Decimation filter order
 }
 
 # ========================================================================================
 # === LOAD DATA ==== Bit-stream and input signal =========================================
-t_sdm, s_sdm_orig =np.loadtxt(open("bit_stream.txt","rb"), skiprows=0, unpack=True)
+t_sdm, s_sdm_orig = np.loadtxt(open("bit_stream.txt", "rb"), skiprows=0, unpack=True)
 s_sdm = np.round(s_sdm_orig/np.max(s_sdm_orig))     # normalize to one
 
 # ========================================================================================
