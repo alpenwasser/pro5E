@@ -154,31 +154,10 @@
 % similar shenanigans.                                     %
 % -------------------------------------------------------- %
 \include{mainmatter/introduction}
-\include{mainmatter/sysOverview}
 \include{mainmatter/experimentalSetup}
+\include{mainmatter/measurements}
 \include{mainmatter/results}
 \include{mainmatter/conclusions}
-
-
-% -------------------------------------------------------- %
-% Appendices are  usually numbered  and therefore  part of %
-% the mainmatter, not the backmatter.                      %
-% The advice about meaningful chapter names applies to the %
-% appendices as well, see above.                           %
-% -------------------------------------------------------- %
-%\appendixpage
-%\appendix
-%\include{appendices/ltspice}
-%\include{appendices/costs}
-%\include{appendices/datentrager}
-
-
-% -------------------------------------------------------- %
-% Page  numbering continues,  but chapter  numbers are  no %
-% longer  displayed. See  memoir  documentation  for  more %
-% information.                                             %
-% -------------------------------------------------------- %
-\backmatter
 
 % -------------------------------------------------------- %
 % Bibliography: We  are using  the  IEEEtran package  from %
@@ -194,8 +173,30 @@
 % were cited (first occurrence).                           %
 % -------------------------------------------------------- %
 %\bibliographystyle{bibliography/IEEEtranS} % sorted
-\raggedright
+%\raggedright
 \bibliographystyle{bibliography/IEEEtran} % unsorted
 \bibliography{bibliography/references}
-\todo[inline]{IEEE Style and all that stuff?}
+\todo[inline]{%
+    Make sure to have the right IEEE style and all that good stuff
+}
+
+% -------------------------------------------------------- %
+% Appendices are  usually numbered  and therefore  part of %
+% the mainmatter, not the backmatter.                      %
+% The advice about meaningful chapter names applies to the %
+% appendices as well, see above.                           %
+% -------------------------------------------------------- %
+\appendixpage
+\appendix
+\include{appendices/labconfig}
+%\include{appendices/costs}
+%\include{appendices/datentrager}
+
+% -------------------------------------------------------- %
+% Page  numbering continues,  but chapter  numbers are  no %
+% longer  displayed. See  memoir  documentation  for  more %
+% information.                                             %
+% -------------------------------------------------------- %
+%\backmatter
+
 \end{document}
