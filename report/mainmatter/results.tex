@@ -1,49 +1,98 @@
 % ---------------------------------------------------------------------------- %
 \chapter{Results}
-\label{ch:results}
+\label{chap:results}
 % ---------------------------------------------------------------------------- %
+
 
 \begin{itemize}\tightlist
     \item
-        What kind of results are we expecting? (Simulation results)
+        Saturation: Lower boundary: bitstream without any input signal
     \item
-        What are our actual results?
+        Saturation: Upper boundary: Find meaningful equivalent to "no input" at lower boundary
+    %\item
+    %    Why do we perform DC measurements? (linearity, offset)
+    %\item
+    %    Why do we  perform AC measurements w/ harmonics? (What  sort of system
+    %    can be measured with this chip, how fast is the plant?)
+    %\item
+    %    Why do we perform SNR measurements?
     \item
-        What are potential causes for the differences? (Potentially split this off
-        into a separate chapter titled \emph{Analysis} or something similar.)
+        What are potential  measurements which might be of  interest but which
+        we  could  not perform  (and  the  reasons  for  which they  were  not
+        performed)?
+    \item
+        What would need to be done to be able to perform those measurements?
+    %\item
+    %    What kind of measurements were \emph{not} performed, and why?
+    %\item
+    %    Which measurements were performed?
+    %\item
+    %    Why are these measurements relevant?
+    %\item
+    %    What kind of results are we expecting? (Simulation results)
+    %\item
+    %    What are our actual results?
+    %\item
+    %    What are potential causes for the differences? (Potentially split this off
+    %    into a separate chapter titled \emph{Analysis} or something similar.)
 \end{itemize}
 
-\todo[inline]{Statistical analysis of results}
+%\todo[inline]{Statistical analysis of results}
 
-% ---------------------------------------------------------------------------- %
-\section{DC Measurements}
-\label{sec:dcMeas}
-% ---------------------------------------------------------------------------- %
+% --------------------------------------------------------------------------- %
+\section{Pre-Amplifier: DC Measurements}
+\label{sec:preAmpDC}
+% --------------------------------------------------------------------------- %
 
-\todo[inline]{Data from Oscilloscope}
+% --------------------------------------------------------------------------- %
+\section{Sigma-Delta Converter: DC Measurements}
+\label{sec:sigdelDC}
+% --------------------------------------------------------------------------- %
 
-\begin{table}
-    \centering
-    \fontfamily{jkpss}\selectfont
-    \caption{DC Measurements}
-    \label{tab:dcMeas}
-    \begin{tabular}{ccc}
-        \toprule
-        {$V_{\textnormal{in}}$ (\si{\volt})} &
-        {$G_{\textnormal{Preamp}}$}          &
-        {$f_{\textnormal{s}}$ (\si{\kilo\hertz})}         \\
-        \midrule
-        0.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        0.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        0.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        1.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        1.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        1.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        1.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        1.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        2.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        2.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        2.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+% --------------------------------------------------------------------------- %
+\section{Complete System: DC Measurements}
+\label{sec:systemDC}
+% --------------------------------------------------------------------------- %
+
+% --------------------------------------------------------------------------- %
+\section{Pre-Amplifier: AC Measurements}
+\label{sec:preAmpAC}
+% --------------------------------------------------------------------------- %
+
+% --------------------------------------------------------------------------- %
+\section{Sigma-Delta Converter: AC Measurements}
+\label{sec:sigdelAC}
+% --------------------------------------------------------------------------- %
+
+% --------------------------------------------------------------------------- %
+\section{Complete System: AC Measurements}
+\label{sec:systemAC}
+% --------------------------------------------------------------------------- %
+
+%\todo[inline]{Data from Oscilloscope}
+
+%\begin{table}
+%    \centering
+%    \fontfamily{jkpss}\selectfont
+%    \caption{DC Measurements}
+%    \label{tab:dcMeas}
+%    \begin{tabular}{ccc}
+%        \toprule
+%        {$V_{\textnormal{in}}$ (\si{\volt})} &
+%        {$G_{\textnormal{Preamp}}$}          &
+%        {$f_{\textnormal{s}}$ (\si{\kilo\hertz})}         \\
+%        \midrule
+%        0.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        0.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        0.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        1.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        1.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        1.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        1.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        1.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        2.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        2.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        2.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
+%        \bottomrule
+%    \end{tabular}
+%\end{table}

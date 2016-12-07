@@ -1,11 +1,27 @@
 \BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{2 Experimental Setup}{}% 2
-\BOOKMARK [1][-]{section.2.1}{2.1 Putting the Sensor IC Into Operation}{chapter.2}% 3
-\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Basic Layout of PCB}{section.2.1}% 4
-\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Supply Voltages, Input Signal and PCB Settings}{section.2.1}% 5
-\BOOKMARK [2][-]{subsection.2.1.3}{2.1.3 Setting up the Raspberry Pi}{section.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.1.4}{2.1.4 Performing Measurements}{section.2.1}% 7
-\BOOKMARK [0][-]{chapter.3}{3 Results}{}% 8
-\BOOKMARK [1][-]{section.3.1}{3.1 DC Measurements}{chapter.3}% 9
-\BOOKMARK [0][-]{chapter.4}{4 Conclusions and Outlook}{}% 10
-\BOOKMARK [0][-]{section*.22}{Bibliography}{}% 11
+\BOOKMARK [1][-]{section.2.1}{2.1 Hardware Overview}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{2.2 Putting the Sensor IC Into Operation}{chapter.2}% 4
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 Setting up the Raspberry Pi}{section.2.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Hardware Setup}{section.2.2}% 6
+\BOOKMARK [0][-]{chapter.3}{3 Measurements}{}% 7
+\BOOKMARK [1][-]{section.3.1}{3.1 Pre-Amplifier: DC Measurements}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.2}{3.2 Sigma-Delta Converter: DC Measurements}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.3}{3.3 Complete System: DC Measurements}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.4}{3.4 Pre-Amplifier: AC Measurements}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.5}{3.5 Sigma-Delta Converter: AC Measurements}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.6}{3.6 Complete System: AC Measurements}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{4 Results}{}% 14
+\BOOKMARK [1][-]{section.4.1}{4.1 Pre-Amplifier: DC Measurements}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{4.2 Sigma-Delta Converter: DC Measurements}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.3}{4.3 Complete System: DC Measurements}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.4}{4.4 Pre-Amplifier: AC Measurements}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.5}{4.5 Sigma-Delta Converter: AC Measurements}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.6}{4.6 Complete System: AC Measurements}{chapter.4}% 20
+\BOOKMARK [0][-]{chapter.5}{5 Conclusions and Outlook}{}% 21
+\BOOKMARK [0][-]{section*.13}{Bibliography}{}% 22
+\BOOKMARK [0][-]{section*.15}{Appendices}{}% 23
+\BOOKMARK [0][-]{appendix.A}{A Configuration of Laboratory Equipment}{}% 24
+\BOOKMARK [1][-]{section.A.1}{A.1 HP Arbitrary Waveform Generator}{appendix.A}% 25
+\BOOKMARK [2][-]{subsection.A.1.1}{A.1.1 Initial Configuration}{section.A.1}% 26
+\BOOKMARK [2][-]{subsection.A.1.2}{A.1.2 Restoring Configuration}{section.A.1}% 27

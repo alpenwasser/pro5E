@@ -1,64 +1,45 @@
-\newcommand{\plugtext}[1]{\textbf{\texttt{\Large{#1}}}}
+\newcommand{\plugtext}[1]{\texttt{\normalsize{#1}}}
 
 \begin{tikzpicture}
     \begin{scope}[x={(0mm,135mm)},y={(0mm,79mm)},line width=1pt,cap=round]
-        \node[anchor=south west,inner sep=0mm] at (0mm,0mm) {\includegraphics[width=135mm]{images/pcb/pcbOverview.jpeg}};
+        %\node[anchor=south west,inner sep=0mm] at (0mm,0mm) {\includegraphics[width=135mm]{images/pcb/pcbOverviewBWHL.jpeg}};
+        \node[anchor=south west,inner sep=0mm] at (0mm,0mm) {\includegraphics[width=0.75\textwidth]{images/pcb/pcbOverview.jpeg}};
     \end{scope}
-    %\node[fill=black,text=white,anchor=south west] at (0mm,0mm) {\textsf{\Large{VDDD}}};
+    %\node[fill=black,text=black,anchor=south west] at (0mm,0mm) {\textsf{\Large{VDDD}}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (4mm,66mm) {\plugtext{VDDD}};
+        text=black,
+        anchor=south east] at (-1mm,52mm) {\plugtext{VDDD}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (4mm,56.5mm) {\plugtext{VDDA}};
+        text=black,
+        anchor=south east] at (-1mm,44mm) {\plugtext{VDDA}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (4mm,47.5mm) {\plugtext{VGNDA}};
+        text=black,
+        anchor=south east] at (-1mm,37mm) {\plugtext{VGNDA}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (1mm,37.5mm) {\textbf{\textsf{\large{SIGNAL IN}}}};
+        text=black,
+        anchor=south east] at (-1mm,29mm) {\texttt{SIGNAL IN}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (1mm,27.5mm) {\textbf{\textsf{\large{TEST OUT}}}};
+        text=black,
+        anchor=south east] at (-1mm,21mm) {\texttt{TEST OUT}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (4mm,17mm) {\plugtext{IBIAS}};
+        text=black,
+        anchor=south east] at (-1mm,13mm) {\plugtext{IBIAS}};
 
     \node[%
-        %fill=black,
-        %fill opacity=0.5,
-        text=white,
-        text opacity=1,
-        rounded corners=1mm,
-        anchor=south west] at (4mm,8mm) {\plugtext{VSS}};
+        text=black,
+        anchor=south east] at (-1mm,5mm) {\plugtext{VSS}};
+
+    \node[%
+        text=black,
+        anchor=south east] at (55mm,62mm) {\rotatebox{90}{\plugtext{CLK}}};
+
+    \node[%
+        text=black,
+        anchor=south east] at (67mm,62mm) {\rotatebox{90}{\plugtext{SIGNAL OUT}}};
 \end{tikzpicture}
