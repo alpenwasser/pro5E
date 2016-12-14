@@ -57,7 +57,7 @@ def bit_stream_to_dc(file_name):
     Nbit  = 12                              # Bit accuracy (for LSB/2 plot)
     NORM_FACT = Vmax                        # Signals are always plottet normalized to one times this factor
     cic = {
-        "length": 128,                      # Decimation (CIC) filter length
+        "length": 256,                      # Decimation (CIC) filter length
         "lengths": [16, 32, 64, 128, 256],  # all possible filter lengths
         "order": 3                          # Decimation filter order
     }
