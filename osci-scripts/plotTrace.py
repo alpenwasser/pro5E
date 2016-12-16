@@ -38,7 +38,8 @@ def plot_data(dataFile):
     data = read_table(dataFile)
     fig  = plt.figure(dataFile)
     ax   = fig.add_subplot(1,1,1)
-    ax.plot(data["Time"],data["Ampl"])
+    ax.scatter(data["Time"],data["Ampl"],s=1,color='blue')
+    #ax.plot(data["Time"],data["Ampl"])
 
     # Axis Scaling
     start_time = float(data["Time"][0])
