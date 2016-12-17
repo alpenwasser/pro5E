@@ -35,8 +35,8 @@
 # SETTINGS                                                                     #
 # ---------------------------------------------------------------------------- #
 # Adjust these as needed...
-CHIP='chip07'
-SIGN='-'
+CHIP='chip01'
+SIGN='+'
 CHANNEL='3'
 GAIN='2'
 DATA_DIR="data/${CHIP}Gain${SIGN}$(printf '%02d' $GAIN)"
@@ -154,7 +154,19 @@ fsStrings[256e3]='256kHz'
 #        2.0 |       200 |     -2000 |
 # Reverse order of table for GAIN -2
 
-declare -a ampls=(1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0)
+declare -a ampls=(\
+    1.0\
+    1.1\
+    1.2\
+    1.3\
+    1.4\
+    1.5\
+    1.6\
+    1.7\
+    1.8\
+    1.9\
+    2.0\
+)
 
 declare -A voltDivs
 voltDivs[+1.0]='200'

@@ -35,7 +35,7 @@
 # SETTINGS                                                                     #
 # ---------------------------------------------------------------------------- #
 # Adjust these as needed...
-CHIP='chip01'
+CHIP='chip03'
 SIGN='+'
 CHANNEL='3'
 GAIN='16'
@@ -124,9 +124,9 @@ printf '%s' "$good_to_go"
 #  96 kHz: 2.5us
 # 256 kHz: 1us
 declare -A timeDivs
-timeDivs[32e3]='5'
-timeDivs[96e3]='2.5'
-timeDivs[256e3]='1'
+timeDivs[32e3]='10'
+timeDivs[96e3]='5'
+timeDivs[256e3]='2.5'
 
 declare -A fsStrings
 fsStrings[32e3]='032kHz'
@@ -139,7 +139,7 @@ fsStrings[256e3]='256kHz'
 # NOTE: The  boundaries and  scaling of  the  downloaded data  depend  on  the
 # oscilloscope's  display settings,  which is  why we  need these  despite not
 # actually caring much about the oscilloscope's display.
-# For GAIN +16
+# Valid Range For GAIN +16
 # DC Voltage | MVOLT_DIV | OFFSET MV |
 #     1.4375 |       200 |     -1000 |
 #     1.4500 |       200 |     -1100 |
@@ -155,66 +155,36 @@ fsStrings[256e3]='256kHz'
 # Reverse order of table for GAIN -16
 
 declare -a ampls=(
-    1.4375\
     1.4500\
-    1.4625\
     1.4750\
-    1.4875\
     1.5000\
-    1.5125\
     1.5250\
-    1.5375\
     1.5550\
-    1.5625\
 )
 
 declare -A voltDivs
-voltDivs[+1.4375]='200'
 voltDivs[+1.4500]='200'
-voltDivs[+1.4625]='100'
 voltDivs[+1.4750]='100'
-voltDivs[+1.4875]='50'
 voltDivs[+1.5000]='20'
-voltDivs[+1.5125]='50'
 voltDivs[+1.5250]='100'
-voltDivs[+1.5375]='100'
 voltDivs[+1.5550]='200'
-voltDivs[+1.5625]='200'
-voltDivs[-1.4375]='200'
 voltDivs[-1.4500]='200'
-voltDivs[-1.4625]='100'
 voltDivs[-1.4750]='100'
-voltDivs[-1.4875]='50'
 voltDivs[-1.5000]='20'
-voltDivs[-1.5125]='50'
 voltDivs[-1.5250]='100'
-voltDivs[-1.5375]='100'
 voltDivs[-1.5550]='200'
-voltDivs[-1.5625]='200'
 
 declare -A offsets
-offsets[+1.4375]='-1000'
 offsets[+1.4500]='-1100'
-offsets[+1.4625]='-1200'
 offsets[+1.4750]='-1300'
-offsets[+1.4875]='-1400'
 offsets[+1.5000]='-1500'
-offsets[+1.5125]='-1600'
 offsets[+1.5250]='-1700'
-offsets[+1.5375]='-1800'
 offsets[+1.5550]='-1900'
-offsets[+1.5625]='-2000'
-offsets[-1.4375]='-2000'
 offsets[-1.4500]='-1900'
-offsets[-1.4625]='-1800'
 offsets[-1.4750]='-1700'
-offsets[-1.4875]='-1600'
 offsets[-1.5000]='-1500'
-offsets[-1.5125]='-1400'
 offsets[-1.5250]='-1300'
-offsets[-1.5375]='-1200'
 offsets[-1.5550]='-1100'
-offsets[-1.5625]='-1000'
 
 # ---------------------------------------------------------------------------- #
 # DO THE STUFF                                                                 #
@@ -232,7 +202,8 @@ for clk in 32e3 96e3 256e3;do
         ./33120A.py --voltage="$ampl"
         sleep 0.25
         ./configWaveRunner.py --vdiv=${voltDivs[${SIGN}${ampl}]} --offset=${offsets[${SIGN}${ampl}]}
-        sleep 2
+        # Allow the oscilloscope to adjust. Yes, this is actually needed.
+        sleep 3
         printf 'Acquiring trace for %s Hz and %s V\n' $clk $ampl
         ./acquireWaveRunnerData.py \
             --remotefile="C${CHANNEL}Trace$(printf '%05d' $i).txt" \
