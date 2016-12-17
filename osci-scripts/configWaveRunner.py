@@ -45,16 +45,16 @@ class WaveRunner(object):
         self.__gen = vxi11.Instrument(instr_IP)
         #print(self.__gen.ask('*IDN?')) # For diagnostics
         self.__gen.channel = channel
-        self.__gen.write(self.channel + ':TRACE ON')
+        self.__gen.write(self.__gen.channel + ':TRACE ON')
 
-    def set_time_div(self,microseconds,channel):
-        self.__gen.write(self.channel + ':TIME_DIV ' + microseconds + 'US')
+    def set_time_div(self,microseconds):
+        self.__gen.write(self.__gen.channel + ':TIME_DIV ' + microseconds + 'US')
 
     def set_volt_div(self,millivolts):
-        self.__gen.write(self.channel + ':VOLT_DIV ' + millivolts + 'MV')
+        self.__gen.write(self.__gen.channel + ':VOLT_DIV ' + millivolts + 'MV')
 
     def set_offset(self,millivolts):
-        self.__gen.write(self.channel + ':OFFSET ' + millivolts + 'MV')
+        self.__gen.write(self.__gen.channel + ':OFFSET ' + millivolts + 'MV')
 
 def main(argv):
     instr = WaveRunner(INSTR_IP,CHANNEL)

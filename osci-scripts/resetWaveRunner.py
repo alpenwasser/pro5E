@@ -21,5 +21,5 @@ INSTR_IP='169.254.14.189'
 # IMPLEMENTATION                                                              #
 # --------------------------------------------------------------------------- #
 instr=vxi11.Instrument(INSTR_IP)
-print(instr.ask('*IDN?'))
+#print(instr.ask('*IDN?'))
 instr.write('*RST')
