@@ -4,6 +4,23 @@ import csv
 import sys
 from matplotlib import pyplot as plt
 
+# --------------------------------------------------------------------------- #
+# DESCRIPTION                                                                 #
+# --------------------------------------------------------------------------- #
+# Creates a plot for each file given as an argument on the command line. One
+# plot in one window is created per data file.
+
+# --------------------------------------------------------------------------- #
+# USAGE                                                                       #
+# --------------------------------------------------------------------------- #
+# ./plotTrace.py <file1> <file2> ...
+#
+# EXAMPLE:
+# ./plotTrace.py data/chip01Gain+01/chip01-gain+01-032kHz-0.9V.txt
+
+# --------------------------------------------------------------------------- #
+# IMPLEMENTATION                                                              #
+# --------------------------------------------------------------------------- #
 def read_table(dataFile):
     with open(dataFile, 'rt') as fh:
         reader = csv.reader(fh, delimiter=',', skipinitialspace=True)
@@ -47,7 +64,6 @@ def plot_data(dataFile):
     ax.set_xlim([start_time,stop_time])
 
 
-# Create one figure for each input file
 if (len(sys.argv) > 1):
     for i in range(1,len(sys.argv)):
         plot_data(sys.argv[i])

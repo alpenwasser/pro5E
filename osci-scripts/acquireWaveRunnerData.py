@@ -1,20 +1,49 @@
 #!/usr/bin/env python3
 
-# 256kHz: time_div: 1us/div
-#  96kHz: time_div: 2.5us/div
-#  32kHz: time_div: 5us/div
-
-# Max sample points: 100kS
-
 import vxi11
 import sys
 import getopt
+
+# --------------------------------------------------------------------------- #
+# DESCRIPTION                                                                 #
+# --------------------------------------------------------------------------- #
+# Acquires, stores and downloads measurement data from the oscilloscope to the
+# controlling computer. Removes files on oscilloscope after download.
+
+# --------------------------------------------------------------------------- #
+# USAGE                                                                       #
+# --------------------------------------------------------------------------- #
+# ./acquireWaveRunnerData.py --remotefile=<remotefile> --localfile=<localfile>
+# Where:
+#
+# <remotefile>: the filename  which is used by the oscilloscope  for storing a
+# waveform on its HDD. This will usually be of form <ch>Trace<number>.txt, for
+# example C1Trace00001.txt for the first waveform for the first channel.
+#
+# NOTE: This cannot  be configured  remotely, the filename  is merely  used to
+# tell the script which remote file  to download from the oscilloscope. If the
+# oscilloscope's filename iterator and the script's <remotefile> parameter are
+# not in  sync, the download  will fail. Resetting the  oscilloscope's counter
+# requires  manual  intervention  on  the  oscilloscope  via  the  "File->Save
+# Waveform" dialog.
+#
+# <localfile>: The  filename  to be  used  for  storing  the waveform  on  the
+# computer onto which it is downloaded.
+# Example: chip01-gain+01-256kHz-1.9V.txt
+
+# --------------------------------------------------------------------------- #
+# SETTINGS                                                                    #
+# --------------------------------------------------------------------------- #
 instrIP='169.254.14.189'
 CHANNEL='C3'
+# Data directory on the oscilloscope.
+# NOTE: This must also  be configured via the "File->Save  Waveform" dialog on
+# the oscilloscope itself; merely setting it remotely will not be sufficient.
 DATA_DIR='D:\\traces'
-TRACE_FILE=CHANNEL + 'Trace00000.txt'
-TRACE_FILE_PATH=DATA_DIR + '\\' + TRACE_FILE
 
+# --------------------------------------------------------------------------- #
+# IMPLEMENTATION                                                              #
+# --------------------------------------------------------------------------- #
 class waverunner(object):
     def __init__(self, instrIP):
         self.__gen = vxi11.Instrument(instrIP)
@@ -27,12 +56,13 @@ class waverunner(object):
         trace_file_path = DATA_DIR + '\\' + remotefile
         data=self.__gen.ask('TRFL? DISK,HDD,FILE,"' + trace_file_path + '"')
         file=open(localfile,'w')
-        # NOTE: data  is a  Windows text string,  split with
-        # \n\r.  Its  last line is a  string 'ffffffff' (see
-        # LeCroy documentation) This  string is unneeded and
-        # interferes with  plotting the data.   We therefore
-        # cut  the  last  line  of the  string;  the  8  'f'
-        # characters as well as the \n\r part.
+        # NOTE: data is a  Windows text string; newlines are
+        # represented by  \n\r.  Its  last line is  a string
+        # 'ffffffff' (see LeCroy documentation). This string
+        # is  unneeded and  interferes  with processing  the
+        # data.   We therefore  cut  off  the string's  last
+        # line: the  8 'f'  characters as  well as  the \n\r
+        # part.
         file.write(data[:-10])
         file.close()
 
