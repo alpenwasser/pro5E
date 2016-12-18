@@ -35,7 +35,7 @@
 # SETTINGS                                                                     #
 # ---------------------------------------------------------------------------- #
 # Adjust these as needed...
-CHIP='chip01'
+CHIP='chip03'
 SIGN='+'
 CHANNEL='3'
 GAIN='4'
