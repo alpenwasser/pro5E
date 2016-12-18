@@ -13,7 +13,7 @@ import getopt
 # --------------------------------------------------------------------------- #
 # USAGE                                                                       #
 # --------------------------------------------------------------------------- #
-# ./acquireWaveRunnerData.py --remotefile=<remotefile> --localfile=<localfile>
+# ./acquireWaveRunnerData.py --channel=<channel> --remotefile=<remotefile> --localfile=<localfile>
 # Where:
 #
 # <remotefile>: the filename  which is used by the oscilloscope  for storing a
@@ -28,14 +28,20 @@ import getopt
 # Waveform" dialog.
 #
 # <localfile>: The  filename  to be  used  for  storing  the waveform  on  the
-# computer onto which it is downloaded.
-# Example: chip01-gain+01-256kHz-1.9V.txt
+# computer onto which it is downloaded. Example: chip01-gain+01-256kHz-1.9V.txt
+#
+# <channel>: The channel for which a waveform is to be stored.
+#
+# EXAMPLES:
+# ./acquireWaveRunnerData.py --channel=C2 --remotefile=C2Trace00000.txt --localfile=trace1.txt
+# or in short form:
+# ./acquireWaveRunnerData.py -c C2 -r C2Trace00000.txt -l trace1.txt
 
 # --------------------------------------------------------------------------- #
 # SETTINGS                                                                    #
 # --------------------------------------------------------------------------- #
 instrIP='169.254.14.189'
-CHANNEL='C3'
+# CHANNEL='C3'
 # Data directory on the oscilloscope.
 # NOTE: This must also  be configured via the "File->Save  Waveform" dialog on
 # the oscilloscope itself; merely setting it remotely will not be sufficient.
@@ -49,8 +55,8 @@ class waverunner(object):
         self.__gen = vxi11.Instrument(instrIP)
         #print(self.__gen.ask('*IDN?'))
 
-    def store_data(self):
-        self.__gen.write('STO ' + CHANNEL + ',HDD')
+    def store_data(self,channel):
+        self.__gen.write('STO ' + channel + ',HDD')
 
     def transfer_file(self,remotefile,localfile):
         trace_file_path = DATA_DIR + '\\' + remotefile
@@ -73,19 +79,22 @@ class waverunner(object):
 def main(argv):
     instr = waverunner(instrIP)
     try:
-        opts, args = getopt.getopt(argv,"r:l",["remotefile=","localfile="])
+        opts, args = getopt.getopt(argv,"c:r:l",["channel=","remotefile=","localfile="])
     except getopt.GetoptError:
         sys.exit(2)
 
-    remotefile=''
-    localfile=''
+    remotefile = ''
+    localfile  = ''
+    channel    = ''
     for opt, arg in opts:
         if opt in ("-r", "--remotefile"):
             remotefile=arg
         elif opt in ("-l", "--localfile"):
             localfile=arg
+        elif opt in ("-c", "--channel"):
+            channel=arg
 
-    instr.store_data()
+    instr.store_data(channel)
     instr.transfer_file(remotefile,localfile)
     instr.cleanup(remotefile)
 

@@ -21,6 +21,12 @@ from matplotlib import pyplot as plt
 # --------------------------------------------------------------------------- #
 # GLOBAL VARIABLES                                                            #
 # --------------------------------------------------------------------------- #
+# The script will cycle through these colors for all the traces to be plotted.
+# See also here:
+# http://stackoverflow.com/questions/22408237/named-colors-in-matplotlib#22408462
+START_TIME = 0
+STOP_TIME  = 0
+
 COLORS=list()
 COLORS.append('crimson')
 COLORS.append('darkblue')
@@ -205,9 +211,23 @@ def plot_data(dataFile,traceColor,axis):
     axis.plot(data["Time"],data["Ampl"],color=traceColor,)
 
     # Axis Scaling
-    start_time = float(data["Time"][0])
-    stop_time  = float(data["Time"][len(data["Time"])-1])
-    axis.set_xlim([start_time,stop_time])
+    global START_TIME
+    global STOP_TIME
+    start_time = 0
+    stop_time  = 0
+    for timeStr in data["Time"]:
+        time = float(timeStr)
+        if time < start_time:
+            start_time = time
+        elif time > stop_time:
+            stop_time = time
+
+    if start_time < START_TIME:
+        START_TIME = start_time
+    if stop_time > STOP_TIME:
+        STOP_TIME = stop_time
+
+    axis.set_xlim([START_TIME,STOP_TIME])
 
 
 if (len(sys.argv) > 1):

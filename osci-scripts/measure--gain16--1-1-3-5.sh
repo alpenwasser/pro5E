@@ -46,6 +46,11 @@ RESET='0' # 1: reset and initialize the oscilloscope
 # SETUP AND NOTIFICATIONS                                                      #
 # ---------------------------------------------------------------------------- #
 
+IFS='' read -r -d '' chip_msg <<-EOF
+	Chip and Gain Selection
+	========================================================
+	Measuring ${CHIP} at gain ${SIGN}${GAIN}
+EOF
 IFS='' read -r -d '' sample_points_msg <<-'EOF'
 	Manual Intervention on Oscilloscope Required
 	========================================================
@@ -106,7 +111,7 @@ if [[ "$RESET" -eq 1 ]];then
     printf '\n'
 fi
 
-printf '%s' "$sample_points_msg"
+printf '%s\n%s' "$chip_msg" "$sample_points_msg"
 read
 printf '%s' "$trace_dir_msg"
 read
@@ -206,6 +211,7 @@ for clk in 32e3 96e3 256e3;do
         sleep 3
         printf 'Acquiring trace for %s Hz and %s V\n' $clk $ampl
         ./acquireWaveRunnerData.py \
+            --channel="C${CHANNEL}" \
             --remotefile="C${CHANNEL}Trace$(printf '%05d' $i).txt" \
             --localfile="${DATA_DIR}/${CHIP}-gain${SIGN}$(printf '%02d' ${GAIN})-${fsStrings[$clk]}-${ampl}V.txt"
         i=$((i+1))
