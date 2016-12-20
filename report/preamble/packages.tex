@@ -72,6 +72,13 @@
 
 %\overfullrule=2cm
 
+% -------------------------------------------------------- %
+% Bibliography: Have as Numbered Chapter                   %
+% -------------------------------------------------------- %
+\renewcommand{\bibsection}{%
+    \chapter{References}
+    %\chapter{\bibname}
+    \prebibhook}
 
 % -------------------------------------------------------- %
 % Draft Watermark                                          %
@@ -201,5 +208,5 @@
     %fontseries=lmr,
     fontfamily=lmtt,
     linenos=false,
-	fontsize=\small,
+    fontsize=\small,
 }
