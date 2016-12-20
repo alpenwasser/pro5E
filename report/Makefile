@@ -1,12 +1,12 @@
 .DEFAULT_GOAL := simple
 
 simple:
-	pdflatex main
+	pdflatex -shell-escape Main
 
 bib:
-	pdflatex -halt-on-error -interaction batchmode main \
-		&& bibtex main \
-		&& pdflatex -halt-on-error -interaction batchmode main\
-		&& pdflatex -halt-on-error -interaction batchmode main
+	pdflatex -shell-escape -halt-on-error -interaction batchmode Main \
+		&& bibtex Main \
+		&& pdflatex -halt-on-error -interaction batchmode Main\
+		&& pdflatex -halt-on-error -interaction batchmode Main
 
 #TODO: clean

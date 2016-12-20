@@ -2,8 +2,10 @@
 *.lof
 *.log
 *.toc
+*.out
+*.auxlock
 bibliography/ieee/
 resources
-main.pdf
+Main.pdf
 copy-to-dropbox
 resources
