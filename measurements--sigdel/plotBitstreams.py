@@ -2,12 +2,14 @@
 
 import csv
 import sys
+import getopt
 import numpy as np
 import deltasigma as ds
 from matplotlib import pyplot as plt
 
 class SigDelPlot(object):
-    def __init__(self, data_file):
+    def __init__(self):
+        # Initialize with default values.
         self.__Vmin = 0.0                      # Minimum absolute possible input
         self.__Vmax = 3.0                      # Maximum absolute possible input
         self.__Vref = 1.5                      # Relative Vref
@@ -24,8 +26,47 @@ class SigDelPlot(object):
             "lengths": [16, 32, 64, 128, 256], # all possible filter lengths
             "order": 3                         # Decimation filter order
         }
-        self.__file = data_file
+        self.__files = list()
+        self.__data  = dict()
+        self.__time_raw   = list()
+        self.__bits_volts = list()
+        self.__bits       = list()
+        self.__t_cic      = list()
+        self.__bits_cic   = list()
 
-    def load_data(self):
+    def load_data(self,file_path):
 
-stuff=SigDelPlot(sys.argv[1])
+    def add_datafile(self,file_path):
+        self.__files.append(file_path)
+
+    def set_fs(self,frequency):
+        self.__fs = frequency
+
+    def set_filterlength(self,filterlength):
+        self.__cic["length"] = filterlength
+
+    def set_filterorder(self,filterorder):
+        self.__cic["order"] = filterorder
+
+
+def main(argv):
+    try:
+        opts, args = getopt.getopt(argv,"d:f:l:o:",["datafile=","frequency=","length=","order="])
+    except getopt.GetoptError:
+        sys.exit(2)
+
+    sdPlot = SigDelPlot()
+
+    for opt, arg in opts:
+        if opt in ("-d","--datafile"):
+            sdPlot.add_datafile(arg)
+        elif opt in ("-f","--frequency"):
+            sdPlot.set_fs(arg)
+        elif opt in ("-l","--length"):
+            sdPlot.set_filterlength(arg)
+        elif opt in ("-o","--order"):
+            sdPlot.set_filterorder(arg)
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

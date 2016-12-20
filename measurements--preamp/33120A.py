@@ -62,7 +62,7 @@ class FunctionGenerator(object):
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv,"h:c:v:",["help","clock=","voltage="])
+        opts, args = getopt.getopt(argv,"hc:v:",["help","clock=","voltage="])
     except getopt.GetoptError:
         print('33120A.py -c <clock frequency> -v <input voltage>')
         sys.exit(2)

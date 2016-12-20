@@ -13,7 +13,7 @@
 # USAGE                                                                        #
 # ---------------------------------------------------------------------------- #
 # Configure the settings down below and execute:
-# ./measure11311.sh
+# ./measure--1-3-11.sh
 # The oscilloscope will require some manual intervention at the beginning, for
 # which this script will prompt you  before continuing. So don't just start it
 # and run off to get coffee.

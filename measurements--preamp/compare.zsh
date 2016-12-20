@@ -10,7 +10,7 @@
 # USAGE                                                                       #
 # --------------------------------------------------------------------------- #
 # ./compare.zsh <chip number> <gain>
-# EXAMPLE: Look at the plots for chip 08 for gain +4
+# EXAMPLE: Compare the data for chip 08 for gain +4
 # ./compare.zsh 08 +04
 
 # --------------------------------------------------------------------------- #

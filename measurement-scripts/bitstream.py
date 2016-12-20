@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import numpy as np
 from matplotlib.pyplot import *
 import deltasigma as ds
