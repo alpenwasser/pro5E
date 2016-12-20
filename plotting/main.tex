@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+%\usepgfplotslibrary{external}
+%\usetikzlibrary{pgfplots.external}
+%\tikzexternalize[prefix=cache/]
+\pgfrealjobname{main}
+\begin{document}
+%\begin{tikzpicture}
+%    \begin{scope}[x={(0mm,0.95\textwidth)},y={(0,110mm)}]
+%        \begin{axis}[each nth point=1000,filter discard warning=false,unbounded coords=discard]
+%            %\addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma] {{chip08-gain+01-032kHz-1.1V.txt}};
+%            %\addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma] {{chip10-gain+02-032kHz-1.0V.txt}};
+%            \addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {data0.txt};
+%            \addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {data1.txt};
+%        \end{axis}
+%    \end{scope}
+%\end{tikzpicture}
+%\begin{tikzpicture}
+    %\resizebox{\textwidth}{!}{\input{comparison.pgf}}
+%\end{tikzpicture}
+%\input{comparison.pgf}
+
+\beginpgfgraphicnamed{cache/comparison}
+    \input{comparison.pgf}
+\endpgfgraphicnamed{cache/comparison}
+
+\end{document}
