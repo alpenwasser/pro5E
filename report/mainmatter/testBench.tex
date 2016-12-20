@@ -3,14 +3,126 @@
 \label{chap:testBench}
 % ---------------------------------------------------------------------------- %
 
-This  chapter will  present a  brief overview  of the  hardware and  provide a
-step-by-step guide to put it into operation.
+This  chapter presents a  brief overview  of the  test bench and  provides a
+step-by-step  guide on how to  put it  into operation. 
+
+A detailled list  of all the devices, components and  software which were used
+to obtain  the measurements  from Chapter  \ref{chap:results} is  given, along
+with information on how to make all those pieces work.  This chapter therefore
+answers  the  questions  \emph{What did  we  use,  and  how  does it  all  fit
+together?}, whereas  the measurement  methodology (\emph{What  did we  do with
+it?}) will be answered in the next chapter.
+
+Fundamentally,   there   are   two    kinds   of   measurements: Digital   and
+analog. The  digital  measurements consist  of  the  bit stream,  whereas  the
+analog  measurements   are  concerned   with  measuring   the  pre-amplifier's
+characteristics. For the most  part, the test benches for  these two scenarios
+are identical.  The  primary difference is that for  the digital measurements,
+the bit  stream is  measured on  the GPIO pins  of the  \raspi, while  for the
+analog measurements, data  is obtained from oscilloscope. This can  be done in
+multiple  ways; the  test bench  as implemented  in this  project is  based on
+remote-controlling the oscilloscope from a computer.
+
+Unless otherwise  noted, the information  presented in the  following sections
+applies to both types of measurements.
 
 % ---------------------------------------------------------------------------- %
 \section{Hardware and Component List}
 \label{sec:hwList}
 % ---------------------------------------------------------------------------- %
 
+\begin{centering}
+\begin{xtabular}{
+    >{\small}p{50mm}
+    >{\small}p{8mm}
+    >{\small}p{65mm}
+}
+    \toprule
+    \textsc{Item}    &
+    \textsc{Count}   &
+    \textsc{Notes}   \\
+    \midrule
+
+    HP 33120A Arbitrary Waveform Generator  &
+    2                                       &
+    For generating input signal and clock   \\
+ 
+    Keysight 34465A Tabletop Multimeter                     &
+    3                                                       &
+    Monitoring \signal{VGNDA}, \signal{VIN}, \signal{IBIAS} \\
+
+    Aim TTi MX100TP DC Power Supply                                         &
+    1                                                                       &
+    Supply for \signal{VDDD}, \signal{VDDA}, \signal{VGNDA}, \signal{IBIAS} \\
+
+    
+    LeCroy waveRunner 6100A 1 GHz Oscilloscope                        &
+    1                                                                 &
+    Monitoring \signal{CLK}, \signal{TEST\_OUT}, \signal{SIGNAL\_OUT} \\
+
+    Probes for LeCroy waveRunner 6100A                               &
+    1                                                                &
+    Measuring \signal{CLK}, \signal{TEST\_OUT}, \signal{SIGNAL\_OUT} \\
+
+    Ethernet cable                          &
+    1                                       &
+    Connecting the oscilloscope to a laptop \\
+
+    Raspberry Pi                                           &
+    1                                                      &
+    reading and storing bit stream (\signal{SIGNAL\_OUT}), 
+    Operating System: Raspbian                             \\
+
+    Laboratory cables with industrial plugs         &
+    12                                              &
+    Various connections (see diagrams and pictures) \\
+
+    Coaxial Cables (\SI{50}{\ohm})               &
+    2                                            &
+    Connecting waveform generators to test board \\
+
+    Y-adapter for coaxial cable &
+    1                           &
+    \\
+
+    Breakout adapters for coaxial cables &
+    3                                    &
+    \\
+
+    Measuring terminals, small &
+    6                          &
+    \\
+
+    Test board &
+    1          &
+    \\
+
+    Sensor IC                       &
+    10                              &
+    Chips used: C1V1 through C1V10  \\
+
+    USB $\rightarrow$ RS232 adapters                  &
+    2                                                 &
+    For controlling the waveform generators from a PC \\
+
+    USB cables                                        &
+    2                                                 &
+    For controlling the waveform generators from a PC,
+    USB A $\rightarrow$ USB-B                         \\
+
+    Computer                                                  &
+    1                                                         &
+    Remote-control for oscilloscope and waveform generators,
+    Operating System: Linux  or *BSD with  a bash-compatible
+    shell and the necessary Python libraries                  \\
+
+    Hand-held multimeter                         &
+    1                                            &
+    For monitoring various parameters as needed. \\
+
+    \bottomrule
+\end{xtabular}
+\end{centering}
 \todo[inline]{%
         Which devices and components have been used, and for which purposes?%
 }
@@ -20,24 +132,68 @@ step-by-step guide to put it into operation.
 \label{sec:hwList}
 % ---------------------------------------------------------------------------- %
 
+This  section  describes  how  the  hardware listed  above  is  connected  and
+configured. A   schematic   of  the   complete   test   bench  is   shown   in
+\fref{fig:experimentDiagram}.
+
+\begin{figure}
+    \input{images/expSetup/expSetup.tex}
+    \caption{%
+        Experimental setup  with connections.  \emph{Note}: Drawing not
+        finalized yet.%
+    }
+    \label{fig:experimentDiagram}
+\end{figure}
+
 \todo[inline]{How was the hardware set up? What was connected to what?}
 \todo[inline]{Hardware configuration (buttons, switches, ...}
 \todo[inline]{Software configuration (Raspi, python, bash, ...)}
 
 % ---------------------------------------------------------------------------- %
-\subsection{Waveform Generators}
-\label{subsec:33120A}
-% ---------------------------------------------------------------------------- %
-\todo[inline]{reference to user manual}
-\todo[inline]{scripts, connections}
-
-% ---------------------------------------------------------------------------- %
-\subsection{Volt and Amp Meters}
-\label{subsec:34465A}
+\subsection{Sensor Test Board}
+\label{subsec:testBoard}
 % ---------------------------------------------------------------------------- %
 
-\todo[inline]{reference to user manual}
-\todo[inline]{measurement modes, cable connections}
+\todo[inline]{DIP Switches}
+\todo[inline]{Socket operation}
+\todo[inline]{plug connections}
+\todo[inline]{safety precautions}
+
+\begin{table}
+    \centering
+    \caption{Sensor chip toplevel pins}
+    \label{tab:topLevelPins}
+    \scriptsize
+    \sisetup{list-pair-separator = { or }}
+    \rowcolors{2}{solarized-base3}{white}
+    \begin{tabular}{>{\fontfamily{jkptt}\selectfont}l>{\fontfamily{jkptt}\selectfont}lp{30mm}lp{30mm}} \\
+    %\begin{tabular}{>{\fontfamily{lmtt}\selectfont}l>{\fontfamily{lmtt}\selectfont}lp{30mm}lp{30mm}} \\
+        \toprule
+        \textnormal{\textsc{Pin \#}} & \textnormal{\textsc{Name}}                  & \textsc{Description} & \textsc{Value} & \textsc{Note} \\
+        \midrule
+        39 & vin                     & analog input signal                         & \SIrange{0.5}{2.5}{\volt} & \\
+        25 & bit\_stream             & digital output signal                       & \SIlist{0;3}{\volt}       & \\
+        34 & clk                     & clock                                       & \SIlist{0;3}{\volt}       & \\
+        36 & sdm\_rst                & pulse to reset the $\Sigma\Delta M$         & \SIlist{0;3}{\volt}       & short pulse is enough (min $T_C$) \\
+        41 & vgnda                   & analog ground                               & \SI{1.5}{\volt}           & \\
+        48 & vrefh                   & high reference voltage                      & \SI{3}{\volt}             & \\
+        47 & vrefl                   & low reference voltage                       & \SI{0}{\volt}             & \\
+        46 & ibias                   & bias current                                & \SI{120}{\micro\ampere}   & $24 \cdot 5 \cdot 1$, internally reduced by 120 \\
+        43 & sc\_amp\_vout\_test\_en & enables test output after preamp            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        44 & sc\_amp\_vout\_test     & test output after preamp                    & \SIrange{0.5}{2.5}{\volt} \\
+        33 & sc\_amp\_rst\_ext\_en   & enables external reset input for the preamp & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        32 & sc\_amp\_rst\_ext       & external reset input for the preamp         & \SIlist{0;3}{\volt}       & Internally synced to \signal{clk}. Needs \signal{en} signal. \\
+        35 & sc\_amp\_pos\_neg\_amp  & positive or negative gain                   & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: positive, \SI{3}{\volt}: negative \\
+        28 - 31 & sc\_amp\_csel<3:0> & set gain                                    & \SIlist{0;3}{\volt}       & See table TODO \\
+        27 & sc\_amp\_en             & enable preamp                               & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        26 & sah\_sdm\_en            & enable $\Sigma\Delta M$ S/H bock            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
+        42 & vdda                    & analog positive power supply                & \SI{3}{\volt}             & \\
+        37 & vddd                    & digital positive power supply               & \SI{3}{\volt}             & \\
+        40 & vss                     & analog and digital negative power supply    & \SI{0}{\volt}             & \\
+        \bottomrule
+    \end{tabular}
+    \sisetup{list-pair-separator = { and }}
+\end{table}
 
 % ---------------------------------------------------------------------------- %
 \subsection{DC Power Supply}
@@ -45,6 +201,87 @@ step-by-step guide to put it into operation.
 % ---------------------------------------------------------------------------- %
 \todo[inline]{reference to user manual}
 \todo[inline]{Connections}
+\todo[inline]{control output voltages with voltmeter}
+
+The  \dcsupp~ has  three  independent direct  voltage  outputs. They are  used
+to  supply \signal{VDDD},  \signal{VDDA},  \signal{VREFH}, \signal{VGNDA}  and
+\signal{IBIAS}\footnotemark. Since the output current can only be limited, but
+not  directly  set, the  bias  current  output  is  fed directly  through  one
+of  the Keysight  tabletop  multimeters. The bias  current  is then  monitored
+and  the  \dcsupp's  output  voltage  (and/or the  variable  resistor  on  the
+test  board)  adjusted as  needed  to  achieve  the  desired bias  current  of
+\SI{120}{\uA} as per Table \ref{tab:topLevelPins}.
+
+\footnotetext{%
+    All  \SI{3}{V} signals  are  fed  from the  same  output  and bridge  with
+    jumpers  on the  test board. This  concerns \signal{VDDD},  \signal{VDDA},
+    \signal{VREFH} and \signal{VGNDA}.
+}
+
+% ---------------------------------------------------------------------------- %
+\subsection{Waveform Generators}
+\label{subsec:33120A}
+% ---------------------------------------------------------------------------- %
+\todo[inline]{reference to user manual}
+\todo[inline]{scripts, connections}
+\todo[inline]{control output voltages with voltmeter}
+
+The  \funcgen  s  are  controlled  remotely via  their  RS232  interface  from
+a  computer  (through  RS232  $\rightarrow$   USB-A  adapters)  and  a  Python
+script   (\code{33120A.py},  see   Appendix  \ref{app:chap:scripts}   on  page
+\pageref{app:chap:scripts}).
+
+Before usage, the  script needs to be configured. The  two waveform generators
+will  show up  in the  computer's  device tree  and their  identities must  be
+entered into the script in the \code{SETTINGS} section:
+
+\begin{minted}{python}
+# ------------------------------------------------------------------------ #
+# SETTINGS                                                                 #
+# ------------------------------------------------------------------------ #
+CLK_DEVICE = '/dev/ttyUSB1'
+DC_DEVICE  = '/dev/ttyUSB0'
+\end{minted}
+
+Whichever  device   registered  with  the   PC  first  will  have   the  lower
+\code{ttyUSB<N>} number. If other  devices are connected to  the computer, the
+numbers will of course be higher than \code{0} and \code{1}, respectively.
+
+After successful configuration, the waveform generators can be controlled from
+the command line like so\footnotemark:
+
+\begin{minted}{shell}
+$ ./33120A.py --clock=32e3
+$ ./33120A.py --voltage=1.8
+\end{minted}
+
+The script will then select either the \signal{CLK} \signal{SIGNAL\_IN} device
+and adjust  its output as specified. In  this case, the sampling  rate for the
+test board  is set  to \SI{32}{\kilo\hertz}  and the DC  voltage on  the other
+generator  is set  to \SI{1.8}{\volt}. More  information can  be found  in the
+script itself.
+
+The \signal{CLK} device  will always output a square wave  with voltage levels
+\SI{0}{volt} and \SI{3}{\volt}, as per table \ref{tab:topLevelPins}.
+
+If needed,  the script can  easily be extended  to output any  other arbitrary
+signal. The full  list of available commands  can be obtained from  the 33120A
+operator's manual.
+\todo[inline]{source}
+
+\footnotetext{%
+    This requires  the executable bit  to be set  on the file:  \code{chmod +x
+    33120A.py}.%
+}
+
+
+% ---------------------------------------------------------------------------- %
+\subsection{Multimeters}
+\label{subsec:34465A}
+% ---------------------------------------------------------------------------- %
+
+\todo[inline]{reference to user manual}
+\todo[inline]{measurement modes, cable connections}
 
 % ---------------------------------------------------------------------------- %
 \subsection{Oscilloscope}
@@ -64,16 +301,8 @@ step-by-step guide to put it into operation.
 \todo[inline]{software installation}
 \todo[inline]{measurement programs}
 \todo[inline]{pin connections}
+\todo[inline]{Network config}
 
-% ---------------------------------------------------------------------------- %
-\subsection{Sensor Test Board}
-\label{subsec:testBoard}
-% ---------------------------------------------------------------------------- %
-
-\todo[inline]{DIP Switches}
-\todo[inline]{Socket operation}
-\todo[inline]{plug connections}
-\todo[inline]{safety precautions}
 
 % ---------------------------------------------------------------------------- %
 \subsection{Laptop}
@@ -83,6 +312,7 @@ step-by-step guide to put it into operation.
 \todo[inline]{python scripts}
 \todo[inline]{bash scripts}
 \todo[inline]{LAN Connection}
+\todo[inline]{Network config}
 
 
 %% ---------------------------------------------------------------------------- %

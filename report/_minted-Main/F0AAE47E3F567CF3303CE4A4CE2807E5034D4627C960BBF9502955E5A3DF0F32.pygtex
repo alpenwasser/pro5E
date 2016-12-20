@@ -1,0 +1,180 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env bash}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} DESCRIPTION                                                                  \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} This script executes a set of measurements for}
+\PYG{c+c1}{\PYGZsh{} 1 chip}
+\PYG{c+c1}{\PYGZsh{} at three sampling frequencies}
+\PYG{c+c1}{\PYGZsh{} for 11 DC voltages on the input}
+\PYG{c+c1}{\PYGZsh{} (hence the name)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} USAGE                                                                        \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} Configure the settings down below and execute:}
+\PYG{c+c1}{\PYGZsh{} ./measure\PYGZhy{}\PYGZhy{}1\PYGZhy{}3\PYGZhy{}11.sh}
+\PYG{c+c1}{\PYGZsh{} The oscilloscope will require some manual intervention at the beginning, for}
+\PYG{c+c1}{\PYGZsh{} which this script will prompt you  before continuing. So don\PYGZsq{}t just start it}
+\PYG{c+c1}{\PYGZsh{} and run off to get coffee.}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} DEPENDENCIES                                                                 \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} The following  python scripts must  be placed in  the same}
+\PYG{c+c1}{\PYGZsh{} directory as this script:}
+\PYG{c+c1}{\PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} 33120A.py                \PYGZsh{} control the function generators for VIN and CLK}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} SETTINGS                                                                     \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} Adjust these as needed...}
+\PYG{n+nv}{CHIP}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}chip01\PYGZsq{}}
+\PYG{n+nv}{DATA\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}data/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CHIP}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} SETUP AND NOTIFICATIONS                                                      \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+
+\PYG{n+nv}{IFS}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}} \PYG{n+nb}{read} \PYGZhy{}r \PYGZhy{}d \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}} chip\PYGZus{}msg \PYG{l+s}{\PYGZlt{}\PYGZlt{}\PYGZhy{}EOF}
+\PYG{l+s}{	Chip and Gain Selection}
+\PYG{l+s}{	========================================================}
+\PYG{l+s}{	Measuring \PYGZdl{}\PYGZob{}CHIP\PYGZcb{}}
+\PYG{l+s}{EOF}
+\PYG{n+nv}{IFS}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}} \PYG{n+nb}{read} \PYGZhy{}r \PYGZhy{}d \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}} good\PYGZus{}to\PYGZus{}go \PYG{l+s}{\PYGZlt{}\PYGZlt{}\PYGZhy{}\PYGZsq{}EOF\PYGZsq{}}
+\PYG{l+s}{	Commencing Automated Measuring}
+\PYG{l+s}{	========================================================}
+\PYG{l+s}{	No further manual intervention is required from here on.}
+\PYG{l+s}{	We recommend grabbing a cup of coffee or something like }
+\PYG{l+s}{	that.}
+\PYG{l+s}{	                          \PYGZob{}}
+\PYG{l+s}{	                       \PYGZcb{}   \PYGZcb{}   \PYGZob{}}
+\PYG{l+s}{	                      \PYGZob{}   \PYGZob{}  \PYGZcb{}  \PYGZcb{}}
+\PYG{l+s}{	                       \PYGZcb{}   \PYGZcb{}\PYGZob{}  \PYGZob{}}
+\PYG{l+s}{	                      \PYGZob{}  \PYGZcb{}\PYGZob{}  \PYGZcb{}  \PYGZcb{}}
+\PYG{l+s}{	                     ( \PYGZcb{}\PYGZob{} \PYGZcb{}\PYGZob{}  \PYGZob{} )}
+\PYG{l+s}{	                    .\PYGZhy{}\PYGZob{}   \PYGZcb{}   \PYGZcb{}\PYGZhy{}.}
+\PYG{l+s}{	                    ( ( \PYGZcb{} \PYGZob{} \PYGZcb{} \PYGZob{} \PYGZcb{} )}
+\PYG{l+s}{	                    |`\PYGZhy{}..\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}..\PYGZhy{}\PYGZsq{}|}
+\PYG{l+s}{	                    |             ;\PYGZhy{}\PYGZhy{}.}
+\PYG{l+s}{	                    |   (\PYGZus{}\PYGZus{})     (\PYGZus{}\PYGZus{}  \PYGZbs{}}
+\PYG{l+s}{	                    |   (oo)      | )  )}
+\PYG{l+s}{	                    |    \PYGZbs{}/       |/  /}
+\PYG{l+s}{	                    |             /  /}
+\PYG{l+s}{	                    |            (  /}
+\PYG{l+s}{	                    \PYGZbs{}             y\PYGZsq{}}
+\PYG{l+s}{	                    `\PYGZhy{}..\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}..\PYGZhy{}\PYGZsq{}}
+\PYG{l+s}{	}
+\PYG{l+s}{EOF}
+\PYG{c+c1}{\PYGZsh{}(Design by Felix Lee, http://www.ascii\PYGZhy{}art.de/ascii/c/coffee.txt)}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the osccilloscope}
+
+\PYG{n+nb}{printf} \PYG{l+s+s1}{\PYGZsq{}\PYGZpc{}s\PYGZbs{}n\PYGZpc{}s\PYGZsq{}} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}chip\PYGZus{}msg}\PYG{l+s+s2}{\PYGZdq{}} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}good\PYGZus{}to\PYGZus{}go}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} CONFIGURATION DATA                                                           \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} These settings are mainly used for the configWaveRunner.py script}
+
+\PYG{c+c1}{\PYGZsh{} Time Bases:}
+\PYG{c+c1}{\PYGZsh{}  32 kHz: 5us}
+\PYG{c+c1}{\PYGZsh{}  96 kHz: 2.5us}
+\PYG{c+c1}{\PYGZsh{} 256 kHz: 1us}
+\PYG{n+nb}{declare} \PYGZhy{}A timeDivs
+timeDivs\PYG{o}{[}32e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}5\PYGZsq{}}
+timeDivs\PYG{o}{[}96e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}2.5\PYGZsq{}}
+timeDivs\PYG{o}{[}256e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}1\PYGZsq{}}
+
+\PYG{n+nb}{declare} \PYGZhy{}A fsStrings
+fsStrings\PYG{o}{[}32e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}032kHz\PYGZsq{}}
+fsStrings\PYG{o}{[}96e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}096kHz\PYGZsq{}}
+fsStrings\PYG{o}{[}256e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}256kHz\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Display settings for osccilloscope}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} NOTE: The  boundaries and  scaling of  the  downloaded data  depend  on  the}
+\PYG{c+c1}{\PYGZsh{} oscilloscope\PYGZsq{}s  display settings,  which is  why we  need these  despite not}
+\PYG{c+c1}{\PYGZsh{} actually caring much about the oscilloscope\PYGZsq{}s display.}
+\PYG{c+c1}{\PYGZsh{} For GAIN +1}
+\PYG{c+c1}{\PYGZsh{} DC Voltage | MVOLT\PYGZus{}DIV | OFFSET MV |}
+\PYG{c+c1}{\PYGZsh{}        0.5 |       200 |     \PYGZhy{}1000 |}
+\PYG{c+c1}{\PYGZsh{}        0.7 |       200 |     \PYGZhy{}1100 |}
+\PYG{c+c1}{\PYGZsh{}        0.9 |       100 |     \PYGZhy{}1200 |}
+\PYG{c+c1}{\PYGZsh{}        1.1 |       100 |     \PYGZhy{}1300 |}
+\PYG{c+c1}{\PYGZsh{}        1.3 |        50 |     \PYGZhy{}1400 |}
+\PYG{c+c1}{\PYGZsh{}        1.5 |        20 |     \PYGZhy{}1500 |}
+\PYG{c+c1}{\PYGZsh{}        1.7 |        50 |     \PYGZhy{}1600 |}
+\PYG{c+c1}{\PYGZsh{}        1.9 |       100 |     \PYGZhy{}1700 |}
+\PYG{c+c1}{\PYGZsh{}        2.1 |       100 |     \PYGZhy{}1800 |}
+\PYG{c+c1}{\PYGZsh{}        2.3 |       200 |     \PYGZhy{}1900 |}
+\PYG{c+c1}{\PYGZsh{}        2.5 |       200 |     \PYGZhy{}2000 |}
+\PYG{c+c1}{\PYGZsh{} Reverse order of table for GAIN \PYGZhy{}1}
+
+\PYG{n+nb}{declare} \PYGZhy{}a \PYG{n+nv}{ampls}\PYG{o}{=(}\PYG{l+s+se}{\PYGZbs{}}
+    0.5\PYG{l+s+se}{\PYGZbs{}}
+    0.7\PYG{l+s+se}{\PYGZbs{}}
+    0.9\PYG{l+s+se}{\PYGZbs{}}
+    1.1\PYG{l+s+se}{\PYGZbs{}}
+    1.3\PYG{l+s+se}{\PYGZbs{}}
+    1.5\PYG{l+s+se}{\PYGZbs{}}
+    1.7\PYG{l+s+se}{\PYGZbs{}}
+    1.9\PYG{l+s+se}{\PYGZbs{}}
+    2.1\PYG{l+s+se}{\PYGZbs{}}
+    2.3\PYG{l+s+se}{\PYGZbs{}}
+    2.5\PYG{l+s+se}{\PYGZbs{}}
+\PYG{o}{)}
+
+\PYG{n+nb}{declare} \PYGZhy{}A voltDivs
+voltDivs\PYG{o}{[}0.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}0.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}0.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+voltDivs\PYG{o}{[}1.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+voltDivs\PYG{o}{[}1.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}50\PYGZsq{}}
+voltDivs\PYG{o}{[}1.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}20\PYGZsq{}}
+voltDivs\PYG{o}{[}1.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}50\PYGZsq{}}
+voltDivs\PYG{o}{[}1.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+voltDivs\PYG{o}{[}2.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+voltDivs\PYG{o}{[}2.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}2.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+
+\PYG{n+nb}{declare} \PYGZhy{}A offsets
+offsets\PYG{o}{[}+0.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1000\PYGZsq{}}
+offsets\PYG{o}{[}+0.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1100\PYGZsq{}}
+offsets\PYG{o}{[}+0.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1200\PYGZsq{}}
+offsets\PYG{o}{[}+1.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1300\PYGZsq{}}
+offsets\PYG{o}{[}+1.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1400\PYGZsq{}}
+offsets\PYG{o}{[}+1.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1500\PYGZsq{}}
+offsets\PYG{o}{[}+1.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1600\PYGZsq{}}
+offsets\PYG{o}{[}+1.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1700\PYGZsq{}}
+offsets\PYG{o}{[}+2.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1800\PYGZsq{}}
+offsets\PYG{o}{[}+2.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1900\PYGZsq{}}
+offsets\PYG{o}{[}+2.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}2000\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} DO THE STUFF                                                                 \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{} Measure ALL the things!!!}
+mkdir \PYGZhy{}p \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}DATA\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{k}{for} clk in 32e3 96e3 256e3\PYG{p}{;}\PYG{k}{do}
+    ./33120A.py \PYGZhy{}\PYGZhy{}clock\PYG{o}{=}\PYG{n+nv}{\PYGZdl{}clk}
+    \PYG{c+c1}{\PYGZsh{} Give the function generator time to settle:}
+    sleep 0.25 
+
+    \PYG{c+c1}{\PYGZsh{} Run through DC ramp}
+    \PYG{k}{for} ampl in \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ampls}\PYG{p}{[@]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{;}\PYG{k}{do}
+        ./33120A.py \PYGZhy{}\PYGZhy{}voltage\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ampl}\PYG{l+s+s2}{\PYGZdq{}}
+        sleep 0.25
+
+        \PYG{n+nb}{printf} \PYG{l+s+s1}{\PYGZsq{}Acquiring trace for \PYGZpc{}s Hz and \PYGZpc{}s V\PYGZbs{}n\PYGZsq{}} \PYG{n+nv}{\PYGZdl{}clk} \PYG{n+nv}{\PYGZdl{}ampl}
+        \PYG{n+nv}{local\PYGZus{}file}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DATA\PYGZus{}DIR}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CHIP}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZhy{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{fsStrings}\PYG{p}{[}\PYG{n+nv}{\PYGZdl{}clk}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZhy{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ampl}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{V.txt\PYGZdq{}}
+        ssh \PYGZhy{}p \PYG{l+m}{22} pi@10.84.130.16 \PYG{l+s+s1}{\PYGZsq{}cd bitstream/build \PYGZam{}\PYGZam{} sudo ./bitstream\PYGZsq{}}
+        scp \PYGZhy{}P \PYG{l+m}{22} \PYG{l+s+se}{\PYGZbs{}}
+            pi@10.84.130.16:/home/pi/bitstream/build/bit\PYGZus{}stream.txt \PYG{l+s+se}{\PYGZbs{}}
+            \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}local\PYGZus{}file}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{k}{done}
+\PYG{k}{done}
+\end{Verbatim}

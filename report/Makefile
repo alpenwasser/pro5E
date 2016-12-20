@@ -9,4 +9,6 @@ bib:
 		&& pdflatex -halt-on-error -interaction batchmode Main\
 		&& pdflatex -halt-on-error -interaction batchmode Main
 
-#TODO: clean
+# Clean cache
+cclean:
+	rm cache/*.log cache/*.pdf cache/*.md5 cache/*.dpth

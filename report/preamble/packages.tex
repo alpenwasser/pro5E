@@ -31,6 +31,7 @@
 \usepackage[utf8]{inputenc}  % input encoding
 \usepackage[english]{babel}
 \usepackage{lipsum}          % filler text
+\usepackage{xtab}
 
 % -------------------------------------------------------- %
 % xcolor  and kvoptions  are  loaded by  xcolor-solarized. %
@@ -188,4 +189,17 @@
     breaklines          = true,
     breakatwhitespace   = true,
     tabsize             = 3
+}
+
+\usepackage{minted}
+\setminted{%
+    style=borland,
+    %style=tango,
+    %style=solarizeddark,
+    linenos=true,
+    %bgcolor=solarized-blue!10,
+    %fontseries=lmr,
+    fontfamily=lmtt,
+    linenos=false,
+	fontsize=\small,
 }
