@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+    \begin{scope}
+        \node[anchor=south east] at (0mm,2mm) {\tiny ON};
+
+        \foreach \x in {0mm,4mm,8mm,12mm,16mm,20mm,24mm,28mm} {
+            \draw (\x,0mm) -- (\x+4mm,0mm) -- (\x+4mm,5mm) -- (\x,5mm) -- cycle;
+            \fill (\x+1mm,1mm) -- (\x+3mm,1mm) -- (\x+3mm,3mm) -- (\x+1mm,3mm) -- cycle;
+        }
+
+        \node[anchor=north west] at ( 0mm,0mm)  {\rotatebox{90}{\tiny\signal{sc\_amp\_rst\_ext\_en}}};
+        \node[anchor=north west] at ( 4mm,0mm)  {\rotatebox{90}{\tiny\signal{sc\_amp\_pos\_neg\_amp}}};
+        \node[anchor=north west] at ( 8mm,0mm)  {\rotatebox{90}{\tiny\signal{sc\_amp\_en(3)}}};
+        \node[anchor=north west] at (12mm,0mm) {\rotatebox{90}{\tiny\signal{sc\_amp\_en(2)}}};
+        \node[anchor=north west] at (16mm,0mm) {\rotatebox{90}{\tiny\signal{sc\_amp\_en(1)}}};
+        \node[anchor=north west] at (20mm,0mm) {\rotatebox{90}{\tiny\signal{sc\_amp\_en(0)}}};
+        \node[anchor=north west] at (24mm,0mm) {\rotatebox{90}{\tiny\signal{sah\_sdm\_en}}};
+        \node[anchor=north west] at (28mm,0mm) {\rotatebox{90}{\tiny\signal{sh\_amp\_en}}};
+    \end{scope}
+\end{tikzpicture}
