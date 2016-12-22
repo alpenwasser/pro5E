@@ -11,7 +11,6 @@ def display_results():
     with open('dc_linear.json', 'r') as f:
         chips = json.load(f)
 
-
     for key,value in chips.items():
         fig_out = plt.figure('asdf')
         for n, freq in enumerate(value):
