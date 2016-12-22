@@ -20,7 +20,7 @@ T_SaH = Ts*512                          # Input signal sampling period (S/H-bloc
 Nbit  = 12                              # Bit accuracy (for LSB/2 plot)
 NORM_FACT = Vmax                        # Signals are always plottet normalized to one times this factor
 cic = {
-    "length": 128,                      # Decimation (CIC) filter length
+    "length":  16,                      # Decimation (CIC) filter length
     "lengths": [16, 32, 64, 128, 256],  # all possible filter lengths
     "order": 3                          # Decimation filter order
 }
@@ -40,8 +40,8 @@ t_sdm_cic = t_sdm_cic[2:]
 
 fig_out = plt.figure(figsize=(20, 8))
 ax_out = fig_out.add_subplot(111)
-#ax_out.step(t_sdm_cic, s_sdm_cic*NORM_FACT, where='post', label=r"$V_{out,cic}$", zorder=4)
-ax_out.scatter(t_sdm_cic, s_sdm_cic*NORM_FACT, label=r"$V_{out,cic}$")
+ax_out.step(t_sdm_cic, s_sdm_cic*NORM_FACT, where='post', label=r"$V_{out,cic}$", zorder=4)
+#ax_out.scatter(t_sdm_cic, s_sdm_cic*NORM_FACT, label=r"$V_{out,cic}$")
 #xlim(0.2,1.6)
 
 # set title and axis
@@ -49,5 +49,7 @@ ax_out.set_title("Filtered Bit-Stream, Filter Length {}".format(cic["length"]))
 ax_out.set_xlabel("Time (s)")
 ax_out.set_ylabel("Voltage (V)")
 ax_out.legend(loc='upper left')
+#ax_out.set_ylim([0.4,0.6])
 fig_out.tight_layout()
-plt.show()
+#plt.show()
+fig_out.savefig(file_name.replace('txt','svg'))

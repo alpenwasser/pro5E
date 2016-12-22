@@ -1,0 +1,548 @@
+\definecolor{plotColor0}{named}{blue}
+\definecolor{plotColor1}{named}{teal}
+\definecolor{plotColor2}{named}{red}
+\definecolor{plotColor3}{named}{cyan}
+\definecolor{plotColor4}{named}{gray}
+\definecolor{plotColor5}{named}{magenta}
+\definecolor{plotColor6}{named}{orange}
+\definecolor{plotColor7}{named}{violet}
+\definecolor{plotColor8}{named}{purple}
+\definecolor{plotColor9}{named}{pink}
+
+\newlength{\parindentOriginal}
+\setlength{\parindentOriginal}{\parindent}
+
+\pgfkeys{/digitalPlot/.cd,
+    voltage/.store in = \inputVoltage,
+    freq/.store in    = \frequency,
+    file0/.store in   =\digitalPlotFileZero,
+    file1/.store in   =\digitalPlotFileOne,
+    file2/.store in   =\digitalPlotFileTwo,
+    file3/.store in   =\digitalPlotFileThree,
+    file4/.store in   =\digitalPlotFileFour,
+    file5/.store in   =\digitalPlotFileFive,
+    file6/.store in   =\digitalPlotFileSix,
+    file7/.store in   =\digitalPlotFileSeven,
+    file8/.store in   =\digitalPlotFileEight,
+    file9/.store in   =\digitalPlotFileNine,
+}
+
+\newcommand{\digitalPlot}[1]{%
+    \pgfkeys{/digitalPlot/.cd,#1}%
+    \setlength{\parindent}{0mm}
+    \begin{tikzpicture}
+        \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
+            \begin{axis}[%
+                    title={$V_{in} = \SI{\inputVoltage}{\volt}${,} $f_{s} = \SI{\frequency}{\kilo\hertz}$},
+                    height=45mm,
+                    width=\textwidth,
+                    grid=both,
+                    xlabel=Time (\si{\second}),
+                    ylabel=$V_{out}$ (\si{\volt}),
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileZero};
+                \addplot[only marks,mark size=0.5pt,plotColor1] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileOne};
+                \addplot[only marks,mark size=0.5pt,plotColor2] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileTwo};
+                \addplot[only marks,mark size=0.5pt,plotColor3] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileThree};
+                \addplot[only marks,mark size=0.5pt,plotColor4] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileFour};
+                \addplot[only marks,mark size=0.5pt,plotColor5] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileFive};
+                \addplot[only marks,mark size=0.5pt,plotColor6] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileSix};
+                \addplot[only marks,mark size=0.5pt,plotColor7] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileSeven};
+                \addplot[only marks,mark size=0.5pt,plotColor8] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileEight};
+                \addplot[only marks,mark size=0.5pt,plotColor9] 
+                    table[x=Time, y=Ampl,col sep=comma] {\digitalPlotFileNine};
+            \end{axis}
+        \end{scope}
+    \end{tikzpicture}
+    \setlength{\parindent}{\parindentOriginal}}
+
+
+\pgfkeys{/analogPlot/.cd,
+    voltage/.store in       = \inputVoltage,
+    freq/.store in          = \frequency,
+    gain/.store in          = \analogGain,
+    overview file/.store in =\analogPlotOverview,
+    decimator/.store in     = \analogDecimator,
+    tmin/.store in          = \analogPlottMin,
+    tmax/.store in          = \analogPlottMax,
+    ymin1/.store in         = \analogPlotyMinA,
+    ymax1/.store in         = \analogPlotyMaxA,
+    ymin2/.store in         = \analogPlotyMinB,
+    ymax2/.store in         = \analogPlotyMaxB,
+    ymin3/.store in         = \analogPlotyMinC,
+    ymax3/.store in         = \analogPlotyMaxC,
+    ymin4/.store in         = \analogPlotyMinD,
+    ymax4/.store in         = \analogPlotyMaxD,
+    ymin5/.store in         = \analogPlotyMinE,
+    ymax5/.store in         = \analogPlotyMaxE,
+    ymin6/.store in         = \analogPlotyMinF,
+    ymax6/.store in         = \analogPlotyMaxF,
+    ymin7/.store in         = \analogPlotyMinG,
+    ymax7/.store in         = \analogPlotyMaxG,
+    ymin8/.store in         = \analogPlotyMinH,
+    ymax8/.store in         = \analogPlotyMaxH,
+    ymin9/.store in         = \analogPlotyMinI,
+    ymax9/.store in         = \analogPlotyMaxI,
+    ymin10/.store in         = \analogPlotyMinJ,
+    ymax10/.store in         = \analogPlotyMaxJ,
+    ymin11/.store in         = \analogPlotyMinK,
+    ymax11/.store in         = \analogPlotyMaxK,
+    file1/.store in          = \analogPlotFileAB,
+    file2/.store in          = \analogPlotFileAC,
+    file3/.store in          = \analogPlotFileAD,
+    file4/.store in          = \analogPlotFileAE,
+    file5/.store in          = \analogPlotFileAF,
+    file6/.store in          = \analogPlotFileAG,
+    file7/.store in          = \analogPlotFileAH,
+    file8/.store in          = \analogPlotFileAI,
+    file9/.store in          = \analogPlotFileAJ,
+    file10/.store in         = \analogPlotFileAK,
+    file11/.store in         = \analogPlotFileAL,
+    file12/.store in         = \analogPlotFileAM,
+    file13/.store in         = \analogPlotFileAN,
+    file14/.store in         = \analogPlotFileAO,
+    file15/.store in         = \analogPlotFileAP,
+    file16/.store in         = \analogPlotFileAQ,
+    file17/.store in         = \analogPlotFileAR,
+    file18/.store in         = \analogPlotFileAS,
+    file19/.store in         = \analogPlotFileAT,
+    file20/.store in         = \analogPlotFileAU,
+    file21/.store in         = \analogPlotFileAV,
+    file22/.store in         = \analogPlotFileAW,
+    file23/.store in         = \analogPlotFileAX,
+    file24/.store in         = \analogPlotFileAY,
+    file25/.store in         = \analogPlotFileAZ,
+    file26/.store in         = \analogPlotFileBA,
+    file27/.store in         = \analogPlotFileBB,
+    file28/.store in         = \analogPlotFileBC,
+    file29/.store in         = \analogPlotFileBD,
+    file30/.store in         = \analogPlotFileBE,
+    file31/.store in         = \analogPlotFileBF,
+    file32/.store in         = \analogPlotFileBG,
+    file33/.store in         = \analogPlotFileBH,
+    file34/.store in         = \analogPlotFileBI,
+    file35/.store in         = \analogPlotFileBJ,
+    file36/.store in         = \analogPlotFileBK,
+    file37/.store in         = \analogPlotFileBL,
+    file38/.store in         = \analogPlotFileBM,
+    file39/.store in         = \analogPlotFileBN,
+    file40/.store in         = \analogPlotFileBO,
+    file41/.store in         = \analogPlotFileBP,
+    file42/.store in         = \analogPlotFileBQ,
+    file43/.store in         = \analogPlotFileBR,
+    file44/.store in         = \analogPlotFileBS,
+    file45/.store in         = \analogPlotFileBT,
+    file46/.store in         = \analogPlotFileBU,
+    file47/.store in         = \analogPlotFileBV,
+    file48/.store in         = \analogPlotFileBW,
+    file49/.store in         = \analogPlotFileBX,
+    file50/.store in         = \analogPlotFileBY,
+    file51/.store in         = \analogPlotFileBZ,
+    file52/.store in         = \analogPlotFileCA,
+    file53/.store in         = \analogPlotFileCB,
+    file54/.store in         = \analogPlotFileCC,
+    file55/.store in         = \analogPlotFileCD,
+    file56/.store in         = \analogPlotFileCE,
+    file57/.store in         = \analogPlotFileCF,
+    file58/.store in         = \analogPlotFileCG,
+    file59/.store in         = \analogPlotFileCH,
+    file60/.store in         = \analogPlotFileCI,
+    file61/.store in         = \analogPlotFileCJ,
+    file62/.store in         = \analogPlotFileCK,
+    file63/.store in         = \analogPlotFileCL,
+    file64/.store in         = \analogPlotFileCM,
+    file65/.store in         = \analogPlotFileCN,
+    file66/.store in         = \analogPlotFileCO,
+    file67/.store in         = \analogPlotFileCP,
+    file68/.store in         = \analogPlotFileCQ,
+    file69/.store in         = \analogPlotFileCR,
+    file70/.store in         = \analogPlotFileCS,
+    file71/.store in         = \analogPlotFileCT,
+    file72/.store in         = \analogPlotFileCU,
+    file73/.store in         = \analogPlotFileCV,
+    file74/.store in         = \analogPlotFileCW,
+    file75/.store in         = \analogPlotFileCX,
+    file76/.store in         = \analogPlotFileCY,
+    file77/.store in         = \analogPlotFileCZ,
+    file78/.store in         = \analogPlotFileDA,
+    file79/.store in         = \analogPlotFileDB,
+    file80/.store in         = \analogPlotFileDC,
+    file81/.store in         = \analogPlotFileDD,
+    file82/.store in         = \analogPlotFileDE,
+    file83/.store in         = \analogPlotFileDF,
+    file84/.store in         = \analogPlotFileDG,
+    file85/.store in         = \analogPlotFileDH,
+    file86/.store in         = \analogPlotFileDI,
+    file87/.store in         = \analogPlotFileDJ,
+    file88/.store in         = \analogPlotFileDK,
+    file89/.store in         = \analogPlotFileDL,
+    file90/.store in         = \analogPlotFileDM,
+    file91/.store in         = \analogPlotFileDN,
+    file92/.store in         = \analogPlotFileDO,
+    file93/.store in         = \analogPlotFileDP,
+    file94/.store in         = \analogPlotFileDQ,
+    file95/.store in         = \analogPlotFileDR,
+    file96/.store in         = \analogPlotFileDS,
+    file97/.store in         = \analogPlotFileDT,
+    file98/.store in         = \analogPlotFileDU,
+    file99/.store in         = \analogPlotFileDV,
+    file100/.store in        = \analogPlotFileDW,
+    file101/.store in        = \analogPlotFileDX,
+    file102/.store in        = \analogPlotFileDY,
+    file103/.store in        = \analogPlotFileDZ,
+    file104/.store in        = \analogPlotFileEA,
+    file105/.store in        = \analogPlotFileEB,
+    file106/.store in        = \analogPlotFileEC,
+    file107/.store in        = \analogPlotFileED,
+    file108/.store in        = \analogPlotFileEE,
+    file109/.store in        = \analogPlotFileEF,
+    file110/.store in        = \analogPlotFileEG,
+}
+
+\newcommand{\analogPlot}[1]{%
+    \pgfkeys{/analogPlot/.cd,#1}%
+    \setlength{\parindent}{0mm}
+    \begin{tikzpicture}
+        \pgfplotsset{
+            spread plot/.style={%
+                each nth point=\analogDecimator,
+                filter discard warning=false,
+                unbounded coords=discard,
+                title={Spread, 10 Chips},
+                height=45mm,
+                width=0.293\textwidth,
+                anchor=west,
+                grid=both,
+                xlabel=Time (\si{\micro\second}),
+                yticklabel pos=left,
+                label style={font=\scriptsize},
+                ylabel near ticks,
+                font=\scriptsize,
+                xmin = \analogPlottMin,
+                xmax = \analogPlottMax,
+                trim axis right,
+                change x base = true,
+                x SI prefix = micro,
+                xticklabel style = {font=\scriptsize,xshift=0.5ex},
+                yticklabel style = {font=\scriptsize,yshift=0.5ex},
+            }
+        }
+        \pgfplotsset{
+            waveform/.style={%
+                each nth point=\analogDecimator,
+                filter discard warning=false,
+                unbounded coords=discard,
+                title={Typical Waveform},
+                height=45mm,
+                width=\textwidth,
+                grid=both,
+                xlabel=Time (\si{\micro\second}),
+                ylabel=$V_{out}$ (\si{\volt}),
+                trim axis right,
+                change x base = true,
+                x SI prefix = micro,
+            }
+        }
+        \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
+            \begin{axis}[%
+                    waveform,
+                    at={(0mm,135mm)},
+                    name=waveform,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0]
+                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotOverview};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    at={(0mm,97mm)},
+                    name=spread0,
+                    ymin = \analogPlotyMinA,
+                    ymax = \analogPlotyMaxA,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAB};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAC};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAD};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAE};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAF};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAG};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAH};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAI};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAJ};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAK};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread0.east),
+                    name=spread1,
+                    ymin = \analogPlotyMinB,
+                    ymax = \analogPlotyMaxB,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAL};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAM};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAN};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAO};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAP};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAQ};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAR};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAS};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAT};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAU};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread1.east),
+                    name=spread2,
+                    ymin = \analogPlotyMinC,
+                    ymax = \analogPlotyMaxC,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAV};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAW};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAX};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAY};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileAZ};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBA};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBB};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBC};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBD};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBE};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread2.east),
+                    name=spread3,
+                    ymin = \analogPlotyMinD,
+                    ymax = \analogPlotyMaxD,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBF};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBG};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBH};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBI};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBJ};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBK};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBL};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBM};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBN};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBO};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    at={(0mm,48.5mm)},
+                    name=spread4,
+                    ymin = \analogPlotyMinE,
+                    ymax = \analogPlotyMaxE,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBP};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBQ};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBR};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBS};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBT};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBU};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBV};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBW};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBX};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBY};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread4.east),
+                    name=spread5,
+                    ymin = \analogPlotyMinF,
+                    ymax = \analogPlotyMaxF,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileBZ};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCA};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCB};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCC};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCD};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCE};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCF};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCG};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCH};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCI};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread5.east),
+                    name=spread6,
+                    ymin = \analogPlotyMinG,
+                    ymax = \analogPlotyMaxG,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCJ};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCK};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCL};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCM};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCN};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCO};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCP};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCQ};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCR};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCS};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread6.east),
+                    name=spread7,
+                    ymin = \analogPlotyMinH,
+                    ymax = \analogPlotyMaxH,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCT};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCU};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCV};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCW};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCX};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCY};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileCZ};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDA};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDB};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDC};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    at={(0mm,0mm)},
+                    name=spread8,
+                    ymin = \analogPlotyMinI,
+                    ymax = \analogPlotyMaxI,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDD};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDE};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDF};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDG};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDH};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDI};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDJ};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDK};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDL};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDM};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread8.east),
+                    name=spread9,
+                    ymin = \analogPlotyMinJ,
+                    ymax = \analogPlotyMaxJ,
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDN};
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDO};
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDP};
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDQ};
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDR};
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDS};
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDT};
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDU};
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDV};
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDW};
+            \end{axis}
+            \begin{axis}[%
+                    spread plot,
+                    xshift=8mm,
+                    at=(spread9.east),
+                    name=spread10,
+                    ymin = \analogPlotyMinK,
+                    ymax = \analogPlotyMaxK,
+                    legend pos = outer north east,
+                    legend style={
+                        %at={(99mm,0mm)},
+                        %anchor=south east,
+                        legend columns=2,
+                        font=\scriptsize,
+                    },
+                ]
+                \addplot[only marks,mark size=0.5pt,plotColor0] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDX}; \addlegendentry{Chip 1}
+                \addplot[only marks,mark size=0.5pt,plotColor1] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDY}; \addlegendentry{Chip 2}
+                \addplot[only marks,mark size=0.5pt,plotColor2] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileDZ}; \addlegendentry{Chip 3}
+                \addplot[only marks,mark size=0.5pt,plotColor3] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEA}; \addlegendentry{Chip 4}
+                \addplot[only marks,mark size=0.5pt,plotColor4] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEB}; \addlegendentry{Chip 5}
+                \addplot[only marks,mark size=0.5pt,plotColor5] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEC}; \addlegendentry{Chip 6}
+                \addplot[only marks,mark size=0.5pt,plotColor6] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileED}; \addlegendentry{Chip 7}
+                \addplot[only marks,mark size=0.5pt,plotColor7] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEE}; \addlegendentry{Chip 8}
+                \addplot[only marks,mark size=0.5pt,plotColor8] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEF}; \addlegendentry{Chip 9}
+                \addplot[only marks,mark size=0.5pt,plotColor9] table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEG}; \addlegendentry{Chip 10}
+            \end{axis}
+        \end{scope}
+    \end{tikzpicture}
+    \setlength{\parindent}{\parindentOriginal}}
+
+%%\newcommand{\analogPlot}[1]{%
+%    \pgfkeys{/analogPlot/.cd,#1}%
+%    \setlength{\parindent}{0mm}
+%    \begin{tikzpicture}
+%        \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
+%            \begin{axis}[%
+%                    each nth point=\analogDecimator,
+%                    filter discard warning=false,
+%                    unbounded coords=discard,
+%                    title={Waveform: $V_{in} = \SI{\inputVoltage}{\volt}${,} $f_{s} = \SI{\frequency}{\kilo\hertz}$, $g = \analogGain$},
+%                    height=45mm,
+%                    width=0.67\textwidth,
+%                    at={(0mm,0mm)},
+%                    grid=both,
+%                    xlabel=Time (\si{\micro\second}),
+%                    ylabel=$V_{out}$ (\si{\volt}),
+%                    trim axis right,
+%                    change x base = true,
+%                    x SI prefix = micro,
+%                ]
+%                \addplot[only marks,mark size=0.5pt,plotColor0]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotOverview};
+%            \end{axis}
+%            \begin{axis}[%
+%                    each nth point=\analogDecimator,
+%                    filter discard warning=false,
+%                    unbounded coords=discard,
+%                    title={Spread, 10 Chips},
+%                    height=45mm,
+%                    width=0.35\textwidth,
+%                    at={(0.57\textwidth,0mm)},
+%                    grid=both,
+%                    xlabel=Time (\si{\micro\second}),
+%                    ylabel=$V_{out}$ (\si{\volt}),
+%                    yticklabel pos=right,
+%                    ylabel near ticks,
+%                    xmin = \analogPlottMin,
+%                    xmax = \analogPlottMax,
+%                    ymin = \analogPlotyMin,
+%                    ymax = \analogPlotyMax,
+%                    trim axis left,
+%                    change x base = true,
+%                    x SI prefix = micro,
+%                ]
+%                \addplot[only marks,mark size=0.5pt,plotColor0]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileZero};
+%                \addplot[only marks,mark size=0.5pt,plotColor1]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileOne};
+%                \addplot[only marks,mark size=0.5pt,plotColor2]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileTwo};
+%                \addplot[only marks,mark size=0.5pt,plotColor3]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileThree};
+%                \addplot[only marks,mark size=0.5pt,plotColor4]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileFour};
+%                \addplot[only marks,mark size=0.5pt,plotColor5]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileFive};
+%                \addplot[only marks,mark size=0.5pt,plotColor6]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileSix};
+%                \addplot[only marks,mark size=0.5pt,plotColor7]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileSeven};
+%                \addplot[only marks,mark size=0.5pt,plotColor8]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileEight};
+%                \addplot[only marks,mark size=0.5pt,plotColor9]
+%                    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {\analogPlotFileNine};
+%            \end{axis}
+%        \end{scope}
+%    \end{tikzpicture}
+%    \setlength{\parindent}{\parindentOriginal}}

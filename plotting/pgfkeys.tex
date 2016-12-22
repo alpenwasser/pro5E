@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{pgfkeys}
+
+\pgfkeys{/digitalPlot/.cd,
+	file0/.store in=\digitalPlotFileZero,
+	file1/.store in=\digitalPlotFileOne,
+	file2/.store in=\digitalPlotFileTwo,
+	file3/.store in=\digitalPlotFileThree,
+	file4/.store in=\digitalPlotFileFour,
+	file5/.store in=\digitalPlotFileFive,
+	file6/.store in=\digitalPlotFileSix,
+	file7/.store in=\digitalPlotFileSeven,
+	file8/.store in=\digitalPlotFileEight,
+	file9/.store in=\digitalPlotFileNine,
+}
+
+\newcommand{\digitalPlot}[1]{%
+	\pgfkeys{#1}%
+	\digitalPlotFileZero\\
+	\digitalPlotFileOne\\
+	\digitalPlotFileTwo\\
+	\digitalPlotFileThree\\
+	\digitalPlotFileFour\\
+	\digitalPlotFileFive\\
+	\digitalPlotFileSix\\
+	\digitalPlotFileSeven\\
+	\digitalPlotFileEight\\
+	\digitalPlotFileNine%
+}
+
+\begin{document}
+\digitalPlot{%
+	/digitalPlot/file0=File 0,
+	/digitalPlot/file1=File 1,
+	/digitalPlot/file2=File 2,
+	/digitalPlot/file3=File 3,
+	/digitalPlot/file4=File 4,
+	/digitalPlot/file5=File 5,
+	/digitalPlot/file6=File 6,
+	/digitalPlot/file7=File 7,
+	/digitalPlot/file8=File 8,
+	/digitalPlot/file9=File 9
+	}
+\end{document}

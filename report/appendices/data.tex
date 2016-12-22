@@ -3,27 +3,6 @@
 \label{app:chap:measurements}
 % --------------------------------------------------------------------------- %
 
-\todo[inline]{Legends for Plots}
-
-\definecolor{plotColor0}{named}{blue}
-\definecolor{plotColor1}{named}{teal}
-\definecolor{plotColor2}{named}{red}
-\definecolor{plotColor3}{named}{cyan}
-\definecolor{plotColor4}{named}{gray}
-\definecolor{plotColor5}{named}{magenta}
-\definecolor{plotColor6}{named}{orange}
-\definecolor{plotColor7}{named}{violet}
-\definecolor{plotColor8}{named}{purple}
-\definecolor{plotColor9}{named}{pink}
-
-%\begin{tikzpicture}
-%    \begin{scope}[x={(0mm,0.95\textwidth)},y={(0,110mm)}]
-%        \begin{axis}[each nth point=1000,filter discard warning=false,unbounded coords=discard]
-%			% For analog measurements
-%            %\addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {datafile.dat};
-%        \end{axis}
-%    \end{scope}
-%\end{tikzpicture}
 
 % --------------------------------------------------------------------------- %
 \section{Sigma-Delta Modulator, Filter Length 128, Filter Order 3}
@@ -35,1187 +14,478 @@
 \label{app:subsec:sigdel:32kHz}
 % --------------------------------------------------------------------------- %
 
-\newlength{\parindentOriginal}
-\setlength{\parindentOriginal}{\parindent}
-\setlength{\parindent}{0mm}
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-0.5V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-0.5V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-0.5V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-0.5V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-0.5V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-0.5V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-0.5V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-0.5V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-0.5V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-0.7V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-0.7V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-0.7V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-0.7V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-0.7V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-0.7V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-0.7V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-0.7V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-0.7V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-0.9V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-0.9V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-0.9V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-0.9V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-0.9V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-0.9V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-0.9V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-0.9V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-0.9V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-1.1V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-1.1V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-1.1V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-1.1V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-1.1V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-1.1V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-1.1V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-1.1V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-1.1V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-1.3V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-1.3V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-1.3V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-1.3V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-1.3V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-1.3V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-1.3V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-1.3V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-1.3V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-1.5V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-1.5V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-1.5V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-1.5V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-1.5V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-1.5V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-1.5V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-1.5V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-1.5V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-1.7V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-1.7V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-1.7V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-1.7V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-1.7V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-1.7V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-1.7V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-1.7V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-1.7V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-1.9V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-1.9V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-1.9V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-1.9V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-1.9V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-1.9V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-1.9V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-1.9V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-1.9V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-2.1V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-2.1V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-2.1V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-2.1V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-2.1V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-2.1V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-2.1V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-2.1V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-2.1V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-2.3V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-2.3V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-2.3V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-2.3V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-2.3V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-2.3V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-2.3V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-2.3V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-2.3V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-032kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
-\setlength{\parindent}{\parindentOriginal}
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 32,
+    file0   = data/sigdel/chip01/chip01-032kHz-2.5V.dat,
+    file1   = data/sigdel/chip02/chip02-032kHz-2.5V.dat,
+    file2   = data/sigdel/chip03/chip03-032kHz-2.5V.dat,
+    file3   = data/sigdel/chip04/chip04-032kHz-2.5V.dat,
+    file4   = data/sigdel/chip05/chip05-032kHz-2.5V.dat,
+    file5   = data/sigdel/chip06/chip06-032kHz-2.5V.dat,
+    file6   = data/sigdel/chip07/chip07-032kHz-2.5V.dat,
+    file7   = data/sigdel/chip08/chip08-032kHz-2.5V.dat,
+    file8   = data/sigdel/chip09/chip09-032kHz-2.5V.dat,
+    file9   = data/sigdel/chip10/chip10-032kHz-2.5V.dat}
+
 
 % --------------------------------------------------------------------------- %
 \subsection{Sampling Frequency: \SI{96}{\kilo\hertz}}
 \label{app:subsec:sigdel:96kHz}
 % --------------------------------------------------------------------------- %
 
-\setlength{\parindent}{0mm}
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-0.5V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-0.5V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-0.5V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-0.5V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-0.5V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-0.5V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-0.5V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-0.5V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-0.5V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-0.7V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-0.7V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-0.7V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-0.7V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-0.7V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-0.7V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-0.7V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-0.7V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-0.7V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-0.9V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-0.9V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-0.9V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-0.9V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-0.9V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-0.9V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-0.9V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-0.9V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-0.9V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-1.1V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-1.1V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-1.1V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-1.1V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-1.1V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-1.1V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-1.1V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-1.1V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-1.1V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-1.3V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-1.3V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-1.3V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-1.3V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-1.3V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-1.3V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-1.3V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-1.3V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-1.3V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-1.5V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-1.5V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-1.5V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-1.5V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-1.5V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-1.5V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-1.5V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-1.5V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-1.5V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-1.7V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-1.7V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-1.7V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-1.7V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-1.7V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-1.7V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-1.7V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-1.7V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-1.7V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-1.9V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-1.9V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-1.9V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-1.9V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-1.9V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-1.9V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-1.9V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-1.9V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-1.9V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-2.1V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-2.1V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-2.1V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-2.1V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-2.1V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-2.1V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-2.1V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-2.1V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-2.1V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-2.3V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-2.3V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-2.3V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-2.3V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-2.3V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-2.3V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-2.3V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-2.3V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-2.3V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-096kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
-\setlength{\parindent}{\parindentOriginal}
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 96,
+    file0   = data/sigdel/chip01/chip01-096kHz-2.5V.dat,
+    file1   = data/sigdel/chip02/chip02-096kHz-2.5V.dat,
+    file2   = data/sigdel/chip03/chip03-096kHz-2.5V.dat,
+    file3   = data/sigdel/chip04/chip04-096kHz-2.5V.dat,
+    file4   = data/sigdel/chip05/chip05-096kHz-2.5V.dat,
+    file5   = data/sigdel/chip06/chip06-096kHz-2.5V.dat,
+    file6   = data/sigdel/chip07/chip07-096kHz-2.5V.dat,
+    file7   = data/sigdel/chip08/chip08-096kHz-2.5V.dat,
+    file8   = data/sigdel/chip09/chip09-096kHz-2.5V.dat,
+    file9   = data/sigdel/chip10/chip10-096kHz-2.5V.dat}
 
 % --------------------------------------------------------------------------- %
 \subsection{Sampling Frequency: \SI{256}{\kilo\hertz}}
 \label{app:subsec:sigdel:256kHz}
 % --------------------------------------------------------------------------- %
 
-\setlength{\parindent}{0mm}
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-0.5V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-0.5V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-0.5V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-0.5V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-0.5V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-0.5V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-0.5V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-0.5V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-0.5V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-0.7V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-0.7V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-0.7V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-0.7V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-0.7V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-0.7V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-0.7V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-0.7V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-0.7V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-0.9V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-0.9V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-0.9V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-0.9V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-0.9V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-0.9V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-0.9V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-0.9V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-0.9V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-1.1V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-1.1V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-1.1V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-1.1V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-1.1V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-1.1V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-1.1V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-1.1V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-1.1V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-1.3V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-1.3V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-1.3V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-1.3V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-1.3V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-1.3V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-1.3V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-1.3V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-1.3V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-1.5V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-1.5V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-1.5V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-1.5V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-1.5V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-1.5V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-1.5V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-1.5V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-1.5V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-1.7V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-1.7V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-1.7V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-1.7V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-1.7V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-1.7V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-1.7V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-1.7V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-1.7V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-1.9V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-1.9V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-1.9V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-1.9V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-1.9V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-1.9V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-1.9V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-1.9V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-1.9V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-2.1V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-2.1V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-2.1V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-2.1V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-2.1V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-2.1V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-2.1V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-2.1V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-2.1V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-2.3V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-2.3V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-2.3V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-2.3V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-2.3V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-2.3V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-2.3V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-2.3V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-2.3V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip01/chip01-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip02/chip02-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip03/chip03-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip04/chip04-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip05/chip05-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip06/chip06-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip07/chip07-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip08/chip08-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip09/chip09-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/sigdel/chip10/chip10-256kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
-\setlength{\parindent}{\parindentOriginal}
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 256,
+    file0   = data/sigdel/chip01/chip01-256kHz-2.5V.dat,
+    file1   = data/sigdel/chip02/chip02-256kHz-2.5V.dat,
+    file2   = data/sigdel/chip03/chip03-256kHz-2.5V.dat,
+    file3   = data/sigdel/chip04/chip04-256kHz-2.5V.dat,
+    file4   = data/sigdel/chip05/chip05-256kHz-2.5V.dat,
+    file5   = data/sigdel/chip06/chip06-256kHz-2.5V.dat,
+    file6   = data/sigdel/chip07/chip07-256kHz-2.5V.dat,
+    file7   = data/sigdel/chip08/chip08-256kHz-2.5V.dat,
+    file8   = data/sigdel/chip09/chip09-256kHz-2.5V.dat,
+    file9   = data/sigdel/chip10/chip10-256kHz-2.5V.dat}
 
 
 % --------------------------------------------------------------------------- %
@@ -1228,1214 +498,641 @@
 \label{app:subsec:both:32kHz}
 % --------------------------------------------------------------------------- %
 
-\setlength{\parindent}{0mm}
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-0.5V.dat,
+    file1   = data/both/chip02/chip02-032kHz-0.5V.dat,
+    file2   = data/both/chip03/chip03-032kHz-0.5V.dat,
+    file3   = data/both/chip04/chip04-032kHz-0.5V.dat,
+    file4   = data/both/chip05/chip05-032kHz-0.5V.dat,
+    file5   = data/both/chip06/chip06-032kHz-0.5V.dat,
+    file6   = data/both/chip07/chip07-032kHz-0.5V.dat,
+    file7   = data/both/chip08/chip08-032kHz-0.5V.dat,
+    file8   = data/both/chip09/chip09-032kHz-0.5V.dat,
+    file9   = data/both/chip10/chip10-032kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-0.7V.dat,
+    file1   = data/both/chip02/chip02-032kHz-0.7V.dat,
+    file2   = data/both/chip03/chip03-032kHz-0.7V.dat,
+    file3   = data/both/chip04/chip04-032kHz-0.7V.dat,
+    file4   = data/both/chip05/chip05-032kHz-0.7V.dat,
+    file5   = data/both/chip06/chip06-032kHz-0.7V.dat,
+    file6   = data/both/chip07/chip07-032kHz-0.7V.dat,
+    file7   = data/both/chip08/chip08-032kHz-0.7V.dat,
+    file8   = data/both/chip09/chip09-032kHz-0.7V.dat,
+    file9   = data/both/chip10/chip10-032kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-0.9V.dat,
+    file1   = data/both/chip02/chip02-032kHz-0.9V.dat,
+    file2   = data/both/chip03/chip03-032kHz-0.9V.dat,
+    file3   = data/both/chip04/chip04-032kHz-0.9V.dat,
+    file4   = data/both/chip05/chip05-032kHz-0.9V.dat,
+    file5   = data/both/chip06/chip06-032kHz-0.9V.dat,
+    file6   = data/both/chip07/chip07-032kHz-0.9V.dat,
+    file7   = data/both/chip08/chip08-032kHz-0.9V.dat,
+    file8   = data/both/chip09/chip09-032kHz-0.9V.dat,
+    file9   = data/both/chip10/chip10-032kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-1.1V.dat,
+    file1   = data/both/chip02/chip02-032kHz-1.1V.dat,
+    file2   = data/both/chip03/chip03-032kHz-1.1V.dat,
+    file3   = data/both/chip04/chip04-032kHz-1.1V.dat,
+    file4   = data/both/chip05/chip05-032kHz-1.1V.dat,
+    file5   = data/both/chip06/chip06-032kHz-1.1V.dat,
+    file6   = data/both/chip07/chip07-032kHz-1.1V.dat,
+    file7   = data/both/chip08/chip08-032kHz-1.1V.dat,
+    file8   = data/both/chip09/chip09-032kHz-1.1V.dat,
+    file9   = data/both/chip10/chip10-032kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-1.3V.dat,
+    file1   = data/both/chip02/chip02-032kHz-1.3V.dat,
+    file2   = data/both/chip03/chip03-032kHz-1.3V.dat,
+    file3   = data/both/chip04/chip04-032kHz-1.3V.dat,
+    file4   = data/both/chip05/chip05-032kHz-1.3V.dat,
+    file5   = data/both/chip06/chip06-032kHz-1.3V.dat,
+    file6   = data/both/chip07/chip07-032kHz-1.3V.dat,
+    file7   = data/both/chip08/chip08-032kHz-1.3V.dat,
+    file8   = data/both/chip09/chip09-032kHz-1.3V.dat,
+    file9   = data/both/chip10/chip10-032kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-1.5V.dat,
+    file1   = data/both/chip02/chip02-032kHz-1.5V.dat,
+    file2   = data/both/chip03/chip03-032kHz-1.5V.dat,
+    file3   = data/both/chip04/chip04-032kHz-1.5V.dat,
+    file4   = data/both/chip05/chip05-032kHz-1.5V.dat,
+    file5   = data/both/chip06/chip06-032kHz-1.5V.dat,
+    file6   = data/both/chip07/chip07-032kHz-1.5V.dat,
+    file7   = data/both/chip08/chip08-032kHz-1.5V.dat,
+    file8   = data/both/chip09/chip09-032kHz-1.5V.dat,
+    file9   = data/both/chip10/chip10-032kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-1.7V.dat,
+    file1   = data/both/chip02/chip02-032kHz-1.7V.dat,
+    file2   = data/both/chip03/chip03-032kHz-1.7V.dat,
+    file3   = data/both/chip04/chip04-032kHz-1.7V.dat,
+    file4   = data/both/chip05/chip05-032kHz-1.7V.dat,
+    file5   = data/both/chip06/chip06-032kHz-1.7V.dat,
+    file6   = data/both/chip07/chip07-032kHz-1.7V.dat,
+    file7   = data/both/chip08/chip08-032kHz-1.7V.dat,
+    file8   = data/both/chip09/chip09-032kHz-1.7V.dat,
+    file9   = data/both/chip10/chip10-032kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-1.9V.dat,
+    file1   = data/both/chip02/chip02-032kHz-1.9V.dat,
+    file2   = data/both/chip03/chip03-032kHz-1.9V.dat,
+    file3   = data/both/chip04/chip04-032kHz-1.9V.dat,
+    file4   = data/both/chip05/chip05-032kHz-1.9V.dat,
+    file5   = data/both/chip06/chip06-032kHz-1.9V.dat,
+    file6   = data/both/chip07/chip07-032kHz-1.9V.dat,
+    file7   = data/both/chip08/chip08-032kHz-1.9V.dat,
+    file8   = data/both/chip09/chip09-032kHz-1.9V.dat,
+    file9   = data/both/chip10/chip10-032kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-2.1V.dat,
+    file1   = data/both/chip02/chip02-032kHz-2.1V.dat,
+    file2   = data/both/chip03/chip03-032kHz-2.1V.dat,
+    file3   = data/both/chip04/chip04-032kHz-2.1V.dat,
+    file4   = data/both/chip05/chip05-032kHz-2.1V.dat,
+    file5   = data/both/chip06/chip06-032kHz-2.1V.dat,
+    file6   = data/both/chip07/chip07-032kHz-2.1V.dat,
+    file7   = data/both/chip08/chip08-032kHz-2.1V.dat,
+    file8   = data/both/chip09/chip09-032kHz-2.1V.dat,
+    file9   = data/both/chip10/chip10-032kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-2.3V.dat,
+    file1   = data/both/chip02/chip02-032kHz-2.3V.dat,
+    file2   = data/both/chip03/chip03-032kHz-2.3V.dat,
+    file3   = data/both/chip04/chip04-032kHz-2.3V.dat,
+    file4   = data/both/chip05/chip05-032kHz-2.3V.dat,
+    file5   = data/both/chip06/chip06-032kHz-2.3V.dat,
+    file6   = data/both/chip07/chip07-032kHz-2.3V.dat,
+    file7   = data/both/chip08/chip08-032kHz-2.3V.dat,
+    file8   = data/both/chip09/chip09-032kHz-2.3V.dat,
+    file9   = data/both/chip10/chip10-032kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{32}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-032kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-032kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 32,
+    file0   = data/both/chip01/chip01-032kHz-2.5V.dat,
+    file1   = data/both/chip02/chip02-032kHz-2.5V.dat,
+    file2   = data/both/chip03/chip03-032kHz-2.5V.dat,
+    file3   = data/both/chip04/chip04-032kHz-2.5V.dat,
+    file4   = data/both/chip05/chip05-032kHz-2.5V.dat,
+    file5   = data/both/chip06/chip06-032kHz-2.5V.dat,
+    file6   = data/both/chip07/chip07-032kHz-2.5V.dat,
+    file7   = data/both/chip08/chip08-032kHz-2.5V.dat,
+    file8   = data/both/chip09/chip09-032kHz-2.5V.dat,
+    file9   = data/both/chip10/chip10-032kHz-2.5V.dat}
 
 
 % --------------------------------------------------------------------------- %
 \subsection{Sampling Frequency: \SI{96}{\kilo\hertz}}
-\label{app:subsec:both:32kHz}
+\label{app:subsec:both:96kHz}
 % --------------------------------------------------------------------------- %
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-0.5V.dat,
+    file1   = data/both/chip02/chip02-096kHz-0.5V.dat,
+    file2   = data/both/chip03/chip03-096kHz-0.5V.dat,
+    file3   = data/both/chip04/chip04-096kHz-0.5V.dat,
+    file4   = data/both/chip05/chip05-096kHz-0.5V.dat,
+    file5   = data/both/chip06/chip06-096kHz-0.5V.dat,
+    file6   = data/both/chip07/chip07-096kHz-0.5V.dat,
+    file7   = data/both/chip08/chip08-096kHz-0.5V.dat,
+    file8   = data/both/chip09/chip09-096kHz-0.5V.dat,
+    file9   = data/both/chip10/chip10-096kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-0.7V.dat,
+    file1   = data/both/chip02/chip02-096kHz-0.7V.dat,
+    file2   = data/both/chip03/chip03-096kHz-0.7V.dat,
+    file3   = data/both/chip04/chip04-096kHz-0.7V.dat,
+    file4   = data/both/chip05/chip05-096kHz-0.7V.dat,
+    file5   = data/both/chip06/chip06-096kHz-0.7V.dat,
+    file6   = data/both/chip07/chip07-096kHz-0.7V.dat,
+    file7   = data/both/chip08/chip08-096kHz-0.7V.dat,
+    file8   = data/both/chip09/chip09-096kHz-0.7V.dat,
+    file9   = data/both/chip10/chip10-096kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-0.9V.dat,
+    file1   = data/both/chip02/chip02-096kHz-0.9V.dat,
+    file2   = data/both/chip03/chip03-096kHz-0.9V.dat,
+    file3   = data/both/chip04/chip04-096kHz-0.9V.dat,
+    file4   = data/both/chip05/chip05-096kHz-0.9V.dat,
+    file5   = data/both/chip06/chip06-096kHz-0.9V.dat,
+    file6   = data/both/chip07/chip07-096kHz-0.9V.dat,
+    file7   = data/both/chip08/chip08-096kHz-0.9V.dat,
+    file8   = data/both/chip09/chip09-096kHz-0.9V.dat,
+    file9   = data/both/chip10/chip10-096kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-1.1V.dat,
+    file1   = data/both/chip02/chip02-096kHz-1.1V.dat,
+    file2   = data/both/chip03/chip03-096kHz-1.1V.dat,
+    file3   = data/both/chip04/chip04-096kHz-1.1V.dat,
+    file4   = data/both/chip05/chip05-096kHz-1.1V.dat,
+    file5   = data/both/chip06/chip06-096kHz-1.1V.dat,
+    file6   = data/both/chip07/chip07-096kHz-1.1V.dat,
+    file7   = data/both/chip08/chip08-096kHz-1.1V.dat,
+    file8   = data/both/chip09/chip09-096kHz-1.1V.dat,
+    file9   = data/both/chip10/chip10-096kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-1.3V.dat,
+    file1   = data/both/chip02/chip02-096kHz-1.3V.dat,
+    file2   = data/both/chip03/chip03-096kHz-1.3V.dat,
+    file3   = data/both/chip04/chip04-096kHz-1.3V.dat,
+    file4   = data/both/chip05/chip05-096kHz-1.3V.dat,
+    file5   = data/both/chip06/chip06-096kHz-1.3V.dat,
+    file6   = data/both/chip07/chip07-096kHz-1.3V.dat,
+    file7   = data/both/chip08/chip08-096kHz-1.3V.dat,
+    file8   = data/both/chip09/chip09-096kHz-1.3V.dat,
+    file9   = data/both/chip10/chip10-096kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-1.5V.dat,
+    file1   = data/both/chip02/chip02-096kHz-1.5V.dat,
+    file2   = data/both/chip03/chip03-096kHz-1.5V.dat,
+    file3   = data/both/chip04/chip04-096kHz-1.5V.dat,
+    file4   = data/both/chip05/chip05-096kHz-1.5V.dat,
+    file5   = data/both/chip06/chip06-096kHz-1.5V.dat,
+    file6   = data/both/chip07/chip07-096kHz-1.5V.dat,
+    file7   = data/both/chip08/chip08-096kHz-1.5V.dat,
+    file8   = data/both/chip09/chip09-096kHz-1.5V.dat,
+    file9   = data/both/chip10/chip10-096kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-1.7V.dat,
+    file1   = data/both/chip02/chip02-096kHz-1.7V.dat,
+    file2   = data/both/chip03/chip03-096kHz-1.7V.dat,
+    file3   = data/both/chip04/chip04-096kHz-1.7V.dat,
+    file4   = data/both/chip05/chip05-096kHz-1.7V.dat,
+    file5   = data/both/chip06/chip06-096kHz-1.7V.dat,
+    file6   = data/both/chip07/chip07-096kHz-1.7V.dat,
+    file7   = data/both/chip08/chip08-096kHz-1.7V.dat,
+    file8   = data/both/chip09/chip09-096kHz-1.7V.dat,
+    file9   = data/both/chip10/chip10-096kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-1.9V.dat,
+    file1   = data/both/chip02/chip02-096kHz-1.9V.dat,
+    file2   = data/both/chip03/chip03-096kHz-1.9V.dat,
+    file3   = data/both/chip04/chip04-096kHz-1.9V.dat,
+    file4   = data/both/chip05/chip05-096kHz-1.9V.dat,
+    file5   = data/both/chip06/chip06-096kHz-1.9V.dat,
+    file6   = data/both/chip07/chip07-096kHz-1.9V.dat,
+    file7   = data/both/chip08/chip08-096kHz-1.9V.dat,
+    file8   = data/both/chip09/chip09-096kHz-1.9V.dat,
+    file9   = data/both/chip10/chip10-096kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-2.1V.dat,
+    file1   = data/both/chip02/chip02-096kHz-2.1V.dat,
+    file2   = data/both/chip03/chip03-096kHz-2.1V.dat,
+    file3   = data/both/chip04/chip04-096kHz-2.1V.dat,
+    file4   = data/both/chip05/chip05-096kHz-2.1V.dat,
+    file5   = data/both/chip06/chip06-096kHz-2.1V.dat,
+    file6   = data/both/chip07/chip07-096kHz-2.1V.dat,
+    file7   = data/both/chip08/chip08-096kHz-2.1V.dat,
+    file8   = data/both/chip09/chip09-096kHz-2.1V.dat,
+    file9   = data/both/chip10/chip10-096kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-2.3V.dat,
+    file1   = data/both/chip02/chip02-096kHz-2.3V.dat,
+    file2   = data/both/chip03/chip03-096kHz-2.3V.dat,
+    file3   = data/both/chip04/chip04-096kHz-2.3V.dat,
+    file4   = data/both/chip05/chip05-096kHz-2.3V.dat,
+    file5   = data/both/chip06/chip06-096kHz-2.3V.dat,
+    file6   = data/both/chip07/chip07-096kHz-2.3V.dat,
+    file7   = data/both/chip08/chip08-096kHz-2.3V.dat,
+    file8   = data/both/chip09/chip09-096kHz-2.3V.dat,
+    file9   = data/both/chip10/chip10-096kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{96}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-096kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-096kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
-
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 96,
+    file0   = data/both/chip01/chip01-096kHz-2.5V.dat,
+    file1   = data/both/chip02/chip02-096kHz-2.5V.dat,
+    file2   = data/both/chip03/chip03-096kHz-2.5V.dat,
+    file3   = data/both/chip04/chip04-096kHz-2.5V.dat,
+    file4   = data/both/chip05/chip05-096kHz-2.5V.dat,
+    file5   = data/both/chip06/chip06-096kHz-2.5V.dat,
+    file6   = data/both/chip07/chip07-096kHz-2.5V.dat,
+    file7   = data/both/chip08/chip08-096kHz-2.5V.dat,
+    file8   = data/both/chip09/chip09-096kHz-2.5V.dat,
+    file9   = data/both/chip10/chip10-096kHz-2.5V.dat}
 
 % --------------------------------------------------------------------------- %
 \subsection{Sampling Frequency: \SI{256}{\kilo\hertz}}
-\label{app:subsec:both:32kHz}
+\label{app:subsec:both:256kHz}
 % --------------------------------------------------------------------------- %
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-				%change x base = true,
-				%x SI prefix = micro,
-			]
-			% For digital measurements
-			%\addplot[-,blue] table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-0.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-0.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.5,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-0.5V.dat,
+    file1   = data/both/chip02/chip02-256kHz-0.5V.dat,
+    file2   = data/both/chip03/chip03-256kHz-0.5V.dat,
+    file3   = data/both/chip04/chip04-256kHz-0.5V.dat,
+    file4   = data/both/chip05/chip05-256kHz-0.5V.dat,
+    file5   = data/both/chip06/chip06-256kHz-0.5V.dat,
+    file6   = data/both/chip07/chip07-256kHz-0.5V.dat,
+    file7   = data/both/chip08/chip08-256kHz-0.5V.dat,
+    file8   = data/both/chip09/chip09-256kHz-0.5V.dat,
+    file9   = data/both/chip10/chip10-256kHz-0.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.7}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-0.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-0.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.7,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-0.7V.dat,
+    file1   = data/both/chip02/chip02-256kHz-0.7V.dat,
+    file2   = data/both/chip03/chip03-256kHz-0.7V.dat,
+    file3   = data/both/chip04/chip04-256kHz-0.7V.dat,
+    file4   = data/both/chip05/chip05-256kHz-0.7V.dat,
+    file5   = data/both/chip06/chip06-256kHz-0.7V.dat,
+    file6   = data/both/chip07/chip07-256kHz-0.7V.dat,
+    file7   = data/both/chip08/chip08-256kHz-0.7V.dat,
+    file8   = data/both/chip09/chip09-256kHz-0.7V.dat,
+    file9   = data/both/chip10/chip10-256kHz-0.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{0.9}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-0.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-0.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 0.9,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-0.9V.dat,
+    file1   = data/both/chip02/chip02-256kHz-0.9V.dat,
+    file2   = data/both/chip03/chip03-256kHz-0.9V.dat,
+    file3   = data/both/chip04/chip04-256kHz-0.9V.dat,
+    file4   = data/both/chip05/chip05-256kHz-0.9V.dat,
+    file5   = data/both/chip06/chip06-256kHz-0.9V.dat,
+    file6   = data/both/chip07/chip07-256kHz-0.9V.dat,
+    file7   = data/both/chip08/chip08-256kHz-0.9V.dat,
+    file8   = data/both/chip09/chip09-256kHz-0.9V.dat,
+    file9   = data/both/chip10/chip10-256kHz-0.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.1}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-1.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-1.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.1,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-1.1V.dat,
+    file1   = data/both/chip02/chip02-256kHz-1.1V.dat,
+    file2   = data/both/chip03/chip03-256kHz-1.1V.dat,
+    file3   = data/both/chip04/chip04-256kHz-1.1V.dat,
+    file4   = data/both/chip05/chip05-256kHz-1.1V.dat,
+    file5   = data/both/chip06/chip06-256kHz-1.1V.dat,
+    file6   = data/both/chip07/chip07-256kHz-1.1V.dat,
+    file7   = data/both/chip08/chip08-256kHz-1.1V.dat,
+    file8   = data/both/chip09/chip09-256kHz-1.1V.dat,
+    file9   = data/both/chip10/chip10-256kHz-1.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.3}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-1.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-1.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.3,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-1.3V.dat,
+    file1   = data/both/chip02/chip02-256kHz-1.3V.dat,
+    file2   = data/both/chip03/chip03-256kHz-1.3V.dat,
+    file3   = data/both/chip04/chip04-256kHz-1.3V.dat,
+    file4   = data/both/chip05/chip05-256kHz-1.3V.dat,
+    file5   = data/both/chip06/chip06-256kHz-1.3V.dat,
+    file6   = data/both/chip07/chip07-256kHz-1.3V.dat,
+    file7   = data/both/chip08/chip08-256kHz-1.3V.dat,
+    file8   = data/both/chip09/chip09-256kHz-1.3V.dat,
+    file9   = data/both/chip10/chip10-256kHz-1.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-1.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-1.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.5,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-1.5V.dat,
+    file1   = data/both/chip02/chip02-256kHz-1.5V.dat,
+    file2   = data/both/chip03/chip03-256kHz-1.5V.dat,
+    file3   = data/both/chip04/chip04-256kHz-1.5V.dat,
+    file4   = data/both/chip05/chip05-256kHz-1.5V.dat,
+    file5   = data/both/chip06/chip06-256kHz-1.5V.dat,
+    file6   = data/both/chip07/chip07-256kHz-1.5V.dat,
+    file7   = data/both/chip08/chip08-256kHz-1.5V.dat,
+    file8   = data/both/chip09/chip09-256kHz-1.5V.dat,
+    file9   = data/both/chip10/chip10-256kHz-1.5V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.7}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-1.7V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-1.7V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.7,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-1.7V.dat,
+    file1   = data/both/chip02/chip02-256kHz-1.7V.dat,
+    file2   = data/both/chip03/chip03-256kHz-1.7V.dat,
+    file3   = data/both/chip04/chip04-256kHz-1.7V.dat,
+    file4   = data/both/chip05/chip05-256kHz-1.7V.dat,
+    file5   = data/both/chip06/chip06-256kHz-1.7V.dat,
+    file6   = data/both/chip07/chip07-256kHz-1.7V.dat,
+    file7   = data/both/chip08/chip08-256kHz-1.7V.dat,
+    file8   = data/both/chip09/chip09-256kHz-1.7V.dat,
+    file9   = data/both/chip10/chip10-256kHz-1.7V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{1.9}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-1.9V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-1.9V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 1.9,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-1.9V.dat,
+    file1   = data/both/chip02/chip02-256kHz-1.9V.dat,
+    file2   = data/both/chip03/chip03-256kHz-1.9V.dat,
+    file3   = data/both/chip04/chip04-256kHz-1.9V.dat,
+    file4   = data/both/chip05/chip05-256kHz-1.9V.dat,
+    file5   = data/both/chip06/chip06-256kHz-1.9V.dat,
+    file6   = data/both/chip07/chip07-256kHz-1.9V.dat,
+    file7   = data/both/chip08/chip08-256kHz-1.9V.dat,
+    file8   = data/both/chip09/chip09-256kHz-1.9V.dat,
+    file9   = data/both/chip10/chip10-256kHz-1.9V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.1}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-2.1V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-2.1V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.1,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-2.1V.dat,
+    file1   = data/both/chip02/chip02-256kHz-2.1V.dat,
+    file2   = data/both/chip03/chip03-256kHz-2.1V.dat,
+    file3   = data/both/chip04/chip04-256kHz-2.1V.dat,
+    file4   = data/both/chip05/chip05-256kHz-2.1V.dat,
+    file5   = data/both/chip06/chip06-256kHz-2.1V.dat,
+    file6   = data/both/chip07/chip07-256kHz-2.1V.dat,
+    file7   = data/both/chip08/chip08-256kHz-2.1V.dat,
+    file8   = data/both/chip09/chip09-256kHz-2.1V.dat,
+    file9   = data/both/chip10/chip10-256kHz-2.1V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.3}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-2.3V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-2.3V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+\digitalPlot{%
+    voltage = 2.3,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-2.3V.dat,
+    file1   = data/both/chip02/chip02-256kHz-2.3V.dat,
+    file2   = data/both/chip03/chip03-256kHz-2.3V.dat,
+    file3   = data/both/chip04/chip04-256kHz-2.3V.dat,
+    file4   = data/both/chip05/chip05-256kHz-2.3V.dat,
+    file5   = data/both/chip06/chip06-256kHz-2.3V.dat,
+    file6   = data/both/chip07/chip07-256kHz-2.3V.dat,
+    file7   = data/both/chip08/chip08-256kHz-2.3V.dat,
+    file8   = data/both/chip09/chip09-256kHz-2.3V.dat,
+    file9   = data/both/chip10/chip10-256kHz-2.3V.dat}
 
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,\textwidth)},y={(0,45mm)}]
-		\begin{axis}[%
-				title={$V_{in} = \SI{2.5}{\volt}${,} $f_{s} = \SI{256}{\kilo\hertz}$},
-				height=45mm,
-				width=\textwidth,
-				grid=both,
-				xlabel=Time (\si{\second}),
-				ylabel=$V_{out}$ (\si{\volt}),
-			]
-			% For digital measurements
-			\addplot[only marks,mark size=0.5pt,plotColor0] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip01/chip01-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor1] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip02/chip02-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor2] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip03/chip03-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor3] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip04/chip04-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor5] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip05/chip05-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor6] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip06/chip06-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor7] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip07/chip07-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor8] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip08/chip08-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor9] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip09/chip09-256kHz-2.5V.dat};
-			\addplot[only marks,mark size=0.5pt,plotColor10] 
-				table[x=Time, y=Ampl,col sep=comma] {data/both/chip10/chip10-256kHz-2.5V.dat};
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
-
-\setlength{\parindent}{\parindentOriginal}
+\digitalPlot{%
+    voltage = 2.5,
+    freq    = 256,
+    file0   = data/both/chip01/chip01-256kHz-2.5V.dat,
+    file1   = data/both/chip02/chip02-256kHz-2.5V.dat,
+    file2   = data/both/chip03/chip03-256kHz-2.5V.dat,
+    file3   = data/both/chip04/chip04-256kHz-2.5V.dat,
+    file4   = data/both/chip05/chip05-256kHz-2.5V.dat,
+    file5   = data/both/chip06/chip06-256kHz-2.5V.dat,
+    file6   = data/both/chip07/chip07-256kHz-2.5V.dat,
+    file7   = data/both/chip08/chip08-256kHz-2.5V.dat,
+    file8   = data/both/chip09/chip09-256kHz-2.5V.dat,
+    file9   = data/both/chip10/chip10-256kHz-2.5V.dat}
 
 % --------------------------------------------------------------------------- %
-\section{Pre-Amplifier}
+\section{Pre-Amplififer}
 \label{app:sec:preamp}
 % --------------------------------------------------------------------------- %
 
 % --------------------------------------------------------------------------- %
 \subsection{Sampling Frequency: \SI{32}{\kilo\hertz}}
-\label{app:subsec:sigdel:32kHz}
+\label{app:subsec:preamp:32kHz}
 % --------------------------------------------------------------------------- %
-\setlength{\parindent}{0mm}
-\begin{tikzpicture}
-    \begin{scope}[x={(0mm,0.95\textwidth)},y={(0,110mm)}]
-        \begin{axis}[each nth point=1000,filter discard warning=false,unbounded coords=discard]
-			% For analog measurements
-            %\addplot[-,blue]    table[x=Time, y=Ampl,col sep=comma,skip first n=4] {datafile.dat};
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.5V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.7V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.9V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.1V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.3V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.5V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.7V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.9V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.1V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.3V.dat
-			\addplot[only marks,plotColor0]%data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.5V.dat
-        \end{axis}
-    \end{scope}
-\end{tikzpicture}
+
+\analogPlot{%
+    voltage = 0.5,
+    freq    = 32,
+    gain = +1,
+    decimator = 1250,
+    tmin = 0e-6,
+    tmax = 16e-6,
+    ymin1 = 0.47,
+    ymax1 = 0.55,
+    ymin2 = 0.67,
+    ymax2 = 0.75,
+    ymin3 = 0.88,
+    ymax3 = 0.94,
+    ymin4 = 1.08,
+    ymax4 = 1.13,
+    ymin5 = 1.28,
+    ymax5 = 1.33,
+    ymin6 = 1.475,
+    ymax6 = 1.52,
+    ymin7 = 1.67,
+    ymax7 = 1.72,
+    ymin8 = 1.87,
+    ymax8 = 1.92,
+    ymin9 = 2.07,
+    ymax9 = 2.12,
+    ymin10 = 2.26,
+    ymax10 = 2.325,
+    ymin11 = 2.46,
+    ymax11 = 2.52,
+    overview file  = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.5V.dat,
+    file1          = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.5V.dat,
+    file2          = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-0.5V.dat,
+    file3          = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-0.5V.dat,
+    file4          = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-0.5V.dat,
+    file5          = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-0.5V.dat,
+    file6          = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.5V.dat,
+    file7          = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.5V.dat,
+    file8          = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-0.5V.dat,
+    file9          = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-0.5V.dat,
+    file10         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-0.5V.dat,
+    file11         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.7V.dat,
+    file12         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-0.7V.dat,
+    file13         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-0.7V.dat,
+    file14         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-0.7V.dat,
+    file15         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-0.7V.dat,
+    file16         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.7V.dat,
+    file17         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.7V.dat,
+    file18         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-0.7V.dat,
+    file19         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-0.7V.dat,
+    file20         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-0.7V.dat,
+    file21         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.9V.dat,
+    file22         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-0.9V.dat,
+    file23         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-0.9V.dat,
+    file24         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-0.9V.dat,
+    file25         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-0.9V.dat,
+    file26         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.9V.dat,
+    file27         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-0.9V.dat,
+    file28         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-0.9V.dat,
+    file29         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-0.9V.dat,
+    file30         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-0.9V.dat,
+    file31         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.1V.dat,
+    file32         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-1.1V.dat,
+    file33         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-1.1V.dat,
+    file34         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-1.1V.dat,
+    file35         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-1.1V.dat,
+    file36         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.1V.dat,
+    file37         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.1V.dat,
+    file38         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-1.1V.dat,
+    file39         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-1.1V.dat,
+    file40         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-1.1V.dat,
+    file41         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.3V.dat,
+    file42         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-1.3V.dat,
+    file43         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-1.3V.dat,
+    file44         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-1.3V.dat,
+    file45         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-1.3V.dat,
+    file46         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.3V.dat,
+    file47         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.3V.dat,
+    file48         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-1.3V.dat,
+    file49         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-1.3V.dat,
+    file50         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-1.3V.dat,
+    file51         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.5V.dat,
+    file52         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-1.5V.dat,
+    file53         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-1.5V.dat,
+    file54         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-1.5V.dat,
+    file55         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-1.5V.dat,
+    file56         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.5V.dat,
+    file57         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.5V.dat,
+    file58         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-1.5V.dat,
+    file59         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-1.5V.dat,
+    file60         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-1.5V.dat,
+    file61         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.7V.dat,
+    file62         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-1.7V.dat,
+    file63         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-1.7V.dat,
+    file64         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-1.7V.dat,
+    file65         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-1.7V.dat,
+    file66         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.7V.dat,
+    file67         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.7V.dat,
+    file68         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-1.7V.dat,
+    file69         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-1.7V.dat,
+    file70         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-1.7V.dat,
+    file71         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-1.9V.dat,
+    file72         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-1.9V.dat,
+    file73         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-1.9V.dat,
+    file74         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-1.9V.dat,
+    file75         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-1.9V.dat,
+    file76         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.9V.dat,
+    file77         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-1.9V.dat,
+    file78         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-1.9V.dat,
+    file79         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-1.9V.dat,
+    file80         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-1.9V.dat,
+    file81         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.1V.dat,
+    file82         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-2.1V.dat,
+    file83         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-2.1V.dat,
+    file84         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-2.1V.dat,
+    file85         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-2.1V.dat,
+    file86         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.1V.dat,
+    file87         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.1V.dat,
+    file88         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-2.1V.dat,
+    file89         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-2.1V.dat,
+    file90         = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-2.1V.dat,
+    file91         = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.3V.dat,
+    file92         = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-2.3V.dat,
+    file93         = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-2.3V.dat,
+    file94         = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-2.3V.dat,
+    file95         = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-2.3V.dat,
+    file96         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.3V.dat,
+    file97         = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.3V.dat,
+    file98         = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-2.3V.dat,
+    file99         = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-2.3V.dat,
+    file100        = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-2.3V.dat,
+    file101        = data/preamp/chip01Gain+01/chip01-gain+01-032kHz-2.5V.dat,
+    file102        = data/preamp/chip02Gain+01/chip02-gain+01-032kHz-2.5V.dat,
+    file103        = data/preamp/chip03Gain+01/chip03-gain+01-032kHz-2.5V.dat,
+    file104        = data/preamp/chip04Gain+01/chip04-gain+01-032kHz-2.5V.dat,
+    file105        = data/preamp/chip05Gain+01/chip05-gain+01-032kHz-2.5V.dat,
+    file106        = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.5V.dat,
+    file107        = data/preamp/chip06Gain+01/chip06-gain+01-032kHz-2.5V.dat,
+    file108        = data/preamp/chip08Gain+01/chip08-gain+01-032kHz-2.5V.dat,
+    file109        = data/preamp/chip09Gain+01/chip09-gain+01-032kHz-2.5V.dat,
+    file110        = data/preamp/chip10Gain+01/chip10-gain+01-032kHz-2.5V.dat}
+
+
+% --------------------------------------------------------------------------- %
+\subsection{Sampling Frequency: \SI{96}{\kilo\hertz}}
+\label{app:subsec:preamp:96kHz}
+% --------------------------------------------------------------------------- %
+
+% --------------------------------------------------------------------------- %
+\subsection{Sampling Frequency: \SI{256}{\kilo\hertz}}
+\label{app:subsec:preamp:256kHz}
+% --------------------------------------------------------------------------- %
+
 
 %data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.5V.dat
 %data/preamp/chip01Gain+01/chip01-gain+01-032kHz-0.7V.dat

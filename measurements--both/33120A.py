@@ -33,7 +33,7 @@ import getopt
 # SETTINGS                                                                    #
 # --------------------------------------------------------------------------- #
 CLK_DEVICE = '/dev/ttyUSB1'
-DC_DEVICE  = '/dev/ttyUSB0'
+VIN_DEVICE = '/dev/ttyUSB0'
 
 # --------------------------------------------------------------------------- #
 # IMPLEMENTATION                                                              #
@@ -49,6 +49,15 @@ class FunctionGenerator(object):
             bytesize=serial.EIGHTBITS
         )
         self.__gen.write(b'OUTP:LOAD INF\n')
+        self.__gen.sin_freq    = float(500)
+        self.__gen.sin_vpp     = 2
+        self.__gen.sin_offset  = 1.5
+
+    def set_sin_freq(self, frequency):
+        self.__gen.sin_freq = frequency
+
+    def set_sin_ampl(self, amplitude):
+        self.__gen.sin_vpp = amplitude
 
     def set_dc(self, voltage):
         self.__gen.write(bytes('APPL:DC DEF, DEF, {} V\n'.format(voltage), 'ascii'))
@@ -56,16 +65,20 @@ class FunctionGenerator(object):
     def set_clk(self, freq):
         self.__gen.write(bytes('APPL:SQU {} HZ, 3 VPP, 1.5 V\n'.format(freq), 'ascii'))
 
-    def set_sin(self, frequency, vpp, offset):
-        self.__gen.write(bytes('APPL:SIN {} HZ, {} VPP, {} V\n'.format(frequency, vpp, offset), 'ascii'))
+    def set_sin(self):
+        self.__gen.write(bytes('APPL:SIN {} HZ, {} VPP, {} V\n'.format(
+            self.__gen.sin_freq, self.__gen.sin_vpp, self.__gen.sin_offset), 'ascii'))
 
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv,"h:c:v:",["help","clock=","voltage="])
+        opts, args = getopt.getopt(argv,
+                "h:c:v:f:a:",
+                ["help","clock=","voltage=","sine-amplitude=","sine-frequency="])
     except getopt.GetoptError:
         print('33120A.py -c <clock frequency> -v <input voltage>')
         sys.exit(2)
+
     for opt, arg in opts:
         if opt in ("-h", "--help"):
             print('33120A.py -c <clock frequency> -v <input voltage>')
@@ -73,9 +86,28 @@ def main(argv):
         elif opt in ("-c", "--clock"):
             fgClk = FunctionGenerator(CLK_DEVICE)
             fgClk.set_clk(arg)
+            sys.exit(0)
         elif opt in ("-v", "--voltage"):
-            fgVin = FunctionGenerator(DC_DEVICE)
+            fgVin = FunctionGenerator(VIN_DEVICE)
             fgVin.set_dc(float(arg))
+            sys.exit(0)
+        elif opt in ("-f", "--sine-frequency"):
+            try:
+                fgVin
+            except NameError:
+                fgVin = FunctionGenerator(VIN_DEVICE)
+
+            fgVin.set_sin_freq(float(arg))
+        elif opt in ("-a", "--sine-amplitude"):
+            try:
+                fgVin
+            except NameError:
+                fgVin = FunctionGenerator(VIN_DEVICE)
+
+            fgVin.set_sin_ampl(float(arg))
+
+    fgVin.set_sin()
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])

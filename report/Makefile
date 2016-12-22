@@ -25,7 +25,7 @@ clean: cclean
 
 # Clean cache
 cclean:
-	rm -f cache/*.log cache/*.pdf cache/*.md5 cache/*.dpth
+	rm -f cache/*.log cache/*.pdf cache/*.md5 cache/*.dpth cache/*.dep cache/*.ctr
 	rm -f _minted-Main/*
 
 # Clean up, then recompile everything
