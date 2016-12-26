@@ -30,3 +30,7 @@ cclean:
 
 # Clean up, then recompile everything
 rebuild: clean bib
+
+# Open in evince after compilation:
+view: simple
+	evince Main.pdf 2>/dev/null &
