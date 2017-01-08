@@ -7,39 +7,53 @@ import json
 
 
 def evaluate():
-    chips = dict()
-    for root, dirs, files in os.walk('data'):
-        for d in dirs:
-            match = re.match('chip([0-9]+)', d)
-            if match is None:
-                continue
-            chips[match.group(1)] = evaluate_chip(os.path.join('data', d))
+    data = {'chips': dict()}
+    for configuration in ['both', 'both-manual', 'preamp', 'sigdel']:
+        data_path = os.path.join('measurements-dc', configuration, 'data')
+        for root, dirs, files in os.walk(data_path):
+            for d in dirs:
+                match = re.match('chip([0-9]+)', d)
+                if match is None:
+                    continue
+                data['chips'][match.group(1).lstrip('0')] = {
+                    configuration: {
+                        'linearity': evaluate_chip(os.path.join(data_path, d), configuration)}}
 
-    with open('dc_linear.json', 'w') as f:
-        json.dump(chips, f)
+    open('processed_measurements.json', 'w').write(json.dumps(data, indent=2, sort_keys=True))
 
 
-def evaluate_chip(chip_dir_name):
+def evaluate_chip(chip_dir_name, configuration):
     """
     Only evaluate DC bit-streams and only evaluate gains of 1 for now.
     """
-    results = dict()
+    results = {'fs': dict()}
     for root, dirs, files in os.walk(chip_dir_name):
         for file in files:
-            match_dc = re.match('.*([0-9]\.[0-9]+)VDC.*', file)
-            match_fs = re.match('.*fs([0-9]+)kHz.*', file)
-            gain = re.match('.*gain1\-.*', file)
-            if match_dc is None or match_fs is None or gain is None:
+            # apparently, we can't keep our file naming consistent
+            if configuration in ('both', 'both-manual'):
+                match_dc = re.match('.*?([0-9]\.[0-9]+)V.*', file)
+                match_fs = re.match('.*?([0-9]+)kHz.*', file)
+            elif configuration == 'preamp':
+                match_dc = re.match('')
+            if match_dc is None or match_fs is None:
                 continue
 
             print('evaluating DC for {}/{}'.format(chip_dir_name, file))
 
-            current_fs = match_fs.group(1)
-            if current_fs not in results:
-                results[current_fs] = [list(), list()]
+            current_dc = match_dc.group(1).lstrip('0')
+            current_fs = match_fs.group(1).lstrip('0')
+            if current_fs not in results['fs']:
+                results['fs'][current_fs] = {
+                    'gain': {
+                        '1': {
+                            'input voltage': list(),
+                            'output voltage': list()
+                        }
+                    }
+                }
 
-            results[current_fs][0].append(float(match_dc.group(1)))
-            results[current_fs][1].append(float(bit_stream_to_dc(os.path.join(chip_dir_name, file))))
+            results['fs'][current_fs]['gain']['1']['input voltage'].append(float(current_dc))
+            results['fs'][current_fs]['gain']['1']['output voltage'].append(float(bit_stream_to_dc(os.path.join(chip_dir_name, file))))
     return results
 
 
