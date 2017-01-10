@@ -3,30 +3,31 @@ import deltasigma as ds
 import numpy as np
 import os
 import re
-import json
+import xml.etree.ElementTree as ET
 
 
 def evaluate():
-    data = {'chips': dict()}
-    for configuration in ['both', 'both-manual', 'preamp', 'sigdel']:
+    root_node = ET.Element('chips')
+    for configuration in ['both']:  # ['both', 'both-manual', 'preamp', 'sigdel']:
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
                 match = re.match('chip([0-9]+)', d)
                 if match is None:
                     continue
-                data['chips'][match.group(1).lstrip('0')] = {
-                    configuration: {
-                        'linearity': evaluate_chip(os.path.join(data_path, d), configuration)}}
+                chip_id = match.group(1).lstrip('0')
+                chip_node = ET.SubElement(root_node, 'chip')
+                chip_node.set('id', chip_id)
+                configuration_node = ET.SubElement(chip_node, 'configuration')
+                configuration_node.set('name', configuration)
+                measurement_node = ET.SubElement(configuration_node, 'measurement')
+                measurement_node.set('type', 'dc')
+                evaluate_chip(os.path.join(data_path, d), configuration, measurement_node)
 
-    open('processed_measurements.json', 'w').write(json.dumps(data, indent=2, sort_keys=True))
+    open('processed_measurements.xml', 'w').write(ET.dump(root_node))
 
 
-def evaluate_chip(chip_dir_name, configuration):
-    """
-    Only evaluate DC bit-streams and only evaluate gains of 1 for now.
-    """
-    results = {'fs': dict()}
+def evaluate_chip(chip_dir_name, configuration, measurement_node):
     for root, dirs, files in os.walk(chip_dir_name):
         for file in files:
             # apparently, we can't keep our file naming consistent
@@ -34,7 +35,8 @@ def evaluate_chip(chip_dir_name, configuration):
                 match_dc = re.match('.*?([0-9]\.[0-9]+)V.*', file)
                 match_fs = re.match('.*?([0-9]+)kHz.*', file)
             elif configuration == 'preamp':
-                match_dc = re.match('')
+                pass
+
             if match_dc is None or match_fs is None:
                 continue
 
@@ -42,19 +44,10 @@ def evaluate_chip(chip_dir_name, configuration):
 
             current_dc = match_dc.group(1).lstrip('0')
             current_fs = match_fs.group(1).lstrip('0')
-            if current_fs not in results['fs']:
-                results['fs'][current_fs] = {
-                    'gain': {
-                        '1': {
-                            'input voltage': list(),
-                            'output voltage': list()
-                        }
-                    }
-                }
-
-            results['fs'][current_fs]['gain']['1']['input voltage'].append(float(current_dc))
-            results['fs'][current_fs]['gain']['1']['output voltage'].append(float(bit_stream_to_dc(os.path.join(chip_dir_name, file))))
-    return results
+            measurement_node.set('fs', current_fs)
+            measurement_node.set('gain', '1')
+            ET.SubElement(measurement_node, 'input').text = current_dc
+            ET.SubElement(measurement_node, 'output').text = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
 
 
 def bit_stream_to_dc(file_name):

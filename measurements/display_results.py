@@ -1,9 +1,6 @@
-from evaluation import dc_linear
 import json
 import numpy as np
-from matplotlib import pyplot as plt
-
-RECALCULATE_DC = False
+import matplotlib.pyplot as plt
 
 
 def display_results():
@@ -30,8 +27,5 @@ def display_results():
 
         plt.show()
 
-
 if __name__ == '__main__':
-    if RECALCULATE_DC:
-        dc_linear.evaluate()
     display_results()
