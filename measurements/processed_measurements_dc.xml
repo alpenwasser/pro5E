@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chips>
+ <chip id="6">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".7" output="0.707273394634"/>
+    <value input=".5" output="0.51079711401"/>
+    <value input="1.7" output="1.69436073346"/>
+    <value input="1.5" output="1.49632564237"/>
+    <value input="1.3" output="1.29800972399"/>
+    <value input="2.3" output="2.28995123529"/>
+    <value input="1.1" output="1.10067772929"/>
+    <value input=".9" output="0.903858036502"/>
+    <value input="1.9" output="1.89276105202"/>
+    <value input="2.1" output="2.09144693644"/>
+    <value input="2.5" output="2.48302030581"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".9" output="0.90422451566"/>
+    <value input="1.7" output="1.69440767212"/>
+    <value input=".5" output="0.51124638402"/>
+    <value input="2.1" output="2.09094285996"/>
+    <value input="1.1" output="1.10129267041"/>
+    <value input=".7" output="0.707074285318"/>
+    <value input="2.5" output="2.48220643418"/>
+    <value input="1.5" output="1.49549987962"/>
+    <value input="1.3" output="1.29879820404"/>
+    <value input="2.3" output="2.28957590484"/>
+    <value input="1.9" output="1.89234718717"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".7" output="0.707086623479"/>
+    <value input="1.9" output="1.89268013872"/>
+    <value input=".5" output="0.510565013523"/>
+    <value input="1.1" output="1.10090258781"/>
+    <value input="2.1" output="2.09146624834"/>
+    <value input="1.7" output="1.69437754197"/>
+    <value input="1.3" output="1.29875296411"/>
+    <value input="2.3" output="2.28999665404"/>
+    <value input="2.5" output="2.48358678835"/>
+    <value input="1.5" output="1.49642184427"/>
+    <value input=".9" output="0.903804034693"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.3060" output="1.3045557445"/>
+    <value input="1.1037" output="1.10493680898"/>
+    <value input="1.7028" output="1.69650024219"/>
+    <value input="2.5023" output="2.48490026611"/>
+    <value input="2.1071" output="2.09768754274"/>
+    <value input="1.9034" output="1.89506238736"/>
+    <value input=".9002" output="0.9046690471"/>
+    <value input=".5002" output="0.511874557371"/>
+    <value input=".7011" output="0.709088713695"/>
+    <value input="1.5024" output="1.49855330636"/>
+    <value input="2.2990" output="2.28815630102"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".8992" output="0.903437197909"/>
+    <value input=".5000" output="0.51171952569"/>
+    <value input="1.8982" output="1.890307099"/>
+    <value input="2.3019" output="2.29063546681"/>
+    <value input="1.4997" output="1.49540957859"/>
+    <value input=".6997" output="0.707545638849"/>
+    <value input="2.5023" output="2.48449265974"/>
+    <value input="1.2947" output="1.29320535121"/>
+    <value input="1.7026" output="1.69615656181"/>
+    <value input="2.1028" output="2.09279957444"/>
+    <value input="1.1076" output="1.10888215962"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.6994" output="1.69176918312"/>
+    <value input=".8997" output="0.904358268483"/>
+    <value input="1.5042" output="1.49943324974"/>
+    <value input="1.3003" output="1.29665234742"/>
+    <value input="2.5031" output="2.48329371231"/>
+    <value input="2.3024" output="2.29048410082"/>
+    <value input=".5000" output="0.511095375652"/>
+    <value input=".7000" output="0.708131522705"/>
+    <value input="1.8994" output="1.89102673568"/>
+    <value input="2.0977" output="2.08778321773"/>
+    <value input="1.0997" output="1.10102936689"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.1" output="1.07925152843"/>
+    <value input="1.5" output="1.47962871245"/>
+    <value input="1.3" output="1.2797900146"/>
+    <value input=".9" output="0.879041970484"/>
+    <value input="2.1" output="2.08300083906"/>
+    <value input="1.9" output="1.88171911277"/>
+    <value input="2.5" output="2.48057806509"/>
+    <value input=".7" output="0.678893924533"/>
+    <value input="1.7" output="1.68034610196"/>
+    <value input="2.3" output="2.28163585091"/>
+    <value input=".5" output="0.478716016656"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".9" output="0.879878909102"/>
+    <value input="1.5" output="1.47894260338"/>
+    <value input="2.3" output="2.28058415675"/>
+    <value input="1.9" output="1.88249659575"/>
+    <value input="2.1" output="2.08193582327"/>
+    <value input="1.1" output="1.07838177745"/>
+    <value input=".5" output="0.479405702001"/>
+    <value input="2.5" output="2.48003724235"/>
+    <value input="1.7" output="1.6802567844"/>
+    <value input="1.3" output="1.27960753498"/>
+    <value input=".7" output="0.679765284835"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.5" output="2.48079925793"/>
+    <value input="1.1" output="1.07944411103"/>
+    <value input="1.5" output="1.47998526743"/>
+    <value input="1.3" output="1.27988737879"/>
+    <value input="1.7" output="1.68039894148"/>
+    <value input=".7" output="0.678935409366"/>
+    <value input="2.1" output="2.08265858919"/>
+    <value input=".9" output="0.879203260651"/>
+    <value input=".5" output="0.478835821993"/>
+    <value input="1.9" output="1.88178294934"/>
+    <value input="2.3" output="2.28183102632"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="4">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.3" output="1.30974501428"/>
+    <value input=".7" output="0.717870713041"/>
+    <value input="1.7" output="1.70436322732"/>
+    <value input="1.9" output="1.90414103902"/>
+    <value input="1.1" output="1.11191698972"/>
+    <value input=".5" output="0.521420986286"/>
+    <value input="1.5" output="1.50785699537"/>
+    <value input="2.5" output="2.49829790013"/>
+    <value input="2.3" output="2.30208295607"/>
+    <value input="2.1" output="2.1030266586"/>
+    <value input=".9" output="0.914698988895"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.3" output="1.3102278119"/>
+    <value input="2.1" output="2.10305339128"/>
+    <value input=".7" output="0.717951447532"/>
+    <value input="1.9" output="1.90359270609"/>
+    <value input="2.3" output="2.30094999098"/>
+    <value input=".9" output="0.915053398112"/>
+    <value input="1.1" output="1.11228793922"/>
+    <value input="1.5" output="1.5083528464"/>
+    <value input="2.5" output="2.49722608941"/>
+    <value input=".5" output="0.522316218248"/>
+    <value input="1.7" output="1.70557674809"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.3" output="1.30982565936"/>
+    <value input="2.5" output="2.49870845692"/>
+    <value input=".5" output="0.521169842116"/>
+    <value input="1.7" output="1.70567223473"/>
+    <value input="1.1" output="1.11193567577"/>
+    <value input="1.9" output="1.90423107184"/>
+    <value input="2.3" output="2.30225855135"/>
+    <value input="2.1" output="2.10333198339"/>
+    <value input="1.5" output="1.50763973644"/>
+    <value input=".9" output="0.915245176057"/>
+    <value input=".7" output="0.717875183389"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.3005" output="1.3108181661"/>
+    <value input="2.5064" output="2.50273337977"/>
+    <value input="1.8982" output="1.90109396018"/>
+    <value input=".7023" output="0.721302599475"/>
+    <value input="1.5041" output="1.5114942496"/>
+    <value input=".9014" output="0.917497605779"/>
+    <value input="2.3041" output="2.30509507679"/>
+    <value input="1.1001" output="1.11108496848"/>
+    <value input="1.6983" output="1.70248523398"/>
+    <value input="2.1039" output="2.1055662635"/>
+    <value input=".4949" output="0.517515511148"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.1024" output="2.10513818294"/>
+    <value input="1.7027" output="1.70784866853"/>
+    <value input="1.0989" output="1.11162105266"/>
+    <value input=".4949" output="0.518701762788"/>
+    <value input=".8989" output="0.914725095729"/>
+    <value input="2.2997" output="2.3013094964"/>
+    <value input="1.9024" output="1.90585872567"/>
+    <value input="1.2994" output="1.30957344231"/>
+    <value input=".6993" output="0.718484134243"/>
+    <value input="2.5019" output="2.4999080302"/>
+    <value input="1.4989" output="1.50667119076"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".9050" output="0.920975357988"/>
+    <value input="2.3019" output="2.3039453926"/>
+    <value input="2.1021" output="2.1050838235"/>
+    <value input=".7006" output="0.719970793292"/>
+    <value input="1.9025" output="1.90635860003"/>
+    <value input="1.7035" output="1.70908132238"/>
+    <value input="2.5018" output="2.50040164607"/>
+    <value input="1.5041" output="1.51207763006"/>
+    <value input=".5007" output="0.523702562681"/>
+    <value input="1.0998" output="1.11284798447"/>
+    <value input="1.3033" output="1.31365996656"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.7" output="1.68999257727"/>
+    <value input="2.5" output="2.49013692158"/>
+    <value input="2.3" output="2.29114329838"/>
+    <value input=".9" output="0.888646513928"/>
+    <value input="1.5" output="1.4892230635"/>
+    <value input="1.3" output="1.28909531293"/>
+    <value input="1.1" output="1.08876746957"/>
+    <value input="2.1" output="2.09187018901"/>
+    <value input=".7" output="0.688395560559"/>
+    <value input="1.9" output="1.89108681716"/>
+    <value input=".5" output="0.488444567565"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.3" output="2.29063349986"/>
+    <value input=".7" output="0.689520657832"/>
+    <value input="2.1" output="2.09055680067"/>
+    <value input=".9" output="0.888919920432"/>
+    <value input="2.5" output="2.48960003274"/>
+    <value input="1.9" output="1.89043235816"/>
+    <value input="1.3" output="1.28866097388"/>
+    <value input=".5" output="0.488166690711"/>
+    <value input="1.1" output="1.08827340667"/>
+    <value input="1.5" output="1.48978704265"/>
+    <value input="1.7" output="1.6900582914"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.1" output="2.09248352081"/>
+    <value input="1.1" output="1.08944517438"/>
+    <value input="1.7" output="1.68932068392"/>
+    <value input="1.9" output="1.89139312543"/>
+    <value input=".7" output="0.688369096096"/>
+    <value input="1.5" output="1.48872435143"/>
+    <value input=".5" output="0.489373505953"/>
+    <value input=".9" output="0.888093263615"/>
+    <value input="1.3" output="1.28834742365"/>
+    <value input="2.5" output="2.48991590756"/>
+    <value input="2.3" output="2.29092890048"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="9">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".5" output="0.520652265183"/>
+    <value input="1.3" output="1.30868169722"/>
+    <value input="2.3" output="2.29915764951"/>
+    <value input=".9" output="0.913153053025"/>
+    <value input="1.1" output="1.11036425892"/>
+    <value input="2.5" output="2.49508023279"/>
+    <value input="1.7" output="1.70289570136"/>
+    <value input="2.1" output="2.10086765916"/>
+    <value input="1.5" output="1.50573715617"/>
+    <value input="1.9" output="1.90178659595"/>
+    <value input=".7" output="0.716887951658"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.5" output="1.50573071887"/>
+    <value input="1.3" output="1.30791682061"/>
+    <value input=".7" output="0.716414362954"/>
+    <value input="1.9" output="1.90203425325"/>
+    <value input="2.3" output="2.29857623601"/>
+    <value input=".9" output="0.91319623659"/>
+    <value input="2.5" output="2.4957669677"/>
+    <value input=".5" output="0.519949437014"/>
+    <value input="1.7" output="1.70352333827"/>
+    <value input="1.1" output="1.11016622249"/>
+    <value input="2.1" output="2.10093471438"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.7" output="1.70351234122"/>
+    <value input="2.1" output="2.10096046359"/>
+    <value input=".9" output="0.913138747911"/>
+    <value input=".5" output="0.520383329026"/>
+    <value input="1.1" output="1.11021933023"/>
+    <value input="2.5" output="2.49596688168"/>
+    <value input="1.3" output="1.30792665538"/>
+    <value input="2.3" output="2.29975283169"/>
+    <value input="1.9" output="1.90210711993"/>
+    <value input="1.5" output="1.50557747533"/>
+    <value input=".7" output="0.716376096772"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.6992" output="1.7026164834"/>
+    <value input=".5000" output="0.521352947584"/>
+    <value input="2.1025" output="2.10317704112"/>
+    <value input=".7008" output="0.718532950446"/>
+    <value input="1.4992" output="1.50520706227"/>
+    <value input="1.2993" output="1.30777975973"/>
+    <value input=".9003" output="0.914513290623"/>
+    <value input="2.5068" output="2.50237682478"/>
+    <value input="2.3025" output="2.30206838273"/>
+    <value input="1.9013" output="1.90295684374"/>
+    <value input="1.0991" output="1.11028137866"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.4998" output="1.5048904722"/>
+    <value input=".8997" output="0.912184328537"/>
+    <value input=".5010" output="0.522494674555"/>
+    <value input="1.3037" output="1.31116738972"/>
+    <value input="1.0999" output="1.11065670911"/>
+    <value input=".7038" output="0.721165896222"/>
+    <value input="2.2990" output="2.29750174307"/>
+    <value input="2.1022" output="2.10293072492"/>
+    <value input="1.9030" output="1.90344151891"/>
+    <value input="1.7029" output="1.70579284472"/>
+    <value input="2.5023" output="2.49602991359"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.5022" output="2.49747160094"/>
+    <value input="1.2988" output="1.30686897096"/>
+    <value input=".5000" output="0.521311909786"/>
+    <value input="1.9027" output="1.90412977374"/>
+    <value input=".7001" output="0.717605800198"/>
+    <value input="1.4992" output="1.50479462793"/>
+    <value input="1.0993" output="1.11021468106"/>
+    <value input="2.3024" output="2.30151584768"/>
+    <value input=".8993" output="0.913300395707"/>
+    <value input="1.7026" output="1.70577907605"/>
+    <value input="2.0979" output="2.09860494763"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".5" output="0.491292179467"/>
+    <value input=".9" output="0.891635031211"/>
+    <value input="1.9" output="1.89423054494"/>
+    <value input="2.3" output="2.29420709633"/>
+    <value input="1.5" output="1.4922772949"/>
+    <value input="1.7" output="1.69275283857"/>
+    <value input="1.1" output="1.09185352985"/>
+    <value input=".7" output="0.691703797157"/>
+    <value input="2.1" output="2.09518137604"/>
+    <value input="1.3" output="1.29219970164"/>
+    <value input="2.5" output="2.49351856129"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.3" output="2.29340878153"/>
+    <value input="1.7" output="1.69350054904"/>
+    <value input="2.1" output="2.09505781561"/>
+    <value input=".7" output="0.692752630288"/>
+    <value input="1.3" output="1.29269760904"/>
+    <value input=".9" output="0.891864449489"/>
+    <value input=".5" output="0.492213697078"/>
+    <value input="1.1" output="1.09239873354"/>
+    <value input="1.5" output="1.49225047281"/>
+    <value input="1.9" output="1.89490342177"/>
+    <value input="2.5" output="2.49212265031"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".5" output="0.492173195722"/>
+    <value input="1.3" output="1.29161632118"/>
+    <value input="1.7" output="1.69265770956"/>
+    <value input="2.5" output="2.49325418489"/>
+    <value input=".9" output="0.891626448141"/>
+    <value input=".7" output="0.691304773862"/>
+    <value input="1.9" output="1.89406532086"/>
+    <value input="1.5" output="1.49220165661"/>
+    <value input="1.1" output="1.09151583974"/>
+    <value input="2.1" output="2.09521222144"/>
+    <value input="2.3" output="2.29412287497"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="8">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.3" output="1.31494009551"/>
+    <value input="2.3" output="2.30667766952"/>
+    <value input=".5" output="0.527000696291"/>
+    <value input=".9" output="0.920115978217"/>
+    <value input="2.1" output="2.10804963142"/>
+    <value input=".7" output="0.72331354098"/>
+    <value input="1.7" output="1.71066954775"/>
+    <value input="1.9" output="1.90919843352"/>
+    <value input="1.5" output="1.51269722034"/>
+    <value input="2.5" output="2.50221321003"/>
+    <value input="1.1" output="1.11715069476"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.1" output="1.1172435886"/>
+    <value input="2.1" output="2.10789334804"/>
+    <value input="2.3" output="2.30657449388"/>
+    <value input="1.7" output="1.71054554029"/>
+    <value input=".5" output="0.527321935525"/>
+    <value input="1.3" output="1.31493794974"/>
+    <value input="1.5" output="1.51272949626"/>
+    <value input=".7" output="0.723486275241"/>
+    <value input=".9" output="0.920261622167"/>
+    <value input="2.5" output="2.50191101448"/>
+    <value input="1.9" output="1.9090839032"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.3" output="2.30653917813"/>
+    <value input="1.5" output="1.51238474299"/>
+    <value input="2.5" output="2.50074961798"/>
+    <value input="1.1" output="1.1165929741"/>
+    <value input=".7" output="0.723659992978"/>
+    <value input="1.9" output="1.90882712639"/>
+    <value input="1.7" output="1.71087643547"/>
+    <value input="2.1" output="2.10764801532"/>
+    <value input=".9" output="0.920150757527"/>
+    <value input=".5" output="0.527230919231"/>
+    <value input="1.3" output="1.31544148978"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".6998" output="0.724092454476"/>
+    <value input=".5003" output="0.528850705256"/>
+    <value input="1.9031" output="1.91089215911"/>
+    <value input="1.1011" output="1.11747953358"/>
+    <value input="1.2991" output="1.31451755818"/>
+    <value input="1.7050" output="1.71465262814"/>
+    <value input="1.5045" output="1.51730847408"/>
+    <value input="2.2932" output="2.2984927299"/>
+    <value input=".8992" output="0.920644194581"/>
+    <value input="2.1033" output="2.11002382666"/>
+    <value input="2.5021" output="2.50221043841"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".9035" output="0.924789638018"/>
+    <value input="1.1008" output="1.11918854776"/>
+    <value input="1.6994" output="1.70984959645"/>
+    <value input="2.5021" output="2.50362887995"/>
+    <value input="2.3066" output="2.31290593766"/>
+    <value input="1.9045" output="1.9128476683"/>
+    <value input="1.4990" output="1.5119843786"/>
+    <value input="2.1051" output="2.11246937543"/>
+    <value input="1.3006" output="1.31597766337"/>
+    <value input=".6990" output="0.723892629905"/>
+    <value input=".5006" output="0.529401988615"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.2993" output="1.31518623289"/>
+    <value input="1.1023" output="1.12077069345"/>
+    <value input="2.5027" output="2.50468719022"/>
+    <value input="2.0940" output="2.10178676278"/>
+    <value input="1.9023" output="1.91114419735"/>
+    <value input="1.7018" output="1.71258553905"/>
+    <value input=".5006" output="0.529422552217"/>
+    <value input="1.5033" output="1.51662048747"/>
+    <value input=".8998" output="0.921377957559"/>
+    <value input="2.3014" output="2.30803334736"/>
+    <value input=".7003" output="0.725459129376"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.1" output="2.08823204071"/>
+    <value input="1.5" output="1.48553529432"/>
+    <value input="1.3" output="1.28605189977"/>
+    <value input="1.1" output="1.08485698764"/>
+    <value input="1.9" output="1.887276024"/>
+    <value input="2.3" output="2.28693535948"/>
+    <value input=".5" output="0.485603392963"/>
+    <value input="1.7" output="1.68648228093"/>
+    <value input=".7" output="0.686004103001"/>
+    <value input="2.5" output="2.48626515286"/>
+    <value input=".9" output="0.885249406804"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".5" output="0.485411078577"/>
+    <value input="2.3" output="2.28784668469"/>
+    <value input="1.9" output="1.88791662492"/>
+    <value input="1.1" output="1.08568865125"/>
+    <value input=".9" output="0.884739250649"/>
+    <value input="1.5" output="1.48556390455"/>
+    <value input="2.5" output="2.48651880043"/>
+    <value input=".7" output="0.684741676625"/>
+    <value input="1.7" output="1.6864844267"/>
+    <value input="2.1" output="2.08821603686"/>
+    <value input="1.3" output="1.28554907498"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.1" output="1.08533531491"/>
+    <value input="1.7" output="1.68617677732"/>
+    <value input="1.5" output="1.48571258834"/>
+    <value input="2.1" output="2.08838287026"/>
+    <value input="1.3" output="1.28568881807"/>
+    <value input=".9" output="0.885156244745"/>
+    <value input="1.9" output="1.88732716478"/>
+    <value input=".5" output="0.48492014492"/>
+    <value input=".7" output="0.684967786845"/>
+    <value input="2.5" output="2.48673453944"/>
+    <value input="2.3" output="2.2861592176"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="7">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".5" output="0.526347399582"/>
+    <value input="1.7" output="1.71074983521"/>
+    <value input=".7" output="0.722951710984"/>
+    <value input="2.5" output="2.50102803128"/>
+    <value input="1.9" output="1.90868067778"/>
+    <value input="2.1" output="2.10781002074"/>
+    <value input="2.3" output="2.30647319578"/>
+    <value input="1.5" output="1.5126774614"/>
+    <value input="1.1" output="1.11664411489"/>
+    <value input="1.3" output="1.31486883816"/>
+    <value input=".9" output="0.919785172442"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".5" output="0.52675339662"/>
+    <value input="2.1" output="2.10829389125"/>
+    <value input="1.9" output="1.90883606709"/>
+    <value input="2.3" output="2.30671799206"/>
+    <value input="1.7" output="1.70946228547"/>
+    <value input=".7" output="0.723236472174"/>
+    <value input=".9" output="0.919682801465"/>
+    <value input="2.5" output="2.50179854052"/>
+    <value input="1.3" output="1.31482932028"/>
+    <value input="1.5" output="1.512767226"/>
+    <value input="1.1" output="1.11626905266"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".7" output="0.722886712119"/>
+    <value input="2.3" output="2.30688473605"/>
+    <value input="2.5" output="2.50300857441"/>
+    <value input="1.3" output="1.31488823947"/>
+    <value input="2.1" output="2.10823541909"/>
+    <value input=".9" output="0.919739396074"/>
+    <value input="1.9" output="1.90937992967"/>
+    <value input=".5" output="0.526225269665"/>
+    <value input="1.7" output="1.71075072927"/>
+    <value input="1.5" output="1.51267048766"/>
+    <value input="1.1" output="1.11698234144"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.1004" output="1.11657750669"/>
+    <value input=".5007" output="0.529304356207"/>
+    <value input=".8996" output="0.920314104058"/>
+    <value input="1.2992" output="1.31381034907"/>
+    <value input="2.5071" output="2.50761222855"/>
+    <value input="1.9025" output="1.91047659553"/>
+    <value input="1.4996" output="1.5108487313"/>
+    <value input="2.2991" output="2.30534908199"/>
+    <value input="1.6995" output="1.71012711568"/>
+    <value input="2.1001" output="2.10787913233"/>
+    <value input=".7018" output="0.72631985025"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".8995" output="0.920254290797"/>
+    <value input="1.2991" output="1.31411603149"/>
+    <value input=".7001" output="0.724163175387"/>
+    <value input="1.1003" output="1.11799541179"/>
+    <value input="1.4988" output="1.51147484829"/>
+    <value input=".5006" output="0.528262496819"/>
+    <value input="1.9037" output="1.91233000196"/>
+    <value input="2.3013" output="2.30771452212"/>
+    <value input="1.6983" output="1.70873022122"/>
+    <value input="2.5019" output="2.50418096797"/>
+    <value input="2.1007" output="2.10802620679"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.5022" output="2.50395315902"/>
+    <value input="1.5008" output="1.51327049782"/>
+    <value input="1.0993" output="1.11666521493"/>
+    <value input="2.0985" output="2.10581758648"/>
+    <value input="1.8997" output="1.90811231769"/>
+    <value input=".9002" output="0.920840353466"/>
+    <value input="2.3026" output="2.30880054855"/>
+    <value input="1.2996" output="1.31446284112"/>
+    <value input=".7000" output="0.72382405476"/>
+    <value input=".5007" output="0.527756185164"/>
+    <value input="1.7011" output="1.7114915554"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.3" output="2.2883382442"/>
+    <value input="1.1" output="1.08587846224"/>
+    <value input="2.1" output="2.08892512352"/>
+    <value input="1.7" output="1.68675175353"/>
+    <value input="1.5" output="1.4861830478"/>
+    <value input="1.9" output="1.88804554976"/>
+    <value input=".7" output="0.685549736795"/>
+    <value input=".5" output="0.485265792255"/>
+    <value input="1.3" output="1.28596356568"/>
+    <value input="2.5" output="2.48684763926"/>
+    <value input=".9" output="0.885571718922"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.9" output="1.88742372431"/>
+    <value input=".5" output="0.485526324157"/>
+    <value input="1.7" output="1.68683847829"/>
+    <value input=".7" output="0.686135710057"/>
+    <value input="1.3" output="1.28531286178"/>
+    <value input="1.5" output="1.48615264943"/>
+    <value input="2.1" output="2.08834853799"/>
+    <value input="2.5" output="2.48634821194"/>
+    <value input=".9" output="0.88577458333"/>
+    <value input="2.3" output="2.28747823858"/>
+    <value input="1.1" output="1.0858202583"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.3" output="2.28822344565"/>
+    <value input=".9" output="0.885662198772"/>
+    <value input="1.9" output="1.88812646307"/>
+    <value input="2.5" output="2.48725086468"/>
+    <value input=".7" output="0.685493320998"/>
+    <value input=".5" output="0.485315234308"/>
+    <value input="1.3" output="1.2863141304"/>
+    <value input="1.5" output="1.48634567907"/>
+    <value input="1.1" output="1.08591753308"/>
+    <value input="2.1" output="2.08902767331"/>
+    <value input="1.7" output="1.6867976193"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="5">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.7" output="1.69926229162"/>
+    <value input=".9" output="0.90844005416"/>
+    <value input="1.9" output="1.89750999249"/>
+    <value input=".5" output="0.517607957952"/>
+    <value input=".7" output="0.713086009788"/>
+    <value input="2.1" output="2.09735119373"/>
+    <value input="2.5" output="2.49139523523"/>
+    <value input="1.1" output="1.10672923986"/>
+    <value input="1.3" output="1.30505999979"/>
+    <value input="1.5" output="1.50135263851"/>
+    <value input="2.3" output="2.29539164924"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.7" output="1.69982877417"/>
+    <value input=".5" output="0.516597659224"/>
+    <value input="2.5" output="2.49251461046"/>
+    <value input=".7" output="0.713020385074"/>
+    <value input="1.9" output="1.89834541119"/>
+    <value input="1.1" output="1.10668006603"/>
+    <value input="1.3" output="1.30439007339"/>
+    <value input="1.5" output="1.50200647166"/>
+    <value input="2.3" output="2.29603627347"/>
+    <value input="2.1" output="2.09731373221"/>
+    <value input=".9" output="0.909692645769"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.3" output="2.29606774473"/>
+    <value input="2.5" output="2.49165353196"/>
+    <value input=".9" output="0.909714014035"/>
+    <value input="1.3" output="1.30446410236"/>
+    <value input=".5" output="0.517343760365"/>
+    <value input="1.5" output="1.50199511697"/>
+    <value input=".7" output="0.713011891412"/>
+    <value input="1.9" output="1.89836937226"/>
+    <value input="1.7" output="1.69988107725"/>
+    <value input="2.1" output="2.09732088477"/>
+    <value input="1.1" output="1.10668560926"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.0981" output="2.09458377988"/>
+    <value input=".5002" output="0.517760754459"/>
+    <value input="1.5004" output="1.50184080055"/>
+    <value input=".7005" output="0.715356678532"/>
+    <value input="2.5021" output="2.49324810522"/>
+    <value input="1.9018" output="1.90006166733"/>
+    <value input="1.6985" output="1.69765573783"/>
+    <value input="2.3032" output="2.29831320071"/>
+    <value input="1.3000" output="1.30420598444"/>
+    <value input="1.1000" output="1.106556595"/>
+    <value input=".9020" output="0.912077844839"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.1023" output="2.09804061085"/>
+    <value input="1.4998" output="1.5010239785"/>
+    <value input=".5003" output="0.517972559564"/>
+    <value input="1.2992" output="1.30293408093"/>
+    <value input="1.0990" output="1.10586735669"/>
+    <value input="1.6984" output="1.69736006899"/>
+    <value input=".9008" output="0.910836965542"/>
+    <value input="1.8975" output="1.89406916536"/>
+    <value input=".6963" output="0.709750146438"/>
+    <value input="2.5063" output="2.49603107588"/>
+    <value input="2.2977" output="2.29157263064"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".5003" output="0.518197239273"/>
+    <value input="2.0978" output="2.09445074231"/>
+    <value input="1.6982" output="1.69750249429"/>
+    <value input="2.5021" output="2.49401798861"/>
+    <value input="1.1076" output="1.11486142937"/>
+    <value input="2.3026" output="2.29806599044"/>
+    <value input=".8993" output="0.909953714114"/>
+    <value input="1.3004" output="1.30497077164"/>
+    <value input="1.9030" output="1.90058666504"/>
+    <value input=".6970" output="0.711163402368"/>
+    <value input="1.4984" output="1.50036612203"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.1" output="1.08804845874"/>
+    <value input="2.5" output="2.48938742297"/>
+    <value input="1.7" output="1.68908000036"/>
+    <value input="1.3" output="1.28826695738"/>
+    <value input="1.9" output="1.8901467029"/>
+    <value input=".5" output="0.487377942447"/>
+    <value input="2.3" output="2.29035285139"/>
+    <value input="1.5" output="1.48847016743"/>
+    <value input=".9" output="0.88784077834"/>
+    <value input="2.1" output="2.0912552479"/>
+    <value input=".7" output="0.687541008767"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".5" output="0.488120467309"/>
+    <value input="2.1" output="2.09061786563"/>
+    <value input=".7" output="0.687608779248"/>
+    <value input="2.3" output="2.28981792951"/>
+    <value input="1.1" output="1.088552267"/>
+    <value input="1.7" output="1.68953821107"/>
+    <value input="2.5" output="2.48825454729"/>
+    <value input="1.3" output="1.288675279"/>
+    <value input="1.5" output="1.48830360225"/>
+    <value input=".9" output="0.887853921163"/>
+    <value input="1.9" output="1.88973909654"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.5" output="1.48833525231"/>
+    <value input="2.1" output="2.09034070403"/>
+    <value input="1.9" output="1.89114886559"/>
+    <value input="1.7" output="1.68894892975"/>
+    <value input="2.5" output="2.48802316206"/>
+    <value input=".5" output="0.488567680958"/>
+    <value input=".7" output="0.687669218357"/>
+    <value input="1.1" output="1.08703592483"/>
+    <value input="2.3" output="2.29016330862"/>
+    <value input=".9" output="0.887723029365"/>
+    <value input="1.3" output="1.28779399452"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="1">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.7" output="1.7134368722"/>
+    <value input="1.1" output="1.12072992388"/>
+    <value input="2.3" output="2.31001067185"/>
+    <value input="2.5" output="2.5036628546"/>
+    <value input=".7" output="0.727039039893"/>
+    <value input="1.3" output="1.31771296319"/>
+    <value input="1.9" output="1.91196325458"/>
+    <value input=".9" output="0.922825188137"/>
+    <value input=".5" output="0.530523062575"/>
+    <value input="1.5" output="1.5169519191"/>
+    <value input="2.1" output="2.11203324824"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.5" output="1.51575198819"/>
+    <value input="2.5" output="2.50507566349"/>
+    <value input="1.7" output="1.71357607884"/>
+    <value input=".7" output="0.726955176158"/>
+    <value input="1.9" output="1.91192159093"/>
+    <value input=".5" output="0.530554891456"/>
+    <value input=".9" output="0.92358979652"/>
+    <value input="1.3" output="1.31819084343"/>
+    <value input="2.1" output="2.11058297783"/>
+    <value input="2.3" output="2.30918973707"/>
+    <value input="1.1" output="1.12051042977"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.3" output="2.30785346054"/>
+    <value input="2.5" output="2.50337746756"/>
+    <value input="1.7" output="1.71288451595"/>
+    <value input="1.3" output="1.31863510665"/>
+    <value input=".7" output="0.727544457479"/>
+    <value input=".5" output="0.531525046456"/>
+    <value input="2.1" output="2.10995113879"/>
+    <value input=".9" output="0.924221993184"/>
+    <value input="1.9" output="1.91174975074"/>
+    <value input="1.1" output="1.12057042184"/>
+    <value input="1.5" output="1.51483896424"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="8" sign="+">
+    <value input="2.4926" output="2.65186733019"/>
+    <value input="1.7076" output="1.77083855908"/>
+    <value input="1.5014" output="1.52073741008"/>
+    <value input="1.1008" output="1.03655603594"/>
+    <value input="1.9026" output="2.00894486937"/>
+    <value input="2.0950" output="2.24443924452"/>
+    <value input=".7002" output="0.554486007314"/>
+    <value input=".5009" output="0.317601890266"/>
+    <value input="1.3014" output="1.2783616489"/>
+    <value input="2.3050" output="2.49721366184"/>
+    <value input=".9006" output="0.795052260895"/>
+   </measurement>
+   <measurement fs="256" gain="4" sign="+">
+    <value input="2.4915" output="2.65240582835"/>
+    <value input=".9050" output="0.799894989271"/>
+    <value input="2.3058" output="2.49800071137"/>
+    <value input="1.9007" output="2.00632765922"/>
+    <value input="1.5048" output="1.52443260004"/>
+    <value input="1.6982" output="1.76022729319"/>
+    <value input=".7001" output="0.55452150188"/>
+    <value input=".5049" output="0.322814584672"/>
+    <value input="1.1065" output="1.04351198738"/>
+    <value input="1.3008" output="1.27958259044"/>
+    <value input="2.1016" output="2.252368212"/>
+   </measurement>
+   <measurement fs="32" gain="8" sign="+">
+    <value input="1.5031" output="1.52412325193"/>
+    <value input="2.4975" output="2.661443174"/>
+    <value input="1.9042" output="2.01158720288"/>
+    <value input="2.3078" output="2.50235196964"/>
+    <value input=".6990" output="0.55351683579"/>
+    <value input=".4998" output="0.315581382216"/>
+    <value input="1.7031" output="1.76712048095"/>
+    <value input="1.1042" output="1.04154449767"/>
+    <value input="2.1005" output="2.25187137748"/>
+    <value input=".9006" output="0.795922727128"/>
+    <value input="1.3003" output="1.27878588495"/>
+   </measurement>
+   <measurement fs="32" gain="4" sign="+">
+    <value input="1.5008" output="1.52124077131"/>
+    <value input="2.1011" output="2.25212565089"/>
+    <value input="1.3009" output="1.27911615429"/>
+    <value input="1.7002" output="1.76343995374"/>
+    <value input="1.9014" output="2.00823712382"/>
+    <value input=".9002" output="0.795262367268"/>
+    <value input=".6995" output="0.554369867663"/>
+    <value input=".5011" output="0.316990257204"/>
+    <value input="2.4975" output="2.66125881684"/>
+    <value input="2.3030" output="2.49698799865"/>
+    <value input="1.1012" output="1.0376438505"/>
+   </measurement>
+   <measurement fs="256" gain="16" sign="+">
+    <value input=".7023" output="0.06760177114"/>
+    <value input="1.9019" output="2.7148270906"/>
+    <value input="1.3007" output="0.106698007356"/>
+    <value input="1.7031" output="2.70544409762"/>
+    <value input="1.1002" output="0.0691344747776"/>
+    <value input="2.5020" output="2.71530282507"/>
+    <value input=".5001" output="0.0676035592794"/>
+    <value input="2.1015" output="2.7149195374"/>
+    <value input="2.3000" output="2.71515262136"/>
+    <value input=".9012" output="0.0676037380933"/>
+    <value input="1.5059" output="1.77661201399"/>
+   </measurement>
+   <measurement fs="32" gain="16" sign="+">
+    <value input="1.6992" output="2.71424791226"/>
+    <value input="1.8997" output="2.72428035745"/>
+    <value input="2.3008" output="2.72468644389"/>
+    <value input="1.3033" output="0.105174333822"/>
+    <value input=".5005" output="0.0648894319781"/>
+    <value input=".9001" output="0.0649594376334"/>
+    <value input="1.5007" output="1.74457749766"/>
+    <value input="2.0995" output="2.72461366663"/>
+    <value input=".6995" output="0.0648956904658"/>
+    <value input="2.5020" output="2.72483181962"/>
+    <value input="1.0995" output="0.0663771639112"/>
+   </measurement>
+   <measurement fs="32" gain="2" sign="+">
+    <value input=".5001" output="0.53291961633"/>
+    <value input=".9003" output="0.925716520047"/>
+    <value input="1.1056" output="1.12775337759"/>
+    <value input="1.5027" output="1.51935115506"/>
+    <value input="1.3007" output="1.32003504094"/>
+    <value input="1.7012" output="1.7154209022"/>
+    <value input="2.3007" output="2.31048184656"/>
+    <value input=".7015" output="0.730537176889"/>
+    <value input="1.9010" output="1.91353744305"/>
+    <value input="2.5054" output="2.51071679608"/>
+    <value input="2.1016" output="2.11274859339"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.8999" output="1.91333743966"/>
+    <value input="1.1011" output="1.12471264663"/>
+    <value input="1.5045" output="1.52069279601"/>
+    <value input=".9008" output="0.927183241343"/>
+    <value input=".7051" output="0.735379458229"/>
+    <value input="1.7007" output="1.71483090563"/>
+    <value input=".5033" output="0.53711333953"/>
+    <value input="2.3006" output="2.3097636404"/>
+    <value input="2.5035" output="2.50807195918"/>
+    <value input="2.1002" output="2.11139327317"/>
+    <value input="1.3100" output="1.32913819011"/>
+   </measurement>
+   <measurement fs="256" gain="2" sign="+">
+    <value input=".5064" output="0.540182233677"/>
+    <value input="1.5014" output="1.51866379429"/>
+    <value input=".6995" output="0.729332686228"/>
+    <value input="2.5028" output="2.5079310538"/>
+    <value input="2.1021" output="2.11305096775"/>
+    <value input="1.9063" output="1.9184671644"/>
+    <value input="1.1020" output="1.12481510702"/>
+    <value input=".9001" output="0.926603258347"/>
+    <value input="1.3007" output="1.31928160843"/>
+    <value input="2.3016" output="2.31083223247"/>
+    <value input="1.7005" output="1.71580150766"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.4994" output="1.51587742617"/>
+    <value input="1.6994" output="1.71321541114"/>
+    <value input=".7007" output="0.729986072344"/>
+    <value input="1.9030" output="1.91461283005"/>
+    <value input="2.5023" output="2.50737887637"/>
+    <value input=".5008" output="0.533962727415"/>
+    <value input="1.3000" output="1.31921526846"/>
+    <value input="1.0999" output="1.12203767958"/>
+    <value input="2.3030" output="2.3120504918"/>
+    <value input=".9000" output="0.925466985202"/>
+    <value input="2.1033" output="2.11401701003"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.2939" output="2.30387932085"/>
+    <value input=".9000" output="0.925473064875"/>
+    <value input=".5014" output="0.533957810032"/>
+    <value input="1.5012" output="1.51788112571"/>
+    <value input="2.5057" output="2.5110185446"/>
+    <value input="1.3037" output="1.32278823909"/>
+    <value input="1.1007" output="1.12278851929"/>
+    <value input="2.0994" output="2.11059343845"/>
+    <value input=".7033" output="0.732205600303"/>
+    <value input="1.7000" output="1.71410983844"/>
+    <value input="1.9004" output="1.91258820928"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.7" output="1.69961410804"/>
+    <value input="1.1" output="1.09954413835"/>
+    <value input="2.5" output="2.49927136319"/>
+    <value input="2.1" output="2.10018137127"/>
+    <value input=".5" output="0.499920845866"/>
+    <value input="1.9" output="1.89999085701"/>
+    <value input=".7" output="0.699827582411"/>
+    <value input="1.3" output="1.29986366686"/>
+    <value input="2.3" output="2.29973557615"/>
+    <value input=".9" output="0.899680406555"/>
+    <value input="1.5" output="1.49974679997"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.9" output="1.89130649008"/>
+    <value input="2.3" output="2.29139345908"/>
+    <value input="2.1" output="2.09210407764"/>
+    <value input=".9" output="0.899610937342"/>
+    <value input=".5" output="0.500365824341"/>
+    <value input="1.1" output="1.09949907724"/>
+    <value input="1.7" output="1.69011631652"/>
+    <value input=".7" output="0.699832499795"/>
+    <value input="1.5" output="1.48901331475"/>
+    <value input="2.5" output="2.48995748179"/>
+    <value input="1.3" output="1.30043605027"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.3" output="2.29122260237"/>
+    <value input=".7" output="0.689733893449"/>
+    <value input="2.1" output="2.09135368497"/>
+    <value input="1.7" output="1.68975082083"/>
+    <value input=".9" output="0.888719559418"/>
+    <value input="1.1" output="1.08927378122"/>
+    <value input="1.5" output="1.4896325474"/>
+    <value input="2.5" output="2.48990088718"/>
+    <value input="1.9" output="1.89088565148"/>
+    <value input=".5" output="0.489343733433"/>
+    <value input="1.3" output="1.28971964178"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="10">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.3" output="2.2923613789"/>
+    <value input="2.1" output="2.09362864525"/>
+    <value input=".5" output="0.511808217401"/>
+    <value input="1.9" output="1.89479684866"/>
+    <value input="1.1" output="1.10258004133"/>
+    <value input="1.7" output="1.69621065302"/>
+    <value input=".7" output="0.708443463613"/>
+    <value input="1.5" output="1.49812379529"/>
+    <value input="1.3" output="1.30037158784"/>
+    <value input=".9" output="0.905345857842"/>
+    <value input="2.5" output="2.48943847435"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".5" output="0.51203289711"/>
+    <value input="1.1" output="1.10160586301"/>
+    <value input="2.1" output="2.09362864525"/>
+    <value input=".9" output="0.904537618859"/>
+    <value input="2.3" output="2.29190245294"/>
+    <value input="1.7" output="1.69616720124"/>
+    <value input=".7" output="0.708961845208"/>
+    <value input="1.5" output="1.49812281182"/>
+    <value input="1.9" output="1.89495250619"/>
+    <value input="1.3" output="1.30037427005"/>
+    <value input="2.5" output="2.48932179826"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input=".5" output="0.512751550311"/>
+    <value input=".7" output="0.709425599147"/>
+    <value input="1.9" output="1.89432218708"/>
+    <value input="2.5" output="2.48827895539"/>
+    <value input="1.3" output="1.30086484608"/>
+    <value input="1.5" output="1.49931272914"/>
+    <value input="2.1" output="2.09374961287"/>
+    <value input=".9" output="0.905774385435"/>
+    <value input="1.7" output="1.69619268222"/>
+    <value input="1.1" output="1.1029878265"/>
+    <value input="2.3" output="2.29126274609"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.3005" output="1.30081325826"/>
+    <value input="1.8992" output="1.89338806308"/>
+    <value input="1.4991" output="1.49778056195"/>
+    <value input="2.5025" output="2.490239829"/>
+    <value input=".8993" output="0.906234563095"/>
+    <value input=".5004" output="0.513275385732"/>
+    <value input="1.1002" output="1.10283073846"/>
+    <value input="2.1002" output="2.09267315299"/>
+    <value input="1.6981" output="1.69439095302"/>
+    <value input="2.2993" output="2.29037046457"/>
+    <value input=".7030" output="0.713650257158"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.8992" output="1.89417743719"/>
+    <value input="1.4992" output="1.49860364249"/>
+    <value input="1.2991" output="1.30098331031"/>
+    <value input=".5004" output="0.514960617655"/>
+    <value input="1.7007" output="1.69769302054"/>
+    <value input=".8993" output="0.90676537226"/>
+    <value input=".6995" output="0.710301608611"/>
+    <value input="2.5072" output="2.49707543867"/>
+    <value input="2.2991" output="2.2921265068"/>
+    <value input="1.0993" output="1.10383209649"/>
+    <value input="2.0985" output="2.09253019124"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.4992" output="1.49817529371"/>
+    <value input="1.0993" output="1.10298505489"/>
+    <value input="2.0983" output="2.0920714441"/>
+    <value input="1.7000" output="1.69662442846"/>
+    <value input="1.2999" output="1.30129900631"/>
+    <value input="1.9010" output="1.89552193917"/>
+    <value input=".5004" output="0.514605224961"/>
+    <value input="2.5025" output="2.49183154123"/>
+    <value input=".9000" output="0.906907350523"/>
+    <value input=".7000" output="0.710523159076"/>
+    <value input="2.3028" output="2.29546791338"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.5" output="1.47719603828"/>
+    <value input=".7" output="0.676753432333"/>
+    <value input="1.9" output="1.87889188565"/>
+    <value input="2.1" output="2.08064684302"/>
+    <value input="1.1" output="1.07666301791"/>
+    <value input="2.3" output="2.27830365324"/>
+    <value input="1.7" output="1.67715740248"/>
+    <value input="1.3" output="1.2769475883"/>
+    <value input=".9" output="0.877195358984"/>
+    <value input=".5" output="0.47730767811"/>
+    <value input="2.5" output="2.47682923096"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.7" output="1.67754828974"/>
+    <value input="1.9" output="1.87968564071"/>
+    <value input="2.1" output="2.08002457053"/>
+    <value input=".5" output="0.477441967375"/>
+    <value input="2.3" output="2.27964574123"/>
+    <value input="2.5" output="2.47674366849"/>
+    <value input=".7" output="0.677555412828"/>
+    <value input=".9" output="0.876790971272"/>
+    <value input="1.5" output="1.47824057987"/>
+    <value input="1.1" output="1.07693722908"/>
+    <value input="1.3" output="1.27824837027"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.1" output="1.07698899572"/>
+    <value input=".9" output="0.876901299468"/>
+    <value input="2.5" output="2.47817891854"/>
+    <value input="1.9" output="1.87903779783"/>
+    <value input="1.7" output="1.6776889269"/>
+    <value input="1.3" output="1.27734294591"/>
+    <value input="1.5" output="1.4773541098"/>
+    <value input="2.3" output="2.27917170549"/>
+    <value input=".5" output="0.476883442051"/>
+    <value input="2.1" output="2.08007866175"/>
+    <value input=".7" output="0.676798493445"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="3">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.9" output="1.89445799626"/>
+    <value input=".9" output="0.906188786728"/>
+    <value input=".7" output="0.7094750412"/>
+    <value input="2.3" output="2.29231792712"/>
+    <value input="1.7" output="1.69651678248"/>
+    <value input="2.1" output="2.09349578649"/>
+    <value input="1.3" output="1.30022165236"/>
+    <value input="1.1" output="1.10226228896"/>
+    <value input="2.5" output="2.48779159801"/>
+    <value input=".5" output="0.51427656495"/>
+    <value input="1.5" output="1.49849331429"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.7" output="1.69656112833"/>
+    <value input="2.5" output="2.48871302622"/>
+    <value input="2.3" output="2.29269745969"/>
+    <value input="1.1" output="1.10301402274"/>
+    <value input=".9" output="0.905864418251"/>
+    <value input="1.9" output="1.89491468705"/>
+    <value input=".5" output="0.514139951104"/>
+    <value input="1.3" output="1.30069220123"/>
+    <value input="1.5" output="1.49852362325"/>
+    <value input=".7" output="0.709073872138"/>
+    <value input="2.1" output="2.0954618457"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input=".7" output="0.709019959737"/>
+    <value input="1.5" output="1.49870467236"/>
+    <value input=".9" output="0.905898124678"/>
+    <value input="2.3" output="2.2929259839"/>
+    <value input="1.9" output="1.89511790908"/>
+    <value input="1.1" output="1.10300892655"/>
+    <value input="2.1" output="2.0939848426"/>
+    <value input="1.7" output="1.69663748189"/>
+    <value input="2.5" output="2.48900118487"/>
+    <value input="1.3" output="1.30087852535"/>
+    <value input=".5" output="0.512382388944"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.7037" output="1.70140135331"/>
+    <value input=".7043" output="0.717094302939"/>
+    <value input="2.3026" output="2.2959698441"/>
+    <value input="1.5065" output="1.50737071087"/>
+    <value input="1.0994" output="1.10520494047"/>
+    <value input="2.1027" output="2.09759214551"/>
+    <value input=".9042" output="0.913741976718"/>
+    <value input="2.4975" output="2.48783075827"/>
+    <value input="1.3037" output="1.30700710472"/>
+    <value input=".5018" output="0.518286288612"/>
+    <value input="1.8979" output="1.89371904767"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.4975" output="2.48770093935"/>
+    <value input="1.3011" output="1.30410701093"/>
+    <value input="1.4949" output="1.49553331783"/>
+    <value input="1.9028" output="1.89769470728"/>
+    <value input=".6997" output="0.712537587452"/>
+    <value input=".5029" output="0.519067079656"/>
+    <value input="2.1029" output="2.09779679805"/>
+    <value input="2.3000" output="2.2939063313"/>
+    <value input="1.7035" output="1.70142728133"/>
+    <value input=".8991" output="0.908205360872"/>
+    <value input="1.1000" output="1.10564768378"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="2.0988" output="2.09361898929"/>
+    <value input=".7004" output="0.713421911763"/>
+    <value input="2.3020" output="2.29436847591"/>
+    <value input="1.9070" output="1.90205079354"/>
+    <value input=".5028" output="0.520758301846"/>
+    <value input="1.6961" output="1.69391432448"/>
+    <value input="2.4980" output="2.486449063"/>
+    <value input=".9014" output="0.909688086014"/>
+    <value input="1.1036" output="1.10907214943"/>
+    <value input="1.5031" output="1.50449547221"/>
+    <value input="1.2994" output="1.30182060656"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <value input=".5" output="0.48059874857"/>
+    <value input="2.3" output="2.28237935925"/>
+    <value input="1.5" output="1.48121890476"/>
+    <value input="2.5" output="2.48053854721"/>
+    <value input="1.3" output="1.27901575027"/>
+    <value input="2.1" output="2.08336150677"/>
+    <value input=".7" output="0.678556145012"/>
+    <value input="1.9" output="1.88256329335"/>
+    <value input=".9" output="0.880906910411"/>
+    <value input="1.7" output="1.6814501886"/>
+    <value input="1.1" output="1.08063402836"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.9" output="1.88257858194"/>
+    <value input="2.1" output="2.08299145133"/>
+    <value input=".9" output="0.880645395031"/>
+    <value input="1.5" output="1.4814670091"/>
+    <value input="1.7" output="1.68055889054"/>
+    <value input=".7" output="0.680715233861"/>
+    <value input="2.5" output="2.48110735434"/>
+    <value input="1.3" output="1.28040254173"/>
+    <value input="2.3" output="2.28229361797"/>
+    <value input="1.1" output="1.08193588321"/>
+    <value input=".5" output="0.481710434799"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.1" output="2.08367460997"/>
+    <value input="1.3" output="1.28028255759"/>
+    <value input=".9" output="0.880263716688"/>
+    <value input=".7" output="0.680040747702"/>
+    <value input="2.3" output="2.28281343007"/>
+    <value input="1.5" output="1.48082310012"/>
+    <value input="1.1" output="1.08051574294"/>
+    <value input="2.5" output="2.48179775494"/>
+    <value input=".5" output="0.479811788445"/>
+    <value input="1.9" output="1.8827922646"/>
+    <value input="1.7" output="1.6815002565"/>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="2">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.5" output="1.51177713325"/>
+    <value input="1.7" output="1.70983725829"/>
+    <value input="2.5" output="2.5018367173"/>
+    <value input="1.9" output="1.90813913978"/>
+    <value input="1.3" output="1.31406408605"/>
+    <value input=".5" output="0.525655836692"/>
+    <value input="2.1" output="2.1069946292"/>
+    <value input="2.3" output="2.30570840858"/>
+    <value input=".9" output="0.919126690128"/>
+    <value input=".7" output="0.722282410428"/>
+    <value input="1.1" output="1.11619144741"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="2.3" output="2.30555722141"/>
+    <value input="2.5" output="2.50078386085"/>
+    <value input="2.1" output="2.10698184401"/>
+    <value input="1.1" output="1.11641192499"/>
+    <value input=".7" output="0.722454071804"/>
+    <value input="1.5" output="1.5111131077"/>
+    <value input=".9" output="0.91913160751"/>
+    <value input="1.9" output="1.90809640325"/>
+    <value input="1.3" output="1.31408429202"/>
+    <value input="1.7" output="1.7097488348"/>
+    <value input=".5" output="0.525934428802"/>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.5" output="1.51242050578"/>
+    <value input=".7" output="0.722826988264"/>
+    <value input=".5" output="0.526427508225"/>
+    <value input="1.9" output="1.90752446688"/>
+    <value input=".9" output="0.919598848321"/>
+    <value input="1.7" output="1.70918744845"/>
+    <value input="2.1" output="2.10673517019"/>
+    <value input="1.3" output="1.31375259217"/>
+    <value input="2.5" output="2.50006055849"/>
+    <value input="1.1" output="1.11681819025"/>
+    <value input="2.3" output="2.30547872209"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.3005" output="1.31383475718"/>
+    <value input="1.7027" output="1.7097783391"/>
+    <value input=".9006" output="0.919043541649"/>
+    <value input="2.4941" output="2.49289602058"/>
+    <value input=".5001" output="0.526658982863"/>
+    <value input="1.4993" output="1.50838628461"/>
+    <value input="2.3003" output="2.30250254297"/>
+    <value input="1.1002" output="1.1157871491"/>
+    <value input="2.0981" output="2.10252025754"/>
+    <value input="1.9034" output="1.90895757116"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="2.4941" output="2.49451482313"/>
+    <value input=".5001" output="0.526656211247"/>
+    <value input=".8992" output="0.918665528991"/>
+    <value input="1.0967" output="1.11291933123"/>
+    <value input=".6995" output="0.722296089694"/>
+    <value input="2.1032" output="2.10843730003"/>
+    <value input="1.2994" output="1.31290572938"/>
+    <value input="1.4989" output="1.50976726462"/>
+    <value input="1.9003" output="1.906725258"/>
+    <value input="2.2981" output="2.30217084312"/>
+    <value input="1.7048" output="1.71317169113"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.7034" output="1.71161511583"/>
+    <value input=".7015" output="0.724288792177"/>
+    <value input=".9010" output="0.919975698687"/>
+    <value input="2.0984" output="2.10525128275"/>
+    <value input=".5001" output="0.526521921983"/>
+    <value input="1.8991" output="1.9055280093"/>
+    <value input="1.5032" output="1.5140646105"/>
+    <value input="1.3000" output="1.31316974815"/>
+    <value input="2.2995" output="2.30364024662"/>
+    <value input="1.1005" output="1.11631661716"/>
+    <value input="2.5027" output="2.50249984877"/>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <value input="1.5" output="1.49378585866"/>
+    <value input="1.1" output="1.0921120948"/>
+    <value input="1.7" output="1.69498631401"/>
+    <value input="1.9" output="1.89550906457"/>
+    <value input="2.1" output="2.09656503826"/>
+    <value input=".7" output="0.692950398499"/>
+    <value input="2.5" output="2.49373662489"/>
+    <value input="1.3" output="1.29359945712"/>
+    <value input="2.3" output="2.29461541795"/>
+    <value input=".9" output="0.891642899024"/>
+    <value input=".5" output="0.492639095428"/>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <value input="1.1" output="1.09322395984"/>
+    <value input="2.1" output="2.09656074673"/>
+    <value input="1.9" output="1.89571604169"/>
+    <value input="1.3" output="1.29356449899"/>
+    <value input=".7" output="0.69281771856"/>
+    <value input=".5" output="0.492570788505"/>
+    <value input=".9" output="0.893023074376"/>
+    <value input="2.3" output="2.29570788168"/>
+    <value input="2.5" output="2.49387824552"/>
+    <value input="1.5" output="1.49380508115"/>
+    <value input="1.7" output="1.69428724094"/>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <value input="1.7" output="1.69472059651"/>
+    <value input="2.3" output="2.29581758403"/>
+    <value input=".9" output="0.893011987912"/>
+    <value input="2.5" output="2.49398106353"/>
+    <value input=".5" output="0.492749423625"/>
+    <value input="1.3" output="1.2941087192"/>
+    <value input="1.1" output="1.09311568801"/>
+    <value input="1.9" output="1.89510306753"/>
+    <value input="1.5" output="1.49356082132"/>
+    <value input=".7" output="0.693031580025"/>
+    <value input="2.1" output="2.09688198597"/>
+   </measurement>
+  </configuration>
+ </chip>
+</chips>
