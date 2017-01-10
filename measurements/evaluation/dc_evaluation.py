@@ -6,7 +6,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ('both', 'both-manual', 'sigdel'):
+    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -62,11 +62,24 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 measurement_node = soup.new_tag('measurement', fs=current_fs, gain=current_gain, sign=current_sign)
                 configuration_node.append(measurement_node)
 
-            measured_dc = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
+            # everything except for the preamp measurements require the CIC filter
+            if configuration == 'preamp':
+                measured_dc = str(oscilloscope_to_dc(os.path.join(chip_dir_name, file)))
+            else:
+                measured_dc = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
+
             value_node = soup.new_tag('value', input=current_dc,
                                                output=measured_dc)
-
             measurement_node.append(value_node)
+
+
+def oscilloscope_to_dc(file_name):
+    with open(file_name, 'r') as f:
+        # data begins at line 6
+        for i in range(5):
+            f.readline()
+
+        return np.mean([float(line.split(',')[1]) for line in f])
 
 
 def bit_stream_to_dc(file_name):
