@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chips>
+ <chip id="6">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00117845470489" Sb1="0.000723919082746" b0="0.0151952860582" b1="0.987959621656"/>
+    <mse>
+     6.80847348989e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.0011683301597" Sb1="0.000717699377302" b0="0.0159641636264" b1="0.987394557431"/>
+    <mse>
+     7.40803452844e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00101800075449" Sb1="0.000625352878924" b0="0.0150412676768" b1="0.988132514775"/>
+    <mse>
+     6.53601047844e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.0010541872154" Sb1="0.000646558962116" b0="0.0166152904109" b1="0.98699294076"/>
+    <mse>
+     7.78757702124e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.001041432025" Sb1="0.000639370738898" b0="0.0166694370759" b1="0.98682676448"/>
+    <mse>
+     8.06323790953e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00140843455648" Sb1="0.000864827118111" b0="0.016859324685" b1="0.986290024096"/>
+    <mse>
+     9.17894689892e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000640118663942" Sb1="0.000393221821614" b0="-0.0223302015047" b1="1.00171117297"/>
+    <mse>
+     0.000392321532254
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000832445531125" Sb1="0.000511367102892" b0="-0.0213472453865" b1="1.00097649173"/>
+    <mse>
+     0.000396636918239
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000526431916672" Sb1="0.000323384565816" b0="-0.0221776491685" b1="1.00167976693"/>
+    <mse>
+     0.000387942041757
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000754218830618" Sb1="0.000463312942658" b0="0.747700372638" b1="0.498595978431"/>
+    <mse>
+     0.100582579743
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00129985305106" Sb1="0.000798493384806" b0="0.777458329127" b1="0.477725464198"/>
+    <mse>
+     0.109146015478
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00192159239487" Sb1="0.0011804248171" b0="0.819113009636" b1="0.449583309242"/>
+    <mse>
+     0.121230836123
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="4">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00106621583556" Sb1="0.000654971192896" b0="0.0246781201967" b1="0.989331039194"/>
+    <mse>
+     0.000122325100472
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000859442164183" Sb1="0.000527951131276" b0="0.0259283719457" b1="0.988568272371"/>
+    <mse>
+     0.000130379309733
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000932553837323" Sb1="0.000572863216469" b0="0.0245863927165" b1="0.989542015249"/>
+    <mse>
+     0.000124128797002
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00118437178842" Sb1="0.000726691580117" b0="0.0267109950692" b1="0.987808435663"/>
+    <mse>
+     0.000132418541746
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00119371867699" Sb1="0.000733029050121" b0="0.0269573520167" b1="0.988115259326"/>
+    <mse>
+     0.000142111975218
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00106463291854" Sb1="0.000653114129491" b0="0.0266497090134" b1="0.988481799427"/>
+    <mse>
+     0.00014198737761
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00051224098436" Sb1="0.000314667050268" b0="-0.0126538625675" b1="1.00157544119"/>
+    <mse>
+     0.000107247784004
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000483887135123" Sb1="0.000297249362015" b0="-0.0120066617948" b1="1.00101108816"/>
+    <mse>
+     0.000110767725844
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000853327982297" Sb1="0.000524195365331" b0="-0.012440765119" b1="1.00140868907"/>
+    <mse>
+     0.000108445010081
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00126286670809" Sb1="0.000775772851783" b0="0.747452620878" b1="0.500322257282"/>
+    <mse>
+     0.0998775652755
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00222172514292" Sb1="0.00136479490867" b0="0.831225426064" b1="0.442659941473"/>
+    <mse>
+     0.124280774934
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00154583967224" Sb1="0.000949601765786" b0="0.784467436027" b1="0.474732586536"/>
+    <mse>
+     0.110377378709
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="9">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000996911030317" Sb1="0.000612397772853" b0="0.0244725795879" b1="0.988246414868"/>
+    <mse>
+     0.000103424542763
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000830396795104" Sb1="0.000510108703921" b0="0.0237717672363" b1="0.988649689011"/>
+    <mse>
+     9.79811574299e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00102362452049" Sb1="0.000628807555829" b0="0.0236575396739" b1="0.988829596151"/>
+    <mse>
+     9.89712974878e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00103516560561" Sb1="0.000635311612711" b0="0.0253793809438" b1="0.987928639962"/>
+    <mse>
+     0.000112733139135
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00125438711649" Sb1="0.000769877105566" b0="0.0252037650969" b1="0.987510961221"/>
+    <mse>
+     0.000106135605274
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.0010691944803" Sb1="0.000656528708719" b0="0.0252303772307" b1="0.987855644337"/>
+    <mse>
+     0.000109817022505
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000521908943057" Sb1="0.000320606285366" b0="-0.00972422993829" b1="1.00168596852"/>
+    <mse>
+     5.32790459446e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000785587144942" Sb1="0.000482582463502" b0="-0.00818186612442" b1="1.00079826292"/>
+    <mse>
+     4.98761234808e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000657607351164" Sb1="0.000403965071291" b0="-0.00958461078561" b1="1.00152613731"/>
+    <mse>
+     5.47420443719e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00131584479814" Sb1="0.000808317036146" b0="0.737592008203" b1="0.500940316414"/>
+    <mse>
+     0.0997475246634
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00265632410484" Sb1="0.00163176694365" b0="0.826511200507" b1="0.440248595235"/>
+    <mse>
+     0.125510266687
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00093284014646" Sb1="0.000573039141978" b0="0.776021368673" b1="0.474638557901"/>
+    <mse>
+     0.110547539569
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="8">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000948421172753" Sb1="0.000582610516006" b0="0.0306516353858" b1="0.988779316923"/>
+    <mse>
+     0.000242592738643
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000978449777988" Sb1="0.000601056923617" b0="0.0310343557301" b1="0.988521894166"/>
+    <mse>
+     0.000244914271854
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00106289736397" Sb1="0.000652932593364" b0="0.0312702097683" b1="0.988250238945"/>
+    <mse>
+     0.000242959039885
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00109489744973" Sb1="0.00067219661966" b0="0.0329654738839" b1="0.987029289552"/>
+    <mse>
+     0.000251117530009
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00104859215157" Sb1="0.000643226937977" b0="0.0330542077857" b1="0.987418590513"/>
+    <mse>
+     0.000265539928699
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000984183277362" Sb1="0.000604335670513" b0="0.0331735346069" b1="0.987543174078"/>
+    <mse>
+     0.000273039584927
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000599136945719" Sb1="0.000368046912919" b0="-0.0152223357552" b1="1.00096591732"/>
+    <mse>
+     0.000190569043475
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000605774401378" Sb1="0.00037212417558" b0="-0.0160599105443" b1="1.00153546824"/>
+    <mse>
+     0.000190688599744
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000545692839565" Sb1="0.000335216377638" b0="-0.0158573142336" b1="1.0012722378"/>
+    <mse>
+     0.000195625383917
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00130275014014" Sb1="0.000800273054107" b0="0.749990646746" b1="0.500478924672"/>
+    <mse>
+     0.0998113301775
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00148364139769" Sb1="0.000911393664947" b0="0.788078771721" b1="0.474758376482"/>
+    <mse>
+     0.110354542313
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00345421733239" Sb1="0.00212190883045" b0="0.838294552439" b1="0.441852380424"/>
+    <mse>
+     0.124628866694
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="7">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00093613768843" Sb1="0.000575064896358" b0="0.030398012207" b1="0.988705352977"/>
+    <mse>
+     0.000233283195116
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00115515210909" Sb1="0.000709604243325" b0="0.0302348180693" b1="0.988852366483"/>
+    <mse>
+     0.000234131740253
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000871214099273" Sb1="0.000535182609247" b0="0.0297373699018" b1="0.989366107038"/>
+    <mse>
+     0.000236331406302
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.0014518120591" Sb1="0.000891233753797" b0="0.0321313421206" b1="0.987617767157"/>
+    <mse>
+     0.00024787311848
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000971857064965" Sb1="0.000596789162584" b0="0.0316512902571" b1="0.988171808634"/>
+    <mse>
+     0.000250685451738
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000916054961395" Sb1="0.000562533683386" b0="0.0313377932389" b1="0.988220239606"/>
+    <mse>
+     0.000243403085177
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000574546891451" Sb1="0.000352941393152" b0="-0.0156694315439" b1="1.00155662915"/>
+    <mse>
+     0.000179226246377
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000553598977231" Sb1="0.000340073105976" b0="-0.01502644538" b1="1.0009969986"/>
+    <mse>
+     0.00018390048057
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00050761300123" Sb1="0.000311824181876" b0="-0.0156566504302" b1="1.00161801923"/>
+    <mse>
+     0.000176420125146
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00296172146084" Sb1="0.00181937102414" b0="0.839635232949" b1="0.440235959108"/>
+    <mse>
+     0.125346229089
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00116917878459" Sb1="0.000718220820853" b0="0.749567805402" b1="0.500032193885"/>
+    <mse>
+     0.0999891272807
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00148660314477" Sb1="0.00091321304753" b0="0.78767486782" b1="0.47474652954"/>
+    <mse>
+     0.110359527698
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="5">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00123265038553" Sb1="0.000757211097822" b0="0.0206994674955" b1="0.988211643641"/>
+    <mse>
+     6.67521497023e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000989029361641" Sb1="0.000607555959724" b0="0.0201332165975" b1="0.988785498195"/>
+    <mse>
+     6.2600659807e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00108252622567" Sb1="0.000664990476212" b0="0.0206794606531" b1="0.988426244748"/>
+    <mse>
+     6.61873082986e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00120327501567" Sb1="0.000738852871123" b0="0.0218101855523" b1="0.987577792679"/>
+    <mse>
+     7.37958483284e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00100281476112" Sb1="0.000615946102969" b0="0.0220149112417" b1="0.987009905487"/>
+    <mse>
+     7.55053169387e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00111710895954" Sb1="0.000685924130196" b0="0.0218969128279" b1="0.987675944804"/>
+    <mse>
+     7.41186443718e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000513066789427" Sb1="0.000315174337973" b0="-0.013603931475" b1="1.00166125968"/>
+    <mse>
+     0.000124938995472
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000586171332545" Sb1="0.000360082126825" b0="-0.0126086002859" b1="1.0009561557"/>
+    <mse>
+     0.000125698938935
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000883189114733" Sb1="0.000542538647878" b0="-0.0129650577329" b1="1.00111307306"/>
+    <mse>
+     0.000129142375731
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.0011580860124" Sb1="0.000711406581328" b0="0.778347394504" b1="0.47627248226"/>
+    <mse>
+     0.10977050092
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.002374269299" Sb1="0.00145850203511" b0="0.825087259341" b1="0.444200183678"/>
+    <mse>
+     0.123647206921
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000838229954571" Sb1="0.000514920569435" b0="0.743398830206" b1="0.500158082198"/>
+    <mse>
+     0.0999782327181
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="1">
+  <configuration configuration="both" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00123783931105" Sb1="0.000760398516716" b0="0.034485347149" b1="0.988336374516"/>
+    <mse>
+     0.000345154611234
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000904783073334" Sb1="0.000555803885189" b0="0.0345774790596" b1="0.98821496389"/>
+    <mse>
+     0.000342274395767
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000982086824709" Sb1="0.000603291159088" b0="0.0361301911044" b1="0.9870133467"/>
+    <mse>
+     0.000346001058766
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00112691361449" Sb1="0.000691344076144" b0="0.0389913534547" b1="0.986267869485"/>
+    <mse>
+     0.000413882613425
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00106078216126" Sb1="0.000651093902203" b0="0.0377146728171" b1="0.986746410338"/>
+    <mse>
+     0.000389554629846
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00103769721455" Sb1="0.000637230344544" b0="0.0370558444577" b1="0.987278352873"/>
+    <mse>
+     0.000388704734536
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000194646878756" Sb1="0.000119569147023" b0="-0.000138344093" b1="0.999933242465"/>
+    <mse>
+     1.10123936926e-07
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00227648820025" Sb1="0.00139843523218" b0="0.00408209554785" b1="0.993862574423"/>
+    <mse>
+     4.8363290194e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000480261963995" Sb1="0.000295022497977" b0="-0.0113987838201" b1="1.00090445003"/>
+    <mse>
+     0.000101484498505
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00280352113781" Sb1="0.00172218933591" b0="0.841714261352" b1="0.439866775696"/>
+    <mse>
+     0.125512662441
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00146766305371" Sb1="0.000901578246835" b0="0.791047042862" b1="0.473579625575"/>
+    <mse>
+     0.11085229691
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00139459510923" Sb1="0.000856692963905" b0="0.75223614991" b1="0.499854997294"/>
+    <mse>
+     0.100064726547
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="10">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000891903510583" Sb1="0.000547892154578" b0="0.0151273611454" b1="0.989497454002"/>
+    <mse>
+     4.5594505369e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00104887947823" Sb1="0.000644321561046" b0="0.0150575668142" b1="0.989453010613"/>
+    <mse>
+     4.65721762798e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000809440972403" Sb1="0.000497235565692" b0="0.0167947480444" b1="0.988495811605"/>
+    <mse>
+     5.40416317347e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00092037371807" Sb1="0.000565351849751" b0="0.017737833436" b1="0.987803212898"/>
+    <mse>
+     6.09353631879e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00102973450572" Sb1="0.000632375223267" b0="0.0183074561826" b1="0.988253626872"/>
+    <mse>
+     5.72639586799e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00108593362877" Sb1="0.000666874918275" b0="0.0178334504404" b1="0.988271774367"/>
+    <mse>
+     5.6781609506e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000874907383535" Sb1="0.000537451356103" b0="-0.0236573507262" b1="1.00085593862"/>
+    <mse>
+     0.000501903869083
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000864706008538" Sb1="0.000531184646996" b0="-0.0232420980874" b1="1.00088033456"/>
+    <mse>
+     0.000481882143763
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000535817654891" Sb1="0.000329150282509" b0="-0.0241849207568" b1="1.0013611773"/>
+    <mse>
+     0.000491450450336
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00280020856236" Sb1="0.00172015444035" b0="0.839678852582" b1="0.435216998879"/>
+    <mse>
+     0.127658772273
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00139244039837" Sb1="0.000855369332158" b0="0.785006172387" b1="0.472185966432"/>
+    <mse>
+     0.111482785165
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00109250072529" Sb1="0.000671117855298" b0="0.740217695742" b1="0.502342386543"/>
+    <mse>
+     0.0991061584499
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="3">
+  <configuration configuration="both" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00125357735534" Sb1="0.000770066522199" b0="0.0172120044727" b1="0.988252466048"/>
+    <mse>
+     5.75041547842e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00130312798547" Sb1="0.000800505303743" b0="0.0166172315987" b1="0.988901011492"/>
+    <mse>
+     5.15829000776e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000894315392091" Sb1="0.000549373358395" b0="0.0159403305712" b1="0.98922523417"/>
+    <mse>
+     4.75739563808e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00103011458565" Sb1="0.000632158058183" b0="0.0209163547127" b1="0.987342191284"/>
+    <mse>
+     6.89310138056e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00115873008208" Sb1="0.00071167134244" b0="0.0204921279023" b1="0.987507009722"/>
+    <mse>
+     6.72711350471e-05
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00124883813966" Sb1="0.000766772107931" b0="0.0217690991388" b1="0.986531381027"/>
+    <mse>
+     7.69357507887e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000937512748218" Sb1="0.000575909428719" b0="-0.0209330066409" b1="1.00130220943"/>
+    <mse>
+     0.000362101045494
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000663649380627" Sb1="0.000407676530767" b0="-0.0193115584666" b1="1.00053536588"/>
+    <mse>
+     0.000343277897116
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000562869500058" Sb1="0.000345767934949" b0="-0.0212229107801" b1="1.00168290837"/>
+    <mse>
+     0.000351198977492
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000949064621346" Sb1="0.000583005764233" b0="0.781842139461" b1="0.476303615001"/>
+    <mse>
+     0.109718093142
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00247595091705" Sb1="0.00152096456433" b0="0.828971767141" b1="0.444640481798"/>
+    <mse>
+     0.123394550456
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.00106624493718" Sb1="0.000654989055592" b0="0.746788467764" b1="0.500158568952"/>
+    <mse>
+     0.0999469696816
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+ <chip id="2">
+  <configuration configuration="both" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000860493280173" Sb1="0.00052859678992" b0="0.0293821072546" b1="0.988994580451"/>
+    <mse>
+     0.000215192903906
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000961952809724" Sb1="0.000590922893391" b0="0.0298513292389" b1="0.988601998525"/>
+    <mse>
+     0.000215895717188
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000986983601368" Sb1="0.000606299150683" b0="0.0307326888968" b1="0.988046752812"/>
+    <mse>
+     0.00022238755542
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="both-manual" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00127813176304" Sb1="0.000755156563636" b0="0.0305579492548" b1="0.987055499608"/>
+    <mse>
+     0.000165570825372
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000984422161604" Sb1="0.000604947894613" b0="0.0307950668743" b1="0.98758263985"/>
+    <mse>
+     0.000211173823479
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00116513398021" Sb1="0.000715400589265" b0="0.0304098889842" b1="0.987822883621"/>
+    <mse>
+     0.000208372796948
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="sigdel" type="dc">
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.000859806233053" Sb1="0.000528174748826" b0="-0.00856172192774" b1="1.00159522451"/>
+    <mse>
+     4.00773260346e-05
+    </mse>
+   </measurement>
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000677089519586" Sb1="0.000415933008567" b0="-0.00824164702439" b1="1.00156444819"/>
+    <mse>
+     3.63525263511e-05
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.000694837313212" Sb1="0.000426835363669" b0="-0.00809469237879" b1="1.00152267478"/>
+    <mse>
+     3.53472973333e-05
+    </mse>
+   </measurement>
+  </configuration>
+  <configuration configuration="preamp" type="dc">
+   <measurement fs="32" gain="1" sign="+">
+    <fit Sb0="0.000977977321128" Sb1="0.0006007666946" b0="0.746213016527" b1="0.500383036424"/>
+    <mse>
+     0.0998584631259
+    </mse>
+   </measurement>
+   <measurement fs="256" gain="1" sign="+">
+    <fit Sb0="0.00264749511776" Sb1="0.00162634332602" b0="0.833252239974" b1="0.441802639717"/>
+    <mse>
+     0.124659591506
+    </mse>
+   </measurement>
+   <measurement fs="96" gain="1" sign="+">
+    <fit Sb0="0.00119812977693" Sb1="0.000736005273557" b0="0.784143289707" b1="0.474884498831"/>
+    <mse>
+     0.110312926603
+    </mse>
+   </measurement>
+  </configuration>
+ </chip>
+</chips>

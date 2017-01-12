@@ -3,8 +3,8 @@ from evaluation import dc_evaluation, ac_evaluation
 
 
 if __name__ == '__main__':
-    soup = BeautifulSoup('<chips />', 'xml')
-    #soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
+    #soup = BeautifulSoup('<chips />', 'xml')
+    soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
     #dc_evaluation.evaluate(soup)
     ac_evaluation.evaluate(soup)
