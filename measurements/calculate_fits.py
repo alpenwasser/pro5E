@@ -65,24 +65,8 @@ def calculate_dc_linearities(soup_in, soup_out):
             plt.plot(expected, model)
             plt.show()
 
-        mse_node.string = str(mse(expected, measured))
+        mse_node.attrs['mse'] = str(mse(expected, measured))
 
-
-def tra(soup):
-    pair = list()
-    for chip_node in soup.chips.find_all('chip'):
-        for configuration_node in chip_node.find_all('configuration', configuration='preamp', type='dc'):
-            for measurement_node in configuration_node.find_all('measurement'):
-                for tag in measurement_node:
-                    if isinstance(tag, element.NavigableString):
-                        continue
-                    pair.append(tag)
-                    if len(pair) == 2:
-                        fit = pair[0]
-                        value = pair[1]
-                        fit.extract()
-                        value.append(fit)
-                        pair = list()
 
 def sanity_check(soup):
     count = 0
@@ -90,13 +74,14 @@ def sanity_check(soup):
         for configuration_node in chip_node.find_all('configuration', configuration='preamp', type='dc'):
             for measurement_node in configuration_node.find_all('measurement'):
                 count += len(measurement_node.find_all('value'))
-    print(count)
+    print('There are {} preamp data points'.format(count))
+
 
 if __name__ == '__main__':
     soup_in = BeautifulSoup(open('processed_measurements_dc.xml', 'r'), 'xml')
     soup_out = BeautifulSoup('<chips/>', 'xml')
 
-    #calculate_dc_linearities(soup_in, soup_out)
     sanity_check(soup_in)
+    calculate_dc_linearities(soup_in, soup_out)
 
-    #open('fitted_data.xml', 'wb').write(soup_out.prettify("utf-8"))
+    open('fitted_data.xml', 'wb').write(soup_out.prettify("utf-8"))

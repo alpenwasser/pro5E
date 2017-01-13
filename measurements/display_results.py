@@ -10,7 +10,7 @@ def get_linearity_results(soup, configuration, fs):
             for measurement_node in configuration_node.find_all('measurement', fs=str(fs), gain='1', sign='+'):
                 offset = (float(measurement_node.fit['b0']), float(measurement_node.fit['Sb0']))
                 slope = (float(measurement_node.fit['b1']), float(measurement_node.fit['Sb1']))
-                mse = float(measurement_node.mse.string)
+                mse = float(measurement_node.mse['mse'])
 
                 yield slope, offset, mse
 
