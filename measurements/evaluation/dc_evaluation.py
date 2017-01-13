@@ -67,19 +67,25 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
+                if measurement_node.find('value', input=current_dc):
+                    continue
+
                 gain_is_positive = True if current_sign == '+' else False
                 measured_dc, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2 = \
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
 
+                value_node = soup.new_tag('value', input=current_dc,
+                                          output=measured_dc)
+                measurement_node.append(value_node)
+
                 fit_node = soup.new_tag('fit', amp=amp, amp_offset=amp_offset, period=period, t_offset=t_offset,
                                         duty_cycle=duty_cycle, tau1=tau1, tau2=tau2)
-                measurement_node.append(fit_node)
+                value_node.append(fit_node)
             else:
                 measured_dc = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
-
-            value_node = soup.new_tag('value', input=current_dc,
-                                               output=measured_dc)
-            measurement_node.append(value_node)
+                value_node = soup.new_tag('value', input=current_dc,
+                                          output=measured_dc)
+                measurement_node.append(value_node)
 
 
 def estimate_initial_parameters(xdata, ydata):
@@ -136,11 +142,9 @@ def estimate_initial_parameters(xdata, ydata):
 
 def fit_preamp_data(xdata, ydata):
     p0 = estimate_initial_parameters(xdata, ydata)
-    print(p0)
     xdata = xdata[::10]  # otherwise it takes too long
     ydata = ydata[::10]
     popt, pcov = curve_fit(preamp_curve, xdata, ydata, p0=p0)
-    print(popt)
     return popt
 
 

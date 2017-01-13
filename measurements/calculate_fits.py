@@ -1,5 +1,6 @@
 import numpy as np
-from bs4 import BeautifulSoup
+from matplotlib import pyplot as plt
+from bs4 import BeautifulSoup, element
 from evaluation.fit_functions import linear_function
 from scipy.optimize import curve_fit
 
@@ -9,9 +10,9 @@ def mse(a, b):
 
 
 def iterate_dc_measurements_for_linearity(soup):
-    for measurement_node in soup.chips.find_all('chip'):
-        chip_id = measurement_node['id']
-        for configuration_node in measurement_node.find_all('configuration', type='dc'):
+    for chip_node in soup.chips.find_all('chip'):
+        chip_id = chip_node['id']
+        for configuration_node in chip_node.find_all('configuration', type='dc'):
             configuration = configuration_node['configuration']
             for measurement_node in configuration_node.find_all('measurement', gain='1', sign='+'):
                 fs = measurement_node['fs']
@@ -58,12 +59,44 @@ def calculate_dc_linearities(soup_in, soup_out):
         for n, standard_deviation in enumerate(perr):
             fit_node.attrs['Sb{}'.format(n)] = standard_deviation
 
+        if False:
+            model = linear_function(expected, *popt)
+            plt.scatter(expected, measured)
+            plt.plot(expected, model)
+            plt.show()
+
         mse_node.string = str(mse(expected, measured))
 
+
+def tra(soup):
+    pair = list()
+    for chip_node in soup.chips.find_all('chip'):
+        for configuration_node in chip_node.find_all('configuration', configuration='preamp', type='dc'):
+            for measurement_node in configuration_node.find_all('measurement'):
+                for tag in measurement_node:
+                    if isinstance(tag, element.NavigableString):
+                        continue
+                    pair.append(tag)
+                    if len(pair) == 2:
+                        fit = pair[0]
+                        value = pair[1]
+                        fit.extract()
+                        value.append(fit)
+                        pair = list()
+
+def sanity_check(soup):
+    count = 0
+    for chip_node in soup.chips.find_all('chip'):
+        for configuration_node in chip_node.find_all('configuration', configuration='preamp', type='dc'):
+            for measurement_node in configuration_node.find_all('measurement'):
+                count += len(measurement_node.find_all('value'))
+    print(count)
+
 if __name__ == '__main__':
-    soup_in = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
+    soup_in = BeautifulSoup(open('processed_measurements_dc.xml', 'r'), 'xml')
     soup_out = BeautifulSoup('<chips/>', 'xml')
 
-    calculate_dc_linearities(soup_in, soup_out)
+    #calculate_dc_linearities(soup_in, soup_out)
+    sanity_check(soup_in)
 
-    open('fitted_data.xml', 'wb').write(soup_out.prettify("utf-8"))
+    #open('fitted_data.xml', 'wb').write(soup_out.prettify("utf-8"))
