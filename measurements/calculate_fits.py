@@ -1,6 +1,6 @@
 import numpy as np
 from bs4 import BeautifulSoup
-from matplotlib import pyplot as plt
+from evaluation.fit_functions import linear_function
 from scipy.optimize import curve_fit
 
 
@@ -21,9 +21,6 @@ def iterate_dc_measurements_for_linearity(soup):
 
 
 def calculate_dc_linearities(soup_in, soup_out):
-    def linear_function(x, b0, b1):
-        return b1*x + b0
-
     for chip_id, configuration, fs, expected, measured in iterate_dc_measurements_for_linearity(soup_in):
         print('Evaluation DC linearity: chip_id={}, configuration={}, fs={}'.format(
             chip_id, configuration, fs

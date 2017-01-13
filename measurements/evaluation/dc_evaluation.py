@@ -1,4 +1,7 @@
-from matplotlib.pyplot import *
+from matplotlib import pyplot as plt
+from evaluation.savitzky_golay import savitzky_golay
+from scipy.optimize import curve_fit
+from evaluation.fit_functions import preamp_curve
 import deltasigma as ds
 import numpy as np
 import os
@@ -6,7 +9,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in ['preamp']:  # ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -64,7 +67,13 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
-                measured_dc = str(oscilloscope_to_dc(os.path.join(chip_dir_name, file)))
+                gain_is_positive = True if current_sign == '+' else False
+                measured_dc, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2 = \
+                    parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
+
+                fit_node = soup.new_tag('fit', amp=amp, amp_offset=amp_offset, period=period, t_offset=t_offset,
+                                        duty_cycle=duty_cycle, tau1=tau1, tau2=tau2)
+                measurement_node.append(fit_node)
             else:
                 measured_dc = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
 
@@ -73,13 +82,97 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
             measurement_node.append(value_node)
 
 
-def oscilloscope_to_dc(file_name):
+def estimate_initial_parameters(xdata, ydata):
+    # Smooth data a bit. Window size 201, 3rd degree polynomial
+    ydata_smooth = savitzky_golay(ydata, 201, 3)
+
+    # use a schmitt trigger type of approach to determine the transition points
+    noise_amp = 0.05
+    mid = np.mean(ydata_smooth)
+    amp_offset = np.min(ydata_smooth)
+    amp = np.max(ydata_smooth) - amp_offset
+    low_threshold = mid - amp*noise_amp
+    high_threshold = mid + amp*noise_amp
+    low_transitions = list()
+    high_transitions = list()
+    initial_state = 0 if ydata_smooth[0] < mid else 1
+    state = initial_state
+    for x, y in zip(xdata, ydata_smooth):
+        if state == 0:
+            if y > high_threshold:
+                state = 1
+                high_transitions.append(x)
+        else:
+            if y < low_threshold:
+                state = 0
+                low_transitions.append(x)
+
+    # average of differences between every transition point is a good estimate for period
+    diffs = [t2 - t1 for t1, t2 in zip(high_transitions[:-1], high_transitions[1:])]
+    diffs += [t2 - t1 for t1, t2 in zip(low_transitions[:-1], low_transitions[1:])]
+    period = np.mean(diffs)
+
+    duty_cycles = list()
+    for t1, t2 in zip(high_transitions[:-1], high_transitions[1:]):
+        for t in low_transitions:
+            if t1 < t < t2:
+                duty_cycles.append((t - t1) / (t2 - t1))
+    for t1, t2 in zip(low_transitions[:-1], low_transitions[1:]):
+        for t in high_transitions:
+            if t1 < t < t2:
+                duty_cycles.append((t2 - t) / (t2 - t1))
+    duty_cycle = np.mean(duty_cycles)
+
+    # and thus my inner bowels spoketh: "this value feeleth correct"
+    tau = period * 0.1
+
+    if initial_state == 0:
+        t_offset = 0
+    else:
+        t_offset = period / 2
+
+    return amp, amp_offset, period, t_offset, duty_cycle, tau, tau
+
+
+def fit_preamp_data(xdata, ydata):
+    p0 = estimate_initial_parameters(xdata, ydata)
+    print(p0)
+    xdata = xdata[::10]  # otherwise it takes too long
+    ydata = ydata[::10]
+    popt, pcov = curve_fit(preamp_curve, xdata, ydata, p0=p0)
+    print(popt)
+    return popt
+
+
+def parse_preamp_data(file_name, expected_dc, gain_is_positive):
     with open(file_name, 'r') as f:
         # data begins at line 6
         for i in range(5):
             f.readline()
+        data = [line.split(',') for line in f]
+        xdata = np.array([float(x[0]) for x in data])
+        ydata = np.array([float(x[1]) for x in data])
 
-        return np.mean([float(line.split(',')[1]) for line in f])
+        # Fit data, this gives us lots of useful information and makes it easier to extract certain data
+        popt = fit_preamp_data(xdata, ydata)
+        ydata_model = np.array(preamp_curve(xdata, *popt))
+
+        # The measured DC value is either above or below the 1.5V mark.
+        vref = 1.5
+        if not gain_is_positive:
+            expected_dc = vref - expected_dc
+        if expected_dc > vref:
+            measured_dc = np.max(ydata_model)
+        else:
+            measured_dc = np.min(ydata_model)
+
+        if False:
+            plt.plot(xdata, ydata)
+            plt.plot(xdata, ydata_model)
+            plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
+            plt.show()
+
+        return [str(measured_dc)] + [str(x) for x in popt]
 
 
 def bit_stream_to_dc(file_name):
