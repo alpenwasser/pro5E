@@ -9,4 +9,4 @@ if __name__ == '__main__':
     dc_evaluation.evaluate(soup)
     #ac_evaluation.evaluate(soup)
 
-    open('processed_measurements_dc.xml', 'wb').write(soup.prettify("utf-8"))
+    open('processed_measurements_out.xml', 'wb').write(soup.prettify("utf-8"))

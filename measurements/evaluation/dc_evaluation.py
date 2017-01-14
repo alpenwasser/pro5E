@@ -9,7 +9,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ['preamp']:  # ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -67,6 +67,7 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
+                # Skip if already done
                 if measurement_node.find('value', input=current_dc):
                     continue
 
@@ -74,18 +75,26 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 measured_dc, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2 = \
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
 
-                value_node = soup.new_tag('value', input=current_dc,
-                                          output=measured_dc)
+                value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
                 measurement_node.append(value_node)
 
                 fit_node = soup.new_tag('fit', amp=amp, amp_offset=amp_offset, period=period, t_offset=t_offset,
                                         duty_cycle=duty_cycle, tau1=tau1, tau2=tau2)
                 value_node.append(fit_node)
             else:
-                measured_dc = str(bit_stream_to_dc(os.path.join(chip_dir_name, file)))
-                value_node = soup.new_tag('value', input=current_dc,
-                                          output=measured_dc)
-                measurement_node.append(value_node)
+                measured_dc, bins, bin_edges, noise_amplitude = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
+
+                # Skip if already done
+                value_node = measurement_node.find('value', input=current_dc)
+                if value_node is None:
+                    value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
+                    measurement_node.append(value_node)
+
+                histogram_node = soup.new_tag('histogram', bins=bins, bin_edges=bin_edges)
+                value_node.append(histogram_node)
+
+                noise_node = soup.new_tag('noise', amplitude=noise_amplitude)
+                value_node.append(noise_node)
 
 
 def estimate_initial_parameters(xdata, ydata):
@@ -179,7 +188,7 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
         return [str(measured_dc)] + [str(x) for x in popt]
 
 
-def bit_stream_to_dc(file_name):
+def parse_sigdel_and_both(file_name):
     # === GLOBALS ============================================================================
     Vmin = 0.0                              # Minimum absolute possible input
     Vmax = 3.0                              # Maximum absolute possible input
@@ -208,4 +217,13 @@ def bit_stream_to_dc(file_name):
     t_sdm_cic = t_sdm[cic["length"]:len(t_sdm):cic["length"]]
 
     # first few points are zero, omit them
-    return np.median(s_sdm_cic[5:])
+    measured_dc = np.median(s_sdm_cic[5:])
+
+    # histogram
+    hist, bin_edges = np.histogram(s_sdm_cic, bins=40)
+    hist = ','.join([str(x) for x in hist])
+    bin_edges = ','.join([str(x) for x in bin_edges])
+
+    noise_amplitude = np.max(s_sdm_cic[10:]) - np.min(s_sdm_cic[10:])
+
+    return measured_dc, hist, bin_edges, noise_amplitude
