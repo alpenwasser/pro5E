@@ -65,12 +65,12 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 measurement_node = soup.new_tag('measurement', fs=current_fs, gain=current_gain, sign=current_sign)
                 configuration_node.append(measurement_node)
 
+            # Skip if already done
+            if measurement_node.find('value', input=current_dc):
+                continue
+
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
-                # Skip if already done
-                if measurement_node.find('value', input=current_dc):
-                    continue
-
                 gain_is_positive = True if current_sign == '+' else False
                 measured_dc, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2 = \
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
@@ -82,19 +82,16 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                                         duty_cycle=duty_cycle, tau1=tau1, tau2=tau2)
                 value_node.append(fit_node)
             else:
-                measured_dc, bins, bin_edges, noise_amplitude = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
-
-                # Skip if already done
-                value_node = measurement_node.find('value', input=current_dc)
-                if value_node is None:
-                    value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
-                    measurement_node.append(value_node)
+                measured_dc, bins, bin_edges, noise_amplitude, std = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
 
                 histogram_node = soup.new_tag('histogram', bins=bins, bin_edges=bin_edges)
                 value_node.append(histogram_node)
 
                 noise_node = soup.new_tag('noise', amplitude=noise_amplitude)
                 value_node.append(noise_node)
+
+                std_node = soup.new_tag('std', std=std)
+                value_node.append(std_node)
 
 
 def estimate_initial_parameters(xdata, ydata):
@@ -226,4 +223,6 @@ def parse_sigdel_and_both(file_name):
 
     noise_amplitude = np.max(s_sdm_cic[10:]) - np.min(s_sdm_cic[10:])
 
-    return measured_dc, hist, bin_edges, noise_amplitude
+    std = np.std(s_sdm_cic[10:])
+
+    return measured_dc, hist, bin_edges, noise_amplitude, std
