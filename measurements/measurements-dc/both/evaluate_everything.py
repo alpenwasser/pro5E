@@ -1,4 +1,4 @@
-from evaluation import dc_linear
+from evaluation import dc_evaluation
 import json
 import numpy as np
 from matplotlib import pyplot as plt
@@ -33,5 +33,5 @@ def display_results():
 
 if __name__ == '__main__':
     if RECALCULATE_DC:
-        dc_linear.evaluate()
+        dc_evaluation.evaluate()
     display_results()

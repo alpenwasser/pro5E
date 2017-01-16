@@ -20,8 +20,8 @@ T_SaH = Ts*512                          # Input signal sampling period (S/H-bloc
 Nbit  = 12                              # Bit accuracy (for LSB/2 plot)
 NORM_FACT = Vmax                        # Signals are always plottet normalized to one times this factor
 cic = {
-    "length":  16,                      # Decimation (CIC) filter length
-    "lengths": [16, 32, 64, 128, 256],  # all possible filter lengths
+    "length":  128,                      # Decimation (CIC) filter length
+    "lengths": [16, 48, 32, 64, 128, 256],  # all possible filter lengths
     "order": 3                          # Decimation filter order
 }
 
@@ -51,5 +51,10 @@ ax_out.set_ylabel("Voltage (V)")
 ax_out.legend(loc='upper left')
 #ax_out.set_ylim([0.4,0.6])
 fig_out.tight_layout()
-#plt.show()
-fig_out.savefig(file_name.replace('txt','svg'))
+plt.show()
+#fig_out.savefig(file_name.replace('txt','svg'))
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(np.log(np.abs(np.fft.fft(s_sdm_cic))))
+plt.show()
