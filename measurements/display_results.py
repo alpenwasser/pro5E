@@ -81,13 +81,30 @@ def display_dc_slope_results(soup):
 def display_dc_offset_results(soup):
     fig = plt.figure('test')
     for subplot_id, configuration in enumerate(('both', 'both-manual', 'sigdel', 'preamp')):
-        ax = fig.add_subplot(4, 1, subplot_id + 1)
-        for color, fs in (('b', 32), ('r', 96), ('g', 256)):
-            x = 0
-            for slope, offset, mse in get_linearity_results(soup, configuration, fs):
-                ax.scatter(x, offset[0], c=color)
-                x += 1
-        ax.set_title('Offsets for {}'.format(configuration))
+        ax = fig.add_subplot(4, 2, subplot_id * 2 + 1)
+        ax2 = fig.add_subplot(4, 2, subplot_id * 2 + 2)
+        offsets_avg = list()
+        offsets_std = list()
+        sample_frequencies = np.array((32, 96, 256))
+        for fs_id, fs in enumerate(sample_frequencies):
+            offsets = [offset for input_voltage, slope, offset, mse in get_linearity_results(soup, configuration, fs)]
+            offsets = list(list(x) for x in zip(*offsets))
+            avg, std = avg_std(offsets[0], offsets[1])
+            offsets_avg.append(avg)
+            offsets_std.append(std)
+
+            # Offset fs data slightly from one another so they appear in "chunks" in the plot
+            xdata = np.array(range(len(offsets[0]))) * 1.1 - 0.05 + fs_id * 0.2 - 0.1
+            ax2.errorbar(xdata, offsets[0], yerr=offsets[1], fmt='o')
+
+        popt, pcov = curve_fit(linear_function, sample_frequencies, offsets_avg, sigma=offsets_std, absolute_sigma=True)
+        perr = np.sqrt(np.diag(pcov))
+        print('avg_std(): {0:.4f} +/- {1:.4f}'.format(*avg_std(offsets_avg, offsets_std)))
+        print('perr: {0:.5f} +/- {1:.8f}'.format(*perr))
+
+        ax.errorbar(sample_frequencies, offsets_avg, yerr=offsets_std, fmt='o')
+        ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
+        ax.set_title('offsets for {}'.format(configuration))
     plt.show()
 
 
@@ -121,5 +138,5 @@ if __name__ == '__main__':
 
     #display_dc_mse_results(fitted_soup)
     display_dc_slope_results(fitted_soup)
-    #display_dc_offset_results(fitted_soup)
+    display_dc_offset_results(fitted_soup)
     #display_noise_amplitude_and_standard_deviation(fitted_soup)
