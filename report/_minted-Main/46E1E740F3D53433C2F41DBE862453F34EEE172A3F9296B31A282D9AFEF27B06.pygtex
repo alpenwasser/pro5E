@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{CHIP}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}chip01\PYGZsq{}}
+\PYG{n+nv}{SIGN}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}+\PYGZsq{}}
+\PYG{n+nv}{CHANNEL}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}3\PYGZsq{}}
+\PYG{n+nv}{GAIN}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}1\PYGZsq{}}
+\PYG{n+nv}{DATA\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}data/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CHIP}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Gain}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{SIGN}\PYG{l+s+si}{\PYGZcb{}}\PYG{k}{\PYGZdl{}(}\PYG{n+nb}{printf} \PYG{l+s+s1}{\PYGZsq{}\PYGZpc{}02d\PYGZsq{}} \PYG{n+nv}{\PYGZdl{}GAIN}\PYG{k}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nv}{RESET}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}0\PYGZsq{}} \PYG{c+c1}{\PYGZsh{} 1: reset and initialize the oscilloscope}
+\end{Verbatim}

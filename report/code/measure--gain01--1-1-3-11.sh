@@ -25,7 +25,6 @@
 # The following  python scripts must  be placed in  the same
 # directory as this script:
 #
-# resetWaveRunner.py       # reset the oscilloscope
 # initWaveRunner.py        # initialize the oscilloscope with sane settings
 # 33120A.py                # control the function generators for VIN and CLK
 # configWaveRunner.py       # set various parameters on the osccilloscope
@@ -106,7 +105,6 @@ EOF
 # Initialize the osccilloscope
 if [[ "$RESET" -eq 1 ]];then
     printf 'Initializing oscilloscope...\nOscilloscope identity string is:\n'
-    ./resetWaveRunner.py
     ./initWaveRunner.py
     printf '\n'
 fi

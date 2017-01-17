@@ -128,8 +128,8 @@ applies to both types of measurements.
 }
 
 % ---------------------------------------------------------------------------- %
-\section{Configuration}
-\label{sec:hwList}
+\section{Assembly}
+\label{sec:assembly}
 % ---------------------------------------------------------------------------- %
 
 This  section  describes  how  the  hardware listed  above  is  connected  and
@@ -154,10 +154,23 @@ configured. A   schematic   of  the   complete   test   bench  is   shown   in
 \label{subsec:testBoard}
 % ---------------------------------------------------------------------------- %
 
+The test board provides a platform for easy operation and configuration of the
+sensor chip. It has  inputs for the various supply voltages,  a socket for the
+chip itself  and outputs various signals. The  full list of the  chip's pinout
+can be found in table \ref{tab:topLevelPins}.
+
 \todo[inline]{DIP Switches}
 \todo[inline]{Socket operation}
 \todo[inline]{plug connections}
 \todo[inline]{safety precautions}
+\todo[inline]{schematic in appendix}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/pcb/pcbOverview}
+    \caption{The test board.}
+    \label{fig:testBoard}
+\end{figure}
 
 \begin{table}
     \centering
@@ -280,8 +293,29 @@ operator's manual.
 \label{subsec:34465A}
 % ---------------------------------------------------------------------------- %
 
+Three \emph{Keysight 34465A} multimeters are used. One for monitoring the bias
+current, a second for monitoring the voltage for the input signal, and a third
+one for monitoring the reference voltage (analog ground).
+
+The wiring connections are depicted in figure \ref{fig:multimeterConnections}.
+
+\begin{figure}
+    \centering
+    \missingfigure{multimeters}
+    \caption{Multimeter connections}
+    \label{fig:multimeterConnections}
+\end{figure}
+
+No  further  special  configuration  is  needed  on  the  multimeters  besides
+setting  them  to   the  correct  measurement  modes   (voltage  and  current,
+respectively). Care must be  taken though when setting the range  for the bias
+current measurement. \SI{120}{\micro\ampere} is right  on the edge between two
+measurement ranges (\si{\micro\ampere}  and \si{\milli\ampere}, respectively),
+and the measurement results between these two ranges are not identical. In our
+measurements, the device is set to the millivolt range.
+
 \todo[inline]{reference to user manual}
-\todo[inline]{measurement modes, cable connections}
+
 
 % ---------------------------------------------------------------------------- %
 \subsection{Oscilloscope}
@@ -292,6 +326,261 @@ operator's manual.
 \todo[inline]{configuration}
 \todo[inline]{script}
 \todo[inline]{quirks}
+
+
+The oscilloscope  is used for  monitoring the clock,  the bit stream,  and for
+acquiring measurment data for the preamp via the test output pin.
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{Clock and Bit Stream}
+\label{subsubsec:clockBitstream}
+% ---------------------------------------------------------------------------- %
+
+Measuring clock  and bit  stream is straightforward: The  oscilloscopes probes
+are  connected  to the  corresponding  pins  on  the  test board  as  depicted
+in figures  \ref{fig:clockBitStreamProbes} and \ref{fig:clockBitStreamScreen},
+respectively.
+
+\begin{figure}
+    \centering
+    \missingfigure{probe connections}
+    \caption{Clock and bit stream measurement}
+    \label{fig:clockBitStreamProbes}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \missingfigure{Clock and bit stream, screenshot}
+    \caption{Clock and bit stream measurement, screenshot}
+    \label{fig:clockBitStreamScreen}
+\end{figure}
+
+If  the   clock  and   bit  stream   do  not  look   as  depicted   in  figure
+\ref{fig:clockBitStreamScreen}, common  errors are a  disabled sample-and-hold
+circuit,  an  incorrect clock  voltage  (particularly  its  DC offset)  or  an
+incorrect bias current.
+
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{Analog Measurements of Preamp}
+\label{subsubsec:analogMeasurements}
+% ---------------------------------------------------------------------------- %
+
+Performing  analog measurements  of  the pre-amplifier  is  a noticeably  more
+involved process. A measurement  probe is connected to the test  output pin on
+the test board as shown in figure \ref{fig:probePreamp}.
+
+\begin{figure}
+    \centering
+    \missingfigure{Probe connection preamp measurement}
+    \caption{Probe connection preamp measurement}
+    \label{fig:probePreamp}
+\end{figure}
+
+Besides the  oscilloscope itself,  a laptop  is used  to remotely  control the
+oscilloscope and  the two function generators  (one for the clock  and for the
+input signal, respectively).
+
+The  connection  between  the  Oscilloscope  and  the  laptop  is  established
+via  ethernet, with  each  device being  assigned a  fixed  IP. The laptop  is
+configured  to match  the  oscilloscope's network  settings. How to  configure
+the  laptop  is  outline  in Section  \ref{subsec:laptop},  starting  on  page
+\pageref{subsec:laptop}.
+
+
+After  having  successfully  established   a  connection  between  laptop  and
+oscilloscope, a  collection of  three scripts  is used  to configure  the test
+setup and acquire the measurement data:
+
+\begin{itemize}\tightlist
+    \item 
+        A shell wrapper script, 
+    \item
+        \code{33120A.py}: For controlling the waveform generators (see section
+        \ref{subsec:33120A})
+    \item 
+        \code{initWaveRunner.py}: resets and initializes the oscilloscope with
+        a given configuration.
+    \item 
+        \code{configWaveRunner.py}:   configures  various   settings  on   the
+        oscilloscope.
+    \item 
+        \code{acquireWaveRunnerData.py}:   performs   measurements   via   the
+        oscilloscope.
+\end{itemize}
+
+
+The  python  scripts   are  mostly  self-explanatory  with   aid  of  LeCroy's
+documentation   found  in   \cite{ref:WR:opMan},  \cite{ref:WR:gettingStarted}
+and    \cite{ref:WR:remoteControl}. A   detailled    explanation   of    their
+implementation   will   therefore   be   ommitted,   and   instead   a   brief
+outline   of   each   script's   purpose  and   usage   is   provided.    They
+can    be    found    in    Appendices    \ref{sec:app:waveRunner:initialize},
+\ref{sec:app:waveRunner:config} and \ref{sec:app:waveRunner:acquire}, starting
+on page \pageref{sec:app:waveRunner:initialize}.
+
+The initialization script  resets the oscilloscope and  configures the trigger
+channel, trigger level, trigger flank,  time division, which traces to display
+and sets the DC coupling of the channels to a resistance of \SI{1}{\mega\ohm}.
+
+\code{configWaveRunner.py} is used  to set the horizontal  (time) and vertical
+(voltage) divisions on the oscilloscope,  as well as the vertical offset. This
+is necessary because the oscilloscope will only store measurement data for the
+section of any given trace which is being shown on the display. Any meaurement
+points which  are not on  the oscilloscope's display will  not be stored  in a
+measurement file. Although this is a  bit cumbersome and counter-intuitive, it
+does have  the advantage that  one can see  immediately if something  has been
+incorrectly configured during  the measurement process, as  the display output
+will then be incorrect.
+
+\code{acquireWaveRunnerData.py}  executes   the  actual  measurement   on  the
+oscilloscope  for a  given channel. The  measurement results  are stored  in a
+text-file, which is then downloaded to the laptop.
+
+The entire process is controlled via  a shell wrapper script. This script will
+be explained  in more  detail in the  following paragraphs. There  are various
+versions of  the script for  different measurements,  but they all  follow the
+same outline.
+
+For each measurement run, the chip  number, the gain (sign and absolute value)
+and the channel which  is connected to the test output on  the test board must
+be set.  Furthermore, the target directory  in which the measurement data will
+be stored  on the PC is  set according to  the chip number and  gain settings.
+There  is  also  an  optional  flag  for  resetting  the  oscilloscope  before
+performing the measurements,  if so desired. In the following  example, a gain
+of \code{+1} will be measured for chip number 1:
+
+\begin{minted}{shell}
+CHIP='chip01'
+SIGN='+'
+CHANNEL='3'
+GAIN='1'
+DATA_DIR="data/${CHIP}Gain${SIGN}$(printf '%02d' $GAIN)"
+RESET='0' # 1: reset and initialize the oscilloscope
+\end{minted}
+
+Before actually performing any measurements,  the script will display a series
+of  messages to  the user,  accounting  for a  few quirks  of the  setup. This
+minimizes user error and ensures that time is not wasted on measurements being
+useless due to erroneous configurations.
+
+The first message concerns the number  of sample points which the oscilloscope
+is set to acquire. This  must be set to \num{500} kilo  samples per second, as
+shown in  Figure \ref{fig:kilosamples}. If this  is not done,  the measurement
+data will show aliasing, resulting in useless data.
+
+\begin{figure}
+    \centering
+    \missingfigure{kilosamples}
+    \caption{Set sample rate on oscilloscope}
+    \label{fig:kilosamples}
+\end{figure}
+
+The  next  two  messages  concern  the  measurement  files  which  are  stored
+on   the  oscilloscope.    They   follow   a  naming   scheme   of  the   form
+\code{C<ChannelNo>Trace<FileNo>.txt},   starting   at  file   zero   (example:
+\code{C2Trace00002.txt}  for the  third  file for  channel 2). Each  channel's
+counter is independent of the  other channels' counters. The counter for these
+file names  will keep incrementing,  regardless of any remote  commands, until
+they are manually reset via the Oscilloscope's graphical user interface.
+
+To avoid needing to manually reset  this counter between each measurement, the
+script maintains  its own  counter to  match the  oscilloscope's. Between each
+measurement  run (i.e.  each script  execution), manual  intervention via  the
+oscilloscope's GUI is necessary to reset the oscrilloscope's counter, as shown
+in figure \ref{fig:fileCounterReset}.
+
+\begin{figure}
+    \centering
+    \missingfigure{Counter Reset}
+    \caption{Resetting the file counter on the oscilloscope}
+    \label{fig:fileCounterReset}
+\end{figure}
+
+The  next   step  in   the  script's  execution   is  performing   the  actual
+measurements. Various  settings  are  hard-coded  into  the  script  for  this
+purpose. Firstly,  the   appropriate  time   divisions  for   configuring  the
+oscilloscope's display\footnotemark:
+
+\begin{minted}{shell}
+declare -A timeDivs
+timeDivs[32e3]='5'
+timeDivs[96e3]='2.5'
+timeDivs[256e3]='1'
+\end{minted}
+
+\footnotetext{
+    These  values were  obtained by  trial and  error to  generate a  sensible
+    display output.
+}
+
+Additionally, the list of amplitudes to be used for the input voltages:
+
+\begin{minted}{shell}
+declare -a ampls=(0.5 0.7 0.9 1.1 1.3 1.5 1.7 1.9 2.1 2.3 2.5)
+\end{minted}
+
+Each input voltage (including the gain's  sign) is assigned a voltage division
+and a time division for the oscilloscope's display settings\footnotemark:
+
+\begin{minted}{shell}
+declare -A voltDivs
+voltDivs[+0.5]='200'
+voltDivs[+0.7]='200'
+voltDivs[+0.9]='100'
+...
+voltDivs[-2.1]='100'
+voltDivs[-2.3]='200'
+voltDivs[-2.5]='200'
+
+declare -A offsets
+offsets[+0.5]='-1000'
+offsets[+0.7]='-1100'
+offsets[+0.9]='-1200'
+...
+offsets[-2.1]='-1200'
+offsets[-2.3]='-1100'
+offsets[-2.5]='-1000'
+\end{minted}
+
+\footnotetext{
+    Also determined by trial and error.
+}
+
+Now, everything is  ready to perform the measurements, tying  together all the
+scripts and configurations which have been mentioned so far:
+
+\begin{minted}{shell}
+i=0
+mkdir -p "$DATA_DIR"
+for clk in 32e3 96e3 256e3;do
+    ./33120A.py --clock=$clk
+    sleep 0.25 # give the function generator time to settle
+    ./configWaveRunner.py --tdiv=${timeDivs[$clk]}
+
+    # Run through DC ramp
+    for ampl in "${ampls[@]}";do
+        ./33120A.py --voltage="$ampl"
+        sleep 0.25
+        ./configWaveRunner.py \
+            --vdiv=${voltDivs[${SIGN}${ampl}]} \
+            --offset=${offsets[${SIGN}${ampl}]}
+        sleep 2 # Give the oscilloscope time to do configure
+        printf 'Acquiring trace for %s Hz and %s V\n' $clk $ampl
+        ./acquireWaveRunnerData.py \
+            --channel="C${CHANNEL}" \
+            --remotefile="C${CHANNEL}Trace$(printf '%05d' $i).txt" \
+            --localfile="${DATA_DIR}/${CHIP}-gain${SIGN} \
+                $(printf '%02d' ${GAIN})-${fsStrings[$clk]}-${ampl}V.txt"
+        i=$((i+1))
+    done
+done
+\end{minted}
+
+For each  measurement series, one  target directory  is created, in  which one
+file for each clock frequency and  input voltage is generated. These files can
+then be processed as outlined in Chapter \ref{chap:results}.
+
 
 % ---------------------------------------------------------------------------- %
 \subsection{Raspberry Pi}
@@ -309,271 +598,96 @@ operator's manual.
 \label{subsec:laptop}
 % ---------------------------------------------------------------------------- %
 
-\todo[inline]{python scripts}
-\todo[inline]{bash scripts}
-\todo[inline]{LAN Connection}
-\todo[inline]{Network config}
+This section outlines the prerequisites, configuration and usage of a computer
+which is  used to  control the  measurement process. A laptop  is used  in our
+case, but  any computer with  a network  and at least  two USB ports  (for the
+waveform generators) can be used.
 
 
-%% ---------------------------------------------------------------------------- %
-%\section{Hardware Overview}
-%\label{sec:hwOverview}
-%% ---------------------------------------------------------------------------- %
-%
-%The   hardware   consists   of   two  primary   components: The   test   board
-%(\fref{fig:pcbOverview})and a \raspi~ (\fref{fig:raspi}).
-%
-%The test board's purpose is to provide all the necessary circuitry for driving
-%the sensor  IC in a  convenient package. On its  left-hand side, it  has seven
-%industrial plugs  for connecting to  power supplies,  an input signal,  a test
-%output for the preamp as well as ground.
-%
-%At the board's top edge, connections for the externally provided clock and the
-%output signal line can be found.
-%
-%\begin{figure}
-%    \centering
-%    %\includegraphics[width=\textwidth]{images/pcb/pcbOverview.jpeg}
-%    \input{images/pcb/pcbOverview.tex}
-%    \caption{Test board overview with its most commonly used connections labeled}
-%    \label{fig:pcbOverview}
-%\end{figure}
-%
-%\begin{figure}
-%    \centering
-%    \missingfigure{Raspberry Pi}
-%    \caption{The Raspberry Pi used in this setup}
-%    \label{fig:raspi}
-%\end{figure}
-%
-%The chip's top  level pins are listed in  \tref{tab:inputPlugs}. Some of these
-%can  be configured  via an  array of  DIP switches,  located between  the chip
-%socket  and  the  \signal{CLK}  and  \signal{SIGNAL OUT}  plugs  on  the  test
-%board. The most commonly  used among these is the preamp's  gain, which can be
-%set to values between \num{-16}  and \num{+16}. The preamp's sign (positive or
-%negative) is  a dedicated  switch; its  gain's absolute  values are  listed in
-%\tref{tab:dipGain}.
-%
-%\begin{table}
-%    \centering
-%    \caption{Sensor chip toplevel pins}
-%    \label{tab:inputPlugs}
-%    \scriptsize
-%    \sisetup{list-pair-separator = { or }}
-%    \rowcolors{2}{solarized-base3}{white}
-%    \begin{tabular}{>{\fontfamily{jkptt}\selectfont}l>{\fontfamily{jkptt}\selectfont}lp{30mm}lp{30mm}} \\
-%    %\begin{tabular}{>{\fontfamily{lmtt}\selectfont}l>{\fontfamily{lmtt}\selectfont}lp{30mm}lp{30mm}} \\
-%        \toprule
-%        \textnormal{\textsc{Pin \#}} & \textnormal{\textsc{Name}}                  & \textsc{Description} & \textsc{Value} & \textsc{Note} \\
-%        \midrule
-%        39 & vin                     & analog input signal                         & \SIrange{0.5}{2.5}{\volt} & \\
-%        25 & bit\_stream             & digital output signal                       & \SIlist{0;3}{\volt}       & \\
-%        34 & clk                     & clock                                       & \SIlist{0;3}{\volt}       & \\
-%        36 & sdm\_rst                & pulse to reset the $\Sigma\Delta M$         & \SIlist{0;3}{\volt}       & short pulse is enough (min $T_C$) \\
-%        41 & vgnda                   & analog ground                               & \SI{1.5}{\volt}           & \\
-%        48 & vrefh                   & high reference voltage                      & \SI{3}{\volt}             & \\
-%        47 & vrefl                   & low reference voltage                       & \SI{0}{\volt}             & \\
-%        46 & ibias                   & bias current                                & \SI{120}{\micro\ampere}   & $24 \cdot 5 \cdot 1$, internally reduced by 120 \\
-%        43 & sc\_amp\_vout\_test\_en & enables test output after preamp            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
-%        44 & sc\_amp\_vout\_test     & test output after preamp                    & \SIrange{0.5}{2.5}{\volt} \\
-%        33 & sc\_amp\_rst\_ext\_en   & enables external reset input for the preamp & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
-%        32 & sc\_amp\_rst\_ext       & external reset input for the preamp         & \SIlist{0;3}{\volt}       & Internally synced to \signal{clk}. Needs \signal{en} signal. \\
-%        35 & sc\_amp\_pos\_neg\_amp  & positive or negative gain                   & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: positive, \SI{3}{\volt}: negative \\
-%        28 - 31 & sc\_amp\_csel<3:0> & set gain                                    & \SIlist{0;3}{\volt}       & See table TODO \\
-%        27 & sc\_amp\_en             & enable preamp                               & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
-%        26 & sah\_sdm\_en            & enable $\Sigma\Delta M$ S/H bock            & \SIlist{0;3}{\volt}       & \SI{0}{\volt}: off, \SI{3}{\volt}: on\\
-%        42 & vdda                    & analog positive power supply                & \SI{3}{\volt}             & \\
-%        37 & vddd                    & digital positive power supply               & \SI{3}{\volt}             & \\
-%        40 & vss                     & analog and digital negative power supply    & \SI{0}{\volt}             & \\
-%        \bottomrule
-%    \end{tabular}
-%    \sisetup{list-pair-separator = { and }}
-%\end{table}
-%
-%\begin{table}
-%    \centering
-%    \caption{DIP switch settings for amplifier gain}
-%    \label{tab:dipGain}
-%    \scriptsize
-%    \begin{tabular}{%
-%            >{\fontfamily{jkptt}\selectfont}r
-%            >{\fontfamily{jkptt}\selectfont}r
-%            >{\fontfamily{jkptt}\selectfont}r
-%            >{\fontfamily{jkptt}\selectfont}r|
-%            >{\fontfamily{jkptt}\selectfont}r}
-%        \toprule
-%        \signal{sc\_amp\_en(3)} &
-%        \signal{sc\_amp\_en(2)} &
-%        \signal{sc\_amp\_en(1)} &
-%        \signal{sc\_amp\_en(0)} &
-%        Gain \\
-%        \midrule
-%        1 & 1 & 1 & 1 &  1 \\
-%        0 & 1 & 1 & 1 &  2 \\
-%        0 & 0 & 1 & 1 &  4 \\
-%        0 & 0 & 1 & 1 &  8 \\
-%        0 & 0 & 0 & 1 & 16 \\
-%        \bottomrule
-%    \end{tabular}
-%\end{table}
-%
-%
-%% ---------------------------------------------------------------------------- %
-%\clearpage
-%\section{Putting the Sensor IC Into Operation}
-%\label{sec:ICintoOperation}
-%% ---------------------------------------------------------------------------- %
-%
-%This  section  will  detail  the  steps  needed to  put  the  Sensor  IC  into
-%operation. Some  of  this  information  will be  redundant  with  the  reports
-%\cite{ref:burgherr},  \cite{ref:gloor} and  \cite{ref:baier},  but  we aim  to
-%provide a  convenient guide for this  process in a single  place, thus sparing
-%future teams the effort of needing  to assemble this information from multiple
-%sources, which is both a time-consuming and error-prone process.
-%\todo[noline]{Make direct references to pages/tables in other reports?}
-%\todo[noline]{Safety precations}
-%
-%Fundamentally, putting the chip into operation consists of the following steps:
-%\begin{itemize}\tightlist
-%    \item
-%        Set up \raspi.
-%    \item
-%        Determine bias resistor setting.
-%    \item
-%        Set   DIP   switches   to   the  appropriate   values   according   to
-%        \tref{tab:dipGain}.
-%    \item
-%        Connect supply voltages and bias current supply.
-%    \item
-%        Connect \raspi~and test board.
-%\end{itemize}
-%
-%% ---------------------------------------------------------------------------- %
-%\subsection{Setting up the Raspberry Pi}
-%\label{subsec:raspiInstall}
-%% ---------------------------------------------------------------------------- %
-%
-%\todo[inline]{%
-%    Give a more detailled guide on what to install on the \raspi~ and how than
-%    in the previous reports
-%}
-%
-%\todo[inline]{RaspiPower supply}
-%\todo[inline]{External connections for Raspi}
-%\todo[inline]{%
-%    Controlling the  function generator  for \signal{SIGNAL  IN} line  via the
-%    \raspi.
-%}
-%
-%% ---------------------------------------------------------------------------- %
-%\subsection{Hardware Setup}
-%\label{subsec:hardwareSetup}
-%% ---------------------------------------------------------------------------- %
-%
-%Operating the test board requires the following components:
-%
-%\begin{itemize}\tightlist
-%    \item
-%        direct voltage source: \SI{3}{\volt}
-%    \item
-%        direct voltage source: \SI{1.5}{\volt}
-%    \item
-%        Direct  current  source: \SI{120}{\micro\ampere}.  \emph{Note:} If  no
-%        direct current source  is available, as in our case,  a direct voltage
-%        source in combination with  a multimeter for controlling/measuring the
-%        current can be used.
-%    \item
-%        function generator for \signal{clk}
-%    \item
-%        Direct  and  alternating  voltage  source  for  input  signal  voltage
-%        (between \SI{0.5}{\volt} and \SI{2.5}{\volt}).
-%    \item
-%        An oscilloscope for monitoring the preamp's output on the \signal{TEST
-%        OUT} pin, as well as the raw bit stream.
-%\end{itemize}
-%
-%The complete setup is depicted in \fref{fig:experimentDiagram}.
-%
-%\begin{figure}
-%    \input{images/expSetup/expSetup.tex}
-%    \caption{%
-%        Experimental setup  with connections.  \emph{Note}: Drawing not
-%        finalized yet.%
-%    }
-%    \label{fig:experimentDiagram}
-%\end{figure}
-%
-%The  voltage  on  the  bias  input  must be  set  so  that  the  bias  current
-%is  \SI{120}{\micro\ampere}. The  current  can  be adjusted  with  a  variable
-%resistor. \cite{ref:burgherr} outlines how the  value for this resistor can be
-%calculated. To ensure correct  operation, it is highly  recommended to monitor
-%the current on the bias input pin  with a current meter and adjust the voltage
-%source as needed to  achieve a current of \SI{120}{\micro\ampere}.\todo{actual
-%R/V values used in our experiments}
-%% Burgherr: I-32: Bias current
-%
-%Additionally, we strongly advise validating the  DC input voltages with a volt
-%meter and not blindly trusting the given voltage source's indicator.
-%
-%The final setup, as used in the experiments for this report, is depicted in \fref{fig:completeSetup}.
-%
-%\begin{figure}
-%    \missingfigure{Complete setup as used in the experiments for this report (photograph, not diagram)}
-%    \caption{the setup as used in the experiments for this report}
-%    \label{fig:completeSetup}
-%\end{figure}
-%
-%An \emph{Aim TTi MX100TP} laboratory  DC power supply (\fref{fig:dcSupply}) is
-%used  as input  for the  \SI{3}{\volt}, \SI{1.5}{\volt}  and the  bias current
-%lines.
-%
-%\begin{figure}
-%    \missingfigure{DC Power Supply}
-%    \caption{DC Power Supply}
-%    \label{fig:dcSupply}
-%\end{figure}
-%
-%The  bias  current  is  monitored with  an  \emph{Agilent  U1253B}  multimeter
-%(\fref{fig:agilentMultimeter}),  while   a  \emph{Keysight   34465A}  tabletop
-%(\fref{fig:keysightMultimeter})  multimeter is  used for  measuring the  input
-%signal voltage (in order not stay within the sensible range of \SI{0.5}{\volt}
-%and \SI{2.5}{\volt},  below and  above which  the ADC  enters saturation). The
-%output  bitstream   is  monitored   with  a  \emph{LeCroy   waveRunner  6100A}
-%oscilloscope.
-%
-%\begin{figure}
-%    \missingfigure{DC Power Supply}
-%    \caption{DC Power Supply}
-%    \label{fig:agilentMultimeter}
-%\end{figure}
-%
-%\begin{figure}
-%    \missingfigure{Keysight Multimeter}
-%    \caption{Keysight tabletop multimeter}
-%    \label{fig:keysightMultimeter}
-%\end{figure}
-%
-%\begin{figure}
-%    \missingfigure{LeCroy Oscilloscope}
-%    \caption{LeCroy Oscilloscope}
-%    \label{fig:lecroyOscilloscope}
-%\end{figure}
-%
-%Two    \emph{Hewlett   Packard    33120A}   arbitrary    waveform   generators
-%(\fref{fig:HPwave}) are used  to provide the system's clock  and input signal,
-%respectively. The device  used for generating  the input signal  is controlled
-%remotely  via the  \raspi\todo{Document  Python scripts  used for  this}. This
-%reduces the  time required  for performing  experiments significantly. Further
-%efficiency gains  could be made by  replacing the DIP switches  with something
-%which can be controlled remotely (the only thing requiring manual intervention
-%at  that point  would  be the  replacing  of the  chip  itself when  measuring
-%multiple samples).
-%
-%\begin{figure}
-%    \missingfigure{Hewlett Packard Arbitrary Waveform Generator}
-%    \caption{Hewlett Packard Arbitrary Waveform Generator}
-%    \label{fig:HPwave}
-%\end{figure}
-%
-%Appendix \ref{sec:HPwave}  details the configuration process  for the function
-%generator, starting on page \pageref{sec:HPwave}.
+% ---------------------------------------------------------------------------- %
+\subsubsection{Prerequisites}
+\label{subsubsec:laptop:prereqs}
+% ---------------------------------------------------------------------------- %
+
+For controlling the test bench, a laptop running Linux is used. Fundamentally,
+other configurations are likely also  possible. Any Bash version 4.0 and newer
+should  be able  to execute  the wrapper  scripts (associated  arrays must  be
+supported). Even Windows 10  has Bash as well  these days \cite{ref:W10:bash},
+though compatibility with our script suite has not been verified).
+
+Besides  Bash  >4.0 support,  Python  3  must  be  installed, along  with  the
+following modules:
+
+\begin{itemize}\tightlist
+    \item
+        \code{serial}: For communicating with the waveform generators
+    \item
+        \code{vxi11}: For communicating with the oscilloscope
+\end{itemize}
+
+These  modules can  either be  installed via  pip or  via your  distribution's
+package manager.
+
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{Ethernet Configuration}
+\label{subsubsec:laptop:netconf}
+% ---------------------------------------------------------------------------- %
+
+For  communicating  with  the  oscilloscope via  ethernet,  a  static  network
+connection is used,  corresponding to the settings on  the oscilloscope (which
+can be checked via the network dialog in Windows XP).
+
+On the  machine used in our  measurements (a Macbook Pro  running Arch Linux),
+this is done via \code{netctl} as follows\footnotemark:
+
+\begin{minted}{text}
+Description='WaveRunner Oscilloscope Ethernet Connection'
+Interface=ens9                                                                                                                                                                                            
+Connection=ethernet                                                                                                                                                                                       
+IP=static                                                                                                                                                                                                 
+Address=('169.254.14.1/16')                                                                                                                                                                               
+\end{minted}
+
+\footnotetext{
+    Make  sure   \emph{not}  to  set   a  \code{Gateway}  parameter   in  this
+    configuration,  or the  laptop will  try to  access the  internet via  the
+    oscilloscope, which will obviously fail.
+}
+
+The  \code{Interface} parameter  needs to  be  adjusted to  the machine  which
+is  being  used. A  list  of   available  interfaces  can  be  displayed  with
+\code{ip  addr}  on  systems  which have  the  \code{iproute2}  utility  suite
+\cite{ref:iproute2}  installed,  or with  \code{ifconfig}  \cite{ref:ifconfig}
+on  other  *nix  operating  systems. For  further  information,  consult  your
+distribution's manpages.
+
+
+% ---------------------------------------------------------------------------- %
+\subsubsection{SSH Configuration}
+\label{subsubsec:laptop:sshconf}
+% ---------------------------------------------------------------------------- %
+
+The \raspi~  is remote-controlled via SSH  from the laptop. In order  to avoid
+having to  type in  a password  for each SSH  connection attempt  (which would
+become cumbersome  very quickly), SSH  key files  are used. Because this  is a
+rather expansive topic  with a lot of available information,  a quick guide is
+povided  here\footnotemark. These  steps are  based  on  the Arch  Linux  Wiki
+\cite{ref:archWiki:SSH} , but  should work with any  reasonably modern OpenSSH
+installation:
+
+\todo[inline]{put SSH config tutorial into appendix?}
+
+\footnotetext{
+    If you already have  an SSH key pair or know how to  do this, this section
+    can be  skipped, unless you wish  to generate a new  key pair specifically
+    for this use.
+}
+
+First, generate a new key pair:
+
+\begin{minted}{shell}
+$ ssh-keygen
+\end{minted}
+
+The laptop is ready to properly execute our wrapper scripts as indented.
