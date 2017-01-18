@@ -32,11 +32,16 @@ def iterate_dc_measurements_for_linearity(soup):
                                             for value in values])
                     noise_amplitude = [float(value.noise['amplitude']) for value in values]
                     std = [float(value.std['std']) for value in values]
+
                 else:
                     hist = None
                     bin_edges = None
                     noise_amplitude = None
                     std = None
+
+                # For just the preamp we want to extract the tau constants from the fit
+                if configuration == 'preamp':
+                    taus = zip(*[(float(value.fit['tau1']), float(value.fit['tau2'])) for value in values])
 
                 yield chip_id, configuration, fs, \
                       np.array(expected), np.array(measured), \
@@ -97,6 +102,8 @@ def calculate_dc_linearities(soup_in, soup_out):
                 noise_node = soup_out.new_tag('noise')
                 measurement_node.append(noise_node)
             noise_node.attrs['amplitude'] = ','.join([str(x) for x in noise_amplitude])
+
+
 
         # Linear fit to data. Some interesting info (possibly):
         # http://stats.stackexchange.com/questions/29903/what-is-a-good-way-to-measure-the-linearity-of-a-dataset

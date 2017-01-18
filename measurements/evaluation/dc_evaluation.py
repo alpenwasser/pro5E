@@ -9,7 +9,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in ('preamp',):  #('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -66,21 +66,44 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 configuration_node.append(measurement_node)
 
             # Skip if already done
-            if measurement_node.find('value', input=current_dc):
-                continue
+            #if measurement_node.find('value', input=current_dc):
+            #    continue
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
                 gain_is_positive = True if current_sign == '+' else False
-                measured_dc, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2 = \
+
+                measured_dc,\
+                amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2,\
+                Samp, Samp_offset, Speriod, St_offset, Sduty_cycle, Stau1, Stau2 =\
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
 
-                value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
-                measurement_node.append(value_node)
+                value_node = measurement_node.find('value')
+                if value_node is None:
+                    value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
+                    measurement_node.append(value_node)
+                value_node.attrs['input'] = current_dc
+                value_node.attrs['output'] = measured_dc
 
-                fit_node = soup.new_tag('fit', amp=amp, amp_offset=amp_offset, period=period, t_offset=t_offset,
-                                        duty_cycle=duty_cycle, tau1=tau1, tau2=tau2)
-                value_node.append(fit_node)
+                fit_node = value_node.find('fit')
+                if fit_node is None:
+                    fit_node = soup.new_tag('fit')
+                    value_node.append(fit_node)
+                fit_node.attrs['amp'] = amp
+                fit_node.attrs['Samp'] = Samp
+                fit_node.attrs['amp_offset'] = amp_offset
+                fit_node.attrs['Samp_offset'] = Samp_offset
+                fit_node.attrs['period'] = period
+                fit_node.attrs['Speriod'] = Speriod
+                fit_node.attrs['t_offset'] = t_offset
+                fit_node.attrs['St_offset'] = St_offset
+                fit_node.attrs['duty_cycle'] = duty_cycle
+                fit_node.attrs['Sduty_cycle'] = Sduty_cycle
+                fit_node.attrs['tau1'] = tau1
+                fit_node.attrs['Stau1'] = Stau1
+                fit_node.attrs['tau2'] = tau2
+                fit_node.attrs['Stau2'] = Stau2
+
             else:
                 measured_dc, bins, bin_edges, noise_amplitude, std = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
 
@@ -150,8 +173,11 @@ def fit_preamp_data(xdata, ydata):
     p0 = estimate_initial_parameters(xdata, ydata)
     xdata = xdata[::10]  # otherwise it takes too long
     ydata = ydata[::10]
-    popt, pcov = curve_fit(preamp_curve, xdata, ydata, p0=p0)
-    return popt
+    try:
+        popt, pcov = curve_fit(preamp_curve, xdata, ydata, p0=p0)
+    except:
+        return p0, p0
+    return popt, pcov
 
 
 def parse_preamp_data(file_name, expected_dc, gain_is_positive):
@@ -164,7 +190,8 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
         ydata = np.array([float(x[1]) for x in data])
 
         # Fit data, this gives us lots of useful information and makes it easier to extract certain data
-        popt = fit_preamp_data(xdata, ydata)
+        popt, pcov = fit_preamp_data(xdata, ydata)
+        perr = np.sqrt(np.diag(pcov))
         ydata_model = np.array(preamp_curve(xdata, *popt))
 
         # The measured DC value is either above or below the 1.5V mark.
@@ -182,7 +209,7 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
             plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
             plt.show()
 
-        return [str(measured_dc)] + [str(x) for x in popt]
+        return [str(measured_dc)] + [str(x) for x in popt] + [str(x) for x in perr]
 
 
 def parse_sigdel_and_both(file_name):

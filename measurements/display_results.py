@@ -132,11 +132,18 @@ def display_noise_amplitude_and_standard_deviation(soup):
     plt.show()
 
 
+def display_tau_results(soup):
+    # The two tau constants are expected to be different per chip
+    for chip_node in soup.chips.find_all('chip'):
+        pass
+
+
 if __name__ == '__main__':
     fitted_soup = BeautifulSoup(open('fitted_data.xml', 'r'), 'xml')
-    raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
+    #raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
     #display_dc_mse_results(fitted_soup)
     display_dc_slope_results(fitted_soup)
     display_dc_offset_results(fitted_soup)
     #display_noise_amplitude_and_standard_deviation(fitted_soup)
+    #display_tau_results(fitted_soup)
