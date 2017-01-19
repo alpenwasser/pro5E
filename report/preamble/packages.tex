@@ -127,7 +127,7 @@
     line width=0.5pt}}
 \usepgfplotslibrary{colormaps}
 \usepgfplotslibrary{external}
-\tikzexternalize[prefix=cache/]
+\tikzexternalize[prefix=cache/,optimize command away=\includepdf]
 
 \usepackage{bytefield}
 

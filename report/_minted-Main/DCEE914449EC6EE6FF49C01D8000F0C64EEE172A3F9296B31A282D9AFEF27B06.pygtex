@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYGZdl{} ssh\PYGZhy{}copy\PYGZhy{}id \PYGZhy{}i \PYGZti{}/.ssh/id\PYGZus{}rsa.pub pi@10.84.130.16
-\end{Verbatim}

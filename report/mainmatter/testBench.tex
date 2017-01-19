@@ -127,27 +127,38 @@ applies to both types of measurements.
         Which devices and components have been used, and for which purposes?%
 }
 
+
 % ---------------------------------------------------------------------------- %
 \section{Assembly}
 \label{sec:assembly}
 % ---------------------------------------------------------------------------- %
 
-This  section  describes  how  the  hardware listed  above  is  connected  and
-configured. A   schematic   of  the   complete   test   bench  is   shown   in
-\fref{fig:experimentDiagram}.
+The complete experimental setup as used during our measurements, consisting of
+the above-listed components, is shown in figure \ref{fig:testBenchComplete}. A
+schematic depiction of the various connections between the devices is shown in
+figure \ref{fig:testBenchConnections}. The following  sections describe how to
+configure each of the components.
 
 \begin{figure}
-    \input{images/expSetup/expSetup.tex}
-    \caption{%
-        Experimental setup  with connections.  \emph{Note}: Drawing not
-        finalized yet.%
+    \includegraphics[width=\textwidth]{images/expSetup/testBenchComplete.jpeg}
+    \caption{
+        The test bench as used in  our measurements. The \raspi~ is behind the
+        waveform generators on the left-hand side.%
     }
-    \label{fig:experimentDiagram}
+    \label{fig:testBenchComplete}
 \end{figure}
 
-\todo[inline]{How was the hardware set up? What was connected to what?}
-\todo[inline]{Hardware configuration (buttons, switches, ...}
-\todo[inline]{Software configuration (Raspi, python, bash, ...)}
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/expSetup/testBenchConnections.jpeg}
+    \caption{%
+        Schematic  connections between  the devices  in the  setup as  used in
+        figure  \ref{fig:testBenchComplete}. To  reduce  clutter,  all  ground
+        connections except the one between the \raspi~ and the test board have
+        been omitted.%
+    }
+    \label{fig:testBenchConnections}
+\end{figure}
+
 
 % ---------------------------------------------------------------------------- %
 \subsection{Sensor Test Board}
@@ -159,17 +170,70 @@ sensor chip. It has  inputs for the various supply voltages,  a socket for the
 chip itself  and outputs various signals. The  full list of the  chip's pinout
 can be found in table \ref{tab:topLevelPins}.
 
-\todo[inline]{DIP Switches}
-\todo[inline]{Socket operation}
-\todo[inline]{plug connections}
-\todo[inline]{safety precautions}
-\todo[inline]{schematic in appendix}
+The primary  item to  configure on  the test board  are the  DIP switches. The
+assignment  key  for them  is  listed  in  table \ref{tab:dipSwitches}  .  The
+major  gains  (also  configurable  via  DIP  switches)  are  listed  in  table
+\ref{tab:gainSettings}.
+
+The       schematic      for       the      test       board      can       be
+found       in       Appendix~\ref{app:testBoardSchematic}       on       page
+\pageref{app:testBoardSchematic}.
+
+\begin{table}
+    \centering
+    \caption{DIP switch assignments}
+    \label{tab:dipSwitches}
+    \small
+    \begin{tabular}{rl}
+        \toprule
+        Switch No. & Assignment \\
+        \midrule
+         1 & none \\
+         2 & external reset for pre-amplifier \\
+         3 & positive/negative sign for pre-amplifier (on: negative)\\
+         4 & pre-amplifier bit 3 \\
+         5 & pre-amplifier bit 2 \\
+         6 & pre-amplifier bit 1 \\
+         7 & pre-amplifier bit 0 \\
+         8 & sample-and-hold enable \\
+         9 & pre-amplifier enable \\
+        10 & none \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{Major gain settings for pre-amplifier}
+    \label{tab:gainSettings}
+    \small
+    \begin{tabular}{rrrrr}
+        \toprule
+        $d_3$ & $d_2$ & $d_1$ & $d_0$ & Gain \\
+        \midrule
+        1 & 1 & 1 & 1 & 1 \\
+        0 & 1 & 1 & 1 & 2 \\
+        0 & 0 & 1 & 1 & 4 \\
+        0 & 0 & 0 & 1 & 8 \\
+        0 & 0 & 0 & 0 & 16 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{images/pcb/pcbOverview}
     \caption{The test board.}
     \label{fig:testBoard}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/expSetup/testBoardConnected.jpeg}
+    \caption{%
+        The test board with all connections  as used in the configuration from
+        figure \ref{fig:testBenchComplete}.%
+    }
+    \label{fig:testBenchConnected}
 \end{figure}
 
 \begin{table}
@@ -208,6 +272,7 @@ can be found in table \ref{tab:topLevelPins}.
     \sisetup{list-pair-separator = { and }}
 \end{table}
 
+
 % ---------------------------------------------------------------------------- %
 \subsection{DC Power Supply}
 \label{subsec:dcPower}
@@ -226,9 +291,9 @@ test  board)  adjusted as  needed  to  achieve  the  desired bias  current  of
 \SI{120}{\uA} as per Table \ref{tab:topLevelPins}.
 
 \footnotetext{%
-    All  \SI{3}{V} signals  are  fed  from the  same  output  and bridge  with
+    All  \SI{3}{V} signals  are  fed from  the same  output  and bridged  with
     jumpers  on the  test board. This  concerns \signal{VDDD},  \signal{VDDA},
-    \signal{VREFH} and \signal{VGNDA}.
+    \signal{VREFH} and \signal{VGNDA}.%
 }
 
 % ---------------------------------------------------------------------------- %
@@ -240,13 +305,25 @@ test  board)  adjusted as  needed  to  achieve  the  desired bias  current  of
 \todo[inline]{control output voltages with voltmeter}
 
 The  \funcgen  s  are  controlled  remotely via  their  RS232  interface  from
-a  computer  (through  RS232  $\rightarrow$   USB-A  adapters)  and  a  Python
-script   (\code{33120A.py},  see   Appendix  \ref{app:chap:scripts}   on  page
-\pageref{app:chap:scripts}).
+a   computer  (through   RS232  $\rightarrow$   USB-A  adapters,   see  Figure
+\ref{fig:rs232-usb})  and  a  Python script  (\code{33120A.py},  see  Appendix
+\ref{app:chap:scripts} on page \pageref{app:chap:scripts}).
 
-Before usage, the  script needs to be configured. The  two waveform generators
-will  show up  in the  computer's  device tree  and their  identities must  be
-entered into the script in the \code{SETTINGS} section:
+Before  usage, the  script needs  to be  configured. After connecting  via the
+adapters,  the  two  waveform  generators  will  show  up  in  the  computer's
+device  tree and  their identities  must  be entered  into the  script in  the
+\code{SETTINGS} section:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/expSetup/rs232-usb.jpeg}
+    \caption{%
+        One of  the two RS-232 to  USB adapters with cables. In  order for the
+        adapter to properly  connect with the cables, both a  null modem and a
+        gender changer are also used.
+    }
+    \label{fig:rs232-usb}
+\end{figure}
 
 \begin{minted}{python}
 # ------------------------------------------------------------------------ #
@@ -257,8 +334,8 @@ DC_DEVICE  = '/dev/ttyUSB0'
 \end{minted}
 
 Whichever  device   registered  with  the   PC  first  will  have   the  lower
-\code{ttyUSB<N>} number. If other  devices are connected to  the computer, the
-numbers will of course be higher than \code{0} and \code{1}, respectively.
+\code{ttyUSB<N>} number. If other  USB devices are connected  to the computer,
+the numbers will of course be higher than \code{0} and \code{1}, respectively.
 
 After successful configuration, the waveform generators can be controlled from
 the command line like so\footnotemark:
@@ -279,8 +356,7 @@ The \signal{CLK} device  will always output a square wave  with voltage levels
 
 If needed,  the script can  easily be extended  to output any  other arbitrary
 signal. The full  list of available commands  can be obtained from  the 33120A
-operator's manual.
-\todo[inline]{source}
+operator's manual, which can be downloaded at \cite{ref:33120A:userGuide}.
 
 \footnotetext{%
     This requires  the executable bit  to be set  on the file:  \code{chmod +x
@@ -297,24 +373,17 @@ Three \emph{Keysight 34465A} multimeters are used. One for monitoring the bias
 current, a second for monitoring the voltage for the input signal, and a third
 one for monitoring the reference voltage (analog ground).
 
-The wiring connections are depicted in figure \ref{fig:multimeterConnections}.
-
-\begin{figure}
-    \centering
-    \missingfigure{multimeters}
-    \caption{Multimeter connections}
-    \label{fig:multimeterConnections}
-\end{figure}
-
 No  further  special  configuration  is  needed  on  the  multimeters  besides
 setting  them  to   the  correct  measurement  modes   (voltage  and  current,
-respectively). Care must be  taken though when setting the range  for the bias
+respectively). However, care must be taken when setting the range for the bias
 current measurement. \SI{120}{\micro\ampere} is right  on the edge between two
 measurement ranges (\si{\micro\ampere}  and \si{\milli\ampere}, respectively),
-and the measurement results between these two ranges are not identical. In our
-measurements, the device is set to the millivolt range.
+and  the measurement  results between  these two  ranges are  not identical. A
+difference  of  about  \SI{7}{\micro\ampere}  was typically  observed  in  our
+experiments. In our measurements, the device is set to the millivolt range.
 
-\todo[inline]{reference to user manual}
+The    user   manual    for   the    multimeter   can    be   downloaded    at
+\cite{ref:34460:userGuide}.
 
 
 % ---------------------------------------------------------------------------- %
@@ -336,24 +405,32 @@ acquiring measurment data for the preamp via the test output pin.
 \label{subsubsec:clockBitstream}
 % ---------------------------------------------------------------------------- %
 
-Measuring clock  and bit  stream is straightforward: The  oscilloscopes probes
-are  connected  to the  corresponding  pins  on  the  test board  as  depicted
+Monitoring  the clock  and  bit stream  is straightforward: The  oscilloscopes
+probes are connected  to the corresponding pins on the  test board as depicted
 in figures  \ref{fig:clockBitStreamProbes} and \ref{fig:clockBitStreamScreen},
 respectively.
 
 \begin{figure}
     \centering
-    \missingfigure{probe connections}
-    \caption{Clock and bit stream measurement}
+    \includegraphics[width=0.67\textwidth]{images/expSetup/testBoardOsciBitStreamClkProbes.jpeg}
+    \caption{%
+        Clock and  bit stream  monitoring. \emph{Note}: Since the  clock input
+        pins are not interconnected, and both the \raspi~ and the oscilloscope
+        are connected  to one clock pin  each, two supply clamps  (in red) are
+        used on the clock input via a Y splitter from the coaxial cable coming
+        from the signal  generator. This is not strictly  necessary, but makes
+        connecting the  probes, plugs  and supply  clamps easier  without them
+        slipping off the pins.%
+    }
     \label{fig:clockBitStreamProbes}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \missingfigure{Clock and bit stream, screenshot}
-    \caption{Clock and bit stream measurement, screenshot}
-    \label{fig:clockBitStreamScreen}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \missingfigure{Clock and bit stream, screenshot}
+%    \caption{Clock and bit stream measurement, screenshot}
+%    \label{fig:clockBitStreamScreen}
+%\end{figure}
 
 If  the   clock  and   bit  stream   do  not  look   as  depicted   in  figure
 \ref{fig:clockBitStreamScreen}, common  errors are a  disabled sample-and-hold
@@ -372,10 +449,20 @@ the test board as shown in figure \ref{fig:probePreamp}.
 
 \begin{figure}
     \centering
-    \missingfigure{Probe connection preamp measurement}
-    \caption{Probe connection preamp measurement}
-    \label{fig:probePreamp}
+    \includegraphics[width=\textwidth]{images/expSetup/testBoardOsciTestOutProbe.jpeg}
+    \caption{%
+        Measuring preamp  output. On the left,  the tip  of the clamp  for the
+        input signal can be seen, coming from one of the waveform generators.%
+    }
+    \label{fig:testOutProbe}
 \end{figure}
+
+%\begin{figure}
+%    \centering
+%    \missingfigure{Probe connection preamp measurement}
+%    \caption{Probe connection preamp measurement}
+%    \label{fig:probePreamp}
+%\end{figure}
 
 Besides the  oscilloscope itself,  a laptop  is used  to remotely  control the
 oscilloscope and  the two function generators  (one for the clock  and for the
@@ -471,8 +558,13 @@ data will show aliasing, resulting in useless data.
 
 \begin{figure}
     \centering
-    \missingfigure{kilosamples}
-    \caption{Set sample rate on oscilloscope}
+    \includegraphics[width=\textwidth]{images/expSetup/setSamples.jpeg}
+    \caption{%
+        Set sample rate on oscilloscope. Click the \emph{Timebase} icon on the
+        bottom right of  the screen, then adjust the  \emph{Max Sample Points}
+        setting (highlighted)  to \num{500} kilo  samples in the  dialog which
+        opens.%
+    }
     \label{fig:kilosamples}
 \end{figure}
 
@@ -492,8 +584,17 @@ in figure \ref{fig:fileCounterReset}.
 
 \begin{figure}
     \centering
-    \missingfigure{Counter Reset}
-    \caption{Resetting the file counter on the oscilloscope}
+    \includegraphics[width=\textwidth]{images/expSetup/resetFilename.jpeg}
+    \caption{%
+        Resetting the file counter  on the oscilloscope. Click the \emph{File}
+        menu at  the top of the  screen, then select the  \emph{Save Waveform}
+        dialog.  If  the oscilloscope has  been reset, select  the appropriate
+        channel, DataFormat (ASCII)  and the directory where the  files are to
+        be saved (which must correspond with the directory set in the wrapping
+        shell script). After initial configuration, this dialog must be opened
+        between each script run to reset the file name counter, but no further
+        intervention is necessary.%
+    }
     \label{fig:fileCounterReset}
 \end{figure}
 

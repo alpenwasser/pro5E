@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n+nb}{eval} \PYG{k}{\PYGZdl{}(}keychain \PYGZhy{}\PYGZhy{}eval \PYGZhy{}\PYGZhy{}quiet id\PYGZus{}rsa\PYG{k}{)}
-\end{Verbatim}
