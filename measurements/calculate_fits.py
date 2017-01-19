@@ -14,8 +14,10 @@ def iterate_dc_measurements_for_linearity(soup):
         chip_id = chip_node['id']
         for configuration_node in chip_node.find_all('configuration', type='dc'):
             configuration = configuration_node['configuration']
-            for measurement_node in configuration_node.find_all('measurement', gain='1', sign='+'):
+            for measurement_node in configuration_node.find_all('measurement'):
                 fs = measurement_node['fs']
+                gain = measurement_node['gain']
+                sign = measurement_node['sign']
 
                 # Make sure we sort values from lowest to highest input voltage,
                 # so noise amplitude and std vectors can be (possibly) correlated to input voltage
@@ -26,30 +28,38 @@ def iterate_dc_measurements_for_linearity(soup):
                                            for value in values])
 
                 # For everything but the preamp we have some additional statistical data
+                hist = None
+                bin_edges = None
+                noise_amplitude = None
+                std = None
                 if configuration in ('both', 'both-manual', 'sigdel'):
                     hist, bin_edges = zip(*[([float(x) for x in value.histogram['bins'].split(',')],
                                              [float(x) for x in value.histogram['bin_edges'].split(',')])
                                             for value in values])
                     noise_amplitude = [float(value.noise['amplitude']) for value in values]
                     std = [float(value.std['std']) for value in values]
-                else:
-                    hist = None
-                    bin_edges = None
-                    noise_amplitude = None
-                    std = None
+
+                # For just the preamp we want to extract the tau constants from the fit
+                taus1 = None
+                taus2 = None
+                if configuration == 'preamp':
+                    taus1, taus2 = zip(*[(float(value.fit['tau1']), float(value.fit['tau2'])) for value in values])
 
                 yield chip_id, configuration, fs, \
+                      gain, sign, \
                       np.array(expected), np.array(measured), \
                       hist, bin_edges, \
-                      noise_amplitude, std
+                      noise_amplitude, std,\
+                      taus1, taus2
 
 
 def calculate_dc_linearities(soup_in, soup_out):
     for chip_id, configuration, fs, \
+        gain, sign,\
         expected, measured, \
         hist, bin_edges, \
-        noise_amplitude, std \
-            in iterate_dc_measurements_for_linearity(soup_in):
+        noise_amplitude, std, \
+        taus1, taus2 in iterate_dc_measurements_for_linearity(soup_in):
 
         print('Evaluation DC linearity: chip_id={}, configuration={}, fs={}'.format(
             chip_id, configuration, fs
@@ -63,9 +73,9 @@ def calculate_dc_linearities(soup_in, soup_out):
         if configuration_node is None:
             configuration_node = soup_out.new_tag('configuration', configuration=configuration, type='dc')
             chip_node.append(configuration_node)
-        measurement_node = configuration_node.find('measurement', gain='1', sign='+', fs=fs)
+        measurement_node = configuration_node.find('measurement', gain=gain, sign=sign, fs=fs)
         if measurement_node is None:
-            measurement_node = soup_out.new_tag('measurement', gain='1', sign='+', fs=fs)
+            measurement_node = soup_out.new_tag('measurement', gain=gain, sign=sign, fs=fs)
             configuration_node.append(measurement_node)
 
         fit_node = measurement_node.find('fit')
@@ -97,6 +107,14 @@ def calculate_dc_linearities(soup_in, soup_out):
                 noise_node = soup_out.new_tag('noise')
                 measurement_node.append(noise_node)
             noise_node.attrs['amplitude'] = ','.join([str(x) for x in noise_amplitude])
+
+        if taus1 is not None and taus2 is not None:
+            taus_node = measurement_node.find('taus')
+            if taus_node is None:
+                taus_node = soup_out.new_tag('taus')
+                measurement_node.append(taus_node)
+            taus_node['taus1'] = ','.join([str(x) for x in taus1])
+            taus_node['taus2'] = ','.join([str(x) for x in taus2])
 
         # Linear fit to data. Some interesting info (possibly):
         # http://stats.stackexchange.com/questions/29903/what-is-a-good-way-to-measure-the-linearity-of-a-dataset
