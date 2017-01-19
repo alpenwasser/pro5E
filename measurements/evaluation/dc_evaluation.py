@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from evaluation.savitzky_golay import savitzky_golay
 from scipy.optimize import curve_fit
 from evaluation.fit_functions import preamp_curve
+from decimal import Decimal
 import deltasigma as ds
 import numpy as np
 import os
@@ -9,7 +10,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ('preamp',):  #('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -65,9 +66,11 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 measurement_node = soup.new_tag('measurement', fs=current_fs, gain=current_gain, sign=current_sign)
                 configuration_node.append(measurement_node)
 
-            # Skip if already done
-            #if measurement_node.find('value', input=current_dc):
-            #    continue
+            value_node = measurement_node.find('value', input=current_dc)
+            if value_node is None:
+                value_node = soup.new_tag('value', input=current_dc)
+                measurement_node.append(value_node)
+            value_node.attrs['output'] = measured_dc
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
@@ -77,13 +80,6 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2,\
                 Samp, Samp_offset, Speriod, St_offset, Sduty_cycle, Stau1, Stau2 =\
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
-
-                value_node = measurement_node.find('value')
-                if value_node is None:
-                    value_node = soup.new_tag('value', input=current_dc, output=measured_dc)
-                    measurement_node.append(value_node)
-                value_node.attrs['input'] = current_dc
-                value_node.attrs['output'] = measured_dc
 
                 fit_node = value_node.find('fit')
                 if fit_node is None:
@@ -203,11 +199,14 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
         else:
             measured_dc = np.min(ydata_model)
 
-        if False:
+        if True:
             plt.plot(xdata, ydata)
             plt.plot(xdata, ydata_model)
             plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
-            plt.show()
+            plt.figtext(0.7, 0.8, 'tau_1: {0:.2E}\ntau_2: {1:.2E}'.format(Decimal(popt[5]), popt[6]))
+            plt.savefig('256kHz-{}V.png'.format(expected_dc))
+            plt.savefig('256kHz-{}V.pdf'.format(expected_dc))
+            plt.gcf().clear()
 
         return [str(measured_dc)] + [str(x) for x in popt] + [str(x) for x in perr]
 

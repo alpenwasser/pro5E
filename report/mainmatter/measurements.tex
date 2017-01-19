@@ -8,10 +8,26 @@
     why?
 }
 
-Two different  kinds of measurements  are performed:  Analog  measurements are
-used  to assess  the  performance  of the  preamp  via  the \signal{TEST  OUT}
-pin. Secondly, digital measurements for assessing the $\Sigma\Delta M$ as well
-as the two components combined are derived by evaluating the bit stream.
+The  goal in this project was to create an efficient, streamlined workflow for
+measuring  multiple  sensor  chips  and  correlating the results in meaningful
+ways.  The  conclusions  drawn  in  this  report  mostly  originated  from  DC
+measurements; A known voltage is applied to the chip's input and its output is
+observed  in  function  of  the  preamp gain, the sampling frequency $fs$  and
+different chips. output-to-input voltage
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=.8\linewidth]{images/blockdiagram.png}
+    \caption{Rough block diagram of the sensor chip}
+    \label{fig:blockdiagram}
+\end{figure}
+
+
+
+Two different  kinds  of  measurements were performed: Analog measurements were
+used to assess the performance of the  preamp  via  the \signal{TEST OUT} pin.
+Secondly, digital measurements for assessing the $\Sigma\Delta M$  as  well as
+the  two  components  combined  are  derived  by  evaluating the  bit  stream.
 
 Analog measurement data  is captured with an osccilloscope  and then evaluated
 on a PC. The bit stream is captured and processed on the \raspi.
