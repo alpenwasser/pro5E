@@ -61,9 +61,6 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
 
             print('evaluating DC for {}/{}, sign={}, gain={}, fs={}, dc={}'.format(chip_dir_name, file, current_sign, current_gain, current_fs, current_dc))
 
-            if current_sign == '+':
-                continue
-
             measurement_node = configuration_node.find('measurement', fs=current_fs, gain=current_gain, sign=current_sign)
             if measurement_node is None:
                 measurement_node = soup.new_tag('measurement', fs=current_fs, gain=current_gain, sign=current_sign)
