@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 
 
 def make_subplot_better(ax):
+    plt.rc('text', usetex=True)
+    plt.rc('font', family='serif')
     ax.figure.subplots_adjust(bottom=0.15, left=0.125, right=0.925, top=0.90, hspace=0.5)
 
     # set the grid on
@@ -118,12 +120,10 @@ def display_dc_slope_results_for_preamp(soup):
     for sign in ('+', '-'):
         sample_frequencies = np.array((32, 96, 256))
         gains = (1, 2, 4, 8, 16)
+        fig = plt.figure('test')
         for gain_id, gain in enumerate(gains):
-            fig = plt.figure('test')
-            ax2 = fig.add_subplot(2, 1, 1)
-            ax = fig.add_subplot(2, 1, 2)
-            ax.set_xlim(-1, 11)
-            ax2.set_xlim(-1, 11)
+            ax2 = fig.add_subplot(5, 2, gain_id*2 + 1)
+            ax = fig.add_subplot(5, 2, gain_id*2 + 2)
             make_subplot_better(ax)
             make_subplot_better(ax2)
             slopes_avg = list()
@@ -145,8 +145,9 @@ def display_dc_slope_results_for_preamp(soup):
             ax.errorbar(sample_frequencies, slopes_avg, yerr=slopes_std, fmt='o')
             ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
             ax.set_title('Slopes for preamp')
-            plt.savefig('dc_slope_preamp_gain{}.pdf'.format(gain), facecolor='white', edgecolor='none')
-            plt.gcf().clear()
+        plt.show()
+        #plt.savefig('dc_slope_preamp_gain{}.pdf'.format(gain), facecolor='white', edgecolor='none')
+        #plt.gcf().clear()
 
 
 def display_dc_offset_results(soup):
@@ -216,6 +217,8 @@ def get_tau_results(soup, fs, gain, sign):
             for measurement_node in configuration_node.find_all('measurement', fs=fs, gain=gain, sign=sign):
                 taus1 = [float(x) for x in measurement_node.taus.attrs['taus1'].split(',')]
                 taus2 = [float(x) for x in measurement_node.taus.attrs['taus2'].split(',')]
+                Staus1 = [float(x) for x in measurement_node.taus.attrs['Staus1'].split(',')]
+                Staus2 = [float(x) for x in measurement_node.taus.attrs['Staus2'].split(',')]
                 input_voltage = [float(x) for x in measurement_node.input_voltage.attrs['voltage'].split(',')]
 
                 # If the expected voltage is greater than Vref (1.5V), then we are interested in the charge taus.
@@ -253,12 +256,9 @@ if __name__ == '__main__':
     fitted_soup = BeautifulSoup(open('fitted_data.xml', 'r'), 'xml')
     #raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
-    plt.rc('text', usetex=True)
-    plt.rc('font', family='serif')
-
     #display_dc_mse_results(fitted_soup)
-    #display_dc_slope_results_for_preamp(fitted_soup)
+    display_dc_slope_results_for_preamp(fitted_soup)
     #display_dc_slope_results_for_sigdel_and_both(fitted_soup)
     #display_dc_offset_results(fitted_soup)
     #display_noise_amplitude_and_standard_deviation(fitted_soup)
-    display_tau_results(fitted_soup)
+    #display_tau_results(fitted_soup)

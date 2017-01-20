@@ -9,8 +9,42 @@ import os
 import re
 
 
+def make_subplot_better(ax):
+    plt.rc('text', usetex=True)
+    plt.rc('font', family='serif')
+    ax.ticklabel_format(style='sci', axis='both', scilimits=(0,0))
+    ax.figure.subplots_adjust(bottom=0.15, left=0.125, right=0.925, top=0.90, hspace=0.5)
+
+    # set the grid on
+    ax.grid('on')
+
+    # add more ticks
+    #ax.set_xticks(np.arange(25))
+
+    # remove tick marks
+    ax.xaxis.set_tick_params(size=0)
+    ax.yaxis.set_tick_params(size=0)
+
+    # change the color of the top and right spines to opaque gray
+    ax.spines['right'].set_color((.8, .8, .8))
+    ax.spines['top'].set_color((.8, .8, .8))
+
+    # tweak the axis labels
+    xlab = ax.xaxis.get_label()
+    ylab = ax.yaxis.get_label()
+
+    xlab.set_style('italic')
+    xlab.set_size(10)
+    ylab.set_style('italic')
+    ylab.set_size(10)
+
+    # tweak the title
+    ttl = ax.title
+    ttl.set_weight('bold')
+
+
 def evaluate(soup):
-    for configuration in  ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -166,6 +200,23 @@ def estimate_initial_parameters(xdata, ydata):
     else:
         t_offset = period / 2
 
+    if False:
+        import sys
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        make_subplot_better(ax)
+        y = [amp_offset, amp_offset + amp]
+        ax.plot(xdata, ydata)
+        for t in low_transitions + high_transitions:
+            ax.plot([t, t], y)
+        ax.set_title('Transition Detection for Initial Guess')
+        ax.set_xlabel('Time (us)')
+        ax.set_ylabel('Amplitude (V)')
+        plt.savefig('transition-detection.pdf', facecolor='white', edgecolor='none')
+        plt.gcf().clear()
+        #plt.show()
+        sys.exit(0)
+
     return amp, amp_offset, period, t_offset, duty_cycle, tau, tau
 
 
@@ -208,15 +259,21 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
             measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
 
         if False:
-            plt.plot(xdata, ydata)
-            plt.plot(xdata, ydata_model)
-            plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
-            plt.figtext(0.7, 0.8, 'tau_1: {0:.2E}\ntau_2: {1:.2E}'.format(Decimal(popt[5]), popt[6]))
-            plt.savefig('256kHz-{}V.png'.format(expected_dc))
-            #plt.savefig('256kHz-{}V.pdf'.format(expected_dc))
-            #plt.gcf().clear()
-            plt.show()
-
+            import sys
+            fig = plt.figure()
+            ax = fig.add_subplot(111)
+            make_subplot_better(ax)
+            ax.set_title('Fitting RC Low-pass Model to Data')
+            ax.set_xlabel('Time (us)')
+            ax.set_ylabel('Amplitude (V)')
+            ax.plot(xdata, ydata)
+            ax.plot(xdata, ydata_model)
+            ax.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
+            # ax.figtext(0.7, 0.8, 'tau_1: {0:.2E}\ntau_2: {1:.2E}'.format(Decimal(popt[5]), popt[6]))
+            plt.savefig('fitting_rc_model.pdf', facecolor='white', edgecolor='none')
+            plt.gcf().clear()
+            #plt.show()
+            sys.exit(0)
 
         return [str(measured_dc)] + [str(x) for x in popt] + [str(x) for x in perr]
 
