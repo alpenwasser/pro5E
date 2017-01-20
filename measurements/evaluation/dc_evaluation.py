@@ -10,7 +10,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in  ('preamp',):  # ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in  ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
