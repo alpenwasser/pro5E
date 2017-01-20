@@ -126,7 +126,9 @@ the input voltage, we see the  effect of $g_m$ decreasing more clearly (figure
 \todo[inline]{generate tau  figures}).  Here,  the  results from 10 chips were
 statistically averaged to get a better result.
 
-\todo[inline]{is it frequency dependent? Shouldn't be}
+The $\Tau$ constants  appear to be frequency dependent. This doesn't make much
+sense and is very likely a direct  result  of  using a very rough model to fit
+the data.
 
 By  plotting  the output voltage from the preamp  in  function  of  the  input
 voltage and fitting a linear function $y=mx+q$ to the data, we expect a linear
@@ -142,22 +144,36 @@ the preamp no longer manages to properly reach the target voltage in time. The
 right column of figure \todo[inline]{same figure} shows  the  gain in function
 of  sampling  frequency.
 
-It is interesting that as the configurable gain  is  increased,  the  sampling
-frequency  has less of an impact on  its  deviation.  There  is  currently  no
-explanation as to why this is.
+It is interesting that as the configurable gain is increased, the measurements
+with a higher sampling frequency decrease in expected gain. There is currently
+no  explanation  as  to  why  this  is  the  case,  it   is  open  to  further
+investigation.
 
 Another interesting observation is what happens when the gain is inverted. The
-same   measurements   but  for  negative  gains  can   be   seen   in   figure
-\todo[inline]{generate this}. This is  much  more what we expect to see. It is
-currently unclear why the preamp behaves differently when in inverted mode. An
-asymmetry was also  observed  while  performing  the  measurements in the lab.
+same  measurements  but   for   negative   gains   can   be   seen  in  figure
+\todo[inline]{generate this}. This is much more  what  we  expect  to see: The
+sampling frequency and the gain have no significant influence. It is currently
+unclear  why  the  preamp  behaves  more correct when  in  inverted  mode.  An
+asymmetry  was  also observed while performing the measurements  in  the  lab.
 
 % --------------------------------------------------------------------------- %
 \section{Sigma-Delta Converter: DC Measurements}
 \label{sec:sigdelDC}
 % --------------------------------------------------------------------------- %
 
+The \sdm was measured directly, isolated from the preamp, by applying a number
+of  constant  DC  voltages  to  the \signal{TEST OUT} pin  and  recording  the
+resulting bit streams using the GPIO \raspi.
 
+Following  the  same  principles as with the pre-amplifier, for every chip and
+for every sampling frequency, 11 different input voltages were applied and the
+output bit  stream  was  recorded.  All of the data was then evaluated using a
+third order sinc-decimation filter to reconstruct a  digital  version  of  the
+measured voltage.
+
+By  fitting the linear function $y=mx+q$ to the 11 input/output  voltage  data
+points, we expect  to  obtain  a  line  who's incline is equal to 1 and offset
+equal to 0.
 
 % --------------------------------------------------------------------------- %
 \section{Complete System: DC Measurements}

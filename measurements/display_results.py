@@ -113,8 +113,9 @@ def display_dc_slope_results_for_sigdel_and_both(soup):
         ax.errorbar(sample_frequencies, slopes_avg, yerr=slopes_std, fmt='o')
         ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
         ax.set_title('Slopes for {}'.format(configuration))
-    plt.savefig('dc_slope_for_sigdel_and_both.pdf', facecolor='white', edgecolor='none')
-    plt.gcf().clear()
+    #plt.savefig('dc_slope_for_sigdel_and_both.pdf', facecolor='white', edgecolor='none')
+    #plt.gcf().clear()
+    plt.show()
 
 
 def display_dc_slope_results_for_preamp(soup):
@@ -179,8 +180,9 @@ def display_dc_offset_results(soup):
         ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
         ax2.set_title('{} offsets'.format(configuration))
         ax.set_title('offset vs Sampling Frequency\nfuck'.format(configuration))
-    plt.savefig('dc_offsets.pdf', facecolor='white', edgecolor='none')
-    plt.gcf().clear()
+    #plt.savefig('dc_offsets.pdf', facecolor='white', edgecolor='none')
+    #plt.gcf().clear()
+    plt.show()
 
 
 def display_noise_amplitude_and_standard_deviation(soup):
@@ -194,9 +196,9 @@ def display_noise_amplitude_and_standard_deviation(soup):
                 ax.scatter(input_voltage, noise_amplitude, c=color)
                 x += 1
         ax.set_title('Noise amplitude for {}'.format(configuration))
-    plt.savefig('dc_noise_amp.pdf', facecolor='white', edgecolor='none')
-    plt.gcf().clear()
-    #plt.show()
+    #plt.savefig('dc_noise_amp.pdf', facecolor='white', edgecolor='none')
+    #plt.gcf().clear()
+    plt.show()
 
     fig = plt.figure('test')
     for subplot_id, configuration in enumerate(('both', 'both-manual', 'sigdel')):
@@ -208,8 +210,9 @@ def display_noise_amplitude_and_standard_deviation(soup):
                 ax.scatter(input_voltage, std, c=color)
                 x += 1
         ax.set_title('Standard deviation for {}'.format(configuration))
-    plt.savefig('dc_noise_std.pdf', facecolor='white', edgecolor='none')
-    plt.gcf().clear()
+    #plt.savefig('dc_noise_std.pdf', facecolor='white', edgecolor='none')
+    #plt.gcf().clear()
+    plt.show()
 
 
 def get_tau_results(soup, fs, gain, sign):

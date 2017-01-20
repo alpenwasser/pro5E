@@ -212,10 +212,10 @@ def estimate_initial_parameters(xdata, ydata):
         ax.set_title('Transition Detection for Initial Guess')
         ax.set_xlabel('Time (us)')
         ax.set_ylabel('Amplitude (V)')
-        plt.savefig('transition-detection.pdf', facecolor='white', edgecolor='none')
-        plt.gcf().clear()
-        #plt.show()
-        sys.exit(0)
+        #plt.savefig('transition-detection.pdf', facecolor='white', edgecolor='none')
+        #plt.gcf().clear()
+        plt.show()
+        #sys.exit(0)
 
     return amp, amp_offset, period, t_offset, duty_cycle, tau, tau
 
@@ -247,16 +247,24 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
 
         # The measured DC value is either above or below the 1.5V mark.
         vref = 1.5
-        if not gain_is_positive:
-            expected_dc = vref - expected_dc
-        if expected_dc > vref:
-            measured_dc = np.max(ydata_model)
-            actual_dc = np.max(ydata)
-            measured_dc = actual_dc if measured_dc > actual_dc else measured_dc
+        if gain_is_positive:
+            if expected_dc > vref:
+                measured_dc = np.max(ydata_model)
+                actual_dc = np.max(ydata)
+                measured_dc = actual_dc if measured_dc > actual_dc else measured_dc
+            else:
+                measured_dc = np.min(ydata_model)
+                actual_dc = np.min(ydata)
+                measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
         else:
-            measured_dc = np.min(ydata_model)
-            actual_dc = np.min(ydata)
-            measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
+            if expected_dc > vref:
+                measured_dc = np.min(ydata_model)
+                actual_dc = np.min(ydata)
+                measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
+            else:
+                measured_dc = np.max(ydata_model)
+                actual_dc = np.max(ydata)
+                measured_dc = actual_dc if measured_dc > actual_dc else measured_dc
 
         if False:
             import sys
@@ -270,10 +278,10 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
             ax.plot(xdata, ydata_model)
             ax.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
             # ax.figtext(0.7, 0.8, 'tau_1: {0:.2E}\ntau_2: {1:.2E}'.format(Decimal(popt[5]), popt[6]))
-            plt.savefig('fitting_rc_model.pdf', facecolor='white', edgecolor='none')
-            plt.gcf().clear()
-            #plt.show()
-            sys.exit(0)
+            #plt.savefig('fitting_rc_model.pdf', facecolor='white', edgecolor='none')
+            #plt.gcf().clear()
+            plt.show()
+            #sys.exit(0)
 
         return [str(measured_dc)] + [str(x) for x in popt] + [str(x) for x in perr]
 
