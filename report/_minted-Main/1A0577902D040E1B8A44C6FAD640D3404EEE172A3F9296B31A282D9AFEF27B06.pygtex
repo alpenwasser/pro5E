@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} sudo apt\PYGZhy{}get install cmake
+\PYGZdl{} sudo apt\PYGZhy{}get install gcc
+\end{Verbatim}

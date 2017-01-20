@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} scp \PYGZhy{}r path/to/software pi@10.84.130.16:/home/pi
+\end{Verbatim}

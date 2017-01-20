@@ -35,7 +35,9 @@ void acquire_data(int bitstream_buf[BUF_NUM_SLOTS][NUM_MEASUREMENTS])
 
 		gettimeofday(&end, 0);
 		bitstream_buf[BUF_DATA][i] = digitalRead(PIN_DATA);
-		bitstream_buf[BUF_TIME][i] = ((end.tv_sec * 1000000) + end.tv_usec) - ((start.tv_sec * 1000000) + start.tv_usec);
+		bitstream_buf[BUF_TIME][i] 
+			= ((end.tv_sec * 1000000) + end.tv_usec) 
+			- ((start.tv_sec * 1000000) + start.tv_usec);
 
 		// wait for clock to go negative
 		while(digitalRead(PIN_CLOCK) == 1) {}
@@ -49,7 +51,7 @@ void save_data(const int bitstream_buf[BUF_NUM_SLOTS][NUM_MEASUREMENTS])
 	for(int i = 0; i != NUM_MEASUREMENTS; ++i)
 	{
 		long double time_usec = bitstream_buf[BUF_TIME][i] / 1000000.0;
-		clock_file << time_usec << "     " << "1.2" << "     " << std::endl;
+		clock_file <<time_usec<< "     " << "1.2" << "     " <<std::endl;
 		if(bitstream_buf[BUF_DATA][i] == 1)
 			data_file << time_usec << "     " << "3.0000" << std::endl;
 		else

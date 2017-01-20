@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} cmake \PYGZhy{}\PYGZhy{}version
+\PYGZdl{} gcc \PYGZhy{}\PYGZhy{}version
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} mkdir build
+\PYGZdl{} \PYG{n+nb}{cd} build
+\PYGZdl{} cmake \PYGZhy{}DCMAKE\PYGZus{}BUILD\PYGZus{}TYPE\PYG{o}{=}Release ../
+\PYGZdl{} make
+\end{Verbatim}

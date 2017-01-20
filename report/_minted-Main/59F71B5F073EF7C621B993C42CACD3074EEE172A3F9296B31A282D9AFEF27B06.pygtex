@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} sudo ifconfig
+eth0      Link encap:Ethernet  HWaddr b8:27:eb:e2:d2:c6
+          inet addr:10.84.130.16  Bcast:10.84.130.255  Mask:255.255.255.0
+\end{Verbatim}

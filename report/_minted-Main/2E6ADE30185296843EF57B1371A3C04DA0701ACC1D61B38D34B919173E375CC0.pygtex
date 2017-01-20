@@ -36,7 +36,9 @@
 
 		\PYG{n}{gettimeofday}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{end}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
 		\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}DATA}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{digitalRead}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}DATA}\PYG{p}{);}
-		\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{p}{((}\PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{p}{((}\PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{);}
+		\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} 
+			\PYG{o}{=} \PYG{p}{((}\PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{)} 
+			\PYG{o}{\PYGZhy{}} \PYG{p}{((}\PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{);}
 
 		\PYG{c+c1}{// wait for clock to go negative}
 		\PYG{k}{while}\PYG{p}{(}\PYG{n}{digitalRead}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}CLOCK}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
@@ -50,7 +52,7 @@
 	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{!=} \PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
 	\PYG{p}{\PYGZob{}}
 		\PYG{k+kt}{long} \PYG{k+kt}{double} \PYG{n}{time\PYGZus{}usec} \PYG{o}{=} \PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mf}{1000000.0}\PYG{p}{;}
-		\PYG{n}{clock\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{time\PYGZus{}usec} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}1.2\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{n}{clock\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{time\PYGZus{}usec}\PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}1.2\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
 		\PYG{k}{if}\PYG{p}{(}\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}DATA}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}
 			\PYG{n}{data\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{time\PYGZus{}usec} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}3.0000\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
 		\PYG{k}{else}
