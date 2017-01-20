@@ -80,6 +80,7 @@ def display_dc_mse_results(soup):
                 x += 1
         ax.set_title('MSEs for {}'.format(configuration))
         ax.set_ylim([-0.01, 0.01])
+    plt.tight_layout()
     #plt.savefig('dc_mse.pdf', facecolor='white', edgecolor='none')
     #plt.gcf().clear()
     plt.show()
@@ -90,8 +91,9 @@ def display_dc_slope_results_for_sigdel_and_both(soup):
     configurations = ('both', 'sigdel')
     sample_frequencies = np.array((32, 96, 256))
     for subplot_id, configuration in enumerate(configurations):
-        ax = fig.add_subplot(2, 2, subplot_id*2 + 1)
-        ax2 = fig.add_subplot(2, 2, subplot_id*2 + 2)
+        fig.set_size_inches(8,5.5)
+        ax2 = fig.add_subplot(2, 1, 1)
+        ax  = fig.add_subplot(2, 1, 2)
         make_subplot_better(ax)
         make_subplot_better(ax2)
         slopes_avg = list()
@@ -105,29 +107,40 @@ def display_dc_slope_results_for_sigdel_and_both(soup):
 
             # Offset fs data slightly from one another so they appear in "chunks" in the plot
             xdata = np.array(range(len(slopes[0])))*1.1-0.05 + fs_id*0.2-0.1
-            ax2.errorbar(xdata, slopes[0], yerr=slopes[1], fmt='o')
+            ax2.errorbar(xdata, slopes[0], yerr=slopes[1], fmt='o', label=str(fs) + 'kHz')
 
         popt, pcov = curve_fit(linear_function, sample_frequencies, slopes_avg, sigma=slopes_std, absolute_sigma=True)
         perr = np.sqrt(np.diag(pcov))
 
         ax.errorbar(sample_frequencies, slopes_avg, yerr=slopes_std, fmt='o')
         ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
-        ax.set_title('Slopes for {}'.format(configuration))
-    #plt.savefig('dc_slope_for_sigdel_and_both.pdf', facecolor='white', edgecolor='none')
-    #plt.gcf().clear()
-    plt.show()
+        ax.set_xlim(24,276)
+        ax2.set_xlim(-0.5,10.5)
+        ax2.set_ylim(0.995,1.005)
+        plt.xticks([32,96,256])
+        ax.set_xlabel('Frequency (kHz)')
+        ax.set_ylabel('Gain')
+        ax2.legend(loc='upper center',ncol=3,bbox_to_anchor=(0.5,1.05))
+        ax2.set_ylabel('Gain')
+        ax2.set_xlabel('Chip No.')
+        ax2.set_title('Gain for {}'.format(configuration))
+        ax.set_title('Gain vs. Linear Fit for {}'.format(configuration))
+        plt.savefig('dc_slope_for_{}.pdf'.format(configuration), facecolor='white', edgecolor='none')
+        plt.gcf().clear()
 
 
 def display_dc_slope_results_for_preamp(soup):
     for sign in ('+', '-'):
         sample_frequencies = np.array((32, 96, 256))
         gains = (1, 2, 4, 8, 16)
-        fig = plt.figure('test')
         for gain_id, gain in enumerate(gains):
-            ax2 = fig.add_subplot(5, 2, gain_id*2 + 1)
-            ax = fig.add_subplot(5, 2, gain_id*2 + 2)
+            fig = plt.figure('things' + str(gain))
+            fig.set_size_inches(8,5.5)
+            ax2 = fig.add_subplot(2, 1, 1)
+            ax  = fig.add_subplot(2, 1, 2)
             make_subplot_better(ax)
             make_subplot_better(ax2)
+            fig.subplots_adjust(hspace=0.85)
             slopes_avg = list()
             slopes_std = list()
             for fs_id, fs in enumerate(sample_frequencies):
@@ -139,26 +152,40 @@ def display_dc_slope_results_for_preamp(soup):
 
                 # Offset fs data slightly from one another so they appear in "chunks" in the plot
                 xdata = np.array(range(len(slopes[0])))*1.1-0.05 + fs_id*0.2-0.1
-                ax2.errorbar(xdata, slopes[0], yerr=slopes[1], fmt='o')
+                ax2.errorbar(xdata, slopes[0], yerr=slopes[1], fmt='o',label=str(fs) + 'kHz')
 
             popt, pcov = curve_fit(linear_function, sample_frequencies, slopes_avg, sigma=slopes_std, absolute_sigma=True)
             perr = np.sqrt(np.diag(pcov))
 
             ax.errorbar(sample_frequencies, slopes_avg, yerr=slopes_std, fmt='o')
             ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
-            ax.set_title('Slopes for preamp')
-        plt.show()
-        #plt.savefig('dc_slope_preamp_gain{}.pdf'.format(gain), facecolor='white', edgecolor='none')
-        #plt.gcf().clear()
+            ax2.set_title('Gain for Preamp')
+            ax.set_title('Gain vs. Linear Fit for Preamp')
+            ax.set_xlim(24,276)
+            ax2.set_xlim(-0.5,10.5)
+            #plt.tight_layout()
+            #plt.setp(ax2.get_xticklabels(), visible=False)
+            #plt.setp(ax.get_xticklabels(), visible=False)       
+            plt.xticks([32,96,256])
+            ax.set_xlabel('Frequency (kHz)')
+            ax.set_ylabel('Gain')
+            ax2.legend(loc='lower center',ncol=3,bbox_to_anchor=(0.5,-0.65))
+            ax2.set_ylabel('Gain')
+            ax2.set_xlabel('Chip No.')
+            #plt.show()
+            plt.savefig('dc_slope_preamp_gain{}{}.pdf'.format(sign,gain), facecolor='white', edgecolor='none')
+            plt.gcf().clear()
 
 
 def display_dc_offset_results(soup):
-    fig = plt.figure('test')
     for subplot_id, configuration in enumerate(('both', 'sigdel', 'preamp')):
-        ax = fig.add_subplot(3, 2, subplot_id * 2 + 1)
-        ax2 = fig.add_subplot(3, 2, subplot_id * 2 + 2)
+        fig = plt.figure('test')
+        fig.set_size_inches(8,5.5)
+        ax2 = fig.add_subplot(2, 1, 1)
+        ax  = fig.add_subplot(2, 1, 2)
         make_subplot_better(ax)
         make_subplot_better(ax2)
+        fig.subplots_adjust(hspace=0.85)
         offsets_avg = list()
         offsets_std = list()
         sample_frequencies = np.array((32, 96, 256))
@@ -171,18 +198,25 @@ def display_dc_offset_results(soup):
 
             # Offset fs data slightly from one another so they appear in "chunks" in the plot
             xdata = np.array(range(len(offsets[0]))) * 1.1 - 0.05 + fs_id * 0.2 - 0.1
-            ax2.errorbar(xdata, offsets[0], yerr=offsets[1], fmt='o')
+            ax2.errorbar(xdata, offsets[0], yerr=offsets[1], fmt='o',label=str(fs) + 'kHz')
 
         popt, pcov = curve_fit(linear_function, sample_frequencies, offsets_avg, sigma=offsets_std, absolute_sigma=True)
         perr = np.sqrt(np.diag(pcov))
 
         ax.errorbar(sample_frequencies, offsets_avg, yerr=offsets_std, fmt='o')
         ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
-        ax2.set_title('{} offsets'.format(configuration))
-        ax.set_title('offset vs Sampling Frequency\nfuck'.format(configuration))
-    #plt.savefig('dc_offsets.pdf', facecolor='white', edgecolor='none')
-    #plt.gcf().clear()
-    plt.show()
+        ax2.set_title('Offsets for {}'.format(configuration))
+        ax.set_title('Offset vs Sampling Frequency for {}'.format(configuration))
+        ax.set_xlim(24,276)
+        ax2.set_xlim(-0.5,10.5)
+        plt.xticks([32,96,256])
+        ax.set_xlabel('Frequency (kHz)')
+        ax.set_ylabel('Gain')
+        ax2.legend(loc='lower center',ncol=3,bbox_to_anchor=(0.5,-0.65))
+        ax2.set_ylabel('Gain')
+        ax2.set_xlabel('Chip No.')
+        plt.savefig('dc_offsets_{}.pdf'.format(configuration), facecolor='white', edgecolor='none')
+        plt.gcf().clear()
 
 
 def display_noise_amplitude_and_standard_deviation(soup):
@@ -196,9 +230,10 @@ def display_noise_amplitude_and_standard_deviation(soup):
                 ax.scatter(input_voltage, noise_amplitude, c=color)
                 x += 1
         ax.set_title('Noise amplitude for {}'.format(configuration))
-    #plt.savefig('dc_noise_amp.pdf', facecolor='white', edgecolor='none')
-    #plt.gcf().clear()
-    plt.show()
+    plt.tight_layout()
+    plt.savefig('dc_noise_amp.pdf', facecolor='white', edgecolor='none')
+    plt.gcf().clear()
+    #plt.show()
 
     fig = plt.figure('test')
     for subplot_id, configuration in enumerate(('both', 'both-manual', 'sigdel')):
@@ -210,9 +245,9 @@ def display_noise_amplitude_and_standard_deviation(soup):
                 ax.scatter(input_voltage, std, c=color)
                 x += 1
         ax.set_title('Standard deviation for {}'.format(configuration))
-    #plt.savefig('dc_noise_std.pdf', facecolor='white', edgecolor='none')
-    #plt.gcf().clear()
-    plt.show()
+    plt.tight_layout()
+    plt.savefig('dc_noise_std.pdf', facecolor='white', edgecolor='none')
+    plt.gcf().clear()
 
 
 def get_tau_results(soup, fs, gain, sign):
@@ -250,19 +285,28 @@ def display_tau_results(soup):
     # The two tau constants are expected to change depending on the gain
     sampling_frequencies = (32, 96, 256)
     gains = (1, 2, 4, 8, 16)
-    fig = plt.figure('test')
     for subplot_id, gain in enumerate(gains):
-        ax = fig.add_subplot(3, 2, subplot_id + 1)
+        fig = plt.figure('test')
+        fig.set_size_inches(8,4)
+        ax = fig.add_subplot(111)
         make_subplot_better(ax)
+        ax.figure.subplots_adjust(bottom=0.25)
         min_ = 0
         max_ = 0
         for fs in sampling_frequencies:
             input_voltages, taus, Staus = average_taus_for_all_chips(soup, fs, gain, '+')
-            ax.errorbar(input_voltages, taus, yerr=Staus, fmt='o')
+            ax.errorbar(input_voltages, taus, yerr=Staus, fmt='o',label=str(fs) + 'kHz')
             min_ = np.min(taus) if np.min(taus) < min_ else min_
             max_ = np.max(taus) if np.max(taus) > max_ else max_
-        ax.set_ylim(min_, max_)
-    plt.show()
+        ax.set_ylim(0.9*min_,1.1*max_)
+        ax.set_xlim(0.4,2.6)
+        ax.set_title('Tau for Gain {}'.format(gain))
+        ax.legend(loc='lower center',ncol=3,bbox_to_anchor=(0.5,-0.37))
+        ax.ticklabel_format(style='sci',axis='y',scilimits=(0,0))
+        ax.set_xlabel('Input Voltage (V)')
+        ax.set_ylabel('Tau (1/s)')
+        plt.savefig('tau_results_{}.pdf'.format(gain), facecolor='white', edgecolor='none')
+        plt.gcf().clear()
 
 
 if __name__ == '__main__':
@@ -270,8 +314,8 @@ if __name__ == '__main__':
     #raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
     #display_dc_mse_results(fitted_soup)
+    #display_noise_amplitude_and_standard_deviation(fitted_soup)
     display_dc_slope_results_for_preamp(fitted_soup)
     display_dc_slope_results_for_sigdel_and_both(fitted_soup)
     display_dc_offset_results(fitted_soup)
-    display_noise_amplitude_and_standard_deviation(fitted_soup)
     display_tau_results(fitted_soup)

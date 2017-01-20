@@ -246,7 +246,7 @@ if (len(sys.argv) > 1):
     # remove tick marks
     ax.xaxis.set_tick_params(size=0)
     ax.yaxis.set_tick_params(size=0)
-    #ax.ticklabel_format(style='sci', axis='both', sciimits=(0,0))
+    #ax.ticklabel_format(style='sci', axis='both', scilimits=(0,0))
     # change the color of the top and right spines to opaque gray
     ax.spines['right'].set_color((.8, .8, .8))
     ax.spines['top'].set_color((.8, .8, .8))
