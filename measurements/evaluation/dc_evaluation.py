@@ -80,9 +80,6 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                     fit_node = soup.new_tag('fit')
                     value_node.append(fit_node)
 
-                if 'Samp' in fit_node.attrs:
-                    continue
-
                 measured_dc,\
                 amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2,\
                 Samp, Samp_offset, Speriod, St_offset, Sduty_cycle, Stau1, Stau2 =\
@@ -106,7 +103,6 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 fit_node.attrs['Stau2'] = Stau2
 
             else:
-                continue
                 measured_dc, bins, bin_edges, noise_amplitude, std = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
 
                 value_node.attrs['output'] = measured_dc

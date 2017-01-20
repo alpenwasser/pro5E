@@ -44,6 +44,9 @@ def iterate_dc_measurements_for_linearity(soup):
                 taus2 = None
                 if configuration == 'preamp':
                     taus1, taus2 = zip(*[(float(value.fit['tau1']), float(value.fit['tau2'])) for value in values])
+                    Staus1, Staus2 = zip(*[(float(value.fit['Stau1']), float(value.fit['Stau2'])) for value in values])
+                    taus1 = (taus1, Staus1)
+                    taus2 = (taus2, Staus2)
 
                 yield chip_id, configuration, fs, \
                       gain, sign, \
@@ -113,8 +116,10 @@ def calculate_dc_linearities(soup_in, soup_out):
             if taus_node is None:
                 taus_node = soup_out.new_tag('taus')
                 measurement_node.append(taus_node)
-            taus_node['taus1'] = ','.join([str(x) for x in taus1])
-            taus_node['taus2'] = ','.join([str(x) for x in taus2])
+            taus_node['taus1'] = ','.join([str(x) for x in taus1[0]])
+            taus_node['taus2'] = ','.join([str(x) for x in taus2[0]])
+            taus_node['Staus1'] = ','.join([str(x) for x in taus1[1]])
+            taus_node['Staus2'] = ','.join([str(x) for x in taus2[1]])
 
         # Linear fit to data. Some interesting info (possibly):
         # http://stats.stackexchange.com/questions/29903/what-is-a-good-way-to-measure-the-linearity-of-a-dataset
