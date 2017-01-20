@@ -687,9 +687,68 @@ then be processed as outlined in Chapter \ref{chap:results}.
 \label{subsec:raspi}
 % ---------------------------------------------------------------------------- %
 
-\todo[inline]{software installation}
-\todo[inline]{measurement programs}
-\todo[inline]{Network config}
+Installation of the operating system  is fairly straight forward. We recommend
+using the NOOBS\cite{ref:raspi} OS installer.
+
+The first thing we did was set up sshd  so  we  could  connect remotely to the
+\raspi. This isn't necessarily required, if you  feel  more  comfortable  with
+connecting  a  keyboard  and  monitor  then  do that. The scripts we used  for
+measuring data and  transferring  the  data  to  our computers do rely on SSH,
+though.
+
+You will need to install cmake and gcc (if they're not already installed). You
+can check if the programs exist by typing the following into a terminal.
+
+\begin{minted}{shell}
+$ cmake --version
+$ gcc --version
+\end{minted}
+
+If either return a ``command not found''  then  you  will need to install them
+with:
+\begin{minted}{shell}
+$ sudo apt-get install cmake
+$ sudo apt-get install gcc
+\end{minted}
+
+The \raspi has dhcpcd running by default, which means  it  will  automatically
+lease an IP as soon  as  it  is connected to the network. You will need to get
+the \raspi whitelisted  by  the  IT  department  in  order  to  connect  to it
+remotely. This involves finding out its MAC address. This can be done with the
+following command.
+
+\begin{minted}{shell}
+$ sudo ifconfig
+eth0      Link encap:Ethernet  HWaddr b8:27:eb:e2:d2:c6  
+          inet addr:10.84.130.16  Bcast:10.84.130.255  Mask:255.255.255.0
+\end{minted}
+
+The software for recording the bit stream can be found in  the svn repository.
+You can copy it to the \raspi using SSH:
+
+\begin{minted}{shell}
+$ scp -r path/to/software pi@10.84.130.16:/home/pi
+\end{minted}
+
+This will  place the software folder into the home folder on the \raspi. Next,
+open a  terminal  and navigate into the software folder. Execute the following
+commands to configure and compile the software:
+\begin{minted}{shell}
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_BUILD_TYPE=Release ../
+$ make
+\end{minted}
+
+This  will  product an  executable  \textit{bitstream}.  You  can  initiate  a
+measurement by executing:
+
+\begin{minted}{shell}
+$ sudo ./bitstream
+\end{minted}
+
+If the chip is  connected  and running properly, the program will exit after a
+few seconds and  a new file \textit{bit\_stream.txt} will exist in the folder.
 
 \begin{figure}
     \centering
