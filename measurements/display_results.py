@@ -80,17 +80,18 @@ def display_dc_mse_results(soup):
                 x += 1
         ax.set_title('MSEs for {}'.format(configuration))
         ax.set_ylim([-0.01, 0.01])
-    plt.savefig('dc_mse.pdf', facecolor='white', edgecolor='none')
-    plt.gcf().clear()
+    #plt.savefig('dc_mse.pdf', facecolor='white', edgecolor='none')
+    #plt.gcf().clear()
+    plt.show()
 
 
 def display_dc_slope_results_for_sigdel_and_both(soup):
     fig = plt.figure('test')
-    configurations = ('both', 'both-manual', 'sigdel')
+    configurations = ('both', 'sigdel')
     sample_frequencies = np.array((32, 96, 256))
     for subplot_id, configuration in enumerate(configurations):
-        ax = fig.add_subplot(3, 2, subplot_id*2 + 1)
-        ax2 = fig.add_subplot(3, 2, subplot_id*2 + 2)
+        ax = fig.add_subplot(2, 2, subplot_id*2 + 1)
+        ax2 = fig.add_subplot(2, 2, subplot_id*2 + 2)
         make_subplot_better(ax)
         make_subplot_better(ax2)
         slopes_avg = list()
@@ -152,9 +153,9 @@ def display_dc_slope_results_for_preamp(soup):
 
 def display_dc_offset_results(soup):
     fig = plt.figure('test')
-    for subplot_id, configuration in enumerate(('both', 'both-manual', 'sigdel', 'preamp')):
-        ax = fig.add_subplot(4, 2, subplot_id * 2 + 1)
-        ax2 = fig.add_subplot(4, 2, subplot_id * 2 + 2)
+    for subplot_id, configuration in enumerate(('both', 'sigdel', 'preamp')):
+        ax = fig.add_subplot(3, 2, subplot_id * 2 + 1)
+        ax2 = fig.add_subplot(3, 2, subplot_id * 2 + 2)
         make_subplot_better(ax)
         make_subplot_better(ax2)
         offsets_avg = list()
@@ -173,12 +174,11 @@ def display_dc_offset_results(soup):
 
         popt, pcov = curve_fit(linear_function, sample_frequencies, offsets_avg, sigma=offsets_std, absolute_sigma=True)
         perr = np.sqrt(np.diag(pcov))
-        print('avg_std(): {0:.4f} +/- {1:.4f}'.format(*avg_std(offsets_avg, offsets_std)))
-        print('perr: {0:.5f} +/- {1:.8f}'.format(*perr))
 
         ax.errorbar(sample_frequencies, offsets_avg, yerr=offsets_std, fmt='o')
         ax.plot(sample_frequencies, linear_function(sample_frequencies, *popt))
-        ax.set_title('offsets for {}'.format(configuration))
+        ax2.set_title('{} offsets'.format(configuration))
+        ax.set_title('offset vs Sampling Frequency\nfuck'.format(configuration))
     plt.savefig('dc_offsets.pdf', facecolor='white', edgecolor='none')
     plt.gcf().clear()
 
@@ -196,6 +196,7 @@ def display_noise_amplitude_and_standard_deviation(soup):
         ax.set_title('Noise amplitude for {}'.format(configuration))
     plt.savefig('dc_noise_amp.pdf', facecolor='white', edgecolor='none')
     plt.gcf().clear()
+    #plt.show()
 
     fig = plt.figure('test')
     for subplot_id, configuration in enumerate(('both', 'both-manual', 'sigdel')):
@@ -266,8 +267,8 @@ if __name__ == '__main__':
     #raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
     #display_dc_mse_results(fitted_soup)
-    #display_dc_slope_results_for_preamp(fitted_soup)
-    #display_dc_slope_results_for_sigdel_and_both(fitted_soup)
-    #display_dc_offset_results(fitted_soup)
-    #display_noise_amplitude_and_standard_deviation(fitted_soup)
+    display_dc_slope_results_for_preamp(fitted_soup)
+    display_dc_slope_results_for_sigdel_and_both(fitted_soup)
+    display_dc_offset_results(fitted_soup)
+    display_noise_amplitude_and_standard_deviation(fitted_soup)
     display_tau_results(fitted_soup)
