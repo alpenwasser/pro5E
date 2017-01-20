@@ -25,8 +25,8 @@ the chips coming from the same manufacturing batch (see \cite{ref:3sfall}), it
 does  give at  least some  additional  statistical confidence  in our  results
 beyond measuring simply a single sample.
 
-The measurements were  conducted for a range of DC  input signals. This allows
-to to assess linearity, correctness of gain, offset and time constants for the
+The  measurements  were conducted for a range of DC input signals. This allows
+to assess linearity, correctness of gain, offset and  time  constants  for the
 pre-amplifier.
 
 The  differential amplifier  outputs  a signal  which  oscillates between  the
@@ -126,6 +126,29 @@ in the previous chapter.
 \label{sec:dataProcessing}
 % --------------------------------------------------------------------------- %
 
+Condensing  the  large amount of  measurement  data  into  useful,  manageable
+information  is  achieved  via  a  ``2 stage''  approach.
+
+The    first    stage     is     performed     by     the     python    script
+\textit{parse\_all\_measurements.py}. It goes through  all  bit  stream files,
+applies  the  sinc/decimate filter to each one, and recovers the  measured  DC
+voltage. Additionally, it goes through all pre-amplifier measurements and fits
+a  first order low pass filter model to  the  data.  It  also  determines  the
+voltage that would be passed to the sample-and-hold  block based on the fitted
+model.  The  recovered   DC  values,  various  fit  parameters,  and  standard
+deviations  are written to the XML file  \textit{processed\_measurements.xml}.
+
+The first stage  is  responsible for reducing all of the raw data, so it takes
+quite  a  while to process  (approximately  1  hour  on  an  Intel  i5-2410M).
+
+The     second     stage     is    performed    by    the    python     script
+\textit{calculate\_fits.py}, which does  some  higher  level processing on the
+data. This includes a linear fit on the expected and measured DC  voltages  as
+well as  forwarding/preparing  other  data  for presentation. The results from
+this stage are stored in \textit{fitted\_data.xml}.
+
+The  last script, \textit{display\_results.py}, uses the fitted data from  the
+second stage to create plots.
 
 The goal in this project was  to create an efficient, streamlined workflow for
 measuring  multiple sensor  chips and  correlating the  results in  meaningful

@@ -62,7 +62,7 @@ waveform is of  course  a  square  wave  of  sorts,  as  can be seen in figure
 A first observation to make are the slow rise and fall-times. Indeed,  this is
 one  of the major limiting factors of the chip's performance;  If  the  target
 voltage can't be reached within half of the clock period (before it  is  reset
-again),  the  \sdm will end up  converting  a  lower  voltage  than  expected.
+again),  the  \sdm~will end up  converting  a  lower  voltage  than  expected.
 
 For  every  chip,  for  every sampling frequency, for every gain, inverted and
 non-inverted,  11  different  input voltages were applied and the  output  was
@@ -101,8 +101,8 @@ determined with a min/max search.
     \label{fig:transition_detection}
 \end{figure}
 
-The  most  interesting  parameters  yielded  from  the fit  are  $\Tau_1$  and
-$\Tau_2$, which give us a rough idea of the transconductance $g_m$ of the OTA.
+The  most  interesting  parameters  yielded  from  the fit  are  $\tau_1$  and
+$\tau_2$, which give us a rough idea of the transconductance $g_m$ of the OTA.
 The gain can also be easily extracted after  the  fit  by performing a min/max
 search   on   the   fitted   curve.   This    is    illustrated    in   figure
 \ref{fig:fitting_rc_model} as the horizontal line.
@@ -121,12 +121,12 @@ with 11 overlapping preamp  signals}. Furthermore, in the same figure, one can
 observe slewing on  the  larger  signals. This effect could be included in the
 fit model above in future evaluations.
 
-By combining the individual $\Tau$ constants and  plotting them in function of
+By combining the individual $\tau$ constants and  plotting them in function of
 the input voltage, we see the  effect of $g_m$ decreasing more clearly (figure
 \todo[inline]{generate tau  figures}).  Here,  the  results from 10 chips were
 statistically averaged to get a better result.
 
-The $\Tau$ constants  appear to be frequency dependent. This doesn't make much
+The $\tau$ constants  appear to be frequency dependent. This doesn't make much
 sense and is very likely a direct  result  of  using a very rough model to fit
 the data.
 
@@ -161,7 +161,7 @@ asymmetry  was  also observed while performing the measurements  in  the  lab.
 \label{sec:sigdelDC}
 % --------------------------------------------------------------------------- %
 
-The \sdm was measured directly, isolated from the preamp, by applying a number
+The \sdm~was measured directly, isolated from the preamp, by applying a number
 of  constant  DC  voltages  to  the \signal{TEST OUT} pin  and  recording  the
 resulting bit streams using the GPIO \raspi.
 
@@ -197,10 +197,10 @@ from the bit stream.
 % --------------------------------------------------------------------------- %
 
 The  same  measurements  were  performed  on  the complete chip: That is,  the
-pre-amplifier and the \sdm were measured together as one.
+pre-amplifier and the \sdm~were measured together as one.
 
 As expected, the rather imperfect results from the pre-amplifier combined with
-the  perfect  results  from the \sdm result in a semi-imperfect system. Figure
+the  perfect  results  from the \sdm~result in a semi-imperfect system. Figure
 \todo[inline]{Show  linearity  of complete system} shows the various gains  of
 the complete system and  figure  \todo[inline]{Show offset of complete system}
 shows the offset of the complete system.
