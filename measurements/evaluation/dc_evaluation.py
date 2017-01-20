@@ -211,7 +211,7 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
             actual_dc = np.min(ydata)
             measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
 
-        if True:
+        if False:
             plt.plot(xdata, ydata)
             plt.plot(xdata, ydata_model)
             plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
