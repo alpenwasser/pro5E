@@ -219,23 +219,32 @@ def get_tau_results(soup, fs, gain, sign):
                 taus2 = [float(x) for x in measurement_node.taus.attrs['taus2'].split(',')]
                 Staus1 = [float(x) for x in measurement_node.taus.attrs['Staus1'].split(',')]
                 Staus2 = [float(x) for x in measurement_node.taus.attrs['Staus2'].split(',')]
-                input_voltage = [float(x) for x in measurement_node.input_voltage.attrs['voltage'].split(',')]
+                input_voltages = [float(x) for x in measurement_node.input_voltage.attrs['voltage'].split(',')]
 
                 # If the expected voltage is greater than Vref (1.5V), then we are interested in the charge taus.
                 # Otherwise we are interested in the discharge taus. If the gain is negative, the opposite is true.
                 interesting_taus = list()
-                for voltage, tau1, tau2 in zip(input_voltage, taus1, taus2):
+                for voltage, tau1, tau2, Stau1, Stau2 in zip(input_voltages, taus1, taus2, Staus1, Staus2):
                     if sign == '+':
-                        interesting_taus.append(tau1 if voltage > 1.5 else tau2)
+                        interesting_taus.append((tau1, Stau1) if voltage > 1.5 else (tau2, Stau2))
                     else:
-                        interesting_taus.append(tau1 if voltage < 1.5 else tau2)
+                        interesting_taus.append((tau1, Stau1) if voltage < 1.5 else (tau2, Stau2))
 
-                yield input_voltage, interesting_taus
+                yield input_voltages, list(zip(*interesting_taus))
+
+
+def average_taus_for_all_chips(soup, fs, gain, sign):
+    chip_taus = list()
+    for input_voltages, taus in get_tau_results(soup, fs, gain, sign):
+        chip_taus.append(taus)
+    chip_taus = [list(zip(*x)) for x in zip(*chip_taus)]
+    taus, Staus = list(zip(*[avg_std(means, uncertainties) for means, uncertainties in zip(chip_taus[0], chip_taus[1])]))
+    return input_voltages, taus, Staus
 
 
 def display_tau_results(soup):
     # The two tau constants are expected to change depending on the gain
-    sampling_frequencies = (32,)  #(32, 96, 256)
+    sampling_frequencies = (32, 96, 256)
     gains = (1, 2, 4, 8, 16)
     fig = plt.figure('test')
     for subplot_id, gain in enumerate(gains):
@@ -244,10 +253,10 @@ def display_tau_results(soup):
         min_ = 0
         max_ = 0
         for fs in sampling_frequencies:
-            for input_voltage, taus in get_tau_results(soup, fs, gain, '+'):
-                ax.scatter(input_voltage, taus)
-                min_ = np.min(taus) if np.min(taus) < min_ else min_
-                max_ = np.max(taus) if np.max(taus) > max_ else max_
+            input_voltages, taus, Staus = average_taus_for_all_chips(soup, fs, gain, '+')
+            ax.errorbar(input_voltages, taus, yerr=Staus, fmt='o')
+            min_ = np.min(taus) if np.min(taus) < min_ else min_
+            max_ = np.max(taus) if np.max(taus) > max_ else max_
         ax.set_ylim(min_, max_)
     plt.show()
 
@@ -257,8 +266,8 @@ if __name__ == '__main__':
     #raw_soup = BeautifulSoup(open('processed_measurements.xml', 'r'), 'xml')
 
     #display_dc_mse_results(fitted_soup)
-    display_dc_slope_results_for_preamp(fitted_soup)
+    #display_dc_slope_results_for_preamp(fitted_soup)
     #display_dc_slope_results_for_sigdel_and_both(fitted_soup)
     #display_dc_offset_results(fitted_soup)
     #display_noise_amplitude_and_standard_deviation(fitted_soup)
-    #display_tau_results(fitted_soup)
+    display_tau_results(fitted_soup)
