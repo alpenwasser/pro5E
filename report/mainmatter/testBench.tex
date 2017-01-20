@@ -3,8 +3,8 @@
 \label{chap:testBench}
 % ---------------------------------------------------------------------------- %
 
-This  chapter presents a  brief overview  of the  test bench and  provides a
-step-by-step  guide on how to  put it  into operation. 
+This chapter presents a brief overview of  the test bench and provides a guide
+on how to put it into operation.
 
 A detailled list  of all the devices, components and  software which were used
 to obtain  the measurements  from Chapter  \ref{chap:results} is  given, along
@@ -27,11 +27,41 @@ Unless otherwise  noted, the information  presented in the  following sections
 applies to both types of measurements.
 
 % ---------------------------------------------------------------------------- %
-\section{Hardware and Component List}
-\label{sec:hwList}
+\section{Overview}
+\label{sec:overview}
 % ---------------------------------------------------------------------------- %
 
+The  complete   experimental  setup  as   used  during  our   measurements  is
+shown   in  figure   \ref{fig:testBenchComplete}. A  schematic   depiction  of
+the   various   connections  between   the   devices   is  shown   in   figure
+\ref{fig:testBenchConnections}. The   following  sections   describe  how   to
+configure each  of the  components.  Table \ref{tab:componentList}  contains a
+list of the devices components which are used.
+
+\begin{figure}
+    \includegraphics[width=0.9\textwidth]{images/expSetup/testBenchComplete.jpeg}
+    \caption{
+        The test bench as used in  our measurements. The \raspi~ is behind the
+        waveform generators on the left-hand side.%
+    }
+    \label{fig:testBenchComplete}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.9\textwidth]{images/expSetup/testBenchConnections.jpeg}
+    \caption{%
+        Schematic  connections between  the devices  in the  setup as  used in
+        figure  \ref{fig:testBenchComplete}. To  reduce  clutter,  all  ground
+        connections except the one between the \raspi~ and the test board have
+        been omitted.%
+    }
+    \label{fig:testBenchConnections}
+\end{figure}
+
+\begin{table}
 \begin{centering}
+    \caption{Component list}
+    \label{tab:componentList}
 \begin{xtabular}{
     >{\small}p{50mm}
     >{\small}p{8mm}
@@ -123,45 +153,13 @@ applies to both types of measurements.
     \bottomrule
 \end{xtabular}
 \end{centering}
-\todo[inline]{%
-        Which devices and components have been used, and for which purposes?%
-}
+\end{table}
 
 
 % ---------------------------------------------------------------------------- %
-\section{Assembly}
-\label{sec:assembly}
-% ---------------------------------------------------------------------------- %
-
-The complete experimental setup as used during our measurements, consisting of
-the above-listed components, is shown in figure \ref{fig:testBenchComplete}. A
-schematic depiction of the various connections between the devices is shown in
-figure \ref{fig:testBenchConnections}. The following  sections describe how to
-configure each of the components.
-
-\begin{figure}
-    \includegraphics[width=\textwidth]{images/expSetup/testBenchComplete.jpeg}
-    \caption{
-        The test bench as used in  our measurements. The \raspi~ is behind the
-        waveform generators on the left-hand side.%
-    }
-    \label{fig:testBenchComplete}
-\end{figure}
-
-\begin{figure}
-    \includegraphics[width=\textwidth]{images/expSetup/testBenchConnections.jpeg}
-    \caption{%
-        Schematic  connections between  the devices  in the  setup as  used in
-        figure  \ref{fig:testBenchComplete}. To  reduce  clutter,  all  ground
-        connections except the one between the \raspi~ and the test board have
-        been omitted.%
-    }
-    \label{fig:testBenchConnections}
-\end{figure}
-
-% ---------------------------------------------------------------------------- %
-\subsection{Sensor Test Board}
-\label{subsec:testBoard}
+\clearpage
+\section{Sensor Test Board}
+\label{sec:testBoard}
 % ---------------------------------------------------------------------------- %
 
 The test board provides a platform for easy operation and configuration of the
@@ -169,7 +167,7 @@ sensor chip. It has  inputs for the various supply voltages,  a socket for the
 chip itself  and outputs various signals. The  full list of the  chip's pinout
 can be found in table \ref{tab:topLevelPins}.
 
-The primary  item to  configure on  the test board  are the  DIP switches. The
+The primary  item to configured  on the test  board are the  DIP switches. The
 assignment  key  for them  is  listed  in  table \ref{tab:dipSwitches}  .  The
 major  gains  (also  configurable  via  DIP  switches)  are  listed  in  table
 \ref{tab:gainSettings}.
@@ -206,7 +204,7 @@ found       in       Appendix~\ref{app:testBoardSchematic}       on       page
     \caption{Major gain settings for pre-amplifier}
     \label{tab:gainSettings}
     \small
-    \begin{tabular}{rrrrr}
+    \begin{tabular}{p{10mm}p{10mm}p{10mm}p{10mm}p{10mm}}
         \toprule
         $d_3$ & $d_2$ & $d_1$ & $d_0$ & Gain \\
         \midrule
@@ -273,12 +271,11 @@ found       in       Appendix~\ref{app:testBoardSchematic}       on       page
 
 
 % ---------------------------------------------------------------------------- %
-\subsection{DC Power Supply}
-\label{subsec:dcPower}
+\clearpage
+\section{DC Power Supply}
+\label{sec:dcPower}
 % ---------------------------------------------------------------------------- %
-\todo[inline]{reference to user manual}
-\todo[inline]{Connections}
-\todo[inline]{control output voltages with voltmeter}
+
 
 The  \dcsupp~ has  three  independent direct  voltage  outputs. They are  used
 to  supply \signal{VDDD},  \signal{VDDA},  \signal{VREFH}, \signal{VGNDA}  and
@@ -295,13 +292,11 @@ test  board)  adjusted as  needed  to  achieve  the  desired bias  current  of
     \signal{VREFH} and \signal{VGNDA}.%
 }
 
+
 % ---------------------------------------------------------------------------- %
-\subsection{Waveform Generators}
-\label{subsec:33120A}
+\section{Waveform Generators}
+\label{sec:33120A}
 % ---------------------------------------------------------------------------- %
-\todo[inline]{reference to user manual}
-\todo[inline]{scripts, connections}
-\todo[inline]{control output voltages with voltmeter}
 
 The  \funcgen  s  are  controlled  remotely via  their  RS232  interface  from
 a   computer  (through   RS232  $\rightarrow$   USB-A  adapters,   see  Figure
@@ -319,7 +314,7 @@ device  tree and  their identities  must  be entered  into the  script in  the
     \caption{%
         One of  the two RS-232 to  USB adapters with cables. In  order for the
         adapter to properly  connect with the cables, both a  null modem and a
-        gender changer are also used.
+        gender changer are also used.%
     }
     \label{fig:rs232-usb}
 \end{figure}
@@ -351,7 +346,7 @@ generator  is set  to \SI{1.8}{\volt}. More  information can  be found  in the
 script itself.
 
 The \signal{CLK} device  will always output a square wave  with voltage levels
-\SI{0}{volt} and \SI{3}{\volt}, as per table \ref{tab:topLevelPins}.
+\SI{0}{\volt} and \SI{3}{\volt}, as per table \ref{tab:topLevelPins}.
 
 If needed,  the script can  easily be extended  to output any  other arbitrary
 signal. The full  list of available commands  can be obtained from  the 33120A
@@ -364,8 +359,8 @@ operator's manual, which can be downloaded at \cite{ref:33120A:userGuide}.
 
 
 % ---------------------------------------------------------------------------- %
-\subsection{Multimeters}
-\label{subsec:34465A}
+\section{Multimeters}
+\label{sec:34465A}
 % ---------------------------------------------------------------------------- %
 
 Three \emph{Keysight 34465A} multimeters are used. One for monitoring the bias
@@ -386,28 +381,21 @@ The    user   manual    for   the    multimeter   can    be   downloaded    at
 
 
 % ---------------------------------------------------------------------------- %
-\subsection{Oscilloscope}
-\label{subsec:oscilloscope}
+\section{Oscilloscope}
+\label{sec:oscilloscope}
 % ---------------------------------------------------------------------------- %
-
-\todo[inline]{connections}
-\todo[inline]{configuration}
-\todo[inline]{script}
-\todo[inline]{quirks}
-
 
 The oscilloscope  is used for  monitoring the clock,  the bit stream,  and for
 acquiring measurment data for the preamp via the test output pin.
 
 % ---------------------------------------------------------------------------- %
-\subsubsection{Clock and Bit Stream}
-\label{subsubsec:clockBitstream}
+\subsection{Clock and Bit Stream}
+\label{subsec:clockBitstream}
 % ---------------------------------------------------------------------------- %
 
 Monitoring  the clock  and  bit stream  is straightforward: The  oscilloscopes
 probes are connected  to the corresponding pins on the  test board as depicted
-in figures  \ref{fig:clockBitStreamProbes} and \ref{fig:clockBitStreamScreen},
-respectively.
+in Figure \ref{fig:clockBitStreamProbes}.
 
 \begin{figure}
     \centering
@@ -424,27 +412,20 @@ respectively.
     \label{fig:clockBitStreamProbes}
 \end{figure}
 
-%\begin{figure}
-%    \centering
-%    \missingfigure{Clock and bit stream, screenshot}
-%    \caption{Clock and bit stream measurement, screenshot}
-%    \label{fig:clockBitStreamScreen}
-%\end{figure}
 
-If  the   clock  and   bit  stream   do  not  look   as  depicted   in  figure
-\ref{fig:clockBitStreamScreen}, common  errors are a  disabled sample-and-hold
-circuit,  an  incorrect clock  voltage  (particularly  its  DC offset)  or  an
-incorrect bias current.
+If the clock  and bit stream do not  look as they should, common  errors are a
+disabled sample-and-hold circuit, an incorrect clock voltage (particularly its
+DC offset) or an incorrect bias current.
 
 
 % ---------------------------------------------------------------------------- %
-\subsubsection{Analog Measurements of Preamp}
-\label{subsubsec:analogMeasurements}
+\subsection{Analog Measurements of Preamp}
+\label{subsec:analogMeasurements}
 % ---------------------------------------------------------------------------- %
 
 Performing  analog measurements  of  the pre-amplifier  is  a noticeably  more
 involved process. A measurement  probe is connected to the test  output pin on
-the test board as shown in figure \ref{fig:probePreamp}.
+the test board as shown in Figure \ref{fig:testOutProbe}.
 
 \begin{figure}
     \centering
@@ -456,22 +437,16 @@ the test board as shown in figure \ref{fig:probePreamp}.
     \label{fig:testOutProbe}
 \end{figure}
 
-%\begin{figure}
-%    \centering
-%    \missingfigure{Probe connection preamp measurement}
-%    \caption{Probe connection preamp measurement}
-%    \label{fig:probePreamp}
-%\end{figure}
 
 Besides the  oscilloscope itself,  a laptop  is used  to remotely  control the
 oscilloscope and  the two function generators  (one for the clock  and for the
 input signal, respectively).
 
-The  connection  between  the  Oscilloscope  and  the  laptop  is  established
-via  ethernet, with  each  device being  assigned a  fixed  IP. The laptop  is
-configured  to match  the  oscilloscope's network  settings. How to  configure
-the  laptop  is  outline  in Section  \ref{subsec:laptop},  starting  on  page
-\pageref{subsec:laptop}.
+The  connection  between  the  oscilloscope  and  the  laptop  is  established
+via  ethernet,  with  each  device  being assigned  a  fixed  IP  address. The
+laptop  is configured  to match  the oscilloscope's  network settings. How  to
+configure the laptop is outlined in Section \ref{sec:laptop}, starting on page
+\pageref{sec:laptop}.
 
 
 After  having  successfully  established   a  connection  between  laptop  and
@@ -483,7 +458,7 @@ setup and acquire the measurement data:
         A shell wrapper script, 
     \item
         \code{33120A.py}: For controlling the waveform generators (see section
-        \ref{subsec:33120A})
+        \ref{sec:33120A})
     \item 
         \code{initWaveRunner.py}: resets and initializes the oscilloscope with
         a given configuration.
@@ -521,7 +496,7 @@ will then be incorrect.
 
 \code{acquireWaveRunnerData.py}  executes   the  actual  measurement   on  the
 oscilloscope  for a  given channel. The  measurement results  are stored  in a
-text-file, which is then downloaded to the laptop.
+text file, which is then downloaded to the laptop.
 
 The entire process is controlled via  a shell wrapper script. This script will
 be explained  in more  detail in the  following paragraphs. There  are various
@@ -531,10 +506,10 @@ same outline.
 For each measurement run, the chip  number, the gain (sign and absolute value)
 and the channel which  is connected to the test output on  the test board must
 be set.  Furthermore, the target directory  in which the measurement data will
-be stored  on the PC is  set according to  the chip number and  gain settings.
-There  is  also  an  optional  flag  for  resetting  the  oscilloscope  before
-performing the measurements,  if so desired. In the following  example, a gain
-of \code{+1} will be measured for chip number 1:
+be  stored on  the PC  is configured  according to  the chip  number and  gain
+settings.   There is  also an  optional  flag for  resetting the  oscilloscope
+before performing the measurements, if so desired. In the following example, a
+gain of \code{+1} will be measured for chip number 1:
 
 \begin{minted}{shell}
 CHIP='chip01'
@@ -547,25 +522,13 @@ RESET='0' # 1: reset and initialize the oscilloscope
 
 Before actually performing any measurements,  the script will display a series
 of  messages to  the user,  accounting  for a  few quirks  of the  setup. This
-minimizes user error and ensures that time is not wasted on measurements being
-useless due to erroneous configurations.
+minimizes  user  error  and  ensures  that time  is  not  wasted  on  unusable
+measurements due to erroneous configurations.
 
 The first message concerns the number  of sample points which the oscilloscope
 is set to acquire. This  must be set to \num{500} kilo  samples per second, as
 shown in  Figure \ref{fig:kilosamples}. If this  is not done,  the measurement
-data will show aliasing, resulting in useless data.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{images/expSetup/setSamples.jpeg}
-    \caption{%
-        Set sample rate on oscilloscope. Click the \emph{Timebase} icon on the
-        bottom right of  the screen, then adjust the  \emph{Max Sample Points}
-        setting (highlighted)  to \num{500} kilo  samples in the  dialog which
-        opens.%
-    }
-    \label{fig:kilosamples}
-\end{figure}
+data will exhibit strong quantization errors, resulting in unusable data.
 
 The  next  two  messages  concern  the  measurement  files  which  are  stored
 on   the  oscilloscope.    They   follow   a  naming   scheme   of  the   form
@@ -580,6 +543,19 @@ script maintains  its own  counter to  match the  oscilloscope's. Between each
 measurement  run (i.e.  each script  execution), manual  intervention via  the
 oscilloscope's GUI is necessary to reset the oscrilloscope's counter, as shown
 in figure \ref{fig:fileCounterReset}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/expSetup/setSamples.jpeg}
+    \caption{%
+        Set sample rate on oscilloscope. Click the \emph{Timebase} icon on the
+        bottom right of  the screen, then adjust the  \emph{Max Sample Points}
+        setting (highlighted)  to \num{500} kilo  samples in the  dialog which
+        opens.%
+    }
+    \label{fig:kilosamples}
+\end{figure}
+
 
 \begin{figure}
     \centering
@@ -683,21 +659,21 @@ then be processed as outlined in Chapter \ref{chap:results}.
 
 
 % ---------------------------------------------------------------------------- %
-\subsection{Raspberry Pi}
-\label{subsec:raspi}
+\section{Raspberry Pi}
+\label{sec:raspi}
 % ---------------------------------------------------------------------------- %
 
 Installation of the operating system  is fairly straight forward. We recommend
-using the NOOBS\cite{ref:raspi} OS installer.
+using the NOOBS \cite{ref:raspinoobs} OS installer.
 
-The first thing we did was set up sshd  so  we  could  connect remotely to the
-\raspi. This isn't necessarily required, if you  feel  more  comfortable  with
-connecting  a  keyboard  and  monitor  then  do that. The scripts we used  for
-measuring data and  transferring  the  data  to  our computers do rely on SSH,
-though.
+The first thing to  do is to set up SSHD so that  a remote connection with the
+\raspi  can be  established.  This  isn't strictly  required, if  preferred, a
+monitor and keyboard  connected directly to the \raspi~ can  also be used. The
+scripts  used  measuring measuring  data  and  transferring  the data  to  our
+computers do rely on SSH, though.
 
-You will need to install cmake and gcc (if they're not already installed). You
-can check if the programs exist by typing the following into a terminal.
+cmake and gcc  need to be installed, if they're  not already. To check whether
+the programs exist, type the following into a terminal:
 
 \begin{minted}{shell}
 $ cmake --version
@@ -711,11 +687,11 @@ $ sudo apt-get install cmake
 $ sudo apt-get install gcc
 \end{minted}
 
-The \raspi has dhcpcd running by default, which means  it  will  automatically
-lease an IP as soon  as  it  is connected to the network. You will need to get
-the \raspi whitelisted  by  the  IT  department  in  order  to  connect  to it
-remotely. This involves finding out its MAC address. This can be done with the
-following command.
+The \raspi~ has dhcpcd running by  default, which means it  will automatically
+lease an IP as  soon as it is connected to the  network. The \raspi~ will need
+to be  whitelisted by the  IT department  in order to  be able to  establish a
+remote connection.   This involves  finding out its  MAC address. This  can be
+done with the following command:
 
 \begin{minted}{shell}
 $ sudo ifconfig
@@ -723,8 +699,10 @@ eth0      Link encap:Ethernet  HWaddr b8:27:eb:e2:d2:c6
           inet addr:10.84.130.16  Bcast:10.84.130.255  Mask:255.255.255.0
 \end{minted}
 
-The software for recording the bit stream can be found in  the svn repository.
-You can copy it to the \raspi using SSH:
+\code{HWaddr b8:27:eb:e2:d2:c6} is the information needed.
+
+The software for recording the bit stream  can be found in the svn repository.
+It can be copied to the \raspi~ using SSH:
 
 \begin{minted}{shell}
 $ scp -r path/to/software pi@10.84.130.16:/home/pi
@@ -740,7 +718,7 @@ $ cmake -DCMAKE_BUILD_TYPE=Release ../
 $ make
 \end{minted}
 
-This  will  product an  executable  \textit{bitstream}.  You  can  initiate  a
+This  will  produce an  executable  \textit{bitstream}.   You can  initiate  a
 measurement by executing:
 
 \begin{minted}{shell}
@@ -749,6 +727,11 @@ $ sudo ./bitstream
 
 If the chip is  connected  and running properly, the program will exit after a
 few seconds and  a new file \textit{bit\_stream.txt} will exist in the folder.
+
+On the hardware side, not much configuration is needed. A dedicated cable with
+a 40-pin plug has been created to easily connect the \raspi~ with the required
+pins on the test board (bit stream,  clock and ground). This cable is shown in
+Figure \ref{fig:raspiCable}, connected to the test board.
 
 \begin{figure}
     \centering
@@ -762,8 +745,8 @@ few seconds and  a new file \textit{bit\_stream.txt} will exist in the folder.
 
 
 % ---------------------------------------------------------------------------- %
-\subsection{Laptop}
-\label{subsec:laptop}
+\section{Laptop}
+\label{sec:laptop}
 % ---------------------------------------------------------------------------- %
 
 This section outlines the prerequisites, configuration and usage of a computer
@@ -773,17 +756,17 @@ waveform generators) can be used.
 
 
 % ---------------------------------------------------------------------------- %
-\subsubsection{Prerequisites}
-\label{subsubsec:laptop:prereqs}
+\subsection{Prerequisites}
+\label{subsec:laptop:prereqs}
 % ---------------------------------------------------------------------------- %
 
 For controlling the test bench, a laptop running Linux is used. Fundamentally,
-other configurations are likely also  possible. Any Bash version 4.0 and newer
-should  be able  to execute  the wrapper  scripts (associated  arrays must  be
-supported). Even Windows 10  has Bash as well  these days \cite{ref:W10:bash},
-though compatibility with our script suite has not been verified).
+other configurations are  likely also possible, but have  not been tested. Any
+Bash  version 4.0  and newer  should be  able to  execute the  wrapper scripts
+(associated arrays must be supported). Even Windows  10 has Bash as well these
+days \cite{ref:W10:bash}, for the adventure-minded.
 
-Besides  Bash  >4.0 support,  Python  3  must  be  installed, along  with  the
+Besides Bash  $\geq4.0$ support, Python  3 must  be installed, along  with the
 following modules:
 
 \begin{itemize}\tightlist
@@ -791,20 +774,29 @@ following modules:
         \code{serial}: For communicating with the waveform generators
     \item
         \code{vxi11}: For communicating with the oscilloscope
+    \item
+        \code{sigmadelta}: For processing the bit stream
 \end{itemize}
 
 These  modules can  either be  installed via  pip or  via your  distribution's
 package manager.
 
+The \raspi~  is remote-controlled via SSH  from the laptop. In order  to avoid
+having to  type in  a password  for each SSH  connection attempt  (which would
+become cumbersome very  quickly), SSH key files are used.   For information on
+how to  generate and install  SSH keys, there  are many online  resources, for
+example the Arch Linux Wiki \cite{ref:archWiki:SSH}.
+
 
 % ---------------------------------------------------------------------------- %
-\subsubsection{Ethernet Configuration}
-\label{subsubsec:laptop:netconf}
+\subsection{Ethernet Configuration}
+\label{subsec:laptop:netconf}
 % ---------------------------------------------------------------------------- %
 
 For  communicating  with  the  oscilloscope via  ethernet,  a  static  network
 connection is used,  corresponding to the settings on  the oscilloscope (which
-can be checked via the network dialog in Windows XP).
+can  be checked  via  the  network dialog  in  the  oscilloscope's Windows  XP
+operating system).
 
 On the  machine used in our  measurements (a Macbook Pro  running Arch Linux),
 this is done via \code{netctl} as follows\footnotemark:
@@ -829,33 +821,3 @@ is  being  used. A  list  of   available  interfaces  can  be  displayed  with
 \cite{ref:iproute2}  installed,  or with  \code{ifconfig}  \cite{ref:ifconfig}
 on  other  *nix  operating  systems. For  further  information,  consult  your
 distribution's manpages.
-
-
-% ---------------------------------------------------------------------------- %
-\subsubsection{SSH Configuration}
-\label{subsubsec:laptop:sshconf}
-% ---------------------------------------------------------------------------- %
-
-The \raspi~  is remote-controlled via SSH  from the laptop. In order  to avoid
-having to  type in  a password  for each SSH  connection attempt  (which would
-become cumbersome  very quickly), SSH  key files  are used. Because this  is a
-rather expansive topic  with a lot of available information,  a quick guide is
-povided  here\footnotemark. These  steps are  based  on  the Arch  Linux  Wiki
-\cite{ref:archWiki:SSH} , but  should work with any  reasonably modern OpenSSH
-installation:
-
-\todo[inline]{put SSH config tutorial into appendix?}
-
-\footnotetext{
-    If you already have  an SSH key pair or know how to  do this, this section
-    can be  skipped, unless you wish  to generate a new  key pair specifically
-    for this use.
-}
-
-First, generate a new key pair:
-
-\begin{minted}{shell}
-$ ssh-keygen
-\end{minted}
-
-The laptop is ready to properly execute our wrapper scripts as indented.
