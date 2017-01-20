@@ -10,12 +10,21 @@ assess the performance  of various verions of these chips. In  a second stage,
 the results of these measurements are to be used to further improve the \sdm's
 design.
 
-A  test  bench  has been  developed  which  allows  measurement of ten  chips  in
-a  few  days  in  various configurations. The  measurement  process  has  been
-largely automated  with scripts, requiring little  manual intervention. In our
-project, this  has resulted  in roughly \num{4000}  measurements, representing
-about \num{500000000} measurement points  and requiring approximately \num{12}
-gigabytes  of storage  space. The setup  has  been documented  so that  future
+We  used the testbench  to  measure  ten  chips  in  a  few  days  in  various
+configurations. The  measurement  process  has  been  largely  automated  with
+scripts,  requiring  little manual intervention.  In  our  project,  this  has
+resulted   in   roughly   \num{4000}    measurements,    representing    about
+\num{500000000}   measurement  points  and  requiring  approximately  \num{12}
+gigabytes  of  storage  space.  The setup has been documented so  that  future
 groups can rebuild it and reproduce our results.
 
-TODO: Stuff from Alex.
+The slow rise and fall times  of  the pre-amplifier are the limiting factor in
+this  chip's  performance. The sampling frequency limit turns out to be around
+\SI{256}{\kilo\hertz}.  This  is   where  the  OTA's  gain  starts  decreasing
+drastically.  Possible  solutions  include  increasing  the  transconductance,
+resulting in  a  higher  power  consumption, decreasing the switched capacitor
+values, which increases susceptibility to parasitic factors, or decreasing the
+output load, perhaps by buffering the output instead of connecting it directly
+to one of the chip's leads.
+
+
