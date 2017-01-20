@@ -40,8 +40,8 @@ t_sdm_cic = t_sdm_cic[2:]
 
 fig_out = plt.figure(figsize=(20, 8))
 ax_out = fig_out.add_subplot(111)
-ax_out.step(t_sdm_cic, s_sdm_cic*NORM_FACT, where='post', label=r"$V_{out,cic}$", zorder=4)
-#ax_out.scatter(t_sdm_cic, s_sdm_cic*NORM_FACT, label=r"$V_{out,cic}$")
+#ax_out.step(t_sdm_cic, s_sdm_cic*NORM_FACT, where='post', label=r"$V_{out,cic}$", zorder=4)
+ax_out.scatter(t_sdm_cic, s_sdm_cic*NORM_FACT, label=r"$V_{out,cic}$")
 #xlim(0.2,1.6)
 
 # set title and axis
@@ -52,4 +52,5 @@ ax_out.legend(loc='upper left')
 #ax_out.set_ylim([0.4,0.6])
 fig_out.tight_layout()
 plt.show()
+#fig_out.savefig('non-equi.pdf')
 #fig_out.savefig(file_name.replace('txt','svg'))

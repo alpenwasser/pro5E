@@ -41,6 +41,7 @@
     \setlength{\logoX}{5mm}
     \newlength{\logoY}
     \setlength{\logoY}{5mm}
+    \tikzset{external/export next=false}
     \begin{tikzpicture}[remember picture, overlay]
         % ------------------------------------------------ %
         % Background Picture                               %
@@ -65,7 +66,7 @@
             %fill opacity=0.8,
             %rounded corners=10mm,
             %outer sep=0pt,
-            inner sep=2em,
+            %inner sep=2em,
             yshift=9em,
             anchor = south,
         ] at (current page.south) {\textcolor{black}{\infotable}};
