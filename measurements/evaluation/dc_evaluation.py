@@ -19,7 +19,6 @@ def evaluate(soup):
                     continue
 
                 chip_id = match.group(1).lstrip('0')
-                chip_id = '2'
                 chip_node = soup.chips.find('chip', id=chip_id)
                 if chip_node is None:
                     chip_node = soup.new_tag('chip', id=chip_id)
@@ -59,9 +58,6 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
             current_fs = match_fs.group(1).lstrip('0')
             current_gain = match_gain.group(1).lstrip('0')
             current_sign = match_sign.group(1)
-
-            if current_gain != '16':
-                continue
 
             print('evaluating DC for {}/{}, sign={}, gain={}, fs={}, dc={}'.format(chip_dir_name, file, current_sign, current_gain, current_fs, current_dc))
 
