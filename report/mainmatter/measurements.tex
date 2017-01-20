@@ -1,16 +1,50 @@
 % --------------------------------------------------------------------------- %
 \chapter{Measurements and Data Processing}
-\label{chap:measurementProcess}
+\label{chap:measurements}
 % --------------------------------------------------------------------------- %
 
-\todo[inline]{%
-    Primary questions to answer in this chapter: What did we measure, how, and
-    why?
-}
 
 This chapter elaborates  on what measurements were performed  and what special
 considerations, if any,  had to be taken into  account. Additionally, the work
 flow for the processing of the obtained data is explained.
+
+The goal in this project is  to create an efficient, streamlined workflow for
+measuring  multiple sensor  chips and  correlating the  results in  meaningful
+ways.   The  conclusions  drawn  in  this report  mostly  originate  from  DC
+measurements; A number  of known voltages are applied to  the chip's input and
+its output  is observed. There  are multiple configurations  to do  this with,
+namely in function  of the preamp gain and the  sampling frequency $fs$, which
+in turn can be done again as a whole for just the preamp, for just the \sdm~or
+for both  combined (the whole  chip). These measurements were performed  on 10
+different chips that  all originated from the same wafer.   This gives us some
+statistical  reinforcement in  the results,  assuming the  whole wafer  is not
+biased of course.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=.8\linewidth]{images/blockdiagram.png}
+    \caption{Rough block diagram of the sensor chip}
+    \label{fig:blockdiagram}
+\end{figure}
+
+Figure \ref{fig:blockdiagram} shows a rough overview of the chip's components.
+
+The preamp is responsible for amplifying the difference of an input voltage to
+a  $\SI{1.5}{\volt}$ reference voltage by an  externally  configurable  factor
+(either  by  1,  2,  4,  8,  or 16). Additionally, the amplifier can be set to
+invert the gain.
+
+The SAH  (Sample and Hold) block  works together with the  \sdm~to convert the
+analog voltage from the preamp into a digital bit-stream.
+
+There are two  different kinds of measurements: The  results from measurements
+involving the \sdm, which is recorded using a GPIO pin on a \raspi.  Here, the
+input signal is either applied to the preamp (when measuring the whole device)
+or to  the \signal{TEST OUT}  pin (when measuring the  \sdm~alone). The output
+from the preamp on the other hand is analog, so it needed to be measured using
+an oscilloscope via the \signal{TEST OUT} pin.
+
+The sample size is 10 chips, unless indicated otherwise.
 
 
 % --------------------------------------------------------------------------- %
@@ -66,37 +100,19 @@ sampling frequency and positive gains.
         \midrule
         +1 & \SI{0.5}{\volt} & Preamp \\
         +1 & \SI{0.7}{\volt} & Preamp \\
-        +1 & \SI{0.9}{\volt} & Preamp \\
-        +1 & \SI{1.1}{\volt} & Preamp \\
-        +1 & \SI{1.3}{\volt} & Preamp \\
-        +1 & \SI{1.5}{\volt} & Preamp \\
-        +1 & \SI{1.7}{\volt} & Preamp \\
-        +1 & \SI{1.9}{\volt} & Preamp \\
-        +1 & \SI{2.1}{\volt} & Preamp \\
+        ... & &  \\
         +1 & \SI{2.3}{\volt} & Preamp \\
         +1 & \SI{2.5}{\volt} & Preamp \\
         \midrule
         +2 & \SI{1.0}{\volt} & Preamp \\
         +2 & \SI{1.1}{\volt} & Preamp \\
-        +2 & \SI{1.2}{\volt} & Preamp \\
-        +2 & \SI{1.3}{\volt} & Preamp \\
-        +2 & \SI{1.4}{\volt} & Preamp \\
-        +2 & \SI{1.5}{\volt} & Preamp \\
-        +2 & \SI{1.6}{\volt} & Preamp \\
-        +2 & \SI{1.7}{\volt} & Preamp \\
-        +2 & \SI{1.8}{\volt} & Preamp \\
+        ... & &  \\
         +2 & \SI{1.9}{\volt} & Preamp \\
         +2 & \SI{2.0}{\volt} & Preamp \\
         \midrule
         +4 & \SI{1.25}{\volt} & Preamp \\
         +4 & \SI{1.30}{\volt} & Preamp \\
-        +4 & \SI{1.35}{\volt} & Preamp \\
-        +4 & \SI{1.40}{\volt} & Preamp \\
-        +4 & \SI{1.45}{\volt} & Preamp \\
-        +4 & \SI{1.50}{\volt} & Preamp \\
-        +4 & \SI{1.55}{\volt} & Preamp \\
-        +4 & \SI{1.60}{\volt} & Preamp \\
-        +4 & \SI{1.65}{\volt} & Preamp \\
+        ... & &  \\
         +4 & \SI{1.70}{\volt} & Preamp \\
         +4 & \SI{1.75}{\volt} & Preamp \\
         \midrule
@@ -126,95 +142,27 @@ in the previous chapter.
 \label{sec:dataProcessing}
 % --------------------------------------------------------------------------- %
 
-Condensing  the  large amount of  measurement  data  into  useful,  manageable
-information  is  achieved  via  a  ``2 stage''  approach.
+Condensing  the  large amount  of  measurement  data into  useful,  manageable
+information is achieved via a two-stage approach.
 
 The    first    stage     is     performed     by     the     python    script
-\textit{parse\_all\_measurements.py}. It goes through  all  bit  stream files,
+\code{parse\_all\_measurements.py}. It goes through  all  bit  stream files,
 applies  the  sinc/decimate filter to each one, and recovers the  measured  DC
 voltage. Additionally, it goes through all pre-amplifier measurements and fits
 a  first order low pass filter model to  the  data.  It  also  determines  the
 voltage that would be passed to the sample-and-hold  block based on the fitted
 model.  The  recovered   DC  values,  various  fit  parameters,  and  standard
-deviations  are written to the XML file  \textit{processed\_measurements.xml}.
+deviations  are written to the XML file  \code{processed\_measurements.xml}.
 
 The first stage  is  responsible for reducing all of the raw data, so it takes
 quite  a  while to process  (approximately  1  hour  on  an  Intel  i5-2410M).
 
-The     second     stage     is    performed    by    the    python     script
-\textit{calculate\_fits.py}, which does  some  higher  level processing on the
-data. This includes a linear fit on the expected and measured DC  voltages  as
-well as  forwarding/preparing  other  data  for presentation. The results from
-this stage are stored in \textit{fitted\_data.xml}.
+The     second    stage     is    performed     by    the     python    script
+\code{calculate\_fits.py},  which  does   some  higher-level  processing  on
+the  data resulting  from  the  first stage. This  includes  a  linear fit  on
+the  expected  and  measured  DC  voltages  as  well  as  forwarding/preparing
+other  data  for presentation. The  results  from  this  stage are  stored  in
+\code{fitted\_data.xml}.
 
-The  last script, \textit{display\_results.py}, uses the fitted data from  the
+The  last script, \code{display\_results.py}, uses the fitted data from  the
 second stage to create plots.
-
-The goal in this project was  to create an efficient, streamlined workflow for
-measuring  multiple sensor  chips and  correlating the  results in  meaningful
-ways.   The  conclusions  drawn  in  this report  mostly  originated  from  DC
-measurements; A number  of known voltages are applied to  the chip's input and
-its output  is observed. There  are multiple configurations  to do  this with,
-namely in function  of the preamp gain and the  sampling frequency $fs$, which
-in turn can be done again as a whole for just the preamp, for just the \sdm~or
-for both  combined (the whole  chip). These measurements were performed  on 10
-different chips that  all originated from the same wafer.   This gives us some
-statistical  reinforcement in  the results,  assuming the  whole wafer  is not
-biased of course.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=.8\linewidth]{images/blockdiagram.png}
-    \caption{Rough block diagram of the sensor chip}
-    \label{fig:blockdiagram}
-\end{figure}
-
-Figure \ref{fig:blockdiagram} shows a rough overview of the chip's components.
-
-The preamp is responsible for amplifying the difference of an input voltage to
-a  $\SI{1.5}{\volt}$ reference voltage by an  externally  configurable  factor
-(either  by  1,  2,  4,  8,  or 16). Additionally, the amplifier can be set to
-invert the gain.
-
-The SAH  (Sample and Hold) block  works together with the  \sdm~to convert the
-analog voltage from the preamp into a digital bit-stream.
-
-There are two different  kinds  of measurements which had to be performed: The
-output from measurements involving the \sdm~were recorded using  a GPIO pin on
-a  \raspi.  Here,  the  input  signal  is  either  applied to the preamp (when
-measuring the whole  device)  or  to the \signal{TEST OUT} pin (when measuring
-the \sdm~alone). The output from the preamp on the other hand is analog, so it
-needed to  be  measured  using  an oscilloscope via the \signal{TEST OUT} pin.
-
-For both the preamp as well as the \sdm, DC measurements over an input voltage
-range   between   \SI{0.5}{\volt}  and  \SI{2.5}{\volt}  were  performed.   AC
-measurements  are  used   to   assess   the   system's   frequency   behavior.
-
-The sample size is 10 chips, unless indicated otherwise.
-
-Based on these  measurements and their analysis in the next chapter, we strive
-to answer the question of what sort of use cases this system  is suitable for,
-and with which settings.
-
-% TODO: noise
-% TODO: resolution in bits under a given set of circumstances
-% TODO: Measurement methodology
-
-
-% --------------------------------------------------------------------------- %
-\section{Pre-Amplifier: DC Measurements}
-\label{sec:preAmpDC}
-% --------------------------------------------------------------------------- %
-
-
-
-% --------------------------------------------------------------------------- %
-\section{Sigma-Delta Converter: DC Measurements}
-\label{sec:sigdelDC}
-% --------------------------------------------------------------------------- %
-
-% --------------------------------------------------------------------------- %
-\section{Complete System: DC Measurements}
-\label{sec:systemDC}
-% --------------------------------------------------------------------------- %
-

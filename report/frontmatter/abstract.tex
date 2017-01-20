@@ -4,27 +4,25 @@
 % ---------------------------------------------------------------------------- %
 
 As an ongoing  project at the Institute of Microelectronics,  a \sdm~ has been
-in development over the past few years. This project's objective was to develop
+in development over the past few years. Our project's objective was to develop
 a comprehensive  test and  data processing suite  to efficiently  and reliably
 assess the performance  of various verions of these chips. In  a second stage,
 the results of these measurements are to be used to further improve the \sdm's
 design.
 
-We  used the testbench  to  measure  ten  chips  in  a  few  days  in  various
-configurations. The  measurement  process  has  been  largely  automated  with
-scripts,  requiring  little manual intervention.  In  our  project,  this  has
-resulted   in   roughly   \num{4000}    measurements,    representing    about
-\num{500000000}   measurement  points  and  requiring  approximately  \num{12}
-gigabytes  of  storage  space.  The setup has been documented so  that  future
-groups can rebuild it and reproduce our results.
+The test bench allows efficient measuring  of multiple chips in a short amount
+of time and quickly evaluating the  results.  The measurement process has been
+largely automated with scripts, requiring  little manual intervention.  In our
+project, this  has resulted  in roughly \num{4000}  measurements, representing
+about  \num{500}  million  measurement   points  and  requiring  approximately
+\num{12} gigabytes  of storage space.  The  setup has been documented  so that
+future groups can rebuild it and reproduce our results.
 
-The slow rise and fall times  of  the pre-amplifier are the limiting factor in
-this  chip's  performance. The sampling frequency limit turns out to be around
-\SI{256}{\kilo\hertz}.  This  is   where  the  OTA's  gain  starts  decreasing
-drastically.  Possible  solutions  include  increasing  the  transconductance,
-resulting in  a  higher  power  consumption, decreasing the switched capacitor
-values, which increases susceptibility to parasitic factors, or decreasing the
-output load, perhaps by buffering the output instead of connecting it directly
-to one of the chip's leads.
-
-
+For the chip design which has been  evaluated, the slow rise and fall times of
+the  pre-amplifier  are  the  limiting  factor  in  performance. The  sampling
+frequency  limit is  around \SI{256}{\kilo\hertz},  which is  where the  OTA's
+gain  starts decreasing  drastically.  Possible  solutions include  increasing
+the  transconductance, resulting  in  a higher  power consumption,  decreasing
+the  switched capacitor  values, which  increases susceptibility  to parasitic
+factors,  or decreasing  the  output  load, perhaps  by  buffering the  output
+instead of connecting it directly to one of the chip's leads.

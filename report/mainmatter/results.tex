@@ -3,41 +3,9 @@
 \label{chap:results}
 % ---------------------------------------------------------------------------- %
 
+This  chapter  presents  the  measurement results,  processed  data  and  some
+analyisis of the results.
 
-\begin{itemize}\tightlist
-    \item
-        Saturation: Lower boundary: bitstream without any input signal
-    \item
-        Saturation: Upper boundary: Find meaningful equivalent to "no input" at lower boundary
-    %\item
-    %    Why do we perform DC measurements? (linearity, offset)
-    %\item
-    %    Why do we  perform AC measurements w/ harmonics? (What  sort of system
-    %    can be measured with this chip, how fast is the plant?)
-    %\item
-    %    Why do we perform SNR measurements?
-    \item
-        What are potential  measurements which might be of  interest but which
-        we  could  not perform  (and  the  reasons  for  which they  were  not
-        performed)?
-    \item
-        What would need to be done to be able to perform those measurements?
-    %\item
-    %    What kind of measurements were \emph{not} performed, and why?
-    %\item
-    %    Which measurements were performed?
-    %\item
-    %    Why are these measurements relevant?
-    %\item
-    %    What kind of results are we expecting? (Simulation results)
-    %\item
-    %    What are our actual results?
-    %\item
-    %    What are potential causes for the differences? (Potentially split this off
-    %    into a separate chapter titled \emph{Analysis} or something similar.)
-\end{itemize}
-
-%
 
 % --------------------------------------------------------------------------- %
 \section{Pre-Amplifier: DC Measurements}
@@ -59,7 +27,7 @@ waveform is of  course  a  square  wave  of  sorts,  as  can be seen in figure
     \label{fig:preamp_waveform}
 \end{figure}
 
-A first observation to make are the slow rise and fall-times. Indeed,  this is
+A first observation to make are the slow rise and fall times. Indeed,  this is
 one  of the major limiting factors of the chip's performance;  If  the  target
 voltage can't be reached within half of the clock period (before it  is  reset
 again),  the  \sdm~will end up  converting  a  lower  voltage  than  expected.
@@ -127,7 +95,6 @@ evaluations.
     \caption{Output voltage of the pre-amplifier for 11 different DC input voltage levels.}
     \label{fig:preamp_11_signals}
 \end{figure}
-. 
 
 By combining the individual $\tau$ constants and  plotting them in function of
 the input voltage, we see the  effect of $g_m$ decreasing more clearly (figure
@@ -144,11 +111,12 @@ The $\tau$ constants  appear to be frequency dependent. This doesn't make much
 sense and is very likely a direct  result  of  using a very rough model to fit
 the data.
 
-By  plotting  the output voltage from the preamp  in  function  of  the  input
+By  plotting the  output voltage  from  the preamp  in function  of the  input
 voltage and fitting a linear function $y=mx+q$ to the data, we expect a linear
-function who's  incline is equal to that of the configured gain. Additionally,
-there  we expect a small offset to exist, due to the imperfections of reality.
-This  process  is  visualised  in  figure \ref{fig:linear_fit}.
+function whose incline is equal  to that of the configured gain. Additionally,
+we expect a  small offset to exist  there, due to non-symmetry  in a non-ideal
+(i.e.  real) differential  amplifier.  This  process is  visualised in  figure
+\ref{fig:linear_fit}.
 
 \begin{figure}
     \centering
@@ -159,44 +127,45 @@ This  process  is  visualised  in  figure \ref{fig:linear_fit}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain+1.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain+1.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is 1.}
     \label{fig:preamp_slope+1}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain+2.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain+2.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is 2.}
     \label{fig:preamp_slope+2}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain+4.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain+4.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is 4.}
     \label{fig:preamp_slope+4}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain+8.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain+8.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is 8.}
     \label{fig:preamp_slope+8}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain+16.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain+16.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is 16.}
     \label{fig:preamp_slope+16}
 \end{figure}
 
-The upper plots in figures \ref{fig:preamp_slope+1}, \ref{fig:preamp_slope+2},
-\ref{fig:preamp_slope+4},             \ref{fig:preamp_slope+8}             and
-\ref{fig:preamp_slope+16} shows all positive  gains (1, 2, 4, 8, 16) for every
-chip (x axis)  in function of $fs$. There appeared to be a correlation between
-sampling frequency $fs$  and  gain,  which  made  sense  at the time, since at
-higher sampling  frequencies,  the  output  of the preamp no longer manages to
-properly reach the  target  voltage  in time. The lower plots in these figures
+The      upper      plots       in      Figures      \ref{fig:preamp_slope+1},
+\ref{fig:preamp_slope+2},  \ref{fig:preamp_slope+4},  \ref{fig:preamp_slope+8}
+and \ref{fig:preamp_slope+16}  show all positive  gains (1,  2, 4, 8,  16) for
+every chip  (x axis) in function  of $fs$. There appeared to  be a correlation
+between sampling frequency $fs$ and gain,  which made sense at the time, since
+at higher sampling frequencies, the output  of the preamp no longer manages to
+properly reach  the target voltage in  time. The lower plots in  these figures
 show the gain in function of sampling frequency.
 
+\newpage
 It is interesting that as the configurable gain is increased, the measurements
 with  a  higher  sampling frequency  decrease  in  effective  gain.  There  is
 currently  no  explanation as to why this is the case, it is open  to  further
@@ -209,47 +178,48 @@ measurements    but    for   negative   gains   can   be   seen   in   figures
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain-1.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain-1.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is -1.}
     \label{fig:preamp_slope-1}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain-2.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain-2.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is -2.}
     \label{fig:preamp_slope-2}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain-4.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain-4.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is -4.}
     \label{fig:preamp_slope-4}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain-8.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain-8.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is -8.}
     \label{fig:preamp_slope-8}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_preamp_gain-16.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_preamp_gain-16.pdf}
     \caption{Effective gains of pre-amplifier at different sampling frequencies. The configured gain is -16.}
     \label{fig:preamp_slope-16}
 \end{figure}
 
-Another   interesting  figure  to  look  at  might  be  the  offset   of   the
-pre-amplifier. In much the same way,  the offsets are presented in function of
-gain and sampling frequency in figures
+Another   interesting  figure   to  look   at  is   be  the   offset  of   the
+pre-amplifier. In much the same way, the  offsets are presented in function of
+gain and sampling frequency in Figure \ref{fig:preamp_offsets}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_offsets_preamp.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_offsets_preamp.pdf}
     \caption{Effective offsets of preamp at different sampling frequencies. The configured gain is 1.}
     \label{fig:preamp_offsets}
 \end{figure}
 
 % --------------------------------------------------------------------------- %
+\clearpage
 \section{Sigma-Delta Converter: DC Measurements}
 \label{sec:sigdelDC}
 % --------------------------------------------------------------------------- %
@@ -272,7 +242,7 @@ is plotted in figure \ref{fig:sigdel_offset}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/dc_slope_for_sigdel.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/dc_slope_for_sigdel.pdf}
     \caption{Effective gain/linearity of \sdm~at different sampling frequencies.}
     \label{fig:sigdel_gain}
 \end{figure}
@@ -291,19 +261,18 @@ spikes would  occur  here and there. See figure \ref{fig:noisy_sigdel}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/plots/noisy_bitstream.pdf}
+    \includegraphics[width=0.95\linewidth]{images/plots/noisy_bitstream.pdf}
     \caption{Large, random spikes after filtering the bit stream.}
     \label{fig:noisy_sigdel}
 \end{figure}
-.
-The only correlations that could  be  made  were that the
-spikes  occurred  more  often  at  higher sampling rates than they do at lower
-sampling rates. After analysing the time axis  to  make  sure  the data points
-were  equidistantly  spaced,  random  deviations  were  detected.  This  could
-possibly   be   a  result  of  using  the  rather   inaccurate   system   call
-\textit{gettimeofday()}  for  generating  time  stamps  on  the   \raspi.  The
-deviations are large enough to  suggest the possibility that bits went missing
-from the bit stream.
+
+The only  correlations that could be  made were that the  spikes occurred more
+often at  higher sampling rates  than they  do at lower  sampling rates. After
+analysing  the time  axis  to make  sure the  data  points were  equidistantly
+spaced, random deviations  were detected.  This could possibly be  a result of
+using the  rather inaccurate system call  \code{gettimeofday()} for generating
+time stamps on the \raspi. \newpage The deviations are large enough to suggest
+the possibility that bits went missing from the bit stream.
 
 % --------------------------------------------------------------------------- %
 \section{Complete System: DC Measurements}

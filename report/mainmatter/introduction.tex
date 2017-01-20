@@ -3,52 +3,36 @@
 \label{ch:introduction}
 % ---------------------------------------------------------------------------- %
 
-%\begin{itemize}\tightlist
-%    \item
-%        What has been done so far?
-%    \item
-%        What are our objectives?
-%    \item
-%        What are the  theoretical foundations (do not give here,  but refer to
-%        literature instead)?
-%    \item
-%        How does this tie into P6?
-%\end{itemize}
-
 
 In his  master thesis \emph{Sensor Chip}  \cite{ref:burgherr}, Tobias Burgherr
 developed a  sensor chip for converting  an analog input voltage  to a digital
-output (bitstream). Broadly speaking, the chip consists of a pre-amplifier and
-an analog-to-digital converter.
+output (bit  stream). Broadly speaking, the  chip consists of  a pre-amplifier
+and an analog-to-digital converter.
 
 Based on this work, two teams then each worked to improve the existing design;
 one  focusing on  the  preamp  \cite{ref:gloor}, the  other  team  on the  ADC
 \cite{ref:baier}.
 
 Our primary  objective in this  project will be to  develop a test  suite with
-which to  conveniently and accurately measure  the first chip, as  well as the
-chips  developed by  the  two successor  teams. While  some measurements  have
-already been performed on the first chip,  the amount of tests run was limited
-due to time  constraints by the respective  teams.  We aim to  expand on those
-measurements with  out test suite,  as well as use  them as a  reference point
-against which we can compare our findings.
+which  to conveniently  and accurately  measure the  various versions  of this
+chip.  While some measurements have already  been performed on the first chip,
+the amount of tests run was limited  due to time constraints by the respective
+teams.  We aim to expand on those measurements with our test suite, as well as
+to use them as a reference point against which we can compare our findings.
 
 Once the  two new  chips become  available, the methodology  used in  our test
 suite will allow efficient and accurate measuring  of the two new chips in our
 next project.
-
-Where sensible, our measurements will be compared against simulations.
 
 This  report  focuses  primarily  on measurements  and  results  analysis. For
 this  reason, no  extensive theoretical  chapters are  provided, and  we refer
 the  reader  to  the  reports  by  the  preceding  teams  \cite{ref:burgherr},
 \cite{ref:gloor} and \cite{ref:baier} as well as textbooks.
 
-Chapter  \ref{chap:experimentalSetup}  presents  an  overview  of  the  system
-hardware   and   software,  and   details   how   to   put  the   setup   into
-operation. Chapter   \ref{chap:measurements}   contains   a   description   of
-measurement  methodology and  rationale,  answering  the questions  ''\emph{What
-did   we  measure,   how   and  why?}``. In   Chapter  \ref{chap:results},   the
-results  are   presented  and  compared  with   simulations. Finally,  Chapter
-\ref{chap:conclusions} presents our conclusions, which will form the basis for
-further work in our bachelor thesis.
+Chapter  \ref{chap:testBench}  presents an  overview  of  the system  hardware
+and  software,  and details  how  to  put  the setup  into  operation. Chapter
+\ref{chap:measurements} contains a description  of measurement methodology and
+rationale,  answering  the questions  ''\emph{What  did  we measure,  how  and
+why?}``. In  Chapter \ref{chap:results},  the results  are presented. Finally,
+Chapter \ref{chap:conclusions}  presents our conclusions, which  will form the
+basis for further work in our bachelor thesis.
