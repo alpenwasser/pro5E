@@ -11,60 +11,65 @@ iteration. However, as  we found out during  the project, the new  chips would
 not arrive in  time to perform these measurements. Therefore, we  fell back to
 the original chip design in our measurements.
 
-Developing the test  bench  and  the  data processing tools turned out to be a
-noticeably more  complex undertaking than originally anticipated, and progress
-was not as swift as we had hoped.  Additionally,  some time was lost due to an
-incorrect component having been soldered onto  the  test board, requiring time
-for finding and fixing the error. Lastly, we  occasionally  got hung up on the
-wrong  details,  investing  time  without  generating   much   usable  output.
+Developing the  test bench and  the data processing tools  turned out to  be a
+noticeably more complex undertaking  than originally anticipated, and progress
+was not as swift as we had hoped.   Additionally, some time was lost due to an
+incorrect component having  been soldered onto the test  board, requiring time
+for finding and fixing the error. Lastly,  due to our lack of familiarity with
+the subject, we occasionally got hung  up on the wrong details, investing time
+without generating much usable output.
 
-This resulted  in  some  delays,  which  means  not  all  objectives have been
-achieved  at  this point. Specifically, mapping the measurement results to the
-internal  architecture  of  the  chip  via simulations still needs to be done.
-However, the test bench and data processing tools  have  been  developed  to a
-satisfying and  very  usable  state,  allowing  for  quick  measurement  of  a
-multitude of chips and analysis of the resulting data.
+This  resulted in  some  delays,  which means  not  all  objectives have  been
+achieved  at  this point. Specifically,  mapping  the  measurement results  to
+the  internal architecture  of  the chip  via simulations  still  needs to  be
+done.  However, the  test bench and data processing tools  have been developed
+to a  satisfying and very  usable state, allowing  for quick measurement  of a
+multitude of chips and efficient analysis of the resulting data.
 
-As  was  already established in the previous  work\cite{ref:gloor},  the  poor
-characteristics  of  the pre-amplifier  are  the  main  cause  for  diminished
-performance  of  the  device.  In  this  work,  measurements  have  shown  the
-pre-amplifier having a  rather  large  offset  and a gain that varies strongly
-depending  on  the operating frequency. Deviations in effective  gain  can  be
-traced back to slow rise and  fall  times  of the switched capacitor OTA; When
-the operating  frequency  is  close to the limit (which turns out to be around
-\SI{256}{\kilo\hertz}), the  target output voltage of the pre-amplifier can no
-longer  be  reached within one clock cycle and the  converted  value  deviates
-strongly as a result.
+As  was already  established in  the previous  work\cite{ref:gloor}, the  poor
+characteristics  of  the  pre-amplifier  are the  main  cause  for  diminished
+performance  of  the  device.   In  this work,  measurements  have  shown  the
+pre-amplifier having  a rather large  offset and  a gain that  varies strongly
+depending  on the  operating frequency. Deviations  in effective  gain can  be
+traced back to  slow rise and fall  times of the switched  capacitor OTA; When
+the operating frequency is close  to the limit (around \SI{256}{\kilo\hertz}),
+the target output voltage of the pre-amplifier can no longer be reached within
+one clock cycle and the converted value deviates strongly as a result.
 
-There  are  multiple possible reasons for the slow rise and  fall  times.  The
-transconductance of the OTA might  be  too  low. Increasing it leads to better
-performance,  but  at  the  cost  of  higher power consumption. Decreasing the
-values of the switched capacitors can lead to faster rise and fall times,  but
-at the cost of higher noise and more susceptibility to parasitic capacitances.
-Considering   the   fact   that   the   switched   capacitors   are   in   the
-\SI{100}{\femto\farad}-range, and considering  the fact that the output of the
-pre-amplifier is directly connected  to a lead on the chip (which is typically
-in  the  \SI{}{\pico\farad}-range),  the  lead  may  very  well  have a strong
-negative influence  on  the  pre-amplifier's  performance.  This  hasn't  been
+There are  multiple possible reasons  for the slow  rise and fall  times.  The
+transconductance of  the OTA  might be  too low. Increasing  it would  lead to
+better performance,  but at the  cost of higher  power consumption. Decreasing
+the values of the switched capacitors can  lead to faster rise and fall times,
+but  at  the  cost  of  higher noise  and  more  susceptibility  to  parasitic
+capacitances.  Considering  the fact that  the switched capacitors are  in the
+\SI{100}{\femto\farad}-range, and taking  into account that the  output of the
+pre-amplifier is directly connected to a  lead on the chip (which is typically
+in  the  \SI{}{\pico\farad}-range), the  lead  may  very  well have  a  strong
+negative  influence  on the  pre-amplifier's  performance.   This hasn't  been
 tested, but may be worth considering.
 
-Without the aid of simulations, we can't make more decisive conclusions.
+Without the  aid of simulations,  we can't  draw more concrete  conclusions at
+this point.   On the bright side,  though, the \sdm~itself appears  to perform
+quite well.
 
-On the bright side, though, the \sdm~appears to perform quite well.
-
-- objective: develop test bench and data processing stuff
-- success: moderately: test bench ok, scripts okay-ish, no simulations
-- why not? time delays
-- how to proceed into p6?
-
+Going into P6, we currently see the following tasks as critical:
 
 \begin{itemize}\tightlist
     \item
-        Short recap: What did we want to achieve?
+        Measuring and evaluting  the new chip designs,  as originally intended
+        for this project. Thanks to the test bench and data processing scripts
+        developed  during  this  project,  this should  be  achievable  fairly
+        quickly.
     \item
-        Were we successful?
+        Performing simulations in order to  gain a deeper understanding of how
+        the circuit  actually works, and  gaining insight into  \emph{why} the
+        measurement results look as they do.
     \item
-        If not: Why? How do we proceed from here?
+        Based on  this, isolate critical areas of the design and  improve upon
+        them.
     \item
-        How to proceed from here into P6?
+        Evaluate whether  or not  the \raspi~ is  actually sufficient  for the
+        task for which  it is being used,  and if not, what  measures to take.
+        This  could mean  either optimizing  the software  or, in  the extreme
+        case, replacing the hardware with something of higher performance.
 \end{itemize}
