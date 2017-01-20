@@ -44,6 +44,62 @@
 \label{sec:preAmpDC}
 % --------------------------------------------------------------------------- %
 
+The preamplifier was directly  measured, isolated from the \sdm, by applying a
+number of constant voltages on the input and recording the output voltage with
+an oscilloscope on the \signal{TEST OUT} pin.
+
+Since the  preamp  uses  a  switching  capacitor  implementation,  the  output
+waveform is of  course  a  square  wave  of  sorts,  as  can be seen in figure
+\todo{generate}.
+
+A first observation to make are the slow rise and fall-times. Indeed,  this is
+one  of the major limiting factors of the chip's performance;  If  the  target
+voltage can't be reached within half of the clock period (before it  is  reset
+again),  the  \sdm will end up  converting  a  lower  voltage  than  expected.
+
+For  every  chip,  for  every sampling frequency, for every gain, inverted and
+non-inverted,  11  different  input voltages were applied and the  output  was
+measured.  All  of  the  data  was  then fitted using a simple first order  RC
+low-pass charge/discharge model, described by the following python code:
+
+\begin{minted}{python}
+def preamp_curve(t, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2):
+    def discharge_segment(t, amp, tau):
+        return amp * np.exp(-t / tau)
+    def charge_segment(t, amp, tau):
+        return amp * (1.0 - np.exp(-t / tau))
+    t_local = (t+t_offset) % period
+    t_switch = period * duty_cycle
+    def preamp_curve_single():
+        for t_value in t_local:
+            if t_value < t_switch:
+                yield charge_segment(t_value, amp, tau1) + amp_offset
+            else:
+                yield discharge_segment(t_value - t_switch, amp, tau2) + amp_offset
+    return np.array([x for x in preamp_curve_single()])
+\end{minted}
+
+The initial parameters  for  the fit were obtained by first smoothing the data
+(using  a  Savitzky-Golay  filter)  and finding the  transition  points.  This
+process is illustrated  in  figure \todo{generate}. This was necessary because
+there are a lot of local  minima  the fit could fall into. The initial period,
+duty cycle, and phase shift can be  extracted  from  the  distance between the
+transition  lines.  The  initial amplitude and offset can be determined with a
+min/max search.
+
+The  most  interesting  parameters  yielded from  the  fit  are  $\Tau_1$  and
+$\Tau_2$, which give us a rough idea of the transconductance $g_m$ of the OTA.
+The gain can also be easily extracted after the fit by  performing  a  min/max
+search on the  fitted  curve. This is illustrated in figure \todo{generate} as
+the horizontal line.
+
+It can be observed  that  the  transconductance $g_m$ is largest when near the
+reference  voltage  $V_{ref}=\SI{1.5}{\volt}$  and   decreases   with   higher
+amplitudes. This effect is visualised  in  figure \todo{generate a figure with
+11 overlapping preamp signals}.
+
+If we plot $\Tau_1$ 
+
 % --------------------------------------------------------------------------- %
 \section{Sigma-Delta Converter: DC Measurements}
 \label{sec:sigdelDC}

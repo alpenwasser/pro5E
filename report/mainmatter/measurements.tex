@@ -8,12 +8,17 @@
     why?
 }
 
-The  goal in this project was to create an efficient, streamlined workflow for
-measuring  multiple  sensor  chips  and  correlating the results in meaningful
+The goal in this project was to  create an efficient, streamlined workflow for
+measuring multiple sensor chips  and  correlating  the  results  in meaningful
 ways.  The  conclusions  drawn  in  this  report  mostly  originated  from  DC
-measurements; A known voltage is applied to the chip's input and its output is
-observed  in  function  of  the  preamp gain, the sampling frequency $fs$  and
-different chips. output-to-input voltage
+measurements;  A  number of known voltages are applied to the chip's input and
+its output is observed. There are multiple  configurations  to  do  this with,
+namely  in  function of the preamp gain and the sampling frequency $fs$, which
+in  turn  can  be  done  again as a whole for just the preamp,  for  just  the
+$\Sigma\Delta$C or for both combined (the whole chip). These measurements were
+performed on 10 different chips that all originated from the same wafer.  This
+gives us some statistical reinforcement in  the  results,  assuming  the whole
+wafer isn't biased of course.
 
 \begin{figure}[t]
     \centering
@@ -22,28 +27,32 @@ different chips. output-to-input voltage
     \label{fig:blockdiagram}
 \end{figure}
 
+Figure \ref{fig:blockdiagram} shows a rough overview of the chip's components.
 
+The preamp is responsible for amplifying the difference of an input voltage to
+a  $\SI{1.5}{\volt}$ reference voltage by an  externally  configurable  factor
+(either  by  1,  2,  4,  8,  or 16). Additionally, the amplifier can be set to
+invert the gain.
 
-Two different  kinds  of  measurements were performed: Analog measurements were
-used to assess the performance of the  preamp  via  the \signal{TEST OUT} pin.
-Secondly, digital measurements for assessing the $\Sigma\Delta M$  as  well as
-the  two  components  combined  are  derived  by  evaluating the  bit  stream.
+The   SAH   (Sample   and    Hold)    block    works    together    with   the
+$\Sigma\Delta$-Modulator  to convert the analog voltage from the preamp into a
+digital bit-stream.
 
-Analog measurement data  is captured with an osccilloscope  and then evaluated
-on a PC. The bit stream is captured and processed on the \raspi.
+There are two different  kinds  of measurements which had to be performed: The
+output from measurements involving the \sdm were recorded using  a GPIO pin on
+a  \raspi.  Here,  the  input  signal  is  either  applied to the preamp (when
+measuring the whole  device)  or  to the \signal{TEST OUT} pin (when measuring
+the \sdm alone). The output from the preamp on the other hand is analog, so it
+needed to  be  measured  using  an oscilloscope via the \signal{TEST OUT} pin.
 
-For both the  preamp as well as the $\Sigma\Delta$  modulator, DC measurements
-over an input  voltage range between \SI{0.5}{\volt}  and  \SI{2.5}{\volt} are
-performed. AC measurements are used to assess the system's frequency behavior.
-
-Both DC and AC measurements are performed with various settings for the preamp
-(sign,  gain,  on/off)  as  well as  the  $\Sigma\Delta$  modulator  (sampling
-frequency).
+For both the preamp as well as the \sdm, DC measurements over an input voltage
+range   between   \SI{0.5}{\volt}  and  \SI{2.5}{\volt}  were  performed.   AC
+measurements  are  used   to   assess   the   system's   frequency   behavior.
 
 The sample size is 10 chips, unless indicated otherwise.
 
-Based on these measurements and their  analysis in the next chapter, we strive
-to answer the question  of what sort of use cases this  sytem is suitable for,
+Based on these  measurements and their analysis in the next chapter, we strive
+to answer the question of what sort of use cases this system  is suitable for,
 and with which settings.
 
 % TODO: noise
@@ -56,6 +65,8 @@ and with which settings.
 \label{sec:preAmpDC}
 % --------------------------------------------------------------------------- %
 
+
+
 % --------------------------------------------------------------------------- %
 \section{Sigma-Delta Converter: DC Measurements}
 \label{sec:sigdelDC}
@@ -66,17 +77,3 @@ and with which settings.
 \label{sec:systemDC}
 % --------------------------------------------------------------------------- %
 
-% --------------------------------------------------------------------------- %
-\section{Pre-Amplifier: AC Measurements}
-\label{sec:preAmpAC}
-% --------------------------------------------------------------------------- %
-
-% --------------------------------------------------------------------------- %
-\section{Sigma-Delta Converter: AC Measurements}
-\label{sec:sigdelAC}
-% --------------------------------------------------------------------------- %
-
-% --------------------------------------------------------------------------- %
-\section{Complete System: AC Measurements}
-\label{sec:systemAC}
-% --------------------------------------------------------------------------- %
