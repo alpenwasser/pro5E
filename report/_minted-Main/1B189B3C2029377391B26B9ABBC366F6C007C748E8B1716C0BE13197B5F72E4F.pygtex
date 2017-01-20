@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+Description=\PYGZsq{}WaveRunner Oscilloscope Ethernet Connection\PYGZsq{}
+Interface=ens9
+Connection=ethernet
+IP=static
+Address=(\PYGZsq{}169.254.14.1/16\PYGZsq{})
+\end{Verbatim}

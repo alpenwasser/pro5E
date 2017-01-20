@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{declare} \PYGZhy{}A timeDivs
+timeDivs\PYG{o}{[}32e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}5\PYGZsq{}}
+timeDivs\PYG{o}{[}96e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}2.5\PYGZsq{}}
+timeDivs\PYG{o}{[}256e3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}1\PYGZsq{}}
+\end{Verbatim}
