@@ -5,6 +5,39 @@ from evaluation.fit_functions import linear_function
 from scipy.optimize import curve_fit
 
 
+def make_subplot_better(ax):
+    plt.rc('text', usetex=True)
+    plt.rc('font', family='serif')
+    ax.figure.subplots_adjust(bottom=0.15, left=0.125, right=0.925, top=0.90, hspace=0.5)
+
+    # set the grid on
+    ax.grid('on')
+
+    # add more ticks
+    #ax.set_xticks(np.arange(25))
+
+    # remove tick marks
+    ax.xaxis.set_tick_params(size=0)
+    ax.yaxis.set_tick_params(size=0)
+
+    # change the color of the top and right spines to opaque gray
+    ax.spines['right'].set_color((.8, .8, .8))
+    ax.spines['top'].set_color((.8, .8, .8))
+
+    # tweak the axis labels
+    xlab = ax.xaxis.get_label()
+    ylab = ax.yaxis.get_label()
+
+    xlab.set_style('italic')
+    xlab.set_size(10)
+    ylab.set_style('italic')
+    ylab.set_size(10)
+
+    # tweak the title
+    ttl = ax.title
+    ttl.set_weight('bold')
+
+
 def mse(a, b):
     return np.power(a - b, 2).mean()
 
@@ -133,10 +166,20 @@ def calculate_dc_linearities(soup_in, soup_out):
         mse_node.attrs['mse'] = str(mse(expected, measured))
 
         if False:
+            import sys
+            fig = plt.figure('test')
+            ax = fig.add_subplot(111)
+            make_subplot_better(ax)
             model = linear_function(expected, *popt)
-            plt.scatter(expected, measured)
-            plt.plot(expected, model)
-            plt.show()
+            ax.scatter(expected, measured)
+            ax.plot(expected, model)
+            ax.set_title('Linear fit of Gain')
+            ax.set_xlabel('Input Voltage (V)')
+            ax.set_ylabel('Output Voltage (V)')
+            #plt.show()
+            plt.savefig('linear_fit.pdf', facecolor='white', edgecolor='none')
+            plt.gcf().clear()
+            sys.exit(0)
 
 
 if __name__ == '__main__':
