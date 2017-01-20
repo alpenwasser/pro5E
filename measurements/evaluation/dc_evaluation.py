@@ -70,21 +70,26 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
             if value_node is None:
                 value_node = soup.new_tag('value', input=current_dc)
                 measurement_node.append(value_node)
-            value_node.attrs['output'] = measured_dc
 
             # everything except for the preamp measurements require the CIC filter
             if configuration == 'preamp':
                 gain_is_positive = True if current_sign == '+' else False
+
+                fit_node = value_node.find('fit')
+                if fit_node is None:
+                    fit_node = soup.new_tag('fit')
+                    value_node.append(fit_node)
+
+                if 'Samp' in fit_node.attrs:
+                    continue
 
                 measured_dc,\
                 amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2,\
                 Samp, Samp_offset, Speriod, St_offset, Sduty_cycle, Stau1, Stau2 =\
                     parse_preamp_data(os.path.join(chip_dir_name, file), float(current_dc), gain_is_positive)
 
-                fit_node = value_node.find('fit')
-                if fit_node is None:
-                    fit_node = soup.new_tag('fit')
-                    value_node.append(fit_node)
+                value_node.attrs['output'] = measured_dc
+
                 fit_node.attrs['amp'] = amp
                 fit_node.attrs['Samp'] = Samp
                 fit_node.attrs['amp_offset'] = amp_offset
@@ -101,7 +106,10 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
                 fit_node.attrs['Stau2'] = Stau2
 
             else:
+                continue
                 measured_dc, bins, bin_edges, noise_amplitude, std = parse_sigdel_and_both(os.path.join(chip_dir_name, file))
+
+                value_node.attrs['output'] = measured_dc
 
                 histogram_node = soup.new_tag('histogram', bins=bins, bin_edges=bin_edges)
                 value_node.append(histogram_node)
@@ -199,7 +207,7 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
         else:
             measured_dc = np.min(ydata_model)
 
-        if True:
+        if False:
             plt.plot(xdata, ydata)
             plt.plot(xdata, ydata_model)
             plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
