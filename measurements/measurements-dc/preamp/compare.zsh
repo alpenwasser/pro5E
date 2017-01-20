@@ -19,6 +19,6 @@
 chip="$1"
 gain="$2"
 
-./plotComparison.py data/"chip${chip}Gain${gain}"/*032kHz* &
-./plotComparison.py data/"chip${chip}Gain${gain}"/*096kHz* &
+#./plotComparison.py data/"chip${chip}Gain${gain}"/*032kHz* &
+#./plotComparison.py data/"chip${chip}Gain${gain}"/*096kHz* &
 ./plotComparison.py data/"chip${chip}Gain${gain}"/*256kHz* &
