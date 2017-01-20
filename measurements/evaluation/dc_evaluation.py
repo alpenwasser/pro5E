@@ -10,7 +10,7 @@ import re
 
 
 def evaluate(soup):
-    for configuration in ('both', 'both-manual', 'sigdel', 'preamp'):
+    for configuration in  ('preamp',):  # ('both', 'both-manual', 'sigdel', 'preamp'):
         data_path = os.path.join('measurements-dc', configuration, 'data')
         for root, dirs, files in os.walk(data_path):
             for d in dirs:
@@ -19,6 +19,7 @@ def evaluate(soup):
                     continue
 
                 chip_id = match.group(1).lstrip('0')
+                chip_id = '2'
                 chip_node = soup.chips.find('chip', id=chip_id)
                 if chip_node is None:
                     chip_node = soup.new_tag('chip', id=chip_id)
@@ -58,6 +59,9 @@ def evaluate_chip(chip_dir_name, configuration, soup, configuration_node):
             current_fs = match_fs.group(1).lstrip('0')
             current_gain = match_gain.group(1).lstrip('0')
             current_sign = match_sign.group(1)
+
+            if current_gain != '16':
+                continue
 
             print('evaluating DC for {}/{}, sign={}, gain={}, fs={}, dc={}'.format(chip_dir_name, file, current_sign, current_gain, current_fs, current_dc))
 
@@ -200,17 +204,23 @@ def parse_preamp_data(file_name, expected_dc, gain_is_positive):
             expected_dc = vref - expected_dc
         if expected_dc > vref:
             measured_dc = np.max(ydata_model)
+            actual_dc = np.max(ydata)
+            measured_dc = actual_dc if measured_dc > actual_dc else measured_dc
         else:
             measured_dc = np.min(ydata_model)
+            actual_dc = np.min(ydata)
+            measured_dc = actual_dc if measured_dc < actual_dc else measured_dc
 
-        if False:
+        if True:
             plt.plot(xdata, ydata)
             plt.plot(xdata, ydata_model)
             plt.plot([xdata[0], xdata[-1]], [measured_dc, measured_dc])
             plt.figtext(0.7, 0.8, 'tau_1: {0:.2E}\ntau_2: {1:.2E}'.format(Decimal(popt[5]), popt[6]))
             plt.savefig('256kHz-{}V.png'.format(expected_dc))
-            plt.savefig('256kHz-{}V.pdf'.format(expected_dc))
-            plt.gcf().clear()
+            #plt.savefig('256kHz-{}V.pdf'.format(expected_dc))
+            #plt.gcf().clear()
+            plt.show()
+
 
         return [str(measured_dc)] + [str(x) for x in popt] + [str(x) for x in perr]
 
