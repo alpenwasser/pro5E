@@ -50,7 +50,7 @@ an oscilloscope on the \signal{TEST OUT} pin.
 
 Since the  preamp  uses  a  switching  capacitor  implementation,  the  output
 waveform is of  course  a  square  wave  of  sorts,  as  can be seen in figure
-\todo{generate}.
+\todo[inline]{generate}.
 
 A first observation to make are the slow rise and fall-times. Indeed,  this is
 one  of the major limiting factors of the chip's performance;  If  the  target
@@ -79,26 +79,42 @@ def preamp_curve(t, amp, amp_offset, period, t_offset, duty_cycle, tau1, tau2):
     return np.array([x for x in preamp_curve_single()])
 \end{minted}
 
-The initial parameters  for  the fit were obtained by first smoothing the data
-(using  a  Savitzky-Golay  filter)  and finding the  transition  points.  This
-process is illustrated  in  figure \todo{generate}. This was necessary because
-there are a lot of local  minima  the fit could fall into. The initial period,
-duty cycle, and phase shift can be  extracted  from  the  distance between the
-transition  lines.  The  initial amplitude and offset can be determined with a
-min/max search.
+The initial parameters for the fit were obtained by first smoothing  the  data
+(using a  Savitzky-Golay  filter)  and  finding  the  transition  points. This
+process is illustrated  in  figure \todo[inline]{generate}. This was necessary
+because there are a lot  of  local minima the fit could fall into. The initial
+period, duty cycle, and phase shift can be extracted from the distance between
+the transition lines. The initial amplitude and  offset can be determined with
+a min/max search.
 
 The  most  interesting  parameters  yielded from  the  fit  are  $\Tau_1$  and
 $\Tau_2$, which give us a rough idea of the transconductance $g_m$ of the OTA.
 The gain can also be easily extracted after the fit by  performing  a  min/max
-search on the  fitted  curve. This is illustrated in figure \todo{generate} as
+search on the  fitted  curve. This is illustrated in figure \todo[inline]{generate} as
 the horizontal line.
 
-It can be observed  that  the  transconductance $g_m$ is largest when near the
-reference  voltage  $V_{ref}=\SI{1.5}{\volt}$  and   decreases   with   higher
-amplitudes. This effect is visualised  in  figure \todo{generate a figure with
-11 overlapping preamp signals}.
+It can  be  observed  that the transconductance $g_m$ is largest when near the
+reference  voltage  $V_{ref}=\SI{1.5}{\volt}$  and decreases with higher input
+amplitudes. This effect can  be seen in figure \todo[inline]{generate a figure with 11
+overlapping preamp signals}. Furthermore, in the same figure,  one can observe
+slewing on the larger signals. This effect could be  included in the fit model
+above in future evaluations.
 
-If we plot $\Tau_1$ 
+By combining the individual  $\Tau$ constants and plotting them in function of
+the  input voltage, we see the effect of $g_m$ decreasing more clearly (figure
+\todo[inline]{generate  tau  figures}).  Here,   the   results   from  10  chips  were
+statistically averaged to get a better result.
+
+\todo[inline]{is it frequency dependent? Shouldn't be}
+
+By  plotting  the output voltage from the preamp  in  function  of  the  input
+voltage and fitting a linear function $y=mx+q$ to the data, we expect a linear
+function who's  incline is equal to that of the configured gain. Additionally,
+there we expect a small offset to exist, due to the imperfections  of reality.
+This  process  is   visualised   in   figure   \todo[inline]{generate   this  figure}.
+
+Figure \todo[inline]{generate this} shows all positive gains (1,  2,  4,  8,  16)  for
+every chip (x axis) in function of $fs$.
 
 % --------------------------------------------------------------------------- %
 \section{Sigma-Delta Converter: DC Measurements}
