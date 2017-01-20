@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{declare} \PYGZhy{}A voltDivs
+voltDivs\PYG{o}{[}+0.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}+0.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}+0.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+...
+voltDivs\PYG{o}{[}\PYGZhy{}2.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}100\PYGZsq{}}
+voltDivs\PYG{o}{[}\PYGZhy{}2.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+voltDivs\PYG{o}{[}\PYGZhy{}2.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}200\PYGZsq{}}
+
+\PYG{n+nb}{declare} \PYGZhy{}A offsets
+offsets\PYG{o}{[}+0.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1000\PYGZsq{}}
+offsets\PYG{o}{[}+0.7\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1100\PYGZsq{}}
+offsets\PYG{o}{[}+0.9\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1200\PYGZsq{}}
+...
+offsets\PYG{o}{[}\PYGZhy{}2.1\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1200\PYGZsq{}}
+offsets\PYG{o}{[}\PYGZhy{}2.3\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1100\PYGZsq{}}
+offsets\PYG{o}{[}\PYGZhy{}2.5\PYG{o}{]=}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}1000\PYGZsq{}}
+\end{Verbatim}

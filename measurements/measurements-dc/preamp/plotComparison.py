@@ -236,36 +236,43 @@ if (len(sys.argv) > 1):
 
     fig  = plt.figure('Comparison')
     ax   = fig.add_subplot(1,1,1)
-    ax.grid('on')
+    plt.setp( ax.get_xticklabels(), visible=False)
+    plt.setp( ax.get_yticklabels(), visible=False)
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+    ax.axis('off')
+
+    #ax.grid('on')
     # remove tick marks
     ax.xaxis.set_tick_params(size=0)
     ax.yaxis.set_tick_params(size=0)
-    ax.ticklabel_format(style='sci', axis='both', scilimits=(0,0))
+    #ax.ticklabel_format(style='sci', axis='both', sciimits=(0,0))
     # change the color of the top and right spines to opaque gray
     ax.spines['right'].set_color((.8, .8, .8))
     ax.spines['top'].set_color((.8, .8, .8))
     # tweak the axis labels
-    xlab = ax.xaxis.get_label()
-    ylab = ax.yaxis.get_label()
+    #xlab = ax.xaxis.get_label()
+    #ylab = ax.yaxis.get_label()
 
-    xlab.set_style('italic')
-    xlab.set_size(10)
-    ylab.set_style('italic')
-    ylab.set_size(10)
+    #xlab.set_style('italic')
+    #xlab.set_size(10)
+    #ylab.set_style('italic')
+    #ylab.set_size(10)
 
     # tweak the title
-    ttl = ax.title
-    ttl.set_weight('bold')
+    #ttl = ax.title
+    #ttl.set_weight('bold')
 
-    ax.set_title('Pre-Amplifier Output for 256 kHz, Gain +1')
+    #ax.set_title('Pre-Amplifier Output for 256 kHz, Gain +1')
 
     for i in range(1,len(sys.argv)):
         plot_data(sys.argv[i],COLORS[i % len(COLORS) - 1],ax)
     fig.set_size_inches(12,7.5)
-    ax.set_xlim(-0.1e-6,3.75e-6)
+    #ax.set_xlim(-0.1e-6,3.75e-6)
+    ax.set_xlim(-4.35e-6,3.5e-6)
     ax.set_ylim(0.4,2.6)
     plt.tight_layout()
-    plt.savefig('vinComparisonPreamp.pdf', facecolor='white', edgecolor='none')
-    plt.show()
+    plt.savefig('titlePlot.pdf', facecolor='white', edgecolor='blue')
+    #plt.show()
 else:
     exit(2)

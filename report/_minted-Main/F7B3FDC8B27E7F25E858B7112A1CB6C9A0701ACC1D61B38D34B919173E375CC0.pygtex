@@ -1,0 +1,76 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}wiringPi.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}sys/time.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}fstream\PYGZgt{}}
+
+\PYG{k}{enum} \PYG{n}{BufferDataSlots}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{BUF\PYGZus{}DATA}\PYG{p}{,}
+	\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{,}
+
+	\PYG{n}{BUF\PYGZus{}NUM\PYGZus{}SLOTS}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+cp}{\PYGZsh{}define NUM\PYGZus{}MEASUREMENTS 25000}
+\PYG{c+cp}{\PYGZsh{}define PIN\PYGZus{}CLOCK        17}
+\PYG{c+cp}{\PYGZsh{}define PIN\PYGZus{}DATA         18}
+
+\PYG{k+kt}{void} \PYG{n+nf}{initialise\PYGZus{}gpio}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{wiringPiSetupGpio}\PYG{p}{();}
+
+	\PYG{n}{pinMode}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}CLOCK}\PYG{p}{,} \PYG{n}{INPUT}\PYG{p}{);}
+	\PYG{n}{pinMode}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}DATA}\PYG{p}{,} \PYG{n}{INPUT}\PYG{p}{);}	
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{acquire\PYGZus{}data}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}NUM\PYGZus{}SLOTS}\PYG{p}{][}\PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{])}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{timeval} \PYG{n}{end}\PYG{p}{,} \PYG{n}{start}\PYG{p}{;}
+
+	\PYG{n}{gettimeofday}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{start}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{!=} \PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{// wait for clock to go positive}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{digitalRead}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}CLOCK}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+
+		\PYG{n}{gettimeofday}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{end}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}DATA}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{digitalRead}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}DATA}\PYG{p}{);}
+		\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{p}{((}\PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{end}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{p}{((}\PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}sec} \PYG{o}{*} \PYG{l+m+mi}{1000000}\PYG{p}{)} \PYG{o}{+} \PYG{n}{start}\PYG{p}{.}\PYG{n}{tv\PYGZus{}usec}\PYG{p}{);}
+
+		\PYG{c+c1}{// wait for clock to go negative}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{digitalRead}\PYG{p}{(}\PYG{n}{PIN\PYGZus{}CLOCK}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{save\PYGZus{}data}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}NUM\PYGZus{}SLOTS}\PYG{p}{][}\PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{])}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{ofstream} \PYG{n}{data\PYGZus{}file}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}bit\PYGZus{}stream.txt\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{ofstream} \PYG{n}{clock\PYGZus{}file}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}vin\PYGZus{}clk.txt\PYGZdq{}}\PYG{p}{);}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{!=} \PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{long} \PYG{k+kt}{double} \PYG{n}{time\PYGZus{}usec} \PYG{o}{=} \PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}TIME}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mf}{1000000.0}\PYG{p}{;}
+		\PYG{n}{clock\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{time\PYGZus{}usec} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}1.2\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}DATA}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{n}{data\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{time\PYGZus{}usec} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}3.0000\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{k}{else}
+			\PYG{n}{data\PYGZus{}file} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{time\PYGZus{}usec} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}     \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}1.0e\PYGZhy{}9\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{initialise\PYGZus{}gpio}\PYG{p}{();}
+
+	\PYG{c+cm}{/*}
+\PYG{c+cm}{	 * The IO operations may be too slow, so we store the measurements}
+\PYG{c+cm}{         * to a temporary buffer and save the buffer later.}
+\PYG{c+cm}{	 */}
+	\PYG{k+kt}{int} \PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{[}\PYG{n}{BUF\PYGZus{}NUM\PYGZus{}SLOTS}\PYG{p}{][}\PYG{n}{NUM\PYGZus{}MEASUREMENTS}\PYG{p}{];}
+	\PYG{n}{acquire\PYGZus{}data}\PYG{p}{(}\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{);}
+	\PYG{n}{save\PYGZus{}data}\PYG{p}{(}\PYG{n}{bitstream\PYGZus{}buf}\PYG{p}{);}
+
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}done\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
