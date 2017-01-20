@@ -37,7 +37,7 @@
     %    into a separate chapter titled \emph{Analysis} or something similar.)
 \end{itemize}
 
-%\todo[inline]{Statistical analysis of results}
+%
 
 % --------------------------------------------------------------------------- %
 \section{Pre-Amplifier: DC Measurements}
@@ -109,21 +109,22 @@ search   on   the   fitted   curve.   This    is    illustrated    in   figure
 
 \begin{figure}
     \centering
-    \includegraphics[with=.7\linewidth]{images/fitting_rc_model.pdf}
+    \includegraphics[width=.7\linewidth]{images/plots/fitting_rc_model.pdf}
     \caption{Fitting the RC model to the raw data and determining the preamp output voltage.}
     \label{fig:fitting_rc_model}
 \end{figure}
 
 It can be observed that the transconductance $g_m$ is largest  when  near  the
 reference voltage $V_{ref}=\SI{1.5}{\volt}$ and  decreases  with  higher input
-amplitudes. This effect can be seen in  figure \todo[inline]{generate a figure
-with 11 overlapping preamp  signals}. Furthermore, in the same figure, one can
+amplitudes. This effect can be seen in  figure 
+. 
+Furthermore, in the same figure, one can
 observe slewing on  the  larger  signals. This effect could be included in the
 fit model above in future evaluations.
 
 By combining the individual $\tau$ constants and  plotting them in function of
 the input voltage, we see the  effect of $g_m$ decreasing more clearly (figure
-\todo[inline]{generate tau  figures}).  Here,  the  results from 10 chips were
+).  Here,  the  results from 10 chips were
 statistically averaged to get a better result.
 
 The $\tau$ constants  appear to be frequency dependent. This doesn't make much
@@ -134,14 +135,14 @@ By  plotting  the output voltage from the preamp  in  function  of  the  input
 voltage and fitting a linear function $y=mx+q$ to the data, we expect a linear
 function who's  incline is equal to that of the configured gain. Additionally,
 there  we expect a small offset to exist, due to the imperfections of reality.
-This  process  is  visualised  in  figure \todo[inline]{generate this figure}.
+This  process  is  visualised  in  figure .
 
-The  left  column of figure \todo[inline]{generate this}  shows  all  positive
+The  left  column of figure   shows  all  positive
 gains (1, 2, 4, 8, 16) for every chip (x  axis)  in  function  of  $fs$. There
 appeared to be a  correlation  between sampling frequency $fs$ and gain, which
 made  sense  at the time, since at higher sampling frequencies, the output  of
 the preamp no longer manages to properly reach the target voltage in time. The
-right column of figure \todo[inline]{same figure} shows  the  gain in function
+right column of figure  shows  the  gain in function
 of  sampling  frequency.
 
 It is interesting that as the configurable gain is increased, the measurements
@@ -151,7 +152,7 @@ investigation.
 
 Another interesting observation is what happens when the gain is inverted. The
 same  measurements  but   for   negative   gains   can   be   seen  in  figure
-\todo[inline]{generate this}. This is much more  what  we  expect  to see: The
+. This is much more  what  we  expect  to see: The
 sampling frequency and the gain have no significant influence. It is currently
 unclear  why  the  preamp  behaves  more correct when  in  inverted  mode.  An
 asymmetry  was  also observed while performing the measurements  in  the  lab.
@@ -173,16 +174,17 @@ measured voltage.
 
 By  fitting the linear function $y=mx+q$ to the 11 input/output  voltage  data
 points, we expect  to  obtain  a  line  who's incline is equal to 1 and offset
-equal  to  0.  In  figure  \todo[inline]{thing} each incline of each  chip  is
+equal  to  0.  In  figure   each incline of each  chip  is
 plotted for each sampling frequency $fs$.  Similarly,  the offset of each chip
-is plotted in figure \todo[inline]{sigdel offsets}.
+is plotted in figure .
 
 The  results  show that there is no significant deviation  from  the  expected
 values.
 
 During processing of the bit stream data, some anomalies were noticed.  Random
-spikes would  occur  here and there. See figure \todo[inline]{show examples at
-32, 96 and 256 kHz}. The only correlations that could  be  made  were that the
+spikes would  occur  here and there. See figure 
+.
+The only correlations that could  be  made  were that the
 spikes  occurred  more  often  at  higher sampling rates than they do at lower
 sampling rates. After analysing the time axis  to  make  sure  the data points
 were  equidistantly  spaced,  random  deviations  were  detected.  This  could
@@ -201,34 +203,6 @@ pre-amplifier and the \sdm~were measured together as one.
 
 As expected, the rather imperfect results from the pre-amplifier combined with
 the  perfect  results  from the \sdm~result in a semi-imperfect system. Figure
-\todo[inline]{Show  linearity  of complete system} shows the various gains  of
-the complete system and  figure  \todo[inline]{Show offset of complete system}
+ shows the various gains  of
+the complete system and  figure  
 shows the offset of the complete system.
-
-%\todo[inline]{Data from Oscilloscope}
-
-%\begin{table}
-%    \centering
-%    \fontfamily{jkpss}\selectfont
-%    \caption{DC Measurements}
-%    \label{tab:dcMeas}
-%    \begin{tabular}{ccc}
-%        \toprule
-%        {$V_{\textnormal{in}}$ (\si{\volt})} &
-%        {$G_{\textnormal{Preamp}}$}          &
-%        {$f_{\textnormal{s}}$ (\si{\kilo\hertz})}         \\
-%        \midrule
-%        0.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        0.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        0.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        1.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        1.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        1.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        1.7 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        1.9 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        2.1 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        2.3 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        2.5 & {1, 2, 4, 6, 8, 16} & {32, 256} \\
-%        \bottomrule
-%    \end{tabular}
-%\end{table}
