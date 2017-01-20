@@ -5,17 +5,17 @@ import struct
 import sys
 import getopt
 
-# --------------------------------------------------------------------------- #
-# DESCRIPTION                                                                 #
-# --------------------------------------------------------------------------- #
-# Controls two 33120A  arbitrary function generators via  RS232 connection and
-# USB adapter. One of  the generators is used  to output a square  wave (to be
-# used as the clock) between 0V and  3V, the other generator is used to output
-# a DC signal.
+# ----------------------------------------------------------------------- #
+# DESCRIPTION                                                             #
+# ----------------------------------------------------------------------- #
+# Controls two  33120A arbitrary  function generators via  RS232 connection
+# and USB  adapter. One of the generators  is used to output  a square wave
+# (to be used as the clock) between  0V and 3V, the other generator is used
+# to output a DC signal.
 
-# --------------------------------------------------------------------------- #
-# USAGE                                                                       #
-# --------------------------------------------------------------------------- #
+# ----------------------------------------------------------------------- #
+# USAGE                                                                   #
+# ----------------------------------------------------------------------- #
 # ./33120A.py --clock=<frequency>
 # ./33120A.py -c <frequency>
 # Set the CLK generator's frequency. <frequency> is a value in Hertz.
@@ -29,15 +29,15 @@ import getopt
 # Example: Set a DC voltage of 0.9V:
 # ./33120A.py -v 0.9
 
-# --------------------------------------------------------------------------- #
-# SETTINGS                                                                    #
-# --------------------------------------------------------------------------- #
+# ----------------------------------------------------------------------- #
+# SETTINGS                                                                #
+# ----------------------------------------------------------------------- #
 CLK_DEVICE = '/dev/ttyUSB1'
 DC_DEVICE  = '/dev/ttyUSB0'
 
-# --------------------------------------------------------------------------- #
-# IMPLEMENTATION                                                              #
-# --------------------------------------------------------------------------- #
+# ----------------------------------------------------------------------- #
+# IMPLEMENTATION                                                          #
+# ----------------------------------------------------------------------- #
 class FunctionGenerator(object):
     def __init__(self, device):
         self.__gen = serial.Serial(
@@ -51,18 +51,22 @@ class FunctionGenerator(object):
         self.__gen.write(b'OUTP:LOAD INF\n')
 
     def set_dc(self, voltage):
-        self.__gen.write(bytes('APPL:DC DEF, DEF, {} V\n'.format(voltage), 'ascii'))
+        self.__gen.write(
+            bytes('APPL:DC DEF, DEF, {} V\n'.format(voltage), 'ascii'))
 
     def set_clk(self, freq):
-        self.__gen.write(bytes('APPL:SQU {} HZ, 3 VPP, 1.5 V\n'.format(freq), 'ascii'))
+        self.__gen.write(
+            bytes('APPL:SQU {} HZ, 3 VPP, 1.5 V\n'.format(freq), 'ascii'))
 
     def set_sin(self, frequency, vpp, offset):
-        self.__gen.write(bytes('APPL:SIN {} HZ, {} VPP, {} V\n'.format(frequency, vpp, offset), 'ascii'))
+        self.__gen.write(
+            bytes('APPL:SIN {} HZ, {} VPP, {} V\n'.format(
+                frequency, vpp, offset), 'ascii'))
 
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv,"hc:v:",["help","clock=","voltage="])
+        opts,args=getopt.getopt(argv,"hc:v:",["help","clock=","voltage="])
     except getopt.GetoptError:
         print('33120A.py -c <clock frequency> -v <input voltage>')
         sys.exit(2)
