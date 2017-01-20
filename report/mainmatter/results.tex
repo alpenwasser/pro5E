@@ -173,27 +173,37 @@ measured voltage.
 
 By  fitting the linear function $y=mx+q$ to the 11 input/output  voltage  data
 points, we expect  to  obtain  a  line  who's incline is equal to 1 and offset
-equal to 0.
+equal  to  0.  In  figure  \todo[inline]{thing} each incline of each  chip  is
+plotted for each sampling frequency $fs$.  Similarly,  the offset of each chip
+is plotted in figure \todo[inline]{sigdel offsets}.
+
+The  results  show that there is no significant deviation  from  the  expected
+values.
+
+During processing of the bit stream data, some anomalies were noticed.  Random
+spikes would  occur  here and there. See figure \todo[inline]{show examples at
+32, 96 and 256 kHz}. The only correlations that could  be  made  were that the
+spikes  occurred  more  often  at  higher sampling rates than they do at lower
+sampling rates. After analysing the time axis  to  make  sure  the data points
+were  equidistantly  spaced,  random  deviations  were  detected.  This  could
+possibly   be   a  result  of  using  the  rather   inaccurate   system   call
+\textit{gettimeofday()}  for  generating  time  stamps  on  the   \raspi.  The
+deviations are large enough to  suggest the possibility that bits went missing
+from the bit stream.
 
 % --------------------------------------------------------------------------- %
 \section{Complete System: DC Measurements}
 \label{sec:systemDC}
 % --------------------------------------------------------------------------- %
 
-% --------------------------------------------------------------------------- %
-\section{Pre-Amplifier: AC Measurements}
-\label{sec:preAmpAC}
-% --------------------------------------------------------------------------- %
+The  same  measurements  were  performed  on  the complete chip: That is,  the
+pre-amplifier and the \sdm were measured together as one.
 
-% --------------------------------------------------------------------------- %
-\section{Sigma-Delta Converter: AC Measurements}
-\label{sec:sigdelAC}
-% --------------------------------------------------------------------------- %
-
-% --------------------------------------------------------------------------- %
-\section{Complete System: AC Measurements}
-\label{sec:systemAC}
-% --------------------------------------------------------------------------- %
+As expected, the rather imperfect results from the pre-amplifier combined with
+the  perfect  results  from the \sdm result in a semi-imperfect system. Figure
+\todo[inline]{Show  linearity  of complete system} shows the various gains  of
+the complete system and  figure  \todo[inline]{Show offset of complete system}
+shows the offset of the complete system.
 
 %\todo[inline]{Data from Oscilloscope}
 
