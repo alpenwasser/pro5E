@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Measurement and Improvement of a Sensor Measurement Chain</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+
+<body>
+    <img id="logo" alt="logo" src="images/fhnw_logo.jpg">
+    <h1 id="globalTitle">Measurement and Improvement of a Sensor Measurement Chain</h1>
+    <div class="menu">
+        <ul class="menu">
+            <a href="#testBench"><li class="menu">Test Bench</li></a>
+            <a href="#measResults"><li class="menu">Measurement Results</li></a>
+            <a href="#conclusions"><li class="menu">Conclusions</li></a>
+            <a href="#footer"><li class="menu">Contact</li></a>
+        </ul>
+    </div>
+
+    <div id="mainContent">
+        <div class="chapter" id="Overview">
+            <div class="text">
+                <p>
+                    Our primary objective  in this project is be  to develop a
+                    test  suite  with  which to  conveniently  and  accurately
+                    measure various  versions of a measurement  chip which has
+                    been in development at the ime for a few years.
+                </p>
+
+                <p>
+                    While some  measurements have already been  performed, the
+                    amount of  tests run has so  far been limited due  to time
+                    constraints by the respective teams.   We aim to expand on
+                    those measurements with our test  suite, as well as to use
+                    them as a reference point against which we can compare our
+                    findings.
+                </p>
+            </div>
+        </div>
+
+        <div class="chapter" id="testBench">
+            <h2>Test Bench</h2>
+            <img class="testBench" alt="Test Bench, Complete" src="images/testBenchComplete.jpeg">
+            <div class="text">
+                <p>
+                The test bench (depicted above) consists of the following primary devices:
+                </p>
+                <hr>
+                <table>
+                    <tr>
+                        <th>
+                            Item
+                      </th>
+                        <th>
+                            Count
+                        </th>
+                        <th>
+                            Notes
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            HP 33120A Arbitrary Waveform Generator
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            For generating input signal and clock
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Keysight 34465A Tabletop Multimeter
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Monitoring <span class="code">VGNDA</span>, 
+                            <span class="code">VIN</span>, 
+                            <span class="code">IBIAS</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Aim TTi MX100TP DC Power Supply
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Supply for 
+                            <span class="code">VDDD </span>, 
+                            <span class="code">VDDA </span>, 
+                            <span class="code">VGNDA</span>, 
+                            <span class="code">IBIAS</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            LeCroy waveRunner 6100A 1 GHz Oscilloscope
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Monitoring 
+                            <span class="code">CLK</span>,
+                            <span class="code">TEST_OUT</span>,
+                            <span class="code">SIGNAL_OUT</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raspberry Pi
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            reading and storing bit stream (<span class="code">SIGNAL_OUT</span>),
+                            Operating System: Raspbian
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Test board
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Sensor IC
+                        </td>
+                        <td>
+                            10
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Computer
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Remote-control   for  oscilloscope   and  waveform
+                            generators, Operating System: Linux or *BSD with a
+                            bash-compatible  shell  and the  necessary  Python
+                            libraries
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+                <p>
+                    The  measuremet process  has been  largely automated. Both
+                    signal generators as well as the oscilloscope and the data
+                    acquisition  process on  the Raspberry  Pi are  controlled
+                    from  a PC  by  means of  Python  and shell  scripts. This
+                    allows convenient  and error-resilient measuring  of large
+                    data  sets  in  comparatively   little  time  (about  five
+                    work-days for a full suite as run in our project).
+                </p>
+            </div>
+            <div class="text">
+                <p>
+                    Physical  interfacing is  achieved  via  various types  of
+                    connections,  as  schematically  indicated  in  the  below
+                    graphic.  The  signal generators  are connected to  the PC
+                    via RS232  to USB  adapters, while the  oscilloscope's and
+                    the Raspberry Pi's connections  to the PC are accomplished
+                    via Ethernet.
+                </p>
+            </div>
+            <img class="testBench" alt="Test Bench, Connections" src="images/testBenchConnections.jpeg">
+            <div class="text">
+                <p>
+                    For  interfacing  with  the  sensor  IC,  Tobias  Burgherr
+                    developed the below test board in his project. It provides
+                    all  the  necessary  connections for  the  various  supply
+                    voltages, output pins and enables convenient configuration
+                    of various settings of the chip (e.g. preamp gain).
+                </p>
+            </div>
+            <img class="testBench" alt="Test Coard, Connected" src="images/testBoardConnected.jpeg">
+        </div>
+
+        <div class="chapter" id="measResults">
+            <h2>Measurement Results</h2>
+        </div>
+        <div class="chapter" id="conclusions">
+            <h2>Conclusions</h2>
+        </div>
+    </div>
+
+    <div class="footer" id="footer">
+        <h2>Contact Info</h2>
+        <div class="footerColumn">
+            <h3>Students</h3>
+            <ul class="contact" id="students">
+                <a href="raphael.frey@students.fhnw.ch"><li>Raphael Frey: raphael.frey@students.fhnw.ch</li></a>
+                <a href="alexander.murray@students.fhnw.ch"><li>Alexander Murray: alexander.murray@students.fhnw.ch</li></a>
+            </ul>
+        </div>
+        <div class="footerColumn">
+            <h3>Coaches</h3>
+            <ul class="contact" id="coaches">
+                <a href="http://www.fhnw.ch/personen/hanspeter-schmid"><li>Hanspeter Schmid</li></a>
+                <a href="http://www.fhnw.ch/personen/alex-huber"><li>Alex Huber</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
